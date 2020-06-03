@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	
+	<Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
+
+	<PropertyGroup>
+		<PathDoorway>F:\Proyectos\Doorway\src</PathDoorway>
+		<CakePath>F:\Proyectos\CAKE 17\src</CakePath>
+		
+		<lacFolder>lac</lacFolder>
+		<lacOfuscadoFolder>lac ofuscado</lacOfuscadoFolder>
+		
+		<Configuration>Release</Configuration>
+		<Platform>Any CPU</Platform>
+		
+		<LatestReleasesFolder>F:\Proyectos\Latest Releases</LatestReleasesFolder>
+		
+		<NUnitPath>C:\Program Files (x86)\NUnit 3.9\net-4.5</NUnitPath>
+		<SkaterObfuscatorPath>C:\Program Files (x86)\RustemSoft\Skater</SkaterObfuscatorPath>
+		<ObfuscatorPath>C:\Program Files (x86)\ConfuserEx</ObfuscatorPath>
+		
+		<DestInstallerNameFormat>Doorway_Setup</DestInstallerNameFormat>
+		<SourceNameExe>DRW_setup.exe</SourceNameExe>
+		
+		<InstallerFolderName>installer\setup</InstallerFolderName>
+		<ExesFolder>publish</ExesFolder>
+		
+		<ErrorCode>0</ErrorCode>
+		<MyDate></MyDate>
+		<GetDateNowScript>zGetDateNow.bat</GetDateNowScript>
+		<DeleteOldDoorwayInstallers>zDeleteOldDoorwayInstallers.bat</DeleteOldDoorwayInstallers>
+		<MSBuild17Exe>C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin</MSBuild17Exe>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<Solutions Include=".\Doorway.sln" />
+
+		<CAKEDependencies Include="$(CakePath)\$(lacFolder)\Cake.Services.Core.dll;
+									$(CakePath)\$(lacFolder)\Cake.ConnectionFactory.dll;
+									$(CakePath)\$(lacFolder)\Cake.EngineManagement.dll" />
+									
+		<CakeObfuscatedReferences Include="$(CakePath)\$(lacOfuscadoFolder)\Cake.Services.Core.dll;
+											$(CakePath)\$(lacOfuscadoFolder)\Cake.ConnectionFactory.dll;
+											$(CakePath)\$(lacOfuscadoFolder)\Cake.EngineManagement.dll" />
+
+	</ItemGroup>
+	
+	<Target Name="UpdateCakeReferencesDebug">
+		<Copy SourceFiles="@(CAKEDependencies)" DestinationFolder="$(PathDoorway)\$(lacFolder)\" />
+	</Target>
+
+	<Target Name="UpdateCakeObfuscatedReferences">
+		<Copy SourceFiles="@(CakeObfuscatedReferences)" DestinationFolder="$(PathDoorway)\$(lacFolder)\" />
+	</Target>
+
+	<Target Name="BuildAngular">
+		<!-- Si la ruta de npm es desconocida o no se encuentra hay que poner: &quot;C:\Program Files\nodejs\npm.cmd&quot; antes del comando-->
+		<Exec Command="cd &quot;$(PathDoorway)\Doorway.Services\&quot; &amp; npm install" />
+		<!--<Exec Command="cd &quot;$(PathDoorway)\Doorway.Services\&quot; &amp; npm run-script buildProd" />-->
+	</Target>
+	
+	<Target Name="RestoreNuGetPackages">
+		<!-- Restauracion manual de paquetes de Nuget -->
+		<Exec Command='.\nuget\nuget.exe restore Doorway.sln -MSBuildPath &quot;$(MSBuild17Exe)&quot;' />
+	</Target>
+		
+	<Target Name="Build">
+		<CallTarget Targets="RestoreNuGetPackages" />
+		<CallTarget Targets="BuildAngular" />
+		<!-- Compilacion -->
+		<MSBuild Projects="@(Solutions)" Properties="Configuration=$(Configuration);Platform=$(Platform);" ContinueOnError="false" />
+	</Target>
+	
+	<Target Name="BuildAndPublish">
+		<!-- Publica para tener el exe para el instalador, el publish compila previamente segun el profile creado-->
+		<MSBuild Projects="$(PathDoorway)\Doorway.Services\Doorway.Services.csproj" Properties="DeployOnBuild=true; PublishProfile=FolderProfile" />
+	</Target>
+	
+	<Target Name="BuildAngularBuildAndPublish">
+		<!-- <CallTarget Targets="BuildAngular" /> -->
+		<CallTarget Targets="Build" />
+		<CallTarget Targets="BuildAndPublish" />
+	</Target>
+	
+	<Target Name="Obfuscate">
+		<!--TODO-->
+		<Message Text="Obfuscating: Deleting previous ofuscated files" />
+		<Exec Command='Del "$(MSBuildStartupDirectory)\lac ofuscado\*.*" /Q'/>
+		<Exec Command='"$(ObfuscatorPath)\confuser.cli.exe" -n ".\Obfuscation Settings\Doorway-Obfuscation.crproj"'/>
+		<Message Text="Obfuscated" />
+	</Target>
+	
+	<Target Name="SignExePublishInstallers">
+		<Exec Command='start %comspec% /k ""C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\VsDevCmd.bat" &amp; SignTool sign /n "Knowledge" "$(PathDoorway)\$(ExesFolder)\*.exe" &amp; exit&quot;' />
+	</Target>
+		
+	<Target Name="BuildInstallers">
+		<Exec Command='./$(DeleteOldDoorwayInstallers)' />
+		<InnoSetup ScriptFile=".\installer\Doorway_installer.iss" Quiet="true" >
+			<Output TaskParameter="ExitCode" ItemName="ErrorCode"/>
+		</InnoSetup>
+		<Error Text="$(ErrorCode)" Condition="'$(ErrorCode)'!=0"/>
+		
+		<!-- Cambiamos el nombre de los instaladores -->
+		<Exec ConsoleToMSBuild="true" Command='.\$(GetDateNowScript)'>
+			<Output TaskParameter="ConsoleOutput" PropertyName="MyDate" />
+		</Exec>
+		<Exec Command='F: &amp; cd "$(PathDoorway)\$(InstallerFolderName)\" &amp; MOVE $(SourceNameExe) "$(LatestReleasesFolder)\$(DestInstallerNameFormat).exe"' />
+	</Target>
+	
+	<Target Name="SignExeLatestReleases">
+		<Exec ConsoleToMSBuild="true" Command='.\$(GetDateNowScript)'>
+			<Output TaskParameter="ConsoleOutput" PropertyName="MyDate" />
+		</Exec>
+		<Exec Command='start %comspec% /k ""C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\VsDevCmd.bat" &amp; SignTool sign /n "Knowledge" "$(LatestReleasesFolder)\$(DestInstallerNameFormat)" &amp; exit&quot;' />
+	</Target>
+	
+</Project>

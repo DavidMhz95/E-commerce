@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4434028284714047944644e59b1cd4a6" Name="Diagram1">
+        <EntityTypeShape EntityType="DoorwayModel.Category" Width="1.5" PointX="2.5" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoorwayModel.User" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoorwayModel.Event" Width="1.5" PointX="4.75" PointY="1.25" />
+        <AssociationConnector Association="DoorwayModel.FK_Events_Category" />
+        <AssociationConnector Association="DoorwayModel.FK_Events_Users" />
+        <EntityTypeShape EntityType="DoorwayModel.UserOption" Width="1.5" PointX="2.5" PointY="5.625" />
+        <AssociationConnector Association="DoorwayModel.FK_UserOptions_Users" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
