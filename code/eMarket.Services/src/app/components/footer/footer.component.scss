@@ -1,0 +1,39 @@
+.title {
+  text-align: left;
+  padding: 12px 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: "Century Gothic", sans-serif;
+  font-weight: 400 !important;
+  color: #545454;
+  font-size: 20px;
+}
+
+.subtitle {
+  font-size: 0.76em;
+  font-family: "Century Gothic", sans-serif;
+  margin: 0 15px;
+  color: #545454;
+  h5 {
+    font-size: 0.83em;
+    padding-bottom: 15px;
+    margin: 30px 0 15px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700 !important;
+    border-bottom: 1px solid rgba(84, 84, 84, 0.5);
+  }
+  p{
+    line-height: 1.5;
+  }
+}
+
+.payment-icon{
+  height: 18px;
+}
+
+.social-network{
+  height: 15px;
+  width: 15px;
+  margin-right: 10px;
+}

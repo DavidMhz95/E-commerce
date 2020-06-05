@@ -7,9 +7,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderSectionsComponent implements OnInit {
 
+  public sections:Section[]=[{
+    title:"hombre",
+    sections:[{
+      title:"seccion A",
+      sections:[]
+    }, {
+      title:"seccion B",
+      sections:[]
+    },{
+      title:"seccion C",
+      sections:[]
+    }]
+  },{
+    title:"mujer",
+    sections:[{
+      title:"seccion A",
+      sections:[]
+    }, {
+      title:"seccion B",
+      sections:[]
+    },{
+      title:"seccion C",
+      sections:[]
+    }],
+  }]
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+}
+
+export interface Section{
+  title:string
+  sections:Section[]
 }
