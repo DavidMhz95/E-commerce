@@ -1,1 +1,22 @@
-<p>product works!</p>
+<div #imageDiv class="imageDiv">
+
+    <div class="slideup">
+        Vista rápida
+    </div>
+</div>
+
+<div class="details">
+    <div class="title">{{product?.title}}</div>
+    <div *ngIf="product?.isSale" class="sale">
+        Oferta
+    </div>
+    <div *ngIf="product?.isSale">
+        <span
+            style="padding-right: 10px; text-decoration: line-through; color: #030303; opacity: .5;">€{{product?.actualPrize}}</span>
+        <span style="color:#be563f">€{{product?.beforePrize}}</span>
+    </div>
+
+    <div *ngIf="product?.isSale==false">
+        <span>€{{product?.actualPrize}}</span>
+    </div>
+</div>
