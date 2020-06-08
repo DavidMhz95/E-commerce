@@ -1,10 +1,10 @@
-<div #imageDiv class="imageDiv">
-
-    <div class="slideup">
-        Vista rápida
+<a [routerLink]="'/landing/products/'+product?.id">
+    <div #imageDiv class="imageDiv">
+        <div class="slideup" (click)="$event.preventDefault(); $event?.stopPropagation(); openDialog()">
+            Vista rápida
+        </div>
     </div>
-</div>
-
+</a>
 <div class="details">
     <div class="title">{{product?.title}}</div>
     <div *ngIf="product?.isSale" class="sale">

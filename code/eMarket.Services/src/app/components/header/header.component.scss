@@ -11,4 +11,12 @@
     font-size: 20px;
     border-bottom: 1px #efeeec solid;
   }
+
+  a{
+    cursor: pointer;
+    color: #545454;
+  }
+  a:hover{
+    text-decoration: none;
+  }
 }

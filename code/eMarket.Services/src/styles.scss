@@ -38,3 +38,18 @@
     .auto-clear.col-xs-4:nth-child(3n+1){clear:left;}
     .auto-clear.col-xs-6:nth-child(odd){clear:left;}
   }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-dialog-container {
+  border-radius: 2px !important;
+}
+
+.close{
+  height: 10px;
+  width: 10px;
+}
+
+.mat-dialog-container {
+  max-width: 960px;
+}

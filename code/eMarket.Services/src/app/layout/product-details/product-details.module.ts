@@ -10,6 +10,9 @@ import { ProductDetailsComponent } from './product-details.component';
   imports: [
     CommonModule,
     ProductDetailsRoutingModule
+  ],
+  exports:[
+    ProductDetailsComponent
   ]
 })
 export class ProductDetailsModule { }

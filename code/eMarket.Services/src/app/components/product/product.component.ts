@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { Product } from 'src/app/layout/products-view/products-view.component';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductModalComponent } from '../product-modal/product-modal.component';
 
 @Component({
   selector: 'app-product',
@@ -19,7 +22,7 @@ export class ProductComponent implements OnInit {
   imageA:any
   imageB:any
   
-  constructor(public sanitizer:DomSanitizer) { }
+  constructor(public sanitizer:DomSanitizer, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.imageDiv.nativeElement.style.height = this.imageDiv.nativeElement.offsetWidth+'px'
@@ -46,4 +49,11 @@ export class ProductComponent implements OnInit {
     this.imageDiv.nativeElement.style.height = this.imageDiv.nativeElement.offsetWidth+'px'
   }
 
+  openDialog() {
+    const dialogRef = this.dialog.open(ProductModalComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }
