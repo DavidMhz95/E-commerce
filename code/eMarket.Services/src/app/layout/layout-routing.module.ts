@@ -8,13 +8,12 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      // { path: '', redirectTo: 'dashboard' },
-      // { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule',  canActivate: [ActivateDashboard] },
-      // { path: 'calendar', loadChildren: './doorway/doorway.module#DoorwayModule' },
-      // { path: 'people', loadChildren: './people/people.module#PeopleModule' },
-      // { path: 'me', loadChildren: './me/me.module#MeModule', canActivate: [ActivateDashboard] },
-      // { path: 'reports', loadChildren: './reports/reports.module#ReportsModule', canActivate: [ActivateReports] },
-      //{ path: '**', redirectTo: 'dashboard' },
+      { path: '', redirectTo: 'products' },
+      { path: 'products', loadChildren: () => import('./products-view/products-view.module').then(m => m.ProductsViewModule), pathMatch:'full' },
+      { path: 'products/:id', loadChildren: () => import('./product-details/product-details.module').then(m => m.ProductDetailsModule) },
+      { path: 'collections/:section', loadChildren: () => import('./products-view/products-view.module').then(m => m.ProductsViewModule) },
+      { path: 'collections/:section/:subsection', loadChildren: () => import('./products-view/products-view.module').then(m => m.ProductsViewModule) },
+      { path: '**', redirectTo: 'products' },
     ]
   }
 ];

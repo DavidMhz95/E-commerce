@@ -1,0 +1,75 @@
+.title {
+  text-align: left;
+  padding: 12px 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: "Century Gothic", sans-serif;
+  font-weight: 400 !important;
+  color: #545454;
+  font-size: 20px;
+}
+
+.subtitle {
+  font-size: 0.76em;
+  font-family: "Century Gothic", sans-serif;
+  margin: 0 15px;
+  color: #545454;
+  h5 {
+    font-size: 0.83em;
+    padding-bottom: 15px;
+    margin: 30px 0 15px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700 !important;
+    border-bottom: 1px solid rgba(84, 84, 84, 0.5);
+  }
+  p {
+    line-height: 1.5;
+  }
+}
+
+.payment-icon {
+  height: 18px;
+}
+
+.social-network {
+  height: 15px;
+  width: 15px;
+  margin-right: 10px;
+}
+
+.newsletter-form {
+  background-color: rgba(255, 255, 255, 0);
+  position: relative;
+  display: table;
+  border-collapse: separate;
+  padding: 0;
+}
+
+.mail {
+  border: 0px;
+  outline: 0;
+  padding: 6px 10px;
+  border: 1px solid #545454; 
+  flex-grow: 7; 
+  background-color: white;
+  color: #545454;
+}
+
+.send {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 8.75px 12px;
+  color: white;
+  background-color: #545454;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.send:active {
+  div{
+    margin-top: 1px;
+    margin-bottom: -1px;
+  }
+}
