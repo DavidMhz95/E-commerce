@@ -8,8 +8,8 @@
 
 </div>
 
-<div style="float: left; padding: 0;" class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let product of products">
+<div style="float: left; padding: 0;" class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let product of dataService?.products">
     <app-product [product]="product"></app-product>
 </div>
 
-<div style="clear: both; margin-bottom: 80px;"></div>
+<div style="clear: both;"></div>

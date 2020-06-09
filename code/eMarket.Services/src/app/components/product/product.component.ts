@@ -27,20 +27,20 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     this.imageDiv.nativeElement.style.height = this.imageDiv.nativeElement.offsetWidth+'px'
     this.imageDiv.nativeElement.addEventListener("mouseover", ()=> {   
-      this.imageDiv.nativeElement.style.backgroundImage='url(' + this.product.imageB + ')'
+      this.imageDiv.nativeElement.style.backgroundImage='url(' + this.product.images[1] + ')'
     }, false);
     this.imageDiv.nativeElement.addEventListener("mouseout", ()=> {   
-      this.imageDiv.nativeElement.style.backgroundImage='url(' + this.product.imageA + ')'
+      this.imageDiv.nativeElement.style.backgroundImage='url(' + this.product.images[0] + ')'
     }, false);
 
-    if (this.product.imageA) {
+    if (this.product.images[0]) {
       let img = new Image()
-      img.src = this.product.imageA
+      img.src = this.product.images[0]
       img.onload = () => {
-        this.imageDiv.nativeElement.style.backgroundImage='url(' + this.product.imageA + ')'
+        this.imageDiv.nativeElement.style.backgroundImage='url(' + this.product.images[0] + ')'
       }
       img.onerror = () => {
-        this.imageDiv.nativeElement.style.backgroundImage='url(' + this.product.imageA + ')'
+        this.imageDiv.nativeElement.style.backgroundImage='url(' + this.product.images[0] + ')'
       }
     }
   }
@@ -50,7 +50,7 @@ export class ProductComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(ProductModalComponent);
+    const dialogRef = this.dialog.open(ProductModalComponent,{data:this.product});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

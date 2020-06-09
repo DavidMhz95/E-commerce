@@ -1,32 +1,29 @@
-.product__price--sale {
+:host {
+    font-family: "Century Gothic", sans-serif;
+}
+
+.salePrice {
     color: #be563f;
     margin-right: 15px;
 }
 
-.selector-wrapper {
+.selector-talla {
     min-width: 50%;
     flex-grow: 1;
     padding-right: 5px;
 }
 
-.selector-wrapper select {
+.selector-talla select {
     width: 80%;
 }
 
 select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-position: right center;
-    background-image: url(//cdn.shopify.com/s/files/1/2991/2402/t/14/assets/ico-select.svg?v=1156308…);
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-color: transparent;
-    background-size: 11px auto;
-    padding-right: 28px;
-    text-indent: 0.01px;
-    text-overflow: '';
     cursor: pointer;
+}
+
+select:focus,
+select:hover {
+    outline: 0;
 }
 
 input,
@@ -43,15 +40,6 @@ select,
     font-family: "Century Gothic", sans-serif;
     font-weight: 400;
     font-style: normal;
-}
-
-.btn--secondary,
-.product__submit--spb .product__submit__add,
-.spr-summary-actions-newreview {
-    background-color: rgba(255, 255, 255, 0);
-    color: #b1b1b1;
-    border: 1px solid #b1b1b1;
-    box-shadow: none;
 }
 
 .quantity-selector {
@@ -76,12 +64,77 @@ select,
     padding-left: 10px;
 }
 
-.product__submit--spb .product__submit__buttons {
+.buttons {
     margin: 0 0 10px 0;
     display: inline-flex;
     flex-flow: row wrap;
     align-items: flex-start;
     width: 100%;
+}
+
+.btnAdd {
+    border: 1px solid #dcdcdc;
+    box-shadow: none;
+    line-height: 1.5;
+    transition: all 0.15s ease;
+    display: inline-block;
+    width: auto;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    font-weight: 700;
+    cursor: pointer;
+    background: #fff;
+    color: #b1b1b1;
+    padding: 7px 14px;
+    margin: 10px 10px 0 0;
+    min-width: 155px;
+    flex: auto;
+    max-width: 400px;
+}
+
+.btnAdd:hover {
+    background: linear-gradient(to bottom, #b1b1b1 5%, #b1b1b1 100%);
+    background-color: #b1b1b1;
+    color: #fff;
+}
+
+.btnAdd:active {
+    position: relative;
+    top: 1px;
+}
+
+.btnBuyNow {
+    background-color: #b1b1b1;
+    color: #fff;
+    border: 1px solid #dcdcdc;
+    box-shadow: none;
+    line-height: 1.5;
+    transition: all 0.15s ease;
+    display: inline-block;
+    width: auto;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 7px 14px;
+    margin: 10px 10px 0 0;
+    min-width: 155px;
+    flex: auto;
+    max-width: 400px;
+}
+
+.btnBuyNow:hover {
+    background-color: #0d8bc5;
+    color: #fff;
+}
+
+.btnBuyNow:active {
+    position: relative;
+    top: 1px;
 }
 
 p,
