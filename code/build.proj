@@ -4,12 +4,6 @@
 	<Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
 
 	<PropertyGroup>
-		<PathDoorway>F:\Proyectos\Doorway\src</PathDoorway>
-		<CakePath>F:\Proyectos\CAKE 17\src</CakePath>
-		
-		<lacFolder>lac</lacFolder>
-		<lacOfuscadoFolder>lac ofuscado</lacOfuscadoFolder>
-		
 		<Configuration>Release</Configuration>
 		<Platform>Any CPU</Platform>
 		
@@ -19,8 +13,8 @@
 		<SkaterObfuscatorPath>C:\Program Files (x86)\RustemSoft\Skater</SkaterObfuscatorPath>
 		<ObfuscatorPath>C:\Program Files (x86)\ConfuserEx</ObfuscatorPath>
 		
-		<DestInstallerNameFormat>Doorway_Setup</DestInstallerNameFormat>
-		<SourceNameExe>DRW_setup.exe</SourceNameExe>
+		<DestInstallerNameFormat>eMarket_Setup</DestInstallerNameFormat>
+		<SourceNameExe>eMarket_setup.exe</SourceNameExe>
 		
 		<InstallerFolderName>installer\setup</InstallerFolderName>
 		<ExesFolder>publish</ExesFolder>
@@ -33,30 +27,11 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<Solutions Include=".\Doorway.sln" />
-
-		<CAKEDependencies Include="$(CakePath)\$(lacFolder)\Cake.Services.Core.dll;
-									$(CakePath)\$(lacFolder)\Cake.ConnectionFactory.dll;
-									$(CakePath)\$(lacFolder)\Cake.EngineManagement.dll" />
-									
-		<CakeObfuscatedReferences Include="$(CakePath)\$(lacOfuscadoFolder)\Cake.Services.Core.dll;
-											$(CakePath)\$(lacOfuscadoFolder)\Cake.ConnectionFactory.dll;
-											$(CakePath)\$(lacOfuscadoFolder)\Cake.EngineManagement.dll" />
-
+		<Solutions Include=".\eMarket.sln" />
 	</ItemGroup>
-	
-	<Target Name="UpdateCakeReferencesDebug">
-		<Copy SourceFiles="@(CAKEDependencies)" DestinationFolder="$(PathDoorway)\$(lacFolder)\" />
-	</Target>
-
-	<Target Name="UpdateCakeObfuscatedReferences">
-		<Copy SourceFiles="@(CakeObfuscatedReferences)" DestinationFolder="$(PathDoorway)\$(lacFolder)\" />
-	</Target>
 
 	<Target Name="BuildAngular">
-		<!-- Si la ruta de npm es desconocida o no se encuentra hay que poner: &quot;C:\Program Files\nodejs\npm.cmd&quot; antes del comando-->
-		<Exec Command="cd &quot;$(PathDoorway)\Doorway.Services\&quot; &amp; npm install" />
-		<!--<Exec Command="cd &quot;$(PathDoorway)\Doorway.Services\&quot; &amp; npm run-script buildProd" />-->
+		<Exec Command="cd &quot;.\eMarket.Services\&quot; &amp; npm install" />
 	</Target>
 	
 	<Target Name="RestoreNuGetPackages">
@@ -73,7 +48,7 @@
 	
 	<Target Name="BuildAndPublish">
 		<!-- Publica para tener el exe para el instalador, el publish compila previamente segun el profile creado-->
-		<MSBuild Projects="$(PathDoorway)\Doorway.Services\Doorway.Services.csproj" Properties="DeployOnBuild=true; PublishProfile=FolderProfile" />
+		<MSBuild Projects=".\Doorway.Services\Doorway.Services.csproj" Properties="DeployOnBuild=true; PublishProfile=FolderProfile" />
 	</Target>
 	
 	<Target Name="BuildAngularBuildAndPublish">
@@ -105,7 +80,7 @@
 		<Exec ConsoleToMSBuild="true" Command='.\$(GetDateNowScript)'>
 			<Output TaskParameter="ConsoleOutput" PropertyName="MyDate" />
 		</Exec>
-		<Exec Command='F: &amp; cd "$(PathDoorway)\$(InstallerFolderName)\" &amp; MOVE $(SourceNameExe) "$(LatestReleasesFolder)\$(DestInstallerNameFormat).exe"' />
+		<Exec Command='F: &amp; cd ".\$(InstallerFolderName)\" &amp; MOVE $(SourceNameExe) "$(LatestReleasesFolder)\$(DestInstallerNameFormat).exe"' />
 	</Target>
 	
 	<Target Name="SignExeLatestReleases">
