@@ -7,7 +7,8 @@ import { HeaderOrderComponent } from '../components/header-order/header-order.co
 import { HeaderComponent } from '../components/header/header.component';
 import { HeaderSectionsComponent } from '../components/header-sections/header-sections.component';
 import { FooterComponent } from '../components/footer/footer.component';
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,8 @@ import { FooterComponent } from '../components/footer/footer.component';
   imports: [
     CommonModule,
     LayoutRoutingModule,
+    MatIconModule,
+    MatBadgeModule,
   ]
 })
 export class LayoutModule { }

@@ -13,10 +13,10 @@ import { CarouselComponent } from 'src/app/components/carousel/carousel.componen
   imports: [
     CommonModule,
     ProductDetailsRoutingModule,
-
   ],
   exports:[
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    CarouselComponent
   ]
 })
 export class ProductDetailsModule { }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, ActivatedRoute, Data } from '@angular/router';
-import { DataService } from 'src/app/data.service';
+import { DataService } from 'src/app/shared/data.service';
+import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
+import { ShoppingCartService } from 'src/app/shared/shopping-cart.service';
 
 @Component({
   selector: 'app-products-view',
@@ -14,7 +16,7 @@ export class ProductsViewComponent implements OnInit {
   subsection: string
 
 
-  constructor(private route: ActivatedRoute, public dataService: DataService ) { }
+  constructor(private route: ActivatedRoute, public dataService: DataService, public cartService:ShoppingCartService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -25,11 +27,8 @@ export class ProductsViewComponent implements OnInit {
       } else if (this.section) {
         this.title = this.section
       }
-    })
-
-    
+    })    
   }
-
 }
 
 export interface Product {

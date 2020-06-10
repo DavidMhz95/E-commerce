@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../products-view/products-view.component';
-import { DataService } from 'src/app/data.service';
 import { ActivatedRoute} from '@angular/router';
+import { DataService } from 'src/app/shared/data.service';
+import { ShoppingCartService } from 'src/app/shared/shopping-cart.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class ProductDetailsComponent implements OnInit {
   @Input('product') product: Product
 
 
-  constructor(public dataService:DataService, public router:ActivatedRoute) { }
+  constructor(public dataService:DataService, public router:ActivatedRoute, public cartService:ShoppingCartService) { }
 
   ngOnInit(): void {
     if(!this.product){

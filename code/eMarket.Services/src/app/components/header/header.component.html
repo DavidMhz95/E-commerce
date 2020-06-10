@@ -2,4 +2,6 @@
     <a routerLink="/landing">
         BLACK MARKET
     </a>
+    <mat-icon *ngIf="cartService?.products?.length==0" style="position: absolute; cursor: pointer; right: 10px;" routerLink="/landing/cart">shopping_cart</mat-icon>
+    <mat-icon *ngIf="cartService?.products?.length>0" style="position: absolute; cursor: pointer; right: 10px;" routerLink="/landing/cart" [matBadge]="cartService?.products?.length" matBadgeColor="warn">shopping_cart</mat-icon>
 </div>

@@ -10,6 +10,9 @@
     color: #545454;
     font-size: 20px;
     border-bottom: 1px #efeeec solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   a{
@@ -19,4 +22,13 @@
   a:hover{
     text-decoration: none;
   }
+}
+
+
+::ng-deep .mat-badge-content{
+  font-size: 10px !important;
+  height: 20px !important;
+  width: 20px !important;
+  line-height: 20px !important;
+  font-weight: 400 !important;
 }
