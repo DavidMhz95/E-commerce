@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, HostListener } from '@angular/core';
-import { Product } from 'src/app/layout/products-view/products-view.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -50,10 +49,19 @@ export class ProductComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(ProductModalComponent,{data:this.product});
+    const dialogRef = this.dialog.open(ProductModalComponent,{data:this.product})
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+
+    })
   }
+}
+
+export interface Product {
+  isSale: boolean
+  title: string
+  actualPrize: number
+  beforePrize: number
+  images: string[]
+  id:number
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Product } from 'src/app/layout/products-view/products-view.component';
+import { Product } from '../product/product.component';
 
 @Component({
   selector: 'app-product-modal',
@@ -15,7 +15,6 @@ export class ProductModalComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(this.product)
   }
 
   closeDialog() {

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/shared/data.service';
-import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 import { ShoppingCartService } from 'src/app/shared/shopping-cart.service';
 
 @Component({
@@ -29,13 +28,4 @@ export class ProductsViewComponent implements OnInit {
       }
     })    
   }
-}
-
-export interface Product {
-  isSale: boolean
-  title: string
-  actualPrize: number
-  beforePrize: number
-  images: string[]
-  id:number
 }
