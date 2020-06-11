@@ -12,44 +12,42 @@ import { ProductModalComponent } from '../product-modal/product-modal.component'
 export class ProductComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
-  onResize(event:any) {
-    this.imageDiv.nativeElement.style.height = this.imageDiv.nativeElement.offsetWidth+'px'
+  onResize(event: any) {
+    this.imageDiv.nativeElement.style.height = this.imageDiv.nativeElement.offsetWidth + 'px'
   }
 
-  @ViewChild('imageDiv', {static: true}) imageDiv:ElementRef
-  @Input('product') product:Product 
-  imageA:any
-  imageB:any
-  
-  constructor(public sanitizer:DomSanitizer, public dialog: MatDialog) { }
+  @ViewChild('imageDiv', { static: true }) imageDiv: ElementRef
+  @Input('product') product: Product
+
+  constructor(public sanitizer: DomSanitizer, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.imageDiv.nativeElement.style.height = this.imageDiv.nativeElement.offsetWidth+'px'
-    this.imageDiv.nativeElement.addEventListener("mouseover", ()=> {   
-      this.imageDiv.nativeElement.style.backgroundImage='url(' + this.product.images[1] + ')'
+    this.imageDiv.nativeElement.style.height = this.imageDiv.nativeElement.offsetWidth + 'px'
+    this.imageDiv.nativeElement.addEventListener("mouseover", (event: any) => {
+      this.imageDiv.nativeElement.style.backgroundImage = 'url(' + this.product.images[1] + ')'
     }, false);
-    this.imageDiv.nativeElement.addEventListener("mouseout", ()=> {   
-      this.imageDiv.nativeElement.style.backgroundImage='url(' + this.product.images[0] + ')'
+    this.imageDiv.nativeElement.addEventListener("mouseout", (event: any) => {
+      this.imageDiv.nativeElement.style.backgroundImage = 'url(' + this.product.images[0] + ')'
     }, false);
 
     if (this.product.images[0]) {
       let img = new Image()
       img.src = this.product.images[0]
       img.onload = () => {
-        this.imageDiv.nativeElement.style.backgroundImage='url(' + this.product.images[0] + ')'
+        this.imageDiv.nativeElement.style.backgroundImage = 'url(' + this.product.images[0] + ')'
       }
       img.onerror = () => {
-        this.imageDiv.nativeElement.style.backgroundImage='url(' + this.product.images[0] + ')'
+        this.imageDiv.nativeElement.style.backgroundImage = 'url(' + this.product.images[0] + ')'
       }
     }
   }
 
-  ngAfterViewChecked(){
-    this.imageDiv.nativeElement.style.height = this.imageDiv.nativeElement.offsetWidth+'px'
+  ngAfterViewChecked() {
+    this.imageDiv.nativeElement.style.height = this.imageDiv.nativeElement.offsetWidth + 'px'
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(ProductModalComponent,{data:this.product})
+    const dialogRef = this.dialog.open(ProductModalComponent, { data: this.product })
 
     dialogRef.afterClosed().subscribe(result => {
 
@@ -63,5 +61,5 @@ export interface Product {
   actualPrize: number
   beforePrize: number
   images: string[]
-  id:number
+  id: number
 }

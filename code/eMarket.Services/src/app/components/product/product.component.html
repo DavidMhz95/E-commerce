@@ -1,15 +1,18 @@
 <a [routerLink]="'/landing/products/'+product?.id">
     <div #imageDiv class="imageDiv">
+        <div *ngIf="product?.isSale" class="sale">
+            Oferta
+        </div>
         <div class="slideup" (click)="$event.preventDefault(); $event?.stopPropagation(); openDialog()">
             Vista rápida
         </div>
     </div>
 </a>
+
+
 <div class="details">
     <div class="title">{{product?.title}}</div>
-    <div *ngIf="product?.isSale" class="sale">
-        Oferta
-    </div>
+
     <div *ngIf="product?.isSale">
         <span
             style="padding-right: 10px; text-decoration: line-through; color: #030303; opacity: .5;">€{{product?.actualPrize}}</span>

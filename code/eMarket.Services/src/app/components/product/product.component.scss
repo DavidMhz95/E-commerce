@@ -6,6 +6,8 @@
   background-size: cover;
   background-position: center center;
   transition: all 0.5s;
+  position: relative;
+  overflow: hidden;
 }
 
 .details {
@@ -47,7 +49,7 @@
 
 .slideup {
   position: absolute;
-  bottom: 82px;
+  bottom:-16px;
   -webkit-transition: all 0.25s ease-in;
   -moz-transition: all 0.25s ease-in;
   -ms-transition: all 0.25s ease-in;
@@ -65,11 +67,11 @@
 
 .imageDiv:hover {
   .slideup {
-    bottom: 98px;
+    bottom: 0px;
     visibility: visible;
     opacity: 0.9;
     position: absolute;
     text-align: center;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.25s ease-in-out;
   }
 }
