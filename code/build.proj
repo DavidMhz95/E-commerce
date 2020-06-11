@@ -23,7 +23,7 @@
 		<MyDate></MyDate>
 		<GetDateNowScript>zGetDateNow.bat</GetDateNowScript>
 		<DeleteOldDoorwayInstallers>zDeleteOldDoorwayInstallers.bat</DeleteOldDoorwayInstallers>
-		<MSBuild17Exe>C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin</MSBuild17Exe>
+		<MSBuild19Exe>C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin</MSBuild19Exe>
 	</PropertyGroup>
 	
 	<ItemGroup>
@@ -36,19 +36,23 @@
 	
 	<Target Name="RestoreNuGetPackages">
 		<!-- Restauracion manual de paquetes de Nuget -->
-		<Exec Command='.\nuget\nuget.exe restore Doorway.sln -MSBuildPath &quot;$(MSBuild17Exe)&quot;' />
+		<Exec Command='.\nuget.exe restore eMarket.sln -MSBuildPath &quot;$(MSBuild19Exe)&quot;' />
 	</Target>
 		
 	<Target Name="Build">
 		<CallTarget Targets="RestoreNuGetPackages" />
-		<CallTarget Targets="BuildAngular" />
 		<!-- Compilacion -->
 		<MSBuild Projects="@(Solutions)" Properties="Configuration=$(Configuration);Platform=$(Platform);" ContinueOnError="false" />
 	</Target>
 	
+	<Target Name="BuildAngularAndBuild">
+		<CallTarget Targets="BuildAngular" />
+		<CallTarget Targets="Build" />
+	</Target>
+	
 	<Target Name="BuildAndPublish">
 		<!-- Publica para tener el exe para el instalador, el publish compila previamente segun el profile creado-->
-		<MSBuild Projects=".\Doorway.Services\Doorway.Services.csproj" Properties="DeployOnBuild=true; PublishProfile=FolderProfile" />
+		<MSBuild Projects=".\eMarket.Services\eMarket.Services.csproj" Properties="DeployOnBuild=true; PublishProfile=FolderProfile" />
 	</Target>
 	
 	<Target Name="BuildAngularBuildAndPublish">
@@ -61,7 +65,7 @@
 		<!--TODO-->
 		<Message Text="Obfuscating: Deleting previous ofuscated files" />
 		<Exec Command='Del "$(MSBuildStartupDirectory)\lac ofuscado\*.*" /Q'/>
-		<Exec Command='"$(ObfuscatorPath)\confuser.cli.exe" -n ".\Obfuscation Settings\Doorway-Obfuscation.crproj"'/>
+		<Exec Command='"$(ObfuscatorPath)\confuser.cli.exe" -n ".\Obfuscation Settings\eMarket-Obfuscation.crproj"'/>
 		<Message Text="Obfuscated" />
 	</Target>
 	
