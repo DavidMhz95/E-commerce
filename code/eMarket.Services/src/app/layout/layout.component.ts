@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../shared/data.service';
 import { ShoppingCartService } from '../shared/shopping-cart.service';
 import { CopyObject } from '../app.utils';
+import { Product } from '../components/product/product.component';
 
 @Component({
   selector: 'app-layout',
@@ -13,7 +14,9 @@ export class LayoutComponent implements OnInit {
   constructor(private dataService:DataService, private cartService:ShoppingCartService) { }
 
   ngOnInit(): void {
-    this.cartService.products = CopyObject(this.dataService.products)
+    this.dataService.products.forEach((product:Product)=>{
+      this.cartService.AddProduct(product)
+    })
   }
 
 }

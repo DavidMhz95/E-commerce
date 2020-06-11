@@ -4,8 +4,8 @@ SET STARTTIME=%TIME%
 echo Start: %STARTTIME%
 REM ******************************************************
 echo Start Build 
-Set msb="%programfiles(x86)%\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\MSBuild.exe"
-%msb% /nologo /t:Build /p:Configuration=Debug;Platform=x86;PathDoorway="D:\reuse-company\Doorway" build.proj
+Set msb="%programfiles(x86)%\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe"
+%msb% /nologo /t:Build /p:Configuration=Debug;Platform=x86 build.proj
 
 REM ******************************************************
 
