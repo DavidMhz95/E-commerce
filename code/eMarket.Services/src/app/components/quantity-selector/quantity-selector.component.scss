@@ -1,0 +1,16 @@
+.quantity-selector {
+    position: relative;
+    max-width: 7.5rem;
+    display: inline-block;
+}
+
+input:focus {
+    outline: none;
+}
+
+.material-icons {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+}

@@ -2,7 +2,7 @@
     font-family: "Century Gothic", sans-serif;
 }
 
-.salePrice {
+.beforePrize {
     color: #be563f;
     margin-right: 15px;
 }
@@ -40,28 +40,6 @@ select,
     font-family: "Century Gothic", sans-serif;
     font-weight: 400;
     font-style: normal;
-}
-
-.quantity-selector {
-    position: relative;
-    max-width: 7.5rem;
-    display: inline-block;
-}
-
-.quantity__plus,
-.quantity__minus {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 40%;
-    display: flex;
-    align-items: center;
-}
-
-.quantity__minus {
-    left: 0;
-    justify-content: flex-start;
-    padding-left: 10px;
 }
 
 .buttons {
