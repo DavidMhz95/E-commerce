@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/shared/data.service';
 
 @Component({
   selector: 'header-sections',
@@ -7,40 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderSectionsComponent implements OnInit {
 
-  public sections:Section[]=[{
-    title:"hombre",
-    sections:[{
-      title:"seccion A",
-      sections:[]
-    }, {
-      title:"seccion B",
-      sections:[]
-    },{
-      title:"seccion C",
-      sections:[]
-    }]
-  },{
-    title:"mujer",
-    sections:[{
-      title:"seccion A",
-      sections:[]
-    }, {
-      title:"seccion B",
-      sections:[]
-    },{
-      title:"seccion C",
-      sections:[]
-    }],
-  }]
-
-  constructor() { }
+  constructor(public dataService:DataService) { }
 
   ngOnInit(): void {
   }
 
-}
-
-export interface Section{
-  title:string
-  sections:Section[]
 }

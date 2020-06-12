@@ -31,14 +31,12 @@ export class ShoppingCartService {
   }
 
   public RemoveProduct(product: Product) {
-
     this.products.forEach((p: CartProduct) => {
       if (p.product.id == product.id) {
         p.number--
       }
     })
     this.products = this.products.filter((product: CartProduct) => product.number > 0)
-
   }
 
   public GetPrize(): string {

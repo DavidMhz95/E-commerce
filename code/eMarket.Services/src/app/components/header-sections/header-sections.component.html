@@ -1,5 +1,5 @@
 <div class="parent">
-    <div class="section dropdown" *ngFor="let section of sections">
+    <div class="section dropdown" *ngFor="let section of dataService?.sections">
         <a [routerLink]="'collections/'+section?.title" class="sectionTitle">{{section?.title}}</a>
         <span class="nav-carat-small">
             <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow-right"

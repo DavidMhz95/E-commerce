@@ -1,11 +1,14 @@
 <div>
-    <h1 style="cursor: default;">
+    <h1 style="cursor: default; ">
         {{title}}
     </h1>
 </div>
 
 <div style="background: #f7f7f7; height: 48px;">
-
+    <mat-tab-group>
+        <mat-tab label="Todo"></mat-tab>
+        <mat-tab *ngFor="let s of actualSection?.sections" [label]="s?.title"> </mat-tab>
+    </mat-tab-group>
 </div>
 
 <div infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll(false)">
@@ -28,3 +31,7 @@
         </div>
     </div>
 </div>
+
+<button [ngClass]="{'hidden': !showGoUpButton}" mat-mini-fab class="mini-fab" (click)="scrollTop()">
+    <mat-icon>keyboard_arrow_up</mat-icon>
+</button>

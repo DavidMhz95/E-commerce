@@ -10,6 +10,10 @@ import { ProductDetailsModule } from '../product-details/product-details.module'
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
+import { MatTabsModule } from '@angular/material/tabs';
+import {MatButtonModule} from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @NgModule({
   imports: [
@@ -19,6 +23,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     ProductDetailsModule,
     InfiniteScrollModule,
     MatProgressBarModule,
+    MatTabsModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   declarations: [
     ProductsViewComponent,

@@ -90,4 +90,35 @@ export class DataService {
       images: ["https://cdn.shopify.com/s/files/1/2991/2402/products/2020-03-13AGONGYM331_900x.jpg?v=1585049777","https://cdn.shopify.com/s/files/1/2991/2402/products/2020-03-13AGONGYM333_900x.jpg?v=1585049777"]
     },
   ]
+
+  public sections:Section[]=[{
+    title:"hombre",
+    sections:[{
+      title:"seccion A",
+      sections:[]
+    }, {
+      title:"seccion B",
+      sections:[]
+    },{
+      title:"seccion C",
+      sections:[]
+    }]
+  },{
+    title:"mujer",
+    sections:[{
+      title:"seccion A",
+      sections:[]
+    }, {
+      title:"seccion B",
+      sections:[]
+    },{
+      title:"seccion C",
+      sections:[]
+    }],
+  }]
+}
+
+export interface Section{
+  title:string
+  sections:Section[]
 }
