@@ -18,6 +18,10 @@ export class CarouselComponent implements OnInit {
   public selectedIndex:number = 0
   constructor() { }
 
+  ngAfterViewChecked(): void {
+    this.imageDiv.nativeElement.style.height = this.imageDiv.nativeElement.offsetWidth+'px'
+  }
+
   ngOnInit(): void {
     this.imageDiv.nativeElement.style.height = this.imageDiv.nativeElement.offsetWidth+'px'
     this.imageDiv.nativeElement.style.backgroundImage='url(' + this.images[0] + ')' 
