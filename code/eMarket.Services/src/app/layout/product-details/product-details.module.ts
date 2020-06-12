@@ -3,25 +3,25 @@ import { CommonModule } from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
 import { ProductDetailsRoutingModule } from './product-details-routing.module';
 import { ProductDetailsComponent } from './product-details.component';
-import { CarouselComponent } from 'src/app/components/carousel/carousel.component';
-import { QuantitySelectorComponent } from 'src/app/components/quantity-selector/quantity-selector.component';
 import { FormsModule } from '@angular/forms';
-
+import {MatTabsModule} from '@angular/material/tabs';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
     
-  declarations: [ProductDetailsComponent, CarouselComponent,QuantitySelectorComponent],
+  declarations: [ProductDetailsComponent],
   imports: [
     CommonModule,
     ProductDetailsRoutingModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    MatTabsModule,
+    SharedModule
   ],
   exports:[
     ProductDetailsComponent,
-    CarouselComponent,
-    QuantitySelectorComponent
+    
   ]
 })
 export class ProductDetailsModule { }

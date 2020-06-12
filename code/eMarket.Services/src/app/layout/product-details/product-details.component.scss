@@ -125,3 +125,26 @@ p,
     line-height: 1.5;
     margin: 0 0 0.5em;
 }
+
+.userSelect {
+    user-select: none
+}
+
+.actualPrize {
+    padding: 5px;
+}
+
+.descripcion {
+    margin-top: 20px;
+    text-align: justify;
+}
+
+.detalles.p {
+    text-transform: uppercase;
+    font-size: 26px;
+}
+
+.marketInformation {
+    margin-top: 20px;
+    text-align: justify;
+}

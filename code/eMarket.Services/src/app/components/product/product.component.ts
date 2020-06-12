@@ -64,4 +64,7 @@ export interface Product {
   beforePrize: number
   images: string[]
   id: number
+  description: string
+  details: string[]
+  moreDetails: string[]
 }

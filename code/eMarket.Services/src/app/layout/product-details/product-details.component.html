@@ -3,21 +3,16 @@
         <app-carousel [images]='product?.images'></app-carousel>
     </div>
 
-    <div style="float: right;" class="auto-clear col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <h2>{{product?.title}}</h2>
+    <div style="float: right;" class="auto-clear col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+        <h1 style="margin-top: 10px; user-select: none; font-size: 26px; text-transform: uppercase;">{{product?.title}}</h1>
         <div class="price">
             <span class="actualPrize">
-        {{product?.actualPrize}}
+        €{{product?.actualPrize}}
       </span>
             <s class="beforePrize">
-        {{product?.beforePrize}}
+        €{{product?.beforePrize}}
       </s>
         </div>
-
-        <div>
-            Calculador de tallas (x hacer)
-        </div>
-
         <br>
 
         <div class="selector-talla">
@@ -25,26 +20,26 @@
         Talla
       </label>
             <select id="OptionSelection">
-              <option value="XS" selected="selected">
-                XS
-              </option>
+        <option value="XS" selected="selected">
+          XS
+        </option>
 
-              <option value="S" selected="selected">
-                S
-              </option>
+        <option value="S" selected="selected">
+          S
+        </option>
 
-              <option value="M">
-                M
-              </option>
+        <option value="M">
+          M
+        </option>
 
-              <option value="L">
-                L
-              </option>
+        <option value="L">
+          L
+        </option>
 
-              <option value="XL">
-                XL
-              </option>
-             </select>
+        <option value="XL">
+          XL
+        </option>
+      </select>
         </div>
 
         <app-quantity-selector></app-quantity-selector>
@@ -63,29 +58,32 @@
         </div>
 
         <div class="descripcion">
-            <p>Presentamos nuestro LONG TOP, tu segunda piel en cada entrenamiento. Confeccionado para proporcionar la máxima comodidad y ligereza en cada sesión de entrenamiento.<br><br>Desarrollado en la mezcla de fibras de&nbsp;políester&nbsp;y elastano
-                perfecta, dotando al LONG TOP de mayor elasticidad y gran durabilidad. Comodidad&nbsp;absoluta sin renunciar al mejor estilo y evitando cualquier tipo de transparencia.</p>
+            <p>{{product?.description}}</p>
             <p>&nbsp;</p>
-
+        </div>
+        <div class="detalles">
             <p><strong>DETALLES</strong></p>
             <ul>
-                <li>Máxima comodidad</li>
-                <li>Logo&nbsp;impreso</li>
-                <li>Diseño granulado</li>
-                <li>Elástico y flexible</li>
-                <li>Sin transparencias</li>
-                <li>Durabilidad garantizada</li>
-                <li>Costuras de doble refuerzo</li>
-                <li>Color&nbsp;BLACK</li>
+                <li *ngFor="let detail of product?.details">{{detail}}</li>
+
             </ul>
-            <p><strong>COMPOSICIÓN Y LAVADO</strong></p>
-            <ul>
-                <li>Políester, elastano</li>
-                <li>Lavar a máquina en frío</li>
-                <li>Secado natural</li>
-            </ul>
-            <ul></ul>
+            <div class="moreDetails">
+                <p><strong>COMPOSICIÓN Y LAVADO</strong></p>
+                <ul>
+                    <li *ngFor="let moreDetail of product?.moreDetails">{{moreDetail}}</li>
+                </ul>
+                <ul></ul>
+            </div>
+        </div>
+
+        <div class="marketInformation">
+            <mat-tab-group>
+                <mat-tab *ngFor="let item of dataService?.info" label={{item?.nameInformation}} style="margin-bottom: 20px;">{{item.descriptionInformation}}</mat-tab>
+
+            </mat-tab-group>
         </div>
     </div>
 </div>
 <div style="clear: both;"></div>
+
+<h2 style="margin-top: 40px; user-select: none; font-size: 18px; text-transform: uppercase; text-align: center;">Tambien te podría interesar</h2>
