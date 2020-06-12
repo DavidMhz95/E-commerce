@@ -24,7 +24,9 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     this.imageDiv.nativeElement.style.height = this.imageDiv.nativeElement.offsetWidth + 'px'
     this.imageDiv.nativeElement.addEventListener("mouseover", (event: any) => {
-      this.imageDiv.nativeElement.style.backgroundImage = 'url(' + this.product.images[1] + ')'
+      if(this.product.images.length>1){
+        this.imageDiv.nativeElement.style.backgroundImage = 'url(' + this.product.images[1] + ')'
+      }
     }, false);
     this.imageDiv.nativeElement.addEventListener("mouseout", (event: any) => {
       this.imageDiv.nativeElement.style.backgroundImage = 'url(' + this.product.images[0] + ')'

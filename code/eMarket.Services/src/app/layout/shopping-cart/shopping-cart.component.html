@@ -41,7 +41,7 @@
                 <th mat-header-cell *matHeaderCellDef> Precio </th>
                 <td mat-cell *matCellDef="let element">
                     <div style="opacity: 0.6; text-decoration: line-through; font-size: 12px;margin-bottom: 5px;"
-                        *ngIf="element?.isSale">€{{element?.product?.beforePrize}} </div>
+                        *ngIf="element?.product?.isSale">€{{element?.product?.beforePrize}} </div>
                     <div style="font-size: 12px;">€{{element?.product?.actualPrize}} </div>
                 </td>
             </ng-container>

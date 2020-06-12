@@ -9,8 +9,17 @@ import { HeaderSectionsComponent } from '../components/header-sections/header-se
 import { FooterComponent } from '../components/footer/footer.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
 
 @NgModule({
+  imports: [
+    CommonModule,
+    LayoutRoutingModule,
+    MatIconModule,
+    MatBadgeModule,
+    
+  ],
   declarations: [
     LayoutComponent,
     HeaderOrderComponent,
@@ -18,11 +27,5 @@ import { MatBadgeModule } from '@angular/material/badge';
     HeaderSectionsComponent,
     FooterComponent,
   ],
-  imports: [
-    CommonModule,
-    LayoutRoutingModule,
-    MatIconModule,
-    MatBadgeModule,
-  ]
 })
 export class LayoutModule { }

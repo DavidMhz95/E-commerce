@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/shared/data.service';
 import { ShoppingCartService } from 'src/app/shared/shopping-cart.service';
@@ -14,8 +14,26 @@ export class ProductsViewComponent implements OnInit {
   section: string
   subsection: string
 
+  //Infinite scroll options
+  public finishPage = 5;
+  public actualPage: number = 0;
+  public isLoading = false;
+  showScrollHeight = 400;
+  hideScrollHeight = 200;
+  showGoUpButton: boolean;
 
-  constructor(private route: ActivatedRoute, public dataService: DataService, public cartService:ShoppingCartService) { }
+  @HostListener('window:scroll', []) onWindowScroll() {
+    if ((window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) > this.showScrollHeight) {
+      this.showGoUpButton = true;
+    } else if (this.showGoUpButton && (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) < this.hideScrollHeight) {
+      this.showGoUpButton = false;
+    }
+  }
+
+  constructor(private route: ActivatedRoute, public dataService: DataService, public cartService: ShoppingCartService) {
+    this.actualPage = 1;
+    this.showGoUpButton = false;
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -26,6 +44,24 @@ export class ProductsViewComponent implements OnInit {
       } else if (this.section) {
         this.title = this.section
       }
-    })    
+    })
+  }
+
+  onScroll() {
+    if (this.actualPage < this.finishPage && !this.isLoading) {
+      this.isLoading = true
+      setTimeout(() => {
+        this.isLoading = false
+        this.add4Product()
+      }, 500)
+      this.actualPage++
+    }
+  }
+
+  public add4Product() {
+    for (var i: number = 0; i < 2; i++) {
+      var randomId = Math.floor((Math.random() * this.dataService.products.length));
+      this.dataService.products.push(this.dataService.products[randomId])
+    }
   }
 }

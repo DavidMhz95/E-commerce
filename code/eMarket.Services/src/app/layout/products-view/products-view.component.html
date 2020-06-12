@@ -8,8 +8,24 @@
 
 </div>
 
-<div style="float: left; padding: 0;" class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let product of dataService?.products">
-    <app-product [product]="product"></app-product>
+<div infiniteScroll [infiniteScrollDistance]="10" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
+    <div style="float: left; padding: 0;" class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12"
+        *ngFor="let product of dataService?.products">
+        <app-product [product]="product"></app-product>
+    </div>
 </div>
 
 <div style="clear: both;"></div>
+
+<div *ngIf="isLoading" style="margin:40px 40%">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+
+<div *ngIf="actualPage>=finishPage && !isLoading" style="margin:40px 40%" (click)="add4Product()">
+    <div class="send">
+        <div>
+            Cargar Más
+
+        </div>
+    </div>
+</div>
