@@ -47,13 +47,13 @@ export class ProductsViewComponent implements OnInit {
     })
   }
 
-  onScroll() {
-    if (this.actualPage < this.finishPage && !this.isLoading) {
+  onScroll(force:boolean) {
+    if (this.actualPage < this.finishPage || force) {
       this.isLoading = true
       setTimeout(() => {
         this.isLoading = false
         this.add4Product()
-      }, 500)
+      }, 2000)
       this.actualPage++
     }
   }
