@@ -53,13 +53,12 @@ export class ProductsViewComponent implements OnInit {
       setTimeout(() => {
         this.isLoading = false
         this.add4Product()
-        console.log(this.actualPage)
-        console.log(this.finishPage)
-        console.log(this.isLoading)
       }, 2000)
       this.actualPage++
+      
     }
   }
+  
 
   public add4Product() {
     for (var i: number = 0; i < 2; i++) {

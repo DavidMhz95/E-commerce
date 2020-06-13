@@ -67,4 +67,5 @@ export interface Product {
   description: string
   details: string[]
   moreDetails: string[]
+  stockNumber: number
 }
