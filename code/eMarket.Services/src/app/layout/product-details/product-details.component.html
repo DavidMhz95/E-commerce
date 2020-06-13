@@ -14,6 +14,12 @@
       </s>
         </div>
         <br>
+        <div>
+            <label style="width: 100%; font-size: 12px; font-weight: bold;">
+            Numero de Articulos en Stock:  {{product.stockNumber}}
+          </label>
+
+        </div>
 
         <div class="selector-talla">
             <label style="width: 100%; font-size: 12px; font-weight: bold;">
@@ -43,7 +49,7 @@
         </div>
 
         <app-quantity-selector></app-quantity-selector>
-        <div class="buttons">
+        <div class="buttons" *ngIf="product.stockNumber>0">
             <button type="submit" name="add" class="btnAdd" (click)="cartService?.AddProduct(product)">
         <span>
           AGREGAR AL CARRITO
@@ -87,3 +93,9 @@
 <div style="clear: both;"></div>
 
 <h2 style="margin-top: 40px; user-select: none; font-size: 18px; text-transform: uppercase; text-align: center;">Tambien te podría interesar</h2>
+
+<!--
+  <div style="float: left; padding: 0;" class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let product of dataService?.products">
+      <app-product [product]="product"></app-product>
+  </div>
+-->
