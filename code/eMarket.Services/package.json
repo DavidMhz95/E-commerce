@@ -22,6 +22,8 @@
     "@angular/platform-browser-dynamic": "~9.1.9",
     "@angular/router": "~9.1.9",
     "bootstrap": "^4.5.0",
+    "chartist": "^0.11.4",
+    "ng-chartist": "^4.1.0",
     "ngx-infinite-scroll": "^9.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
