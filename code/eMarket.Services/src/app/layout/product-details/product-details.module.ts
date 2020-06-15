@@ -6,6 +6,8 @@ import { ProductDetailsComponent } from './product-details.component';
 import { FormsModule } from '@angular/forms';
 import {MatTabsModule} from '@angular/material/tabs';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 @NgModule({
@@ -17,11 +19,13 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MatIconModule,
     FormsModule,
     MatTabsModule,
-    SharedModule
+    SharedModule,
+    MatDialogModule
+    
   ],
   exports:[
     ProductDetailsComponent,
     
   ]
-})
+ })
 export class ProductDetailsModule { }

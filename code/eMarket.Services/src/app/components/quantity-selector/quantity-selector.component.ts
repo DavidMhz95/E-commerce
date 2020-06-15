@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, } from '@angular/core';
+
+
 
 @Component({
   selector: 'app-quantity-selector',
@@ -9,11 +11,13 @@ export class QuantitySelectorComponent implements OnInit {
 
   constructor() { }
 
-  public value : number = 1
+  @Input('value') public value : number = 1
+  @Output()valueChanged: EventEmitter<number> = new EventEmitter()
+  
+
 
   ngOnInit(): void {
   }
-
 
   public removeOne(){
     if(this.value <= 1){
@@ -21,6 +25,7 @@ export class QuantitySelectorComponent implements OnInit {
     }else{
       this.value = this.value-1;
     }
+    this.valueChanged.emit(this.value)
   }
 
   
@@ -30,6 +35,7 @@ export class QuantitySelectorComponent implements OnInit {
     }else{
       this.value = this.value+1;
     }
+    this.valueChanged.emit(this.value)
   }
 
 }

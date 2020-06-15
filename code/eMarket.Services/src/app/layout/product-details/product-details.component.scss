@@ -23,7 +23,13 @@ select {
 
 select:focus,
 select:hover {
-    outline: 0;
+    outline: none;
+}
+
+.quantity {
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: normal;
 }
 
 input,
@@ -40,6 +46,7 @@ select,
     font-family: "Century Gothic", sans-serif;
     font-weight: 400;
     font-style: normal;
+    outline: none;
 }
 
 .buttons {
@@ -54,7 +61,7 @@ select,
     border: 1px solid #dcdcdc;
     box-shadow: none;
     line-height: 1.5;
-    transition: all 0.15s ease;
+    transition: all 0.7s ease;
     display: inline-block;
     width: auto;
     text-decoration: none;
@@ -70,6 +77,7 @@ select,
     min-width: 155px;
     flex: auto;
     max-width: 400px;
+    outline: none;
 }
 
 .btnAdd:hover {
@@ -89,7 +97,7 @@ select,
     border: 1px solid #dcdcdc;
     box-shadow: none;
     line-height: 1.5;
-    transition: all 0.15s ease;
+    transition: all 0.7s ease;
     display: inline-block;
     width: auto;
     text-decoration: none;
@@ -103,10 +111,11 @@ select,
     min-width: 155px;
     flex: auto;
     max-width: 400px;
+    outline: none;
 }
 
 .btnBuyNow:hover {
-    background-color: #0d8bc5;
+    background-color: #2cda60;
     color: #fff;
 }
 
@@ -136,7 +145,7 @@ p,
 
 .descripcion {
     margin-top: 20px;
-    text-align: justify;
+    text-align: left;
 }
 
 .detalles.p {
@@ -146,5 +155,5 @@ p,
 
 .marketInformation {
     margin-top: 20px;
-    text-align: justify;
+    text-align: left;
 }

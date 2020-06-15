@@ -13,11 +13,16 @@ export class ShoppingCartService {
 
   constructor() { }
 
-  public AddProduct(product: Product) {
+  public AddProduct(product: Product, value: number) {
     var found: boolean
+    console.log(value)
     this.products.forEach((p: CartProduct) => {
       if (p.product.id == product.id) {
-        p.number++
+        if(value){
+          p.number+=value
+        }else{
+          p.number++
+        }
         found = true
       }
     })
@@ -25,7 +30,7 @@ export class ShoppingCartService {
     if (!found) {
       this.products.push({
         product,
-        number: 1
+        number: value
       })
     }
   }

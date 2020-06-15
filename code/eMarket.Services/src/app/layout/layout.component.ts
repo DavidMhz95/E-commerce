@@ -15,7 +15,7 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.products.forEach((product:Product)=>{
-      this.cartService.AddProduct(product)
+      this.cartService.AddProduct(product, 1)
     })
   }
 

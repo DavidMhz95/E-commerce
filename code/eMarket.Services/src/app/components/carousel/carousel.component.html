@@ -1,4 +1,4 @@
-<div class="background" #imageDiv class="imageDiv">
+<div #imageDiv class="imageDiv" [style.backgroundImage]="'url('+images[0]+') '">
     <div style="width: 50px;  position: absolute; top: 50%; bottom: 0; left: 30px; margin: auto;" class="hideInHighResolution">
         <a class="actions" (click)="previousImage()">
             <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow-left-thin" viewBox="0 0 14 27">

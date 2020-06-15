@@ -22,4 +22,9 @@ export class ShoppingCartComponent implements OnInit {
     this.cartService.RemoveProduct(product)
     this.dataSource = new MatTableDataSource(this.cartService.products)
   }
+
+  public valueChanged(event:number, product: CartProduct){
+    product.number = event
+  }
+  
 }

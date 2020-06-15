@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, HostListener, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
@@ -24,7 +24,6 @@ export class CarouselComponent implements OnInit {
 
   ngOnInit(): void {
     this.imageDiv.nativeElement.style.height = this.imageDiv.nativeElement.offsetWidth+'px'
-    this.imageDiv.nativeElement.style.backgroundImage='url(' + this.images[0] + ')' 
   }
 
   public selectImage(image:string){
