@@ -1,0 +1,37 @@
+.card {
+  padding: 10px 15px;
+  border-radius: 2px;
+  box-shadow: none;
+}
+
+.card-title {
+  font-size: 11px;
+  opacity: 0.5;
+  font-weight: 600;
+}
+
+.card-sb {
+  font-size: 12px;
+  opacity: 0.6;
+  font-weight: 500;
+  text-align: left !important;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.card-number {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.flex-container {
+  display: flex;
+  align-items: stretch;
+}
+
+.flex-container > div {
+  text-align: right;
+  flex-grow: 1;
+}

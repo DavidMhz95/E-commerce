@@ -131,6 +131,31 @@ export class DataService {
     },
   ]
 
+  public sections:Section[]=[{
+    title:"hombre",
+    sections:[{
+      title:"seccion A",
+      sections:[]
+    }, {
+      title:"seccion B",
+      sections:[]
+    },{
+      title:"seccion C",
+      sections:[]
+    }]
+  },{
+    title:"mujer",
+    sections:[{
+      title:"seccion A",
+      sections:[]
+    }, {
+      title:"seccion B",
+      sections:[]
+    },{
+      title:"seccion C",
+      sections:[]
+    }],
+  }]
 
   
   info: marketInformation[] = [
@@ -153,4 +178,9 @@ export class DataService {
 export interface marketInformation {
   nameInformation: string
   descriptionInformation: string
+}
+
+export interface Section{
+  title:string
+  sections:Section[]
 }

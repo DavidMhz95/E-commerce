@@ -9,6 +9,10 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { SharedModule } from 'src/app/shared/shared.module';
 
+import { MatTabsModule } from '@angular/material/tabs';
+import {MatButtonModule} from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @NgModule({
   imports: [
@@ -18,6 +22,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ProductDetailsModule,
     InfiniteScrollModule,
     MatProgressBarModule,
+    MatTabsModule,
+    MatButtonModule,
+    MatIconModule,
     SharedModule
   ],
   declarations: [

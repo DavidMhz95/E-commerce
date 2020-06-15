@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DataService } from 'src/app/shared/data.service';
+import { DataService, Section } from 'src/app/shared/data.service';
 import { ShoppingCartService } from 'src/app/shared/shopping-cart.service';
 
 @Component({
@@ -18,9 +18,10 @@ export class ProductsViewComponent implements OnInit {
   public finishPage = 5;
   public actualPage: number = 0;
   public isLoading = false;
-  showScrollHeight = 400;
+  showScrollHeight = 300;
   hideScrollHeight = 200;
   showGoUpButton: boolean;
+  actualSection: Section
 
   @HostListener('window:scroll', []) onWindowScroll() {
     if ((window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) > this.showScrollHeight) {
@@ -39,15 +40,18 @@ export class ProductsViewComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.subsection = params.get('subsection')
       this.section = params.get('section')
+
+      this.actualSection = this.findActualSection(this.section)
       if (this.subsection) {
         this.title = this.subsection
+        this.actualSection = { title: this.subsection, sections: [] }
       } else if (this.section) {
         this.title = this.section
       }
     })
   }
 
-  onScroll(force:boolean) {
+  onScroll(force: boolean) {
     if (this.actualPage < this.finishPage || force) {
       this.isLoading = true
       setTimeout(() => {
@@ -65,5 +69,26 @@ export class ProductsViewComponent implements OnInit {
       var randomId = Math.floor((Math.random() * this.dataService.products.length));
       this.dataService.products.push(this.dataService.products[randomId])
     }
+  }
+
+  public findActualSection(section: string): Section {
+    var result: Section
+    this.dataService.sections.forEach((s: Section) => {
+      if (s.title == section) {
+        result = s
+      }
+    })
+    if (!result) {
+      result = {
+        title: "All",
+        sections: this.dataService.sections
+      }
+    }
+    return result
+  }
+
+  scrollTop() {
+    document.body.scrollTop = 0; // Safari
+    document.documentElement.scrollTop = 0; // Other
   }
 }
