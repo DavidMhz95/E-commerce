@@ -1,1 +1,12 @@
-<p>products works!</p>
+<!--Cosas que tenemos que hacer:
+    1. Creacion de un Producto
+    2. Edicion de un Producto
+    3. Lista de productos
+    4. Borrado de productos. -> Colocar como Outlet, nunca borrar en una bbdd relacional.
+-->
+
+<h2>Lista de productos</h2>
+
+<div>Search</div>
+
+<app-table-products [productsData]="dataService?.products"></app-table-products>
