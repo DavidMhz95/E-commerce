@@ -5,6 +5,10 @@ import { ProductsComponent } from './products.component';
 import {MatTableModule} from '@angular/material/table';
 import { TableProductsComponent } from 'src/app/components/table-products/table-products.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 @NgModule({
@@ -14,6 +18,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     ProductsRoutingModule,
     MatTableModule,
     MatFormFieldModule,
+    MatDividerModule,
+    MatButtonModule,
+    MatIconModule,
+    MatExpansionModule
   ]
 })
 export class ProductsModule { }
