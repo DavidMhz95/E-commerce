@@ -8,6 +8,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { ChartistModule } from 'ng-chartist';
+import { MatIconModule } from '@angular/material/icon';
+
+import { MatExpansionModule } from '@angular/material/expansion';
+
 
 @NgModule({
   declarations: [HomeComponent],
@@ -17,7 +21,9 @@ import { ChartistModule } from 'ng-chartist';
     MatCardModule,
     MatDividerModule,
     MatButtonModule,
-    ChartistModule
+    MatIconModule,
+    ChartistModule,
+    MatExpansionModule
   ]
 })
 export class HomeModule { }

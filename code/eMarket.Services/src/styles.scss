@@ -118,3 +118,25 @@ mat-icon:focus {
   outline: none;
 }
 
+.ct-series-a .ct-line,
+.ct-series-a .ct-point {
+  stroke: #333333;
+}
+
+.ct-series-a .ct-area {
+  fill: #333333;
+}
+
+.ct-line {
+  stroke-width: 3px;
+}
+
+.mat-expansion-panel {
+  border: 1px solid rgba(0, 0, 0, 0.125) !important;
+  border-radius: 2px !important;
+  margin-bottom: 5px !important;
+}
+
+.mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
+  align-items: center !important;
+}
