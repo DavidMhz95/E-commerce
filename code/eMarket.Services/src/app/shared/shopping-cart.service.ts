@@ -15,7 +15,6 @@ export class ShoppingCartService {
 
   public AddProduct(product: Product, value: number) {
     var found: boolean
-    console.log(value)
     this.products.forEach((p: CartProduct) => {
       if (p.product.id == product.id) {
         if(value){

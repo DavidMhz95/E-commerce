@@ -16,9 +16,9 @@ export class ProductDetailsComponent implements OnInit {
 
 
   @Input('product') product: Product
-  public value: number = 1
-
   @Input('isSimpleView') isSimpleView : boolean = false
+
+  public value: number = 1
 
   constructor(public dataService:DataService, public activatedRoute:ActivatedRoute, public cartService:ShoppingCartService, public router:Router) {
     router.events.subscribe((event)=>{
@@ -37,10 +37,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   public valueChanged(event:number){
-    this.value = event
-  
+    this.value = event 
   }
-  
-
 
 }

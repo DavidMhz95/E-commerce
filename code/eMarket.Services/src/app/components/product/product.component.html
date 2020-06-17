@@ -3,7 +3,7 @@
         <div *ngIf="product?.isSale" class="sale">
             Oferta
         </div>
-        <div class="slideup" (click)="$event.preventDefault(); $event?.stopPropagation(); openDialog()">
+        <div class="slideup" (click)="$event.preventDefault(); $event?.stopPropagation(); productService?.openDialog(product)">
             Vista rápida
         </div>
     </div>

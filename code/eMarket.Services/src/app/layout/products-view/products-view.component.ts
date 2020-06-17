@@ -63,7 +63,6 @@ export class ProductsViewComponent implements OnInit {
     }
   }
   
-
   public add4Product() {
     for (var i: number = 0; i < 2; i++) {
       var randomId = Math.floor((Math.random() * this.dataService.products.length));
