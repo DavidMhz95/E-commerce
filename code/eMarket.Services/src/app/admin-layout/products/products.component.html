@@ -5,9 +5,7 @@
     4. Borrado de productos. -> Colocar como Outlet, nunca borrar en una bbdd relacional.
 -->
 
-<h2>Lista de productos</h2>
-
-<app-table-products [productsData]="dataService?.products"></app-table-products>
+<h2>Panel de control de productos</h2>
 
 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
     <mat-accordion>
@@ -19,6 +17,15 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <p>Aqui va el formulario</p>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="mat-elevation-z">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon style="margin-right: 10px;">apps</mat-icon>
+                    <span style="margin-right: 5px;">Lista de productos</span>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-table-products [productsData]="dataService?.products"></app-table-products>
         </mat-expansion-panel>
     </mat-accordion>
 </div>
