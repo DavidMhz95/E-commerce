@@ -9,6 +9,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -21,7 +23,11 @@ import { MatDividerModule } from '@angular/material/divider';
     MatDividerModule,
     MatButtonModule,
     MatIconModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatInputModule
+    
   ]
 })
 export class ProductsModule { }

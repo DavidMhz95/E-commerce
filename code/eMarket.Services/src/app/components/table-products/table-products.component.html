@@ -1,1 +1,62 @@
-<p>table-products works!</p>
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- id Column -->
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- title Column -->
+    <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Title </th>
+        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+
+    <!-- actualPrize Column -->
+    <ng-container matColumnDef="actualPrize">
+        <th mat-header-cell *matHeaderCellDef> ActualPrize </th>
+        <td mat-cell *matCellDef="let element"> {{element.actualPrize}} </td>
+    </ng-container>
+
+    <!-- beforePrize Column -->
+    <ng-container matColumnDef="beforePrize">
+        <th mat-header-cell *matHeaderCellDef> BeforePrize </th>
+        <td mat-cell *matCellDef="let element"> {{element.beforePrize}} </td>
+    </ng-container>
+
+    <!-- Show Column -->
+    <ng-container matColumnDef="show">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-icon style="cursor: pointer;">image_search</mat-icon>
+        </td>
+    </ng-container>
+
+    <!-- Update Column -->
+    <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-icon style="cursor: pointer;">edit</mat-icon>
+        </td>
+    </ng-container>
+
+    <!-- Update Column -->
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-icon style="cursor: pointer;">delete</mat-icon>
+        </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [length]="5" [pageSize]="5" [pageSizeOptions]="[5, 10, 25]">
+</mat-paginator>
