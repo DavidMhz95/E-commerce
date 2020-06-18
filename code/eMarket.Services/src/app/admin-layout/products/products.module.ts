@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products.component';
 import {MatTableModule} from '@angular/material/table';
-import { TableProductsComponent } from 'src/app/components/table-products/table-products.component';
+import { TableProductsComponent, DialogOverviewExampleDialog } from 'src/app/components/table-products/table-products.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,10 +11,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatInputModule} from '@angular/material/input';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
-  declarations: [ProductsComponent,TableProductsComponent],
+  declarations: [ProductsComponent,TableProductsComponent, DialogOverviewExampleDialog],
   imports: [
     CommonModule,
     ProductsRoutingModule,
@@ -26,7 +27,8 @@ import {MatInputModule} from '@angular/material/input';
     MatExpansionModule,
     MatFormFieldModule,
     MatPaginatorModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
     
   ]
 })
