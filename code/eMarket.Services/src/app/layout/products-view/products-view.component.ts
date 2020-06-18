@@ -1,7 +1,9 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService, Section } from 'src/app/shared/data.service';
 import { ShoppingCartService } from 'src/app/shared/shopping-cart.service';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+import { ProductsPipe } from './products.pipe';
 
 @Component({
   selector: 'app-products-view',
@@ -31,13 +33,13 @@ export class ProductsViewComponent implements OnInit {
     }
   }
 
-  constructor(private route: ActivatedRoute, public dataService: DataService, public cartService: ShoppingCartService) {
+  constructor(private activatedRoute: ActivatedRoute, public dataService: DataService, public cartService: ShoppingCartService) {
     this.actualPage = 1;
     this.showGoUpButton = false;
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
+    this.activatedRoute.paramMap.subscribe(params => {
       this.subsection = params.get('subsection')
       this.section = params.get('section')
 
@@ -59,10 +61,26 @@ export class ProductsViewComponent implements OnInit {
         this.add4Product()
       }, 2000)
       this.actualPage++
-      
+
     }
   }
-  
+
+  onTabChanged(event: MatTabChangeEvent) {
+    if (event.index == 0) {
+      if (this.section == this.actualSection.title) {
+        this.subsection = undefined
+      }else{
+        this.section = undefined
+      }
+    } else {
+      if (this.section == this.actualSection.title) {
+        this.subsection = event.tab.textLabel
+      } else {
+        this.section = event.tab.textLabel
+      }
+    }
+  }
+
   public add4Product() {
     for (var i: number = 0; i < 2; i++) {
       var randomId = Math.floor((Math.random() * this.dataService.products.length));

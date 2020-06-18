@@ -5,14 +5,14 @@
 </div>
 
 <div style="background: #f7f7f7; height: 48px;">
-    <mat-tab-group>
+    <mat-tab-group (selectedTabChange)="onTabChanged($event);">
         <mat-tab label="Todo"></mat-tab>
-        <mat-tab *ngFor="let s of actualSection?.sections" [label]="s?.title"> </mat-tab>
+        <mat-tab *ngFor="let s of actualSection?.sections"  [label]="s?.title"> </mat-tab>
     </mat-tab-group>
 </div>
 
 <div infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll(false)">
-    <div style="float: left; padding: 0;" class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let product of dataService?.products">
+    <div style="float: left; padding: 0;" class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let product of dataService?.products | products:section:subsection">
         <app-product [product]="product"></app-product>
     </div>
 </div>

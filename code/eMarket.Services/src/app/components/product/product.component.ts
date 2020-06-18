@@ -69,4 +69,6 @@ export interface Product {
   details: string[]
   moreDetails: string[]
   stockNumber: number
+  section:string
+  subsection:string
 }

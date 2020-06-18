@@ -21,7 +21,9 @@ export class DataService {
       description: "Presentamos nuestro LONG TOP, tu segunda piel en cada entrenamiento. Confeccionado para proporcionar la máxima comodidad y ligereza en cada sesión de entrenamiento.Desarrollado en la mezcla de fibras de políestery elastano perfecta, dotando al LONG TOP de mayor elasticidad y gran durabilidad. Comodidad absoluta sin renunciar al mejor estilo y evitando cualquier tipo de transparencia.",
       details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
       moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
-      stockNumber: 3
+      stockNumber: 3,
+      section:"morena",
+      subsection:"tops",
     },
     {
       id: 4,
@@ -33,7 +35,9 @@ export class DataService {
       description: "Presentamos nuestro LONG TOP, tu segunda piel en cada entrenamiento. Confeccionado para proporcionar la máxima comodidad y ligereza en cada sesión de entrenamiento.Desarrollado en la mezcla de fibras de políestery elastano perfecta, dotando al LONG TOP de mayor elasticidad y gran durabilidad. Comodidad absoluta sin renunciar al mejor estilo y evitando cualquier tipo de transparencia.",
       details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
       moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
-      stockNumber: 3
+      stockNumber: 3,
+      section:"morena",
+      subsection:"tops",
     },
     {
       id: 0,
@@ -45,7 +49,9 @@ export class DataService {
       description: "Presentamos nuestro LONG TOP, tu segunda piel en cada entrenamiento. Confeccionado para proporcionar la máxima comodidad y ligereza en cada sesión de entrenamiento.Desarrollado en la mezcla de fibras de políestery elastano perfecta, dotando al LONG TOP de mayor elasticidad y gran durabilidad. Comodidad absoluta sin renunciar al mejor estilo y evitando cualquier tipo de transparencia.",
       details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
       moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
-      stockNumber: 3
+      stockNumber: 3,
+      section:"morena",
+      subsection:"tops",
     },
     {
       id: 1,
@@ -57,7 +63,9 @@ export class DataService {
       description: "Presentamos nuestro LONG TOP, tu segunda piel en cada entrenamiento. Confeccionado para proporcionar la máxima comodidad y ligereza en cada sesión de entrenamiento.Desarrollado en la mezcla de fibras de políestery elastano perfecta, dotando al LONG TOP de mayor elasticidad y gran durabilidad. Comodidad absoluta sin renunciar al mejor estilo y evitando cualquier tipo de transparencia.",
       details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
       moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
-      stockNumber: 3
+      stockNumber: 3,
+      section:"morena",
+      subsection:"tops",
     },
     {
       id: 2,
@@ -69,7 +77,9 @@ export class DataService {
       description: "Presentamos nuestro LONG TOP, tu segunda piel en cada entrenamiento. Confeccionado para proporcionar la máxima comodidad y ligereza en cada sesión de entrenamiento.Desarrollado en la mezcla de fibras de políestery elastano perfecta, dotando al LONG TOP de mayor elasticidad y gran durabilidad. Comodidad absoluta sin renunciar al mejor estilo y evitando cualquier tipo de transparencia.",
       details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
       moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
-      stockNumber: 3
+      stockNumber: 3,
+      section:"rubia",
+      subsection:"tops",
     },
     {
       id: 3,
@@ -81,43 +91,9 @@ export class DataService {
       description: "Presentamos nuestro LONG TOP, tu segunda piel en cada entrenamiento. Confeccionado para proporcionar la máxima comodidad y ligereza en cada sesión de entrenamiento.Desarrollado en la mezcla de fibras de políestery elastano perfecta, dotando al LONG TOP de mayor elasticidad y gran durabilidad. Comodidad absoluta sin renunciar al mejor estilo y evitando cualquier tipo de transparencia.",
       details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
       moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
-      stockNumber: 10
-    },
-    {
-      id: 6,
-      isSale: true,
-      title: "Top - Active green",
-      actualPrize: 22.46,
-      beforePrize: 29.95,
-      images: ["https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM26_900x.jpg?v=1572201513", "https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM31_900x.jpg?v=1572201513", "https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM30_1296x.jpg?v=1572960905", "https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM29_1296x.jpg?v=1572960905"],
-      description: "Presentamos nuestro LONG TOP, tu segunda piel en cada entrenamiento. Confeccionado para proporcionar la máxima comodidad y ligereza en cada sesión de entrenamiento.Desarrollado en la mezcla de fibras de políestery elastano perfecta, dotando al LONG TOP de mayor elasticidad y gran durabilidad. Comodidad absoluta sin renunciar al mejor estilo y evitando cualquier tipo de transparencia.",
-      details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
-      moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
-      stockNumber: 3
-    },
-    {
-      id: 7,
-      isSale: false,
-      title: "Top - Active green",
-      actualPrize: 22.46,
-      beforePrize: 29.95,
-      images: ["https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM1_900x.jpg?v=1572201995", "https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM2_900x.jpg?v=1572201995"],
-      description: "Presentamos nuestro LONG TOP, tu segunda piel en cada entrenamiento. Confeccionado para proporcionar la máxima comodidad y ligereza en cada sesión de entrenamiento.Desarrollado en la mezcla de fibras de políestery elastano perfecta, dotando al LONG TOP de mayor elasticidad y gran durabilidad. Comodidad absoluta sin renunciar al mejor estilo y evitando cualquier tipo de transparencia.",
-      details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
-      moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
-      stockNumber: 3
-    },
-    {
-      id: 8,
-      isSale: true,
-      title: "Top - Active green",
-      actualPrize: 22.46,
-      beforePrize: 29.95,
-      images: ["https://cdn.shopify.com/s/files/1/2991/2402/products/2020-03-13AGONGYM668_2048x.jpg?v=1585055696", "https://cdn.shopify.com/s/files/1/2991/2402/products/2020-03-13AGONGYM667_50eb4083-4ef1-4317-9449-30b5e89b304f_2048x.jpg?v=1585055696"],
-      description: "Presentamos nuestro LONG TOP, tu segunda piel en cada entrenamiento. Confeccionado para proporcionar la máxima comodidad y ligereza en cada sesión de entrenamiento.Desarrollado en la mezcla de fibras de políestery elastano perfecta, dotando al LONG TOP de mayor elasticidad y gran durabilidad. Comodidad absoluta sin renunciar al mejor estilo y evitando cualquier tipo de transparencia.",
-      details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
-      moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
-      stockNumber: 5
+      stockNumber: 10,
+      section:"rubia",
+      subsection:"tops",
     },
     {
       id: 9,
@@ -129,32 +105,130 @@ export class DataService {
       description: "Presentamos nuestro LONG TOP, tu segunda piel en cada entrenamiento. Confeccionado para proporcionar la máxima comodidad y ligereza en cada sesión de entrenamiento.Desarrollado en la mezcla de fibras de políestery elastano perfecta, dotando al LONG TOP de mayor elasticidad y gran durabilidad. Comodidad absoluta sin renunciar al mejor estilo y evitando cualquier tipo de transparencia.",
       details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
       moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
-      stockNumber: 3
+      stockNumber: 3,
+      section:"rubia",
+      subsection:"tops",
     },
+    {
+      id: 10,
+      isSale: true,
+      title: "Top - Active green",
+      actualPrize: 22.46,
+      beforePrize: 29.95,
+      images: ["https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM8_900x.jpg?v=1572199192","https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM12_900x.jpg?v=1572199249", "https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM10_900x.jpg?v=1572199249", "https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM11_900x.jpg?v=1572199249"],
+      description: "Presentamos nuestro LONG TOP, tu segunda piel en cada entrenamiento. Confeccionado para proporcionar la máxima comodidad y ligereza en cada sesión de entrenamiento.Desarrollado en la mezcla de fibras de políestery elastano perfecta, dotando al LONG TOP de mayor elasticidad y gran durabilidad. Comodidad absoluta sin renunciar al mejor estilo y evitando cualquier tipo de transparencia.",
+      details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
+      moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
+      stockNumber: 3,
+      section:"morena",
+      subsection:"crop hoodie",
+    },
+    {
+      id: 11,
+      isSale: false,
+      title: "Top - Active green",
+      actualPrize: 22.46,
+      beforePrize: 29.95,
+      images: ["https://cdn.shopify.com/s/files/1/2991/2402/products/2020-03-13AGONGYM783_2048x.jpg?v=1585061089","https://cdn.shopify.com/s/files/1/2991/2402/products/2020-03-13AGONGYM8102_2048x.jpg?v=1585061097","https://cdn.shopify.com/s/files/1/2991/2402/products/2020-03-13AGONGYM789_900x.jpg?v=1585061097","https://cdn.shopify.com/s/files/1/2991/2402/products/2020-03-13AGONGYM813_900x.jpg?v=1585061097","https://cdn.shopify.com/s/files/1/2991/2402/products/2020-03-13AGONGYM822_900x.jpg?v=1585061097"],
+      description: "Presentamos nuestro LONG TOP, tu segunda piel en cada entrenamiento. Confeccionado para proporcionar la máxima comodidad y ligereza en cada sesión de entrenamiento.Desarrollado en la mezcla de fibras de políestery elastano perfecta, dotando al LONG TOP de mayor elasticidad y gran durabilidad. Comodidad absoluta sin renunciar al mejor estilo y evitando cualquier tipo de transparencia.",
+      details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
+      moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
+      stockNumber: 3,
+      section:"rubia",
+      subsection:"leggings",
+    },
+    {
+      id: 12,
+      isSale: false,
+      title: "Top - Active green",
+      actualPrize: 22.46,
+      beforePrize: 29.95,
+      images: ["https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM17_900x.jpg?v=1572201738","https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM18_900x.jpg?v=1572201738"],
+      description: "Presentamos nuestro LONG TOP, tu segunda piel en cada entrenamiento. Confeccionado para proporcionar la máxima comodidad y ligereza en cada sesión de entrenamiento.Desarrollado en la mezcla de fibras de políestery elastano perfecta, dotando al LONG TOP de mayor elasticidad y gran durabilidad. Comodidad absoluta sin renunciar al mejor estilo y evitando cualquier tipo de transparencia.",
+      details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
+      moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
+      stockNumber: 3,
+      section:"morena",
+      subsection:"leggings",
+    },
+    {
+      id: 13,
+      isSale: false,
+      title: "Top - Active green",
+      actualPrize: 22.46,
+      beforePrize: 29.95,
+      images: ["https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM87_2048x.jpg?v=1572199610","https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM90_2048x.jpg?v=1572199660"],
+      description: "Presentamos nuestro LONG TOP, tu segunda piel en cada entrenamiento. Confeccionado para proporcionar la máxima comodidad y ligereza en cada sesión de entrenamiento.Desarrollado en la mezcla de fibras de políestery elastano perfecta, dotando al LONG TOP de mayor elasticidad y gran durabilidad. Comodidad absoluta sin renunciar al mejor estilo y evitando cualquier tipo de transparencia.",
+      details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
+      moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
+      stockNumber: 3,
+      section:"maromaso",
+      subsection:"sudaderas",
+    },
+    {
+      id: 14,
+      isSale: false,
+      title: "Top - Active green",
+      actualPrize: 22.46,
+      beforePrize: 29.95,
+      images: ["https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM68_7ba2f632-5651-42a3-ab69-6876d618075e_2048x.jpg?v=1573827531"],
+      description: "Presentamos nuestro LONG TOP, tu segunda piel en cada entrenamiento. Confeccionado para proporcionar la máxima comodidad y ligereza en cada sesión de entrenamiento.Desarrollado en la mezcla de fibras de políestery elastano perfecta, dotando al LONG TOP de mayor elasticidad y gran durabilidad. Comodidad absoluta sin renunciar al mejor estilo y evitando cualquier tipo de transparencia.",
+      details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
+      moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
+      stockNumber: 3,
+      section:"maromaso",
+      subsection:"tirantes",
+    },
+    {
+      id: 15,
+      isSale: false,
+      title: "Top - Active green",
+      actualPrize: 22.46,
+      beforePrize: 29.95,
+      images: ["https://cdn.shopify.com/s/files/1/2991/2402/products/2020-03-13AGONGYM141_9dce2da1-2398-47eb-a749-ff85699eccb0_2048x.jpg?v=1584986985"],
+      description: "Presentamos nuestro LONG TOP, tu segunda piel en cada entrenamiento. Confeccionado para proporcionar la máxima comodidad y ligereza en cada sesión de entrenamiento.Desarrollado en la mezcla de fibras de políestery elastano perfecta, dotando al LONG TOP de mayor elasticidad y gran durabilidad. Comodidad absoluta sin renunciar al mejor estilo y evitando cualquier tipo de transparencia.",
+      details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
+      moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
+      stockNumber: 3,
+      section:"maromaso",
+      subsection:"camisolas",
+    }
   ]
 
   public sections: Section[] = [{
-    title: "hombre",
+    title: "rubia",
     sections: [{
-      title: "seccion A",
+      title: "tops",
       sections: []
     }, {
-      title: "seccion B",
-      sections: []
-    }, {
-      title: "seccion C",
+      title: "leggings",
       sections: []
     }]
   }, {
-    title: "mujer",
+    title: "morena",
     sections: [{
-      title: "seccion A",
+      title: "tops",
       sections: []
     }, {
-      title: "seccion B",
+      title: "leggings",
       sections: []
     }, {
-      title: "seccion C",
+      title: "crop hoodie",
+      sections: []
+    }],
+  }, {
+    title: "maromaso",
+    sections: [{
+      title: "tirantes",
+      sections: []
+    }, {
+      title: "pantalones",
+      sections: []
+    }, {
+      title: "sudaderas",
+      sections: []
+    }, {
+      title: "camisolas",
       sections: []
     }],
   }]
