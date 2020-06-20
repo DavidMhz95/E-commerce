@@ -16,7 +16,63 @@
                     <span style="margin-right: 5px;">Añadir producto</span>
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <p>Aqui va el formulario</p>
+            <!-- Formulario de productos -->
+            <form class="products-form">
+
+                <mat-form-field class="products-full-width">
+                    <mat-label>Title</mat-label>
+                    <textarea matInput placeholder="Nombre del producto"></textarea>
+                </mat-form-field>
+
+                <mat-radio-group aria-label="Select an option">
+                    <mat-radio-button value="isSale">Oferta</mat-radio-button>
+                    <mat-radio-button value="isNotSale">Sin Oferta</mat-radio-button>
+                </mat-radio-group>
+
+                <mat-form-field class="products-full-width">
+                    <mat-label>Precio Oferta</mat-label>
+                    <textarea matInput placeholder="Precio de oferta"></textarea>
+                </mat-form-field>
+
+                <mat-form-field class="products-full-width">
+                    <mat-label>Precio</mat-label>
+                    <textarea matInput placeholder="Precio anterior a la oferta"></textarea>
+                </mat-form-field>
+
+                <mat-form-field class="products-full-width">
+                    <mat-label>Images</mat-label>
+                    <textarea matInput placeholder="URL de la imagen"></textarea>
+                </mat-form-field>
+
+                <mat-form-field class="products-full-width">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput placeholder="Descripcion"></textarea>
+                </mat-form-field>
+
+                <mat-form-field class="products-full-width">
+                    <mat-label>Stock Number</mat-label>
+                    <textarea matInput placeholder="Numero de articulos en stock"></textarea>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Seccion</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let section of sections" [value]="section.title">
+                            {{section.title}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Sub Seccion</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let section of sections.sections" [value]="section.section.title">
+                            {{section.section.title}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </form>
         </mat-expansion-panel>
         <mat-expansion-panel class="mat-elevation-z">
             <mat-expansion-panel-header>
