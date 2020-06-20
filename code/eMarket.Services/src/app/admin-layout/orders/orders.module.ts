@@ -3,13 +3,23 @@ import { CommonModule } from '@angular/common';
 
 import { OrdersRoutingModule } from './orders-routing.module';
 import { OrdersComponent } from './orders.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 @NgModule({
   declarations: [OrdersComponent],
   imports: [
     CommonModule,
-    OrdersRoutingModule
+    OrdersRoutingModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatDividerModule,
+    SharedModule
   ]
 })
 export class OrdersModule { }

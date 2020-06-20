@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Product, ProductComponent } from '../components/product/product.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ProductModalComponent } from '../components/product-modal/product-modal.component';
+import { CartProduct } from './shopping-cart.service';
 
 @Injectable({
   providedIn: 'root'
@@ -249,6 +250,24 @@ export class DataService {
     }
   ]
 
+
+  public customers:Customer[]=[
+    {
+      name: "Comandante Aranda",
+      image:"https://avatars1.githubusercontent.com/u/28922716?s=460&u=9e4b0d836649dcc75d61f9457365b554fbcec22e&v=4",
+      email:"mispanas@gmail.com"
+    },
+    {
+      name:"Sergio David Hasselhoff",
+      email:"levantahierros69@gmail.com",
+      image:"https://avatars2.githubusercontent.com/u/58731792?s=460&u=8836f461d6e0868af099b477a6d38c53c3159b44&v=4"
+    },
+    {
+      name:"Miguel Á. Rozalén",
+      email:"rztop93@gmail.com",
+      image:"https://avatars2.githubusercontent.com/u/19685231?s=460&u=16a48c0c0537610918d5ece0eab5272116073d66&v=4"
+    }
+  ]
 }
 
 export interface marketInformation {
@@ -259,4 +278,17 @@ export interface marketInformation {
 export interface Section {
   title: string
   sections: Section[]
+}
+
+export interface Customer{
+  name:string
+  image:string
+  email:string
+}
+
+export interface Order{
+  id:number,
+  date:string,
+  customer:Customer,
+  products:CartProduct[],
 }

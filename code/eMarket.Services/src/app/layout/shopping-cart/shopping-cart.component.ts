@@ -10,21 +10,10 @@ import { Product } from 'src/app/components/product/product.component';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  displayedColumns: string[] = ['image', 'name', 'prize', 'number'];
-  dataSource: MatTableDataSource<CartProduct>;
   constructor(public cartService: ShoppingCartService) { }
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource(this.cartService.products)
+   
   }
 
-  deleteProduct(product: Product) {
-    this.cartService.RemoveProduct(product)
-    this.dataSource = new MatTableDataSource(this.cartService.products)
-  }
-
-  public valueChanged(event:number, product: CartProduct){
-    product.number = event
-  }
-  
 }

@@ -1,0 +1,19 @@
+<div style="margin-bottom:15px;">
+    <mat-divider></mat-divider>
+</div>
+
+<div class="flex-container">
+    <div style="flex-grow: unset">
+        <img class="profile-img"
+            [src]="customer?.image">
+    </div>
+    <div class="flex-container">
+        <div style="text-align:left;margin-right: 20px;">
+            <div style="margin-bottom: 0px;" class="card-title uppercase">{{customer?.name}}</div>
+            <div class="card-subtitle">{{customer?.email}}</div>
+        </div>
+        <div style="font-size: 20px; opacity: 0.85;" class="card-number">{{price |number}}€</div>
+    </div>
+</div>
+
+<app-cart-products-table [dataSource]="products"></app-cart-products-table>
