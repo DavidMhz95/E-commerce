@@ -11,6 +11,7 @@ import { ChartistModule } from 'ng-chartist';
 import { MatIconModule } from '@angular/material/icon';
 
 import { MatExpansionModule } from '@angular/material/expansion';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatButtonModule,
     MatIconModule,
     ChartistModule,
-    MatExpansionModule
+    MatExpansionModule,
+    SharedModule
   ]
 })
 export class HomeModule { }

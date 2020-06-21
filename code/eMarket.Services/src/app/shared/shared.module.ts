@@ -12,6 +12,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { CartProductsTableComponent } from '../components/cart-products-table/cart-products-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { NoCommaPipe } from './no-comma.pipe';
+import { PaymentTypesModule } from '../components/payment-types/payments.module';
 
 
 
@@ -31,7 +32,8 @@ import { NoCommaPipe } from './no-comma.pipe';
     MatTabsModule,
     MatDividerModule,
     RouterModule,
-    MatTableModule
+    MatTableModule,
+    PaymentTypesModule
   ],
   exports: [
     CarouselComponent,
@@ -39,7 +41,7 @@ import { NoCommaPipe } from './no-comma.pipe';
     ProductComponent,
     OrderComponent,
     CartProductsTableComponent,
-    NoCommaPipe
+    NoCommaPipe,
   ]
 })
 export class SharedModule { }

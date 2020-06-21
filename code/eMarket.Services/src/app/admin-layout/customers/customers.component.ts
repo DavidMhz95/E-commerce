@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ChartEvent, ChartType } from 'ng-chartist';
-import {
-  IBarChartOptions,
-  IChartistAnimationOptions,
-  IChartistData
-} from 'chartist';
+import { IChartistAnimationOptions, IChartistData } from 'chartist';
+import { Customer, DataService, Order } from 'src/app/shared/data.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-customers',
@@ -13,12 +11,36 @@ import {
 })
 export class CustomersComponent implements OnInit {
 
-  constructor() { }
+  lastestCustomers: Customer[]
+  bestCustomers: Customer[]
+  constructor(private dataService: DataService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.lastestCustomers = this.generateRandomCustomer(2)
+    this.bestCustomers = this.generateRandomCustomer(4)
   }
 
-  
+  showHistory(customer: Customer) {
+    var orders:Order[] = this.dataService.generateRandomOrders(6)
+    orders.forEach((o)=>{
+      o.customer = customer
+    })
+    const dialogRef = this.dialog.open(CustomerHistoryDialog, {
+      data: {orders, customer},
+      maxHeight: '80vh',
+      width:'60vw'
+    });
+  }
+
+  generateRandomCustomer(number: number): Customer[] {
+    var result: Customer[] = []
+    for (var i = 0; i < number; i++) {
+      var randomCustomer = Math.floor((Math.random() * this.dataService.customers.length))
+      result.push(this.dataService.customers[randomCustomer])
+    }
+    return result
+  }
+
   type: ChartType = 'Line';
   data: IChartistData = {
     labels: [1, 2, 3, 4, 5, 6, 7, 10],
@@ -68,4 +90,20 @@ export class CustomersComponent implements OnInit {
       }
     }
   };
+}
+
+@Component({
+  selector: 'customer-history-dialog',
+  templateUrl: 'customers-dialog.html',
+  styleUrls: ['./customers.component.scss']
+})
+export class CustomerHistoryDialog {
+
+  constructor(public dialogRef: MatDialogRef<CustomerHistoryDialog>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 }

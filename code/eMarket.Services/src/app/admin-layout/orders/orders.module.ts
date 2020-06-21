@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatDividerModule } from '@angular/material/divider';
+import { ChartistModule } from 'ng-chartist';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatExpansionModule,
     MatIconModule,
     MatDividerModule,
+    ChartistModule,
     SharedModule
   ]
 })

@@ -58,27 +58,26 @@
 </div>
 
 <div style="margin-top: 10px; margin-bottom: 10px; margin-left:8px;">
-    <div style="float: left;" class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+    <div style="float: left;" *ngFor="let customer of lastestCustomers" class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
         <mat-card class="card">
             <div class="flex-container">
                 <div style="flex-grow: unset">
-                    <img class="profile-img"
-                        src="https://avatars2.githubusercontent.com/u/19685231?s=460&u=16a48c0c0537610918d5ece0eab5272116073d66&v=4">
+                    <img class="profile-img"  [src]="customer?.image">
                 </div>
                 <div class="flex-container">
                     <div style="text-align:left;margin-right: 20px;">
-                        <div style="margin-bottom: 0px;" class="card-title uppercase">Miguel Á. Rozalén</div>
-                        <div class="card-subtitle">rztop93@gmail.com</div>
+                        <div style="margin-bottom: 0px;" class="card-title uppercase">{{customer?.name}}</div>
+                        <div class="card-subtitle">{{customer?.email}}</div>
                     </div>
                 </div>
             </div>
             <div class="flex-container" style="text-align:right; margin-top: 5px;">
-                <div class="card-number">{{'42.38'|number}}€</div>
+                <div class="card-number">{{customer?.totalSpent|number}}€</div>
             </div>
             <div style="margin:15px 0; border-top:1px solid rgba(0, 0, 0, 0.125)"></div>
             <div style="margin-bottom: 5px;" class="flex-container">
                 <div class="card-sb">Productos: 1</div>
-                <div class="clickable ellipsis">Ver Historial</div>
+                <div class="clickable ellipsis" (click)="showHistory(customer)">Ver Historial</div>
             </div>
         </mat-card>
     </div>
@@ -91,230 +90,28 @@
 </div>
 
 <div style="margin-top: 10px;  margin-bottom: 10px; margin-left:8px;">
-    <div style="float: left;" class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+    <div style="float: left;" *ngFor="let customer of bestCustomers" class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
         <mat-card class="card">
             <div class="flex-container">
                 <div style="flex-grow: unset">
-                    <img class="profile-img"
-                        src="https://avatars1.githubusercontent.com/u/28922716?s=460&u=9e4b0d836649dcc75d61f9457365b554fbcec22e&v=4">
+                    <img class="profile-img"  [src]="customer?.image">
                 </div>
                 <div class="flex-container">
                     <div style="text-align:left;margin-right: 20px;">
-                        <div style="margin-bottom: 0px;" class="card-title uppercase">Comandante Aranda</div>
-                        <div class="card-subtitle">mispanas@gmail.com</div>
+                        <div style="margin-bottom: 0px;" class="card-title uppercase">{{customer?.name}}</div>
+                        <div class="card-subtitle">{{customer?.email}}</div>
                     </div>
                 </div>
             </div>
             <div class="flex-container" style="text-align:right; margin-top: 5px;">
-                <div class="card-number">{{'1442.38'|number}}€</div>
-            </div>
-            <div style="margin:15px 0; border-top:1px solid rgba(0, 0, 0, 0.125)"></div>
-            <div style="margin-bottom: 5px;" class="flex-container">
-                <div class="card-sb">Productos: 32</div>
-                <div class="clickable ellipsis">Ver Historial</div>
-            </div>
-        </mat-card>
-    </div>
-
-    <div style="float: left;" class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-        <mat-card class="card">
-            <div class="flex-container">
-                <div style="flex-grow: unset">
-                    <img class="profile-img"
-                        src="https://avatars2.githubusercontent.com/u/58731792?s=460&u=8836f461d6e0868af099b477a6d38c53c3159b44&v=4">
-                </div>
-                <div class="flex-container">
-                    <div style="text-align:left;margin-right: 20px;">
-                        <div style="margin-bottom: 0px;" class="card-title uppercase">Sergio David Hasselhoff</div>
-                        <div class="card-subtitle">levantahierros69@gmail.com</div>
-                    </div>
-                </div>
-            </div>
-            <div class="flex-container" style="text-align:right; margin-top: 5px;">
-                <div class="card-number">{{'689.38'|number}}€</div>
-            </div>
-            <div style="margin:15px 0; border-top:1px solid rgba(0, 0, 0, 0.125)"></div>
-            <div style="margin-bottom: 5px;" class="flex-container">
-                <div class="card-sb">Productos: 22</div>
-                <div class="clickable ellipsis">Ver Historial</div>
-            </div>
-        </mat-card>
-    </div>
-
-    <div style="float: left;" class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-        <mat-card class="card">
-            <div class="flex-container">
-                <div style="flex-grow: unset">
-                    <img class="profile-img"
-                        src="https://avatars2.githubusercontent.com/u/19685231?s=460&u=16a48c0c0537610918d5ece0eab5272116073d66&v=4">
-                </div>
-                <div class="flex-container">
-                    <div style="text-align:left;margin-right: 20px;">
-                        <div style="margin-bottom: 0px;" class="card-title uppercase">Miguel Á. Rozalén</div>
-                        <div class="card-subtitle">rztop93@gmail.com</div>
-                    </div>
-                </div>
-            </div>
-            <div class="flex-container" style="text-align:right; margin-top: 5px;">
-                <div class="card-number">{{'42.38'|number}}€</div>
+                <div class="card-number">{{customer?.totalSpent|number}}€</div>
             </div>
             <div style="margin:15px 0; border-top:1px solid rgba(0, 0, 0, 0.125)"></div>
             <div style="margin-bottom: 5px;" class="flex-container">
                 <div class="card-sb">Productos: 1</div>
-                <div class="clickable ellipsis">Ver Historial</div>
+                <div class="clickable ellipsis" (click)="showHistory(customer)">Ver Historial</div>
             </div>
         </mat-card>
     </div>
-
-    <div style="float: left;" class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-        <mat-card class="card">
-            <div class="flex-container">
-                <div style="flex-grow: unset">
-                    <img class="profile-img"
-                        src="https://avatars1.githubusercontent.com/u/28922716?s=460&u=9e4b0d836649dcc75d61f9457365b554fbcec22e&v=4">
-                </div>
-                <div class="flex-container">
-                    <div style="text-align:left;margin-right: 20px;">
-                        <div style="margin-bottom: 0px;" class="card-title uppercase">Comandante Aranda</div>
-                        <div class="card-subtitle">mispanas@gmail.com</div>
-                    </div>
-                </div>
-            </div>
-            <div class="flex-container" style="text-align:right; margin-top: 5px;">
-                <div class="card-number">{{'1442.38'|number}}€</div>
-            </div>
-            <div style="margin:15px 0; border-top:1px solid rgba(0, 0, 0, 0.125)"></div>
-            <div style="margin-bottom: 5px;" class="flex-container">
-                <div class="card-sb">Productos: 32</div>
-                <div class="clickable ellipsis">Ver Historial</div>
-            </div>
-        </mat-card>
-    </div>
-
-    <div style="float: left;" class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-        <mat-card class="card">
-            <div class="flex-container">
-                <div style="flex-grow: unset">
-                    <img class="profile-img"
-                        src="https://avatars2.githubusercontent.com/u/58731792?s=460&u=8836f461d6e0868af099b477a6d38c53c3159b44&v=4">
-                </div>
-                <div class="flex-container">
-                    <div style="text-align:left;margin-right: 20px;">
-                        <div style="margin-bottom: 0px;" class="card-title uppercase">Sergio David Hasselhoff</div>
-                        <div class="card-subtitle">levantahierros69@gmail.com</div>
-                    </div>
-                </div>
-            </div>
-            <div class="flex-container" style="text-align:right; margin-top: 5px;">
-                <div class="card-number">{{'689.38'|number}}€</div>
-            </div>
-            <div style="margin:15px 0; border-top:1px solid rgba(0, 0, 0, 0.125)"></div>
-            <div style="margin-bottom: 5px;" class="flex-container">
-                <div class="card-sb">Productos: 22</div>
-                <div class="clickable ellipsis">Ver Historial</div>
-            </div>
-        </mat-card>
-    </div>
-
-    <div style="float: left;" class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-        <mat-card class="card">
-            <div class="flex-container">
-                <div style="flex-grow: unset">
-                    <img class="profile-img"
-                        src="https://avatars2.githubusercontent.com/u/19685231?s=460&u=16a48c0c0537610918d5ece0eab5272116073d66&v=4">
-                </div>
-                <div class="flex-container">
-                    <div style="text-align:left;margin-right: 20px;">
-                        <div style="margin-bottom: 0px;" class="card-title uppercase">Miguel Á. Rozalén</div>
-                        <div class="card-subtitle">rztop93@gmail.com</div>
-                    </div>
-                </div>
-            </div>
-            <div class="flex-container" style="text-align:right; margin-top: 5px;">
-                <div class="card-number">{{'42.38'|number}}€</div>
-            </div>
-            <div style="margin:15px 0; border-top:1px solid rgba(0, 0, 0, 0.125)"></div>
-            <div style="margin-bottom: 5px;" class="flex-container">
-                <div class="card-sb">Productos: 1</div>
-                <div class="clickable ellipsis">Ver Historial</div>
-            </div>
-        </mat-card>
-    </div>
-
-    <div style="float: left;" class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-        <mat-card class="card">
-            <div class="flex-container">
-                <div style="flex-grow: unset">
-                    <img class="profile-img"
-                        src="https://avatars1.githubusercontent.com/u/28922716?s=460&u=9e4b0d836649dcc75d61f9457365b554fbcec22e&v=4">
-                </div>
-                <div class="flex-container">
-                    <div style="text-align:left;margin-right: 20px;">
-                        <div style="margin-bottom: 0px;" class="card-title uppercase">Comandante Aranda</div>
-                        <div class="card-subtitle">mispanas@gmail.com</div>
-                    </div>
-                </div>
-            </div>
-            <div class="flex-container" style="text-align:right; margin-top: 5px;">
-                <div class="card-number">{{'1442.38'|number}}€</div>
-            </div>
-            <div style="margin:15px 0; border-top:1px solid rgba(0, 0, 0, 0.125)"></div>
-            <div style="margin-bottom: 5px;" class="flex-container">
-                <div class="card-sb">Productos: 32</div>
-                <div class="clickable ellipsis">Ver Historial</div>
-            </div>
-        </mat-card>
-    </div>
-
-    <div style="float: left;" class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-        <mat-card class="card">
-            <div class="flex-container">
-                <div style="flex-grow: unset">
-                    <img class="profile-img"
-                        src="https://avatars2.githubusercontent.com/u/58731792?s=460&u=8836f461d6e0868af099b477a6d38c53c3159b44&v=4">
-                </div>
-                <div class="flex-container">
-                    <div style="text-align:left;margin-right: 20px;">
-                        <div style="margin-bottom: 0px;" class="card-title uppercase">Sergio David Hasselhoff</div>
-                        <div class="card-subtitle">levantahierros69@gmail.com</div>
-                    </div>
-                </div>
-            </div>
-            <div class="flex-container" style="text-align:right; margin-top: 5px;">
-                <div class="card-number">{{'689.38'|number}}€</div>
-            </div>
-            <div style="margin:15px 0; border-top:1px solid rgba(0, 0, 0, 0.125)"></div>
-            <div style="margin-bottom: 5px;" class="flex-container">
-                <div class="card-sb">Productos: 22</div>
-                <div class="clickable ellipsis">Ver Historial</div>
-            </div>
-        </mat-card>
-    </div>
-
-    <div style="float: left;" class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-        <mat-card class="card">
-            <div class="flex-container">
-                <div style="flex-grow: unset">
-                    <img class="profile-img"
-                        src="https://avatars2.githubusercontent.com/u/19685231?s=460&u=16a48c0c0537610918d5ece0eab5272116073d66&v=4">
-                </div>
-                <div class="flex-container">
-                    <div style="text-align:left;margin-right: 20px;">
-                        <div style="margin-bottom: 0px;" class="card-title uppercase">Miguel Á. Rozalén</div>
-                        <div class="card-subtitle">rztop93@gmail.com</div>
-                    </div>
-                </div>
-            </div>
-            <div class="flex-container" style="text-align:right; margin-top: 5px;">
-                <div class="card-number">{{'42.38'|number}}€</div>
-            </div>
-            <div style="margin:15px 0; border-top:1px solid rgba(0, 0, 0, 0.125)"></div>
-            <div style="margin-bottom: 5px;" class="flex-container">
-                <div class="card-sb">Productos: 1</div>
-                <div class="clickable ellipsis">Ver Historial</div>
-            </div>
-        </mat-card>
-    </div>
-
     <div style="clear: both;"></div>
 </div>

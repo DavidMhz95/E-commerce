@@ -10,6 +10,8 @@ import { FooterComponent } from '../components/footer/footer.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { SharedModule } from '../shared/shared.module';
+import { PaymentTypesModule } from '../components/payment-types/payments.module';
 
 
 @NgModule({
@@ -18,7 +20,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     LayoutRoutingModule,
     MatIconModule,
     MatBadgeModule,
-    
+    PaymentTypesModule
   ],
   declarations: [
     LayoutComponent,
