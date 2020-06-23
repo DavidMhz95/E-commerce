@@ -19,6 +19,9 @@ export class ProductsComponent implements OnInit {
      console.log(this.sections)
   }
 
+  public addProduct(){
+    console.log('Añadiendo producto')
+  }
   
 }
 

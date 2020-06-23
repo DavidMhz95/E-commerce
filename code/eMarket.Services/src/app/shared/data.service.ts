@@ -12,6 +12,28 @@ export class DataService {
 
   constructor() { }
 
+  productTypes: ProductTypes[] = [
+    {
+      id: 0,
+      name: 'Camisetas'
+    },
+    {
+      id: 1,
+      name: 'Pantalones Cortos'
+    }
+  ]
+
+  properties: Properties[] = [
+    {
+      id: 0,
+      name: 'Color'
+    },
+    {
+      id: 1,
+      name: 'Talla'
+    }
+  ]
+
   products: Product[] = [
     {
       id: 5,
@@ -307,9 +329,19 @@ export interface marketInformation {
   descriptionInformation: string
 }
 
+export interface Properties{
+  id: number,
+  name: string
+}
+
 export interface Section {
   title: string
   sections: Section[]
+}
+
+export interface ProductTypes {
+  id: number
+  name: string
 }
 
 export interface Customer{

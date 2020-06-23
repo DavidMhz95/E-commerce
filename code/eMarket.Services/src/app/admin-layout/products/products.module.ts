@@ -15,11 +15,16 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
+import { TypeProductTableComponent } from 'src/app//components/type-product-table/type-product-table.component';
+import { PropertiesProductTableComponent } from 'src/app/components/properties-product-table/properties-product-table.component';
+
 
 
 
 @NgModule({
-  declarations: [ProductsComponent,TableProductsComponent, DialogOverviewExampleDialog],
+  declarations: [ProductsComponent,TableProductsComponent, DialogOverviewExampleDialog,PropertiesProductTableComponent,
+    TypeProductTableComponent],
+
   imports: [
     CommonModule,
     ProductsRoutingModule,

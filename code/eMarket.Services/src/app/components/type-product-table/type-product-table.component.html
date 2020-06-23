@@ -1,0 +1,42 @@
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- id Column -->
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Update Column -->
+    <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-icon style="cursor: pointer;" matTooltip="Editar un Tipo de producto" (click)="updateProduct(element.id)">edit</mat-icon>
+        </td>
+    </ng-container>
+
+    <!-- Update Column -->
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-icon style="cursor: pointer;" matTooltip="Eliminar un Tipo de producto" (click)="deleteProduct(element.id)">delete</mat-icon>
+        </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [length]="5" [pageSize]="5" [pageSizeOptions]="[5, 10, 25]">
+</mat-paginator>

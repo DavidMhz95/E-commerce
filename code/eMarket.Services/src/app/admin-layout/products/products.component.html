@@ -12,6 +12,41 @@
         <mat-expansion-panel class="mat-elevation-z">
             <mat-expansion-panel-header>
                 <mat-panel-title>
+                    <mat-icon style="margin-right: 10px;">receipt</mat-icon>
+                    <span style="margin-right: 5px;"> Añadir tipo de Producto</span>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <form class="products-form">
+                <mat-form-field class="products-full-width">
+                    <mat-label>Tipo de producto</mat-label>
+                    <textarea matInput placeholder="Ex. Pantalones, Camisetas, Tarros de miel..."></textarea>
+                </mat-form-field>
+            </form>
+            <h3>Lista de productos</h3>
+            <app-type-product-table [typeProducts]="dataService?.productTypes"></app-type-product-table>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="mat-elevation-z">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon style="margin-right: 10px;">speaker_notes</mat-icon>
+                    <span style="margin-right: 5px;">Añadir Propiedades a un producto</span>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <form class="products-form">
+                <mat-form-field class="products-full-width">
+                    <mat-label>Propiedades</mat-label>
+                    <textarea matInput placeholder="Ex. Color, Talla, Tamaño..."></textarea>
+                </mat-form-field>
+                <app-properties-product-table [properties]="dataService?.properties"></app-properties-product-table>
+            </form>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="mat-elevation-z">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
                     <mat-icon style="margin-right: 10px;">add_circle</mat-icon>
                     <span style="margin-right: 5px;">Añadir producto</span>
                 </mat-panel-title>
@@ -50,12 +85,12 @@
                 </mat-form-field>
 
                 <mat-form-field class="products-full-width">
-                    <mat-label>Stock Number</mat-label>
-                    <textarea matInput placeholder="Numero de articulos en stock"></textarea>
+                    <mat-label>Detalles</mat-label>
+                    <textarea matInput placeholder="Detalles"></textarea>
                 </mat-form-field>
 
-                <mat-form-field>
-                    <mat-label>Seccion</mat-label>
+                <mat-form-field style="padding: 10px;">
+                    <mat-label>Propiedad</mat-label>
                     <mat-select>
                         <mat-option *ngFor="let section of sections" [value]="section.title">
                             {{section.title}}
@@ -63,8 +98,8 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field>
-                    <mat-label>Sub Seccion</mat-label>
+                <mat-form-field style="padding: 10px;">
+                    <mat-label>Sub Propiedad</mat-label>
                     <mat-select>
                         <mat-option *ngFor="let section of sections.sections" [value]="section.section.title">
                             {{section.section.title}}
@@ -72,8 +107,18 @@
                     </mat-select>
                 </mat-form-field>
 
+                <mat-form-field class="products-90-width">
+                    <mat-label>Stock</mat-label>
+                    <textarea matInput placeholder="Numero de productos en stock"></textarea>
+                </mat-form-field>
+
+                <button mat-icon-button (click)="addProduct()" matTooltip="Añadir un producto">
+                    <mat-icon>library_add</mat-icon>
+                </button>
+
             </form>
         </mat-expansion-panel>
+
         <mat-expansion-panel class="mat-elevation-z">
             <mat-expansion-panel-header>
                 <mat-panel-title>
