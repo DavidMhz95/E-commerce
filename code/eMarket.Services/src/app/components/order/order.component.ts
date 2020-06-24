@@ -27,7 +27,6 @@ export class OrderComponent implements OnInit {
 
     this.location = "Calle Falsa 123, Madrid 28045 Madrid (Spain)"
     this.payment = "Tarjeta que termina en 6801"
-
     this.paymentType = RandomEnum(PaymentTypeEnum) 
   }
 

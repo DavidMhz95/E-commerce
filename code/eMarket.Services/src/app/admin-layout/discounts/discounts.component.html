@@ -1,1 +1,17 @@
-<p>discounts works!</p>
+<mat-drawer-container class="container" autosize>
+    <mat-drawer #drawer class="rightPanel" position="end" mode="side">
+        <p>Auto-resizing sidenav</p>
+        <p>Lorem, ipsum dolor sit amet consectetur.</p>
+    </mat-drawer>
+
+    <div class="sidenav-content">
+        <div style="margin-left:8px; padding: 40px 20px;">
+            <div style="opacity:0.8; margin-left: 8px;">
+                Descuentos
+            </div>
+            <button type="button" mat-button (click)="drawer.toggle()">
+                Toggle sidenav
+            </button>
+        </div>
+    </div>
+</mat-drawer-container>
