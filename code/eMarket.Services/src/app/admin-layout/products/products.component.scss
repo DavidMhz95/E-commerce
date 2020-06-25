@@ -15,3 +15,45 @@
 .mat-radio-button~.mat-radio-button {
     margin-left: 16px;
 }
+
+.sidenav-content {
+    display: flex;
+}
+
+.rightPanel {
+    padding: 20px;
+    min-width: 40%;
+}
+
+.container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: unset;
+}
+
+.details {
+    cursor: pointer;
+    font-family: "Century Gothic", sans-serif;
+    color: #545454;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    border: 1px solid #f0f0f0;
+    border-left: 0;
+    z-index: 10;
+    background-color: white;
+}
+
+.details:hover {
+    background-color: rgb(223, 221, 221);
+}
+
+.title {
+    font-weight: normal;
+    font-size: 16.2px;
+    line-height: 1.4;
+    margin: 7px 0;
+}

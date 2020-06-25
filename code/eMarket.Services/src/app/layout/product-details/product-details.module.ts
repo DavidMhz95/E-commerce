@@ -25,7 +25,6 @@ import { MatDialogModule } from '@angular/material/dialog';
   ],
   exports:[
     ProductDetailsComponent,
-    
   ]
  })
 export class ProductDetailsModule { }

@@ -17,6 +17,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { TypeProductTableComponent } from 'src/app//components/type-product-table/type-product-table.component';
 import { PropertiesProductTableComponent } from 'src/app/components/properties-product-table/properties-product-table.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { SharedModule } from 'src/app/shared/shared.module';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 
 
@@ -40,9 +43,10 @@ import { PropertiesProductTableComponent } from 'src/app/components/properties-p
     MatDialogModule,
     MatRadioModule,
     MatTooltipModule,
-    MatSelectModule
-    
-    
+    MatSelectModule,
+    MatSidenavModule,
+    SharedModule,
+    MatButtonToggleModule
   ]
 })
 export class ProductsModule {}

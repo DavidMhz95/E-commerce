@@ -29,10 +29,11 @@ export class DataService {
       name: 'Color'
     },
     {
-      id: 1,
+      id: 2,
       name: 'Talla'
     }
   ]
+
 
   products: Product[] = [
     {
@@ -333,6 +334,14 @@ export interface Properties{
   id: number,
   name: string
 }
+
+export interface SubProperties{
+  id: number,
+  propertie: string,
+  name: string,
+  stock: number
+}
+
 
 export interface Section {
   title: string
