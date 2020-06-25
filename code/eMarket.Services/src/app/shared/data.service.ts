@@ -47,8 +47,8 @@ export class DataService {
       details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
       moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
       stockNumber: 3,
-      section:"morena",
-      subsection:"tops",
+      section: "morena",
+      subsection: "tops",
     },
     {
       id: 4,
@@ -61,8 +61,8 @@ export class DataService {
       details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
       moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
       stockNumber: 3,
-      section:"morena",
-      subsection:"tops",
+      section: "morena",
+      subsection: "tops",
     },
     {
       id: 0,
@@ -75,8 +75,8 @@ export class DataService {
       details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
       moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
       stockNumber: 3,
-      section:"morena",
-      subsection:"tops",
+      section: "morena",
+      subsection: "tops",
     },
     {
       id: 1,
@@ -89,8 +89,8 @@ export class DataService {
       details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
       moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
       stockNumber: 3,
-      section:"morena",
-      subsection:"tops",
+      section: "morena",
+      subsection: "tops",
     },
     {
       id: 2,
@@ -103,8 +103,8 @@ export class DataService {
       details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
       moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
       stockNumber: 3,
-      section:"rubia",
-      subsection:"tops",
+      section: "rubia",
+      subsection: "tops",
     },
     {
       id: 3,
@@ -117,8 +117,8 @@ export class DataService {
       details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
       moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
       stockNumber: 10,
-      section:"rubia",
-      subsection:"tops",
+      section: "rubia",
+      subsection: "tops",
     },
     {
       id: 9,
@@ -131,8 +131,8 @@ export class DataService {
       details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
       moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
       stockNumber: 3,
-      section:"rubia",
-      subsection:"tops",
+      section: "rubia",
+      subsection: "tops",
     },
     {
       id: 10,
@@ -140,13 +140,13 @@ export class DataService {
       title: "Top - Active green",
       actualPrize: 22.46,
       beforePrize: 29.95,
-      images: ["https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM8_900x.jpg?v=1572199192","https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM12_900x.jpg?v=1572199249", "https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM10_900x.jpg?v=1572199249", "https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM11_900x.jpg?v=1572199249"],
+      images: ["https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM8_900x.jpg?v=1572199192", "https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM12_900x.jpg?v=1572199249", "https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM10_900x.jpg?v=1572199249", "https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM11_900x.jpg?v=1572199249"],
       description: "Presentamos nuestro LONG TOP, tu segunda piel en cada entrenamiento. Confeccionado para proporcionar la máxima comodidad y ligereza en cada sesión de entrenamiento.Desarrollado en la mezcla de fibras de políestery elastano perfecta, dotando al LONG TOP de mayor elasticidad y gran durabilidad. Comodidad absoluta sin renunciar al mejor estilo y evitando cualquier tipo de transparencia.",
       details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
       moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
       stockNumber: 3,
-      section:"morena",
-      subsection:"crop hoodie",
+      section: "morena",
+      subsection: "crop hoodie",
     },
     {
       id: 11,
@@ -154,13 +154,13 @@ export class DataService {
       title: "Top - Active green",
       actualPrize: 22.46,
       beforePrize: 29.95,
-      images: ["https://cdn.shopify.com/s/files/1/2991/2402/products/2020-03-13AGONGYM783_2048x.jpg?v=1585061089","https://cdn.shopify.com/s/files/1/2991/2402/products/2020-03-13AGONGYM8102_2048x.jpg?v=1585061097","https://cdn.shopify.com/s/files/1/2991/2402/products/2020-03-13AGONGYM789_900x.jpg?v=1585061097","https://cdn.shopify.com/s/files/1/2991/2402/products/2020-03-13AGONGYM813_900x.jpg?v=1585061097","https://cdn.shopify.com/s/files/1/2991/2402/products/2020-03-13AGONGYM822_900x.jpg?v=1585061097"],
+      images: ["https://cdn.shopify.com/s/files/1/2991/2402/products/2020-03-13AGONGYM783_2048x.jpg?v=1585061089", "https://cdn.shopify.com/s/files/1/2991/2402/products/2020-03-13AGONGYM8102_2048x.jpg?v=1585061097", "https://cdn.shopify.com/s/files/1/2991/2402/products/2020-03-13AGONGYM789_900x.jpg?v=1585061097", "https://cdn.shopify.com/s/files/1/2991/2402/products/2020-03-13AGONGYM813_900x.jpg?v=1585061097", "https://cdn.shopify.com/s/files/1/2991/2402/products/2020-03-13AGONGYM822_900x.jpg?v=1585061097"],
       description: "Presentamos nuestro LONG TOP, tu segunda piel en cada entrenamiento. Confeccionado para proporcionar la máxima comodidad y ligereza en cada sesión de entrenamiento.Desarrollado en la mezcla de fibras de políestery elastano perfecta, dotando al LONG TOP de mayor elasticidad y gran durabilidad. Comodidad absoluta sin renunciar al mejor estilo y evitando cualquier tipo de transparencia.",
       details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
       moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
       stockNumber: 3,
-      section:"rubia",
-      subsection:"leggings",
+      section: "rubia",
+      subsection: "leggings",
     },
     {
       id: 12,
@@ -168,13 +168,13 @@ export class DataService {
       title: "Top - Active green",
       actualPrize: 22.46,
       beforePrize: 29.95,
-      images: ["https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM17_900x.jpg?v=1572201738","https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM18_900x.jpg?v=1572201738"],
+      images: ["https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM17_900x.jpg?v=1572201738", "https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM18_900x.jpg?v=1572201738"],
       description: "Presentamos nuestro LONG TOP, tu segunda piel en cada entrenamiento. Confeccionado para proporcionar la máxima comodidad y ligereza en cada sesión de entrenamiento.Desarrollado en la mezcla de fibras de políestery elastano perfecta, dotando al LONG TOP de mayor elasticidad y gran durabilidad. Comodidad absoluta sin renunciar al mejor estilo y evitando cualquier tipo de transparencia.",
       details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
       moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
       stockNumber: 3,
-      section:"morena",
-      subsection:"leggings",
+      section: "morena",
+      subsection: "leggings",
     },
     {
       id: 13,
@@ -182,13 +182,13 @@ export class DataService {
       title: "Top - Active green",
       actualPrize: 22.46,
       beforePrize: 29.95,
-      images: ["https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM87_2048x.jpg?v=1572199610","https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM90_2048x.jpg?v=1572199660"],
+      images: ["https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM87_2048x.jpg?v=1572199610", "https://cdn.shopify.com/s/files/1/2991/2402/products/AGONGYM90_2048x.jpg?v=1572199660"],
       description: "Presentamos nuestro LONG TOP, tu segunda piel en cada entrenamiento. Confeccionado para proporcionar la máxima comodidad y ligereza en cada sesión de entrenamiento.Desarrollado en la mezcla de fibras de políestery elastano perfecta, dotando al LONG TOP de mayor elasticidad y gran durabilidad. Comodidad absoluta sin renunciar al mejor estilo y evitando cualquier tipo de transparencia.",
       details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
       moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
       stockNumber: 3,
-      section:"maromaso",
-      subsection:"sudaderas",
+      section: "maromaso",
+      subsection: "sudaderas",
     },
     {
       id: 14,
@@ -201,8 +201,8 @@ export class DataService {
       details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
       moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
       stockNumber: 3,
-      section:"maromaso",
-      subsection:"tirantes",
+      section: "maromaso",
+      subsection: "tirantes",
     },
     {
       id: 15,
@@ -215,8 +215,8 @@ export class DataService {
       details: ["Máxima comodidad", "Logo impreso", "Diseño granulado", "Elástico y flexible", "Sin transparencias", "Durabilidad garantizada", "Costuras de doble refuerzo", "Color BLACK"],
       moreDetails: ["Políester, elastano", "Lavar a máquina en frío", "Secado natural"],
       stockNumber: 3,
-      section:"maromaso",
-      subsection:"camisolas",
+      section: "maromaso",
+      subsection: "camisolas",
     }
   ]
 
@@ -275,35 +275,68 @@ export class DataService {
   ]
 
 
-  public customers:Customer[]=[
+  public customers: Customer[] = [
     {
       name: "Comandante Aranda",
-      image:"https://avatars1.githubusercontent.com/u/28922716?s=460&u=9e4b0d836649dcc75d61f9457365b554fbcec22e&v=4",
-      email:"mispanas@gmail.com",
-      totalSpent:1235.12,
+      image: "https://avatars1.githubusercontent.com/u/28922716?s=460&u=9e4b0d836649dcc75d61f9457365b554fbcec22e&v=4",
+      email: "mispanas@gmail.com",
+      totalSpent: 1235.12,
     },
     {
-      name:"Sergio David Hasselhoff",
-      email:"levantahierros69@gmail.com",
-      image:"https://avatars2.githubusercontent.com/u/58731792?s=460&u=8836f461d6e0868af099b477a6d38c53c3159b44&v=4",
-      totalSpent:659.64,
+      name: "Sergio David Hasselhoff",
+      email: "levantahierros69@gmail.com",
+      image: "https://avatars2.githubusercontent.com/u/58731792?s=460&u=8836f461d6e0868af099b477a6d38c53c3159b44&v=4",
+      totalSpent: 659.64,
     },
     {
-      name:"Miguel Á. Rozalén",
-      email:"rztop93@gmail.com",
-      image:"https://avatars2.githubusercontent.com/u/19685231?s=460&u=16a48c0c0537610918d5ece0eab5272116073d66&v=4",
-      totalSpent:324.45,
+      name: "Miguel Á. Rozalén",
+      email: "rztop93@gmail.com",
+      image: "https://avatars2.githubusercontent.com/u/19685231?s=460&u=16a48c0c0537610918d5ece0eab5272116073d66&v=4",
+      totalSpent: 324.45,
     }
   ]
 
-  public generateRandomOrders(number:number):Order[]{
-    var result:Order[] = []
-    for(var i=0; i<number;i++){
-      var randomCustomer =  Math.floor((Math.random() * this.customers.length))
+  public discounts: DiscountCode[] = [
+    {
+      application: DiscountApplication.Shipment,
+      code: "FREEDELIVER",
+      customers: undefined,
+      repetitions: -1,
+      type: DiscountType.AbsoluteValue,
+      value: 3.45,
+      products:undefined,
+      section:undefined,
+      subsection:undefined,
+      minPurchase:0,
+      color:undefined,
+      dateFrom:undefined,
+      dateTo:undefined
+    },
+    {
+      application: DiscountApplication.Shipment,
+      code: "20OFFSALE",
+      customers: undefined,
+      repetitions: 1,
+      type: DiscountType.Percentage,
+      value: 20,
+      products:undefined,
+      section:"Rubia",
+      subsection:undefined,
+      minPurchase:20,
+      color:undefined,
+      dateFrom:undefined,
+      dateTo:undefined
+    }
+  ]
+
+  public generateRandomOrders(number: number): Order[] {
+    var result: Order[] = []
+    for (var i = 0; i < number; i++) {
+      var randomCustomer = Math.floor((Math.random() * this.customers.length))
       var randomProducts = Math.floor((Math.random() * 4)) + 1
       var randomId = Math.floor((Math.random() * 1000000))
 
-      var products:CartProduct[] = []
+      var products: CartProduct[] = []
 
       for (var j = 0; j < randomProducts; j++) {
         var randomProductId = Math.floor((Math.random() * this.products.length))
@@ -315,7 +348,7 @@ export class DataService {
       }
 
       result.push({
-        id:randomId,
+        id: randomId,
         customer: this.customers[randomCustomer],
         products: products,
         date: RandomDate(new Date(2012, 0, 1), new Date()).toLocaleDateString('es-ES')
@@ -330,12 +363,12 @@ export interface marketInformation {
   descriptionInformation: string
 }
 
-export interface Properties{
+export interface Properties {
   id: number,
   name: string
 }
 
-export interface SubProperties{
+export interface SubProperties {
   id: number,
   propertie: string,
   name: string,
@@ -353,16 +386,41 @@ export interface ProductTypes {
   name: string
 }
 
-export interface Customer{
-  name:string
-  image:string
-  email:string
-  totalSpent:number
+export interface Customer {
+  name: string
+  image: string
+  email: string
+  totalSpent: number
 }
 
-export interface Order{
-  id:number,
-  date:string,
-  customer:Customer,
-  products:CartProduct[],
+export interface Order {
+  id: number,
+  date: string,
+  customer: Customer,
+  products: CartProduct[],
+}
+
+export interface DiscountCode {
+  code: string
+  type: DiscountType //Porcentaje, valor absoluto,
+  value: number
+  application: DiscountApplication //Envío, Productos, Categoria, Subcategoria, Todo
+  repetitions: number
+  customers: Customer[]
+  products:Product[]
+  section:string
+  subsection:string
+  minPurchase:number
+  color:string
+  dateFrom:Date
+  dateTo:Date
+}
+
+export enum DiscountType {
+  Percentage ="Porcentaje", 
+  AbsoluteValue = "Valor",
+}
+
+export enum DiscountApplication {
+  Shipment, Product, Section, Subsection, All
 }

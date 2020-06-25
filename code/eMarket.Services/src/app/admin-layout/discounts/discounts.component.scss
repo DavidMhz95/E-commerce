@@ -5,13 +5,70 @@
 .rightPanel {
   padding: 20px;
   min-width: 40%;
+  max-width: 40%;
+  background-color: #fafafa;
 }
 
-.container{
-    position: absolute;
-    top:0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    max-width: unset;
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: unset;
+}
+
+.padding7 {
+  padding: 0 7px !important;
+}
+
+.card {
+  padding: 15px 24px;
+  border-radius: 2px;
+  box-shadow: none;
+  min-height: 48px;
+  margin-bottom: 14px;
+}
+
+.dashed:hover {
+  background: rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+}
+
+.dashed {
+  border: 1px dashed rgba(0, 0, 0, 0.2);
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 11px;
+}
+
+mat-select,
+input {
+  width: 100%;
+  margin-top: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 3px;
+  padding: 6px 10px;
+}
+
+.subInput {
+  margin-top: 5px;
+  font-size: 10px;
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+.preInput {
+  font-size: 12px;
+  opacity: 0.8;
+  line-height: 1.6;
 }
