@@ -20,6 +20,7 @@ import { PropertiesProductTableComponent } from 'src/app/components/properties-p
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SharedModule } from 'src/app/shared/shared.module';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -46,7 +47,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatSelectModule,
     MatSidenavModule,
     SharedModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatCardModule
   ]
 })
 export class ProductsModule {}
