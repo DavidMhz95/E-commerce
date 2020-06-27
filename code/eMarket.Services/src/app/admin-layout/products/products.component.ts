@@ -21,10 +21,9 @@ export class ProductsComponent implements OnInit {
 
   public productView: boolean = true
   public tableView: boolean = false
-  public sections: any
+  public propiedades: any
+  
   ngOnInit(): void {
-     this.sections = this.dataService.sections
-     console.log(this.sections)
      this.product = this.dataService.products.filter((p: Product)=>{ return this.activatedRoute.snapshot.params.id == p.id})[0]   
   }
 
