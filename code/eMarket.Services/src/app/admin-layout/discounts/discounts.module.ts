@@ -12,7 +12,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { SharedModule } from 'src/app/shared/shared.module';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [DiscountsComponent],
@@ -23,10 +27,16 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
-    MatExpansionModule, 
+    MatExpansionModule,
     MatCardModule,
     FormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule,
+    MatDividerModule,
+    MatRadioModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatButtonModule
   ]
 })
 export class DiscountsModule { }

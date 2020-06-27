@@ -422,5 +422,9 @@ export enum DiscountType {
 }
 
 export enum DiscountApplication {
-  Shipment, Product, Section, Subsection, All
+  Shipment  = "Envío",
+  //Product = "Producto",
+  //Section  = "Sección",
+  //Subsection = "Subsección", 
+  All = "Todo",
 }

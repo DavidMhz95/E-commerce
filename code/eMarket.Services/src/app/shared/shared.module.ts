@@ -13,6 +13,7 @@ import { CartProductsTableComponent } from '../components/cart-products-table/ca
 import { MatTableModule } from '@angular/material/table';
 import { NoCommaPipe } from './no-comma.pipe';
 import { PaymentTypesModule } from '../components/payment-types/payments.module';
+import { FilterDuplicatesPipe } from './filter-duplicates.pipe';
 
 
 
@@ -24,6 +25,7 @@ import { PaymentTypesModule } from '../components/payment-types/payments.module'
     OrderComponent,
     CartProductsTableComponent,
     NoCommaPipe,
+    FilterDuplicatesPipe,
   ],
   imports: [
     CommonModule,
@@ -42,6 +44,7 @@ import { PaymentTypesModule } from '../components/payment-types/payments.module'
     OrderComponent,
     CartProductsTableComponent,
     NoCommaPipe,
+    FilterDuplicatesPipe,
   ]
 })
 export class SharedModule { }

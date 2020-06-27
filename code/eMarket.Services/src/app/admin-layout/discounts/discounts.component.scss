@@ -72,3 +72,48 @@ input {
   opacity: 0.8;
   line-height: 1.6;
 }
+
+.hidden{
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
+}
+
+.visible{
+  max-height: 500px;
+  opacity: 1;
+}
+
+.animated{
+  transition: all 0.5s ease-in-out;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0 0 0;
+}
+
+.radio-button {
+  margin: 5px;
+  font-size: 13px;
+}
+
+.profile-img{
+  height: 32px;
+  width: 32px;
+  margin-right: 10px;
+  border-radius: 50%;
+  margin-top: 0;
+  vertical-align: bottom;
+}
+
+.outlineNone:focus{
+  outline: none
+}
+
+mat-datepicker-toggle:focus,
+::ng-deep mat-datepicker-toggle button:focus{
+  outline: none
+}

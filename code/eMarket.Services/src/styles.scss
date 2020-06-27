@@ -145,3 +145,7 @@ mat-icon:focus {
   overflow-y: visible;
   width: calc(100% - 15px);
 }
+
+mat-datepicker-toggle:focus{
+  outline: none
+}
