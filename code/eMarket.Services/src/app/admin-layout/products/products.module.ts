@@ -21,6 +21,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { SharedModule } from 'src/app/shared/shared.module';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -48,7 +49,8 @@ import { MatCardModule } from '@angular/material/card';
     MatSidenavModule,
     SharedModule,
     MatButtonToggleModule,
-    MatCardModule
+    MatCardModule,
+    FormsModule
   ]
 })
 export class ProductsModule {}

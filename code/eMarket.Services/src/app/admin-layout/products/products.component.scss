@@ -80,3 +80,16 @@ input {
     opacity: 0.8;
     line-height: 1.6;
 }
+
+.hidden {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+}
+
+.visible {
+    max-height: 500px;
+    opacity: 1;
+    transition: all 0.7s ease-in-out;
+}

@@ -11,6 +11,9 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductsComponent implements OnInit {
 
 
+  isSaleEnabled: boolean = false
+  isTypeProduct: boolean = false
+  isProduct: boolean = false
   @Input('product') product: Product
   @Input('productsData') productsData:any 
   constructor(public dataService:DataService, public activatedRoute:ActivatedRoute) { }
@@ -38,6 +41,17 @@ export class ProductsComponent implements OnInit {
   public showTableView(){
     this.productView= false
     this.tableView = true
+  }
+
+  public tipoProductoToggle(){
+    this.isTypeProduct = true
+    this.isProduct = false
+  }
+
+  public productoToggle(){
+    this.isTypeProduct = false
+    this.isProduct = true
+    
   }
 }
 
