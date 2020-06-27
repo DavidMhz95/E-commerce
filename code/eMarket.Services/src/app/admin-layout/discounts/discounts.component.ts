@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { DataService, DiscountType, DiscountCode, DiscountApplication } from './../../shared/data.service';
+import { PickTextColorBasedOnBgColorAdvanced, HexToRgb } from './../../app.utils'
 
 @Component({
   selector: 'app-discounts',
@@ -38,8 +39,8 @@ export class DiscountsComponent implements OnInit {
     }
   }
 
-  resetDiscount(){
-    this.discount= {
+  resetDiscount() {
+    this.discount = {
       application: DiscountApplication.All,
       code: undefined,
       customers: undefined,
@@ -50,16 +51,39 @@ export class DiscountsComponent implements OnInit {
       section: undefined,
       subsection: undefined,
       minPurchase: 0,
-      color: undefined,
+      color: '#333333',
       dateFrom: new Date(),
       dateTo: new Date()
     }
   }
 
-  saveDiscount(){
+  saveDiscount() {
     this.discount.code = this.discount.code.toUpperCase()
     this.dataService.discounts.push(this.discount)
   }
+
+  getColor(color:string) {
+    return PickTextColorBasedOnBgColorAdvanced(color, '#FFFFFF', '#000000');
+  }
+
+  setBackgroundColor(event: any, color:string) {
+    var resultColor = this.setLightenDarkenColor(color?color:'#000000',0.1)
+    if (event && event.type == 'mouseleave' && event.srcElement instanceof HTMLElement) {
+      (event.srcElement as HTMLElement).style.backgroundColor = resultColor
+    } else if (event && event.type == 'mouseenter' && event.toElement instanceof HTMLElement) {
+      (event.toElement as HTMLElement).style.backgroundColor = resultColor
+    }
+  }
+
+  setLightenDarkenColor(color:string, opacity:number) {
+    var result:string
+    if (color) {
+      var rgb = HexToRgb(color)
+      result = 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ','+ opacity+')'
+    }
+    return result
+  }
+
 
   discountType = DiscountType;
   discountApplication = DiscountApplication;

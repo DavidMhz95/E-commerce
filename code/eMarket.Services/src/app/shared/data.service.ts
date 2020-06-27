@@ -323,7 +323,7 @@ export class DataService {
       section:"Rubia",
       subsection:undefined,
       minPurchase:20,
-      color:undefined,
+      color:'#d21a5e',
       dateFrom:undefined,
       dateTo:undefined
     }

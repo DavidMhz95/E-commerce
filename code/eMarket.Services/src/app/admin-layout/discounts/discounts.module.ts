@@ -17,6 +17,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 @NgModule({
   declarations: [DiscountsComponent],
@@ -36,7 +37,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatRadioModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatButtonModule
+    MatButtonModule,
+    ColorPickerModule,
   ]
 })
 export class DiscountsModule { }

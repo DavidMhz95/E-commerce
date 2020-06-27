@@ -73,19 +73,19 @@ input {
   line-height: 1.6;
 }
 
-.hidden{
+.hidden {
   max-height: 0;
   overflow: hidden;
   transition: all 0.5s ease-in-out;
   opacity: 0;
 }
 
-.visible{
+.visible {
   max-height: 500px;
   opacity: 1;
 }
 
-.animated{
+.animated {
   transition: all 0.5s ease-in-out;
 }
 
@@ -100,7 +100,7 @@ input {
   font-size: 13px;
 }
 
-.profile-img{
+.profile-img {
   height: 32px;
   width: 32px;
   margin-right: 10px;
@@ -109,11 +109,25 @@ input {
   vertical-align: bottom;
 }
 
-.outlineNone:focus{
-  outline: none
+.outlineNone:focus {
+  outline: none;
 }
 
 mat-datepicker-toggle:focus,
-::ng-deep mat-datepicker-toggle button:focus{
-  outline: none
+::ng-deep mat-datepicker-toggle button:focus {
+  outline: none;
+}
+
+::ng-deep .color-picker {
+  border: 1px solid #f2f2f2 !important;
+  border-radius: 3px !important;
+}
+
+::ng-deep .color-picker .arrow.arrow-bottom{
+  visibility: hidden !important;
+}
+
+.pointer{
+  cursor: pointer;
+
 }

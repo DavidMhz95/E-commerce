@@ -139,9 +139,21 @@
             </div>
         </mat-card>
 
+        <mat-card class="card" style="margin-top: 20px">
+            <span>Color de la promoción:</span>
+            <div style="margin-top: 10px; cursor: pointer;">
+                <input class="pointer" [style.color]="getColor(discount.color)" [(colorPicker)]="discount.color"
+                    [style.background]="discount.color" [cpPosition]="'bottom'" [value]="discount.color" />
+            </div>
+            <div class="subInput">
+                Este es el color que se utilizará para identificar el descuento
+            </div>
+        </mat-card>
+
         <div style="margin-top: 20px">
             <button style="float:left" mat-stroked-button (click)="resetDiscount(); drawer?.toggle()">Cancelar</button>
-            <button style="float:right" mat-flat-button (click)="saveDiscount(); resetDiscount(); drawer?.toggle()" color="primary">Aplicar</button>
+            <button style="float:right" mat-flat-button (click)="saveDiscount(); resetDiscount(); drawer?.toggle()"
+                color="primary">Aplicar</button>
             <div style="clear:both"></div>
         </div>
 
@@ -166,9 +178,12 @@
             <div class="padding7 col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12"
                 [ngClass]="{'col-xl-12 col-lg-12': drawer?.opened}">
                 <mat-accordion>
-                    <mat-expansion-panel *ngFor="let discount of dataService?.discounts" class="mat-elevation-z">
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>
+                    <mat-expansion-panel *ngFor="let discount of dataService?.discounts"
+                        (mouseenter)="setBackgroundColor($event, discount?.color)"
+                        (mouseleave)="setBackgroundColor($event, '#ffffff')"
+                        [style.border]="'1px solid '+ setLightenDarkenColor(discount?.color, 0.2)" class="mat-elevation-z">
+                        <mat-expansion-panel-header style="background-color: rgba(0,0,0,0)">
+                            <mat-panel-title [style.color]="discount?.color">
                                 <mat-icon style="margin-right: 10px;">
                                     {{discount?.type==discountType.Percentage?'data_usage':'euro_symbol'}}</mat-icon>
                                 <span style="margin-right: 5px;">{{discount?.code}}</span>
