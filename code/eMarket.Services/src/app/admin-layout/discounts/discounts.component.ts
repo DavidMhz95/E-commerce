@@ -9,9 +9,7 @@ import { PickTextColorBasedOnBgColorAdvanced, HexToRgb } from './../../app.utils
 })
 export class DiscountsComponent implements OnInit {
 
-  isMinPurchaseEnabled: boolean = false
-  isAnyCustomerSelected: boolean = false
-
+  
   public discount: DiscountCode
 
   constructor(public dataService: DataService) {
@@ -22,20 +20,29 @@ export class DiscountsComponent implements OnInit {
 
   }
 
-  selectedCustomer($event) {
-    if ($event.value) {
-      if (!this.discount.customers) {
-        this.discount.customers = []
-      }
-      this.discount.customers.push($event.value)
-      $event.source.value = undefined
+  setLightenDarkenColor(color: string, opacity: number) {
+    var result: string
+    if (color) {
+      var rgb = HexToRgb(color)
+      result = 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',' + opacity + ')'
+    }
+    return result
+  }
+  
+  setBackgroundColor(event: any, color: string) {
+    var resultColor = this.setLightenDarkenColor(color ? color : '#000000', 0.1)
+    if (event && event.type == 'mouseleave' && event.srcElement instanceof HTMLElement) {
+      (event.srcElement as HTMLElement).style.backgroundColor = resultColor
+    } else if (event && event.type == 'mouseenter' && event.toElement instanceof HTMLElement) {
+      (event.toElement as HTMLElement).style.backgroundColor = resultColor
     }
   }
 
-  removeFromCustomers(customer) {
-    const index: number = this.discount.customers.indexOf(customer);
-    if (index !== -1) {
-      this.discount.customers.splice(index, 1);
+  saveDiscount() {
+    this.discount.code = this.discount.code.toUpperCase()
+    const index:number = this.dataService.discounts.indexOf(this.discount)
+    if(index ==-1){
+      this.dataService.discounts.push(this.discount)
     }
   }
 
@@ -56,35 +63,12 @@ export class DiscountsComponent implements OnInit {
       dateTo: new Date()
     }
   }
-
-  saveDiscount() {
-    this.discount.code = this.discount.code.toUpperCase()
-    this.dataService.discounts.push(this.discount)
+  
+  setDiscount(discount){
+    this.discount = discount
   }
-
-  getColor(color:string) {
-    return PickTextColorBasedOnBgColorAdvanced(color, '#FFFFFF', '#000000');
-  }
-
-  setBackgroundColor(event: any, color:string) {
-    var resultColor = this.setLightenDarkenColor(color?color:'#000000',0.1)
-    if (event && event.type == 'mouseleave' && event.srcElement instanceof HTMLElement) {
-      (event.srcElement as HTMLElement).style.backgroundColor = resultColor
-    } else if (event && event.type == 'mouseenter' && event.toElement instanceof HTMLElement) {
-      (event.toElement as HTMLElement).style.backgroundColor = resultColor
-    }
-  }
-
-  setLightenDarkenColor(color:string, opacity:number) {
-    var result:string
-    if (color) {
-      var rgb = HexToRgb(color)
-      result = 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ','+ opacity+')'
-    }
-    return result
-  }
-
 
   discountType = DiscountType;
   discountApplication = DiscountApplication;
+ 
 }

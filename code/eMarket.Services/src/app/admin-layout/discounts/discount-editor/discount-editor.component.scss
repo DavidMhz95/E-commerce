@@ -1,14 +1,3 @@
-.sidenav-content {
-  display: flex;
-}
-
-.rightPanel {
-  padding: 20px;
-  min-width: 510px;
-  max-width: 510px;
-  background-color: #fafafa;
-}
-
 .container {
   position: absolute;
   top: 0;
@@ -123,10 +112,10 @@ mat-datepicker-toggle:focus,
   border-radius: 3px !important;
 }
 
-::ng-deep .color-picker .arrow.arrow-bottom{
+::ng-deep .color-picker .arrow.arrow-bottom {
   visibility: hidden !important;
 }
 
-.pointer{
+.pointer {
   cursor: pointer;
 }

@@ -228,7 +228,8 @@ export class DataService {
     }, {
       title: "leggings",
       sections: []
-    }]
+    }
+  ]
   }, {
     title: "morena",
     sections: [{

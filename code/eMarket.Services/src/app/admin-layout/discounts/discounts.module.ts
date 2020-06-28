@@ -18,9 +18,10 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { DiscountEditorComponent } from './discount-editor/discount-editor.component';
 
 @NgModule({
-  declarations: [DiscountsComponent],
+  declarations: [DiscountsComponent, DiscountEditorComponent],
   imports: [
     CommonModule,
     SharedModule,
