@@ -6,129 +6,6 @@
 -->
 
 
-<!-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
-    <mat-accordion>
-        <mat-expansion-panel class="mat-elevation-z">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <mat-icon style="margin-right: 10px;">receipt</mat-icon>
-                    <span style="margin-right: 5px;"> Añadir tipo de Producto</span>
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <form class="products-form">
-                <mat-form-field class="products-full-width">
-                    <mat-label>Tipo de producto</mat-label>
-                    <textarea matInput placeholder="Ex. Pantalones, Camisetas, Tarros de miel..."></textarea>
-                </mat-form-field>
-            </form>
-            <h3>Lista de productos</h3>
-            <app-type-product-table [typeProducts]="dataService?.productTypes"></app-type-product-table>
-
-        </mat-expansion-panel>
-
-        <mat-expansion-panel class="mat-elevation-z">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <mat-icon style="margin-right: 10px;">speaker_notes</mat-icon>
-                    <span style="margin-right: 5px;">Añadir Propiedades a un producto</span>
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <form class="products-form">
-                <mat-form-field class="products-full-width">
-                    <mat-label>Propiedades</mat-label>
-                    <textarea matInput placeholder="Ex. Color, Talla, Tamaño..."></textarea>
-                </mat-form-field>
-                <app-properties-product-table [properties]="dataService?.properties"></app-properties-product-table>
-            </form>
-        </mat-expansion-panel>
-
-        <mat-expansion-panel class="mat-elevation-z">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <mat-icon style="margin-right: 10px;">add_circle</mat-icon>
-                    <span style="margin-right: 5px;">Añadir producto</span>
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <form class="products-form">
-
-                <mat-form-field class="products-full-width">
-                    <mat-label>Title</mat-label>
-                    <textarea matInput placeholder="Nombre del producto"></textarea>
-                </mat-form-field>
-
-                <mat-radio-group aria-label="Select an option">
-                    <mat-radio-button value="isSale">Oferta</mat-radio-button>
-                    <mat-radio-button value="isNotSale">Sin Oferta</mat-radio-button>
-                </mat-radio-group>
-
-                <mat-form-field class="products-full-width">
-                    <mat-label>Precio Oferta</mat-label>
-                    <textarea matInput placeholder="Precio de oferta"></textarea>
-                </mat-form-field>
-
-                <mat-form-field class="products-full-width">
-                    <mat-label>Precio</mat-label>
-                    <textarea matInput placeholder="Precio anterior a la oferta"></textarea>
-                </mat-form-field>
-
-                <mat-form-field class="products-full-width">
-                    <mat-label>Images</mat-label>
-                    <textarea matInput placeholder="URL de la imagen"></textarea>
-                </mat-form-field>
-
-                <mat-form-field class="products-full-width">
-                    <mat-label>Description</mat-label>
-                    <textarea matInput placeholder="Descripcion"></textarea>
-                </mat-form-field>
-
-                <mat-form-field class="products-full-width">
-                    <mat-label>Detalles</mat-label>
-                    <textarea matInput placeholder="Detalles"></textarea>
-                </mat-form-field>
-
-                <mat-form-field style="padding: 10px;">
-                    <mat-label>Propiedad</mat-label>
-                    <mat-select>
-                        <mat-option *ngFor="let section of sections" [value]="section.title">
-                            {{section.title}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <mat-form-field style="padding: 10px;">
-                    <mat-label>Sub Propiedad</mat-label>
-                    <mat-select>
-                        <mat-option *ngFor="let section of sections.sections" [value]="section.section.title">
-                            {{section.section.title}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <mat-form-field class="products-90-width">
-                    <mat-label>Stock</mat-label>
-                    <textarea matInput placeholder="Numero de productos en stock"></textarea>
-                </mat-form-field>
-
-                <button mat-icon-button (click)="addProduct()" matTooltip="Añadir un producto">
-          <mat-icon>library_add</mat-icon>
-        </button>
-
-            </form>
-        </mat-expansion-panel>
-
-        <mat-expansion-panel class="mat-elevation-z">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <mat-icon style="margin-right: 10px;">apps</mat-icon>
-                    <span style="margin-right: 5px;">Lista de productos</span>
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <app-table-products [productsData]="dataService?.products"></app-table-products>
-        </mat-expansion-panel>
-    </mat-accordion>
-</div> -->
-
 <mat-drawer-container class="container" autosize>
     <mat-drawer #drawer class="rightPanel" position="end" mode="side">
         <!-- Parte Derecha -->
@@ -145,13 +22,41 @@
                 Nueva Propiedad
             </div>
             <div style="position: relative">
-                <input matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
+                <input [(ngModel)]="newProperty" matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
             </div>
             <div style="margin-top: 20px">
-                <button style="float:right" mat-flat-button color="primary">Añadir Propiedad</button>
+                <button style="float:right" mat-flat-button color="secundary" (click)="addPropertie()">Añadir Propiedad</button>
                 <div style="clear:both"></div>
             </div>
 
+            <div *ngFor="let property of properties?.items| keyvalue" style="padding: 10px 5px;">
+                <div class="flex-container">
+                    <div class="flex-container" style="line-height: 1.3; margin-right: 10px; flex-grow: 1;">
+                        <div style="text-align:left;">
+                            <div style="font-size: 13px; margin-bottom: 0px;">{{property?.key}}</div>
+                            <!-- Controlar el input para no poder meter espacios (varias palabras) -->
+                            <input [(ngModel)]="newPropertyValue" matInput placeholder="Ex. S,M,L,XL" style="padding-right: 30px;">
+                            <div class="subInput">
+                                <!-- Chips Angular -->
+                                <mat-chip-list aria-label="Color selection">
+                                    <mat-chip selected style="font-size: 12px" *ngFor="let value of property?.value">
+                                        {{value}}
+                                        <mat-icon style="font-size: 15px; text-align: center; vertical-align: middle; margin-top: 8px; padding-left: 12px; " (click)="remove(property.key,value)">cancel</mat-icon>
+                                    </mat-chip>
+                                </mat-chip-list>
+                            </div>
+                        </div>
+                    </div>
+                    <mat-icon style="cursor:pointer" matTooltip="Añade un valor" (click)="addPropertyValue(property)">add
+                    </mat-icon>
+                    <mat-icon style="cursor:pointer" matTooltip="Elimina la propiedad" (click)="removeFromProperties(property)">clear</mat-icon>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px">
+                <button style="float:right" mat-flat-button color="primary">Crear Tipo de Producto</button>
+                <div style="clear:both"></div>
+            </div>
         </mat-card>
 
         <mat-card class="card" style="margin-top: 20px" *ngIf="isProduct">
@@ -170,20 +75,16 @@
                 <input matInput placeholder="Ex. Zapatillas, Camisetas, Tarros de miel..." style="padding-right: 30px;">
             </div>
 
-            <div class="preInput">
+            <!-- <div class="preInput" style="padding-top: 10px; padding-bottom: 10px">
                 Tipo de producto*:
             </div>
-            <div style="position: relative">
-                <select name="" id=""></select>
-            </div>
+            <div>
+                <mat-select placeholder="Seleccione un tipo">
+                    <mat-option>
 
-            <div class="preInput">
-                Propiedad*:
-            </div>
-            <div style="position: relative">
-                <select name="" id=""></select>
-                <input matInput placeholder="Ex. S,M,L,XL (Propiedad Talla)" style="padding-right: 30px;">
-            </div>
+                    </mat-option>
+                </mat-select>
+            </div> -->
 
             <mat-radio-group aria-label="Select an option" [(ngModel)]="isSaleEnabled">
                 <mat-radio-button [value]="true">Oferta</mat-radio-button>
@@ -277,13 +178,13 @@
 
             <div *ngIf="productView">
                 <!-- Primer Producto, usado para crear nuevos -->
-                <div style="float: left; padding: 0; " class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let product of dataService?.products | slice:0:1; let i=index">
+                <div style="padding: 0;" class="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let product of dataService?.products | slice:0:1; let i=index">
                     <div class="details" (click)="productoToggle(); drawer.toggle()">
                         <div class="title">Crear nuevo producto</div>
                         <mat-icon>add_box</mat-icon>
                     </div>
                 </div>
-                <div style="float: left; padding: 0;" class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let product of dataService?.products">
+                <div style="float: left; padding: 0;" class="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let product of dataService?.products">
                     <app-product [product]="product"></app-product>
                 </div>
             </div>

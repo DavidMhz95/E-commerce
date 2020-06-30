@@ -93,3 +93,19 @@ input {
     opacity: 1;
     transition: all 0.7s ease-in-out;
 }
+
+.flex-container {
+    display: flex;
+    align-items: center;
+}
+
+.subInput {
+    margin-top: 5px;
+    font-size: 10px;
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+mat-chip {
+    max-width: 200px;
+}

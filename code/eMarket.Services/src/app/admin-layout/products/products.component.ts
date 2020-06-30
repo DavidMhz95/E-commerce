@@ -3,6 +3,7 @@ import { DataService } from 'src/app/shared/data.service';
 import { Product } from 'src/app/components/product/product.component';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -21,8 +22,15 @@ export class ProductsComponent implements OnInit {
 
   public productView: boolean = true
   public tableView: boolean = false
-  public propiedades: any
-  
+  public properties: Dictionary  = new Dictionary();
+
+
+  public newProperty: string
+  public newPropertyValue: string [] = []
+
+  publ
+
+
   ngOnInit(): void {
      this.product = this.dataService.products.filter((p: Product)=>{ return this.activatedRoute.snapshot.params.id == p.id})[0]   
   }
@@ -35,7 +43,6 @@ export class ProductsComponent implements OnInit {
     this.productView= true
     this.tableView = false
   }
-  
   
   public showTableView(){
     this.productView= false
@@ -50,8 +57,65 @@ export class ProductsComponent implements OnInit {
   public productoToggle(){
     this.isTypeProduct = false
     this.isProduct = true
-    
   }
+
+  public addPropertie(){
+    this.properties.set(this.newProperty,[])
+    this.newProperty = undefined
+    this.newPropertyValue.push(undefined)
+  }
+
+ public removeFromProperties(property){
+    this.properties.delete(property.key)
+  }
+
+  public addPropertyValue(property){
+    var keyPairValue = this.properties.get(property.key)
+    if(!keyPairValue){
+      keyPairValue = []
+    }
+
+    keyPairValue.push(this.newPropertyValue)
+    this.newPropertyValue = undefined
+    console.log(this.properties)
+  }
+
+  public remove(key: string, propertyValue: string) {
+    var values =this.properties.get(key)
+    const index = values.indexOf(propertyValue);
+    if (index >= 0) {
+      values.splice(index, 1);
+    }
+  }
+
 }
 
+export interface typeOfProduct{
+  name: string,
+  properties : Dictionary
+}
+
+
+export class Dictionary {
+  items = {};
+  constructor() {
+    this.items = {};
+  }
+  public has(key) {
+    return key in this.items;
+  }
+  public set(key,value) {
+    this.items[key] = value;
+  }
+  public get(key) {
+    return this.items[key];
+  }
+  public delete(key) {
+    if( this.has(key) ){
+      delete this.items[key]
+      return true;
+    }
+    return false;
+  }
+}
 

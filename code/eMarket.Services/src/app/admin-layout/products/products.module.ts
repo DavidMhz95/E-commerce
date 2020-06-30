@@ -22,6 +22,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
+import {MatChipsModule} from '@angular/material/chips';
 
 
 
@@ -50,7 +51,8 @@ import { FormsModule } from '@angular/forms';
     SharedModule,
     MatButtonToggleModule,
     MatCardModule,
-    FormsModule
+    FormsModule,
+    MatChipsModule
   ]
 })
 export class ProductsModule {}
