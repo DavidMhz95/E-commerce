@@ -1,10 +1,22 @@
 <mat-drawer-container class="container" autosize>
     <mat-drawer #drawer class="rightPanel" position="end" mode="side">
+        <div style="position: relative;">
+            <a type="button" (click)="drawer.opened=false" style="position: absolute; right: 10px; z-index: 10;"
+                class="actions">
+                <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close-thin"
+                    viewBox="0 0 27 27">
+                    <g stroke="#979797" fill="none" fill-rule="evenodd" stroke-linecap="square">
+                        <path d="M.5.5l26 26M26.5.5l-26 26"></path>
+                    </g>
+                </svg>
+            </a>
+        </div>
         <app-discount-editor [discount]="discount"></app-discount-editor>
         <div style="margin-top: 20px">
-            <button style="float:left" mat-stroked-button (click)="resetDiscount(); drawer.opened=false">Cancelar</button>
+            <button style="float:left" mat-stroked-button
+                (click)="resetDiscount(); drawer.opened=false">Cancelar</button>
             <button style="float:right" mat-flat-button (click)="saveDiscount(); resetDiscount(); drawer.opened=false"
-                color="primary">Aplicar</button>
+                color="accent">Aplicar</button>
             <div style="clear:both"></div>
         </div>
     </mat-drawer>
@@ -23,27 +35,93 @@
                 </mat-card>
             </div>
             <div style="opacity:0.8; margin-left: 8px; margin-bottom: 10px;" class="title">
-                Descuentos
+                Descuentos Activos
             </div>
             <div class="padding7 col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12"
                 [ngClass]="{'col-xl-12 col-lg-12': drawer?.opened}">
-                <mat-accordion>
-                    <mat-expansion-panel *ngFor="let discount of dataService?.discounts"
-                        (mouseenter)="setBackgroundColor($event, discount?.color)"
-                        (mouseleave)="setBackgroundColor($event, '#ffffff')"
-                        [style.border]="'1px solid '+ setLightenDarkenColor(discount?.color, 0.2)"
-                        class="mat-elevation-z">
-                        <mat-expansion-panel-header (click)="setDiscount(discount);drawer.opened=true" style="background-color: rgba(0,0,0,0)">
-                            <mat-panel-title [style.color]="discount?.color">
-                                <mat-icon style="margin-right: 10px;">
-                                    {{discount?.type==discountType.Percentage?'data_usage':'euro_symbol'}}</mat-icon>
-                                <span style="margin-right: 5px;">{{discount?.code}}</span>
-                            </mat-panel-title>
-                        </mat-expansion-panel-header>
-                        <p>I'm visible because I am open</p>
-                    </mat-expansion-panel>
 
-                </mat-accordion>
+                <input matInput style="background-color: #ffffff" (keyup)="applyFilter($event)"
+                    placeholder="Filtrar descuentos" #input>
+
+                <div style="border: 1px solid rgba(0, 0, 0, 0.125); margin-top: 20px; overflow: auto;"
+                    class="mat-elevation-z0">
+                    <table mat-table style="width: 100%; min-width: 550px;" [dataSource]="dataSource" matSort>
+                        <ng-container matColumnDef="type">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </th>
+                            <td mat-cell *matCellDef="let row" style="cursor:default">
+                                <mat-icon
+                                    style="font-size: 18px; opacity: 0.7;height: 18px;width: 18px;vertical-align: middle;">
+                                    {{row?.type==discountType.Percentage?'data_usage':'euro_symbol'}}
+                                </mat-icon>
+                            </td>
+                        </ng-container>
+
+                        <!-- Progress Column -->
+                        <ng-container matColumnDef="code">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
+                            <td mat-cell *matCellDef="let row" style="cursor:default"> {{row?.code}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="color">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Color </th>
+                            <td mat-cell *matCellDef="let row" [style.color]="row?.color" style="cursor:default">
+                                {{row?.color?.toUpperCase()}}
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="from">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-right"> Válido desde
+                            </th>
+                            <td mat-cell *matCellDef="let row" style="text-align:right; cursor:default">
+                                {{(row?.from)?row?.from:'-'}}
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="to">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-right"> Válido hasta
+                            </th>
+                            <td mat-cell *matCellDef="let row" style="text-align:right; cursor:default">
+                                {{(row?.to)?row?.to:'-'}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="value">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-right"> Valor </th>
+                            <td mat-cell *matCellDef="let row" style="text-align:right; cursor:default">
+                                {{row?.type==discountType.Percentage? (row?.value |number:'1.2-2'): (row?.value |number:'1.0-0')}}
+                                {{row?.type==discountType.Percentage?'%':'€'}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="options">
+                            <th mat-header-cell *matHeaderCellDef class="align-right"> Opciones </th>
+                            <td mat-cell *matCellDef="let row" style="text-align:right">
+                                <mat-icon class="pointer" matTooltip="Editar"
+                                    (click)="setDiscount(row); drawer.opened=true"
+                                    style="font-size: 18px; opacity: 0.7;height: 18px;width: 18px;vertical-align: middle; margin-right: 10px;">
+                                    edit
+                                </mat-icon>
+                                <mat-icon class="pointer" matTooltip="Duplicar" (click)="duplicateDiscount(row);"
+                                    style="font-size: 16px; opacity: 0.7;height: 16px;width: 16px;vertical-align: middle; margin-right: 10px;">
+                                    content_copy
+                                </mat-icon>
+                                <mat-icon class="pointer" matTooltip="Eliminar" (click)="removeDiscount(row);"
+                                    style="font-size: 18px; opacity: 0.7;height: 18px;width: 18px;vertical-align: middle;">
+                                    delete_outline
+                                </mat-icon>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                        <!-- Row shown when there is no matching data. -->
+                        <tr class="mat-row" *matNoDataRow>
+                            <td class="mat-cell" colspan="6">No hay ningun descuento con "{{input.value}}"</td>
+                        </tr>
+                    </table>
+
+                    <mat-paginator style="width: 100%; min-width: 550px;" [pageSizeOptions]="[5, 10, 15]">
+                    </mat-paginator>
+                </div>
             </div>
         </div>
     </div>

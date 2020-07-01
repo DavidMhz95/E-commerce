@@ -1,6 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService, DiscountType, DiscountCode, DiscountApplication } from './../../shared/data.service';
-import { PickTextColorBasedOnBgColorAdvanced, HexToRgb } from './../../app.utils'
+import { ColorService } from 'src/app/shared/color.service';
+
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { CopyObject } from 'src/app/app.utils';
 
 @Component({
   selector: 'app-discounts',
@@ -8,42 +13,54 @@ import { PickTextColorBasedOnBgColorAdvanced, HexToRgb } from './../../app.utils
   styleUrls: ['./discounts.component.scss'],
 })
 export class DiscountsComponent implements OnInit {
+  displayedColumns: string[] = ['type', 'code', 'color', 'from', 'to', 'value', 'options'];
+  dataSource: MatTableDataSource<DiscountCode>;
+  discountType = DiscountType;
+  discountApplication = DiscountApplication;
 
-  
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
   public discount: DiscountCode
 
-  constructor(public dataService: DataService) {
+  constructor(public dataService: DataService, public colorService: ColorService) {
     this.resetDiscount()
   }
 
   ngOnInit(): void {
-
+    // Assign the data to the data source for the table to render
+    this.UpdateDataSource()
   }
 
-  setLightenDarkenColor(color: string, opacity: number) {
-    var result: string
-    if (color) {
-      var rgb = HexToRgb(color)
-      result = 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',' + opacity + ')'
-    }
-    return result
-  }
-  
-  setBackgroundColor(event: any, color: string) {
-    var resultColor = this.setLightenDarkenColor(color ? color : '#000000', 0.1)
-    if (event && event.type == 'mouseleave' && event.srcElement instanceof HTMLElement) {
-      (event.srcElement as HTMLElement).style.backgroundColor = resultColor
-    } else if (event && event.type == 'mouseenter' && event.toElement instanceof HTMLElement) {
-      (event.toElement as HTMLElement).style.backgroundColor = resultColor
-    }
+  private UpdateDataSource() {
+    this.dataSource = new MatTableDataSource(this.dataService.discounts);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   saveDiscount() {
     this.discount.code = this.discount.code.toUpperCase()
-    const index:number = this.dataService.discounts.indexOf(this.discount)
-    if(index ==-1){
+    const index: number = this.dataService.discounts.indexOf(this.discount)
+    if (index == -1) {
       this.dataService.discounts.push(this.discount)
+      this.dataSource = new MatTableDataSource(this.dataService.discounts);
     }
+  }
+
+  duplicateDiscount(discount: DiscountCode) {
+    this.dataService.discounts.push(CopyObject(discount))
+    this.UpdateDataSource()
+  }
+
+  removeDiscount(discount: DiscountCode) {
+    const index = this.dataService.discounts.indexOf(discount)
+    if (index > -1) {
+      this.dataService.discounts.splice(index, 1)
+      this.UpdateDataSource()
+    }
+  }
+
+  setDiscount(discount) {
+    this.discount = discount
   }
 
   resetDiscount() {
@@ -63,12 +80,14 @@ export class DiscountsComponent implements OnInit {
       dateTo: new Date()
     }
   }
-  
-  setDiscount(discount){
-    this.discount = discount
-  }
 
-  discountType = DiscountType;
-  discountApplication = DiscountApplication;
- 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 }
+

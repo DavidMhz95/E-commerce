@@ -149,3 +149,7 @@ mat-icon:focus {
 mat-datepicker-toggle:focus{
   outline: none
 }
+
+button:focus{
+  outline: none !important;
+}

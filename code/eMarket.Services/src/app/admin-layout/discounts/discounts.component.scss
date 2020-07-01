@@ -123,10 +123,38 @@ mat-datepicker-toggle:focus,
   border-radius: 3px !important;
 }
 
-::ng-deep .color-picker .arrow.arrow-bottom{
+::ng-deep .color-picker .arrow.arrow-bottom {
   visibility: hidden !important;
 }
 
-.pointer{
+.pointer {
   cursor: pointer;
+}
+
+::ng-deep .align-right .mat-sort-header-container {
+  display: flex;
+  padding: 21px 0;
+  justify-content: flex-end;
+}
+
+th.mat-header-cell.align-right:last-of-type {
+  text-align: right;
+}
+
+
+.actions {
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 0.8;
+  height: 10px;
+  cursor: pointer;
+  svg {
+    height: 10px;
+  }
+}
+
+.actions:hover {
+  opacity: 1;
 }

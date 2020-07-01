@@ -19,6 +19,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { DiscountEditorComponent } from './discount-editor/discount-editor.component';
+import { MatPaginatorModule} from '@angular/material/paginator';
+import { MatSortModule} from '@angular/material/sort';
+import { MatTableModule} from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [DiscountsComponent, DiscountEditorComponent],
@@ -40,6 +45,11 @@ import { DiscountEditorComponent } from './discount-editor/discount-editor.compo
     MatDatepickerModule,
     MatButtonModule,
     ColorPickerModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
+    MatInputModule, 
+    MatTooltipModule
   ]
 })
 export class DiscountsModule { }
