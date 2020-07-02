@@ -16,47 +16,63 @@
                 Nombre:
             </div>
             <div style="position: relative">
-                <input matInput placeholder="Ex. Zapatillas, Camisetas, Tarros de miel..." style="padding-right: 30px;">
+                <input [(ngModel)]="newTypeOfProductName" matInput
+                    placeholder="Ex. Zapatillas, Camisetas, Tarros de miel..." style="padding-right: 30px;">
             </div>
             <div class="preInput" style="margin-top: 10px">
                 Nueva Propiedad
             </div>
             <div style="position: relative">
-                <input [(ngModel)]="newProperty" matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
+                <input [(ngModel)]="newProperty" matInput placeholder="Ex.Talla, Tamaño, Color"
+                    style="padding-right: 30px;">
             </div>
             <div style="margin-top: 20px">
-                <button style="float:right" mat-flat-button color="secundary" (click)="addPropertie()">Añadir Propiedad</button>
+                <button style="float:right" mat-flat-button color="secundary" (click)="addPropertie()">Añadir
+                    Propiedad</button>
                 <div style="clear:both"></div>
             </div>
 
             <div *ngFor="let property of properties?.items| keyvalue" style="padding: 10px 5px;">
+                <div style="font-size: 13px; margin-bottom: 0px; width: 100%; " class="preInput">{{property?.key}}</div>
                 <div class="flex-container">
                     <div class="flex-container" style="line-height: 1.3; margin-right: 10px; flex-grow: 1;">
-                        <div style="text-align:left;">
-                            <div style="font-size: 13px; margin-bottom: 0px;">{{property?.key}}</div>
+                        <div style="width: 100%;">
                             <!-- Controlar el input para no poder meter espacios (varias palabras) -->
-                            <input [(ngModel)]="newPropertyValue" matInput placeholder="Ex. S,M,L,XL" style="padding-right: 30px;">
-                            <div class="subInput">
-                                <!-- Chips Angular -->
-                                <mat-chip-list aria-label="Color selection">
-                                    <mat-chip selected style="font-size: 12px" *ngFor="let value of property?.value">
-                                        {{value}}
-                                        <mat-icon style="font-size: 15px; text-align: center; vertical-align: middle; margin-top: 8px; padding-left: 12px; " (click)="remove(property.key,value)">cancel</mat-icon>
-                                    </mat-chip>
-                                </mat-chip-list>
-                            </div>
+                            <input [(ngModel)]="newPropertyValue" matInput placeholder="Ex. S,M,L,XL"
+                                style="padding-right: 30px;">
                         </div>
                     </div>
-                    <mat-icon style="cursor:pointer" matTooltip="Añade un valor" (click)="addPropertyValue(property)">add
+                    <mat-icon style="cursor:pointer" matTooltip="Añade un valor" (click)="addPropertyValue(property)">
+                        add
                     </mat-icon>
-                    <mat-icon style="cursor:pointer" matTooltip="Elimina la propiedad" (click)="removeFromProperties(property)">clear</mat-icon>
+                    <mat-icon style="cursor:pointer" matTooltip="Elimina la propiedad"
+                        (click)="removeFromProperties(property)">clear</mat-icon>
+                </div>
+                <div class="subInput">
+                    <!-- Chips Angular -->
+                    <mat-chip-list aria-label="Color selection">
+                        <mat-chip selected style="font-size: 12px" *ngFor="let value of property?.value">
+                            {{value}}
+                            <mat-icon
+                                style="font-size: 15px; text-align: center; vertical-align: middle; margin-top: 8px; padding-left: 12px; "
+                                (click)="remove(property.key,value)">cancel</mat-icon>
+                        </mat-chip>
+                    </mat-chip-list>
                 </div>
             </div>
 
             <div style="margin-top: 20px">
-                <button style="float:right" mat-flat-button color="primary">Crear Tipo de Producto</button>
+                <button style="float:right" mat-flat-button color="primary"
+                    (click)="addProductType()">Crear Tipo de Producto</button>
                 <div style="clear:both"></div>
             </div>
+        </mat-card>
+
+        <mat-card class="card" style="margin-top: 20px"> 
+            <span>Lista de Tipos de producto</span>
+            
+            <app-type-of-product-table></app-type-of-product-table>
+
         </mat-card>
 
         <mat-card class="card" style="margin-top: 20px" *ngIf="isProduct">
@@ -150,14 +166,16 @@
             <div style="opacity:0.8; margin-left: 8px; width: 100%;">
                 <!-- Parte Izquierda -->
                 <h2 style="float: left;">Tipos de Productos</h2>
-                <mat-button-toggle-group appearance="legacy" style="float: left; margin-left: 30px;" name="fontStyle" aria-label="Font Style">
+                <mat-button-toggle-group appearance="legacy" style="float: left; margin-left: 30px;" name="fontStyle"
+                    aria-label="Font Style">
                     <mat-button-toggle value="productView">Vista Tipos de Producto</mat-button-toggle>
                     <mat-button-toggle value="tableView">Vista Tabla</mat-button-toggle>
                 </mat-button-toggle-group>
             </div>
             <div style="clear: both;"></div>
 
-            <div style="float: left; padding: 0; " class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let product of dataService?.products | slice:0:1; let i=index">
+            <div style="float: left; padding: 0; " class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12"
+                *ngFor="let product of dataService?.products | slice:0:1; let i=index">
                 <div class="details" (click)="tipoProductoToggle(); drawer.toggle()">
                     <div class="title">Crear tipo de producto</div>
                     <mat-icon>add_box</mat-icon>
@@ -169,8 +187,10 @@
             <div style="opacity:0.8; margin-left: 8px; width: 100%;">
                 <!-- Parte Izquierda -->
                 <h2 style="float: left;">Productos</h2>
-                <mat-button-toggle-group appearance="legacy" style="float: left; margin-left: 30px;" name="fontStyle" aria-label="Font Style">
-                    <mat-button-toggle value="productView" (click)="showProductView()">Vista Productos</mat-button-toggle>
+                <mat-button-toggle-group appearance="legacy" style="float: left; margin-left: 30px;" name="fontStyle"
+                    aria-label="Font Style">
+                    <mat-button-toggle value="productView" (click)="showProductView()">Vista Productos
+                    </mat-button-toggle>
                     <mat-button-toggle value="tableView" (click)="showTableView()">Vista Tabla</mat-button-toggle>
                 </mat-button-toggle-group>
             </div>
@@ -178,13 +198,15 @@
 
             <div *ngIf="productView">
                 <!-- Primer Producto, usado para crear nuevos -->
-                <div style="padding: 0;" class="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let product of dataService?.products | slice:0:1; let i=index">
+                <div style="padding: 0;" class="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-xs-12"
+                    *ngFor="let product of dataService?.products | slice:0:1; let i=index">
                     <div class="details" (click)="productoToggle(); drawer.toggle()">
                         <div class="title">Crear nuevo producto</div>
                         <mat-icon>add_box</mat-icon>
                     </div>
                 </div>
-                <div style="float: left; padding: 0;" class="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let product of dataService?.products">
+                <div style="float: left; padding: 0;" class="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-xs-12"
+                    *ngFor="let product of dataService?.products">
                     <app-product [product]="product"></app-product>
                 </div>
             </div>

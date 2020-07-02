@@ -19,6 +19,8 @@ export class ProductsComponent implements OnInit {
   @Input('productsData') productsData:any 
   constructor(public dataService:DataService, public activatedRoute:ActivatedRoute) { }
 
+  
+  
 
   public productView: boolean = true
   public tableView: boolean = false
@@ -27,8 +29,9 @@ export class ProductsComponent implements OnInit {
 
   public newProperty: string
   public newPropertyValue: string [] = []
+  public newTypeOfProductName: string
 
-  publ
+  typeOfProducts: typeOfProduct[] = []
 
 
   ngOnInit(): void {
@@ -86,6 +89,19 @@ export class ProductsComponent implements OnInit {
     if (index >= 0) {
       values.splice(index, 1);
     }
+  }
+
+  public addProductType(){
+
+    var newTypeOfProduct: typeOfProduct =  {name: this.newTypeOfProductName, properties: this.properties }
+    console.log(newTypeOfProduct)
+    //Añadimos los tipos de producto
+    this.typeOfProducts.push(newTypeOfProduct)
+    console.log(this.typeOfProducts)
+
+    //Limpiamos el diccionario
+    this.properties = undefined
+    this.newTypeOfProductName = undefined
   }
 
 }

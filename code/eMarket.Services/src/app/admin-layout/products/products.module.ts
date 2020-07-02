@@ -23,13 +23,15 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import {MatChipsModule} from '@angular/material/chips';
+import { TypeOfProductTableComponent } from './type-of-product-table/type-of-product-table.component';
 
 
 
 
 @NgModule({
   declarations: [ProductsComponent,TableProductsComponent, DialogOverviewExampleDialog,PropertiesProductTableComponent,
-    TypeProductTableComponent],
+    TypeProductTableComponent,
+    TypeOfProductTableComponent],
 
   imports: [
     CommonModule,
