@@ -17,9 +17,9 @@ export class ShoppingCartService {
     var found: boolean
     this.products.forEach((p: CartProduct) => {
       if (p.product.id == product.id) {
-        if(value){
-          p.number+=value
-        }else{
+        if (value) {
+          p.number += value
+        } else {
           p.number++
         }
         found = true
@@ -34,10 +34,14 @@ export class ShoppingCartService {
     }
   }
 
-  public RemoveProduct(product: Product) {
+  public RemoveProduct(product: Product, removeAll: boolean) {
     this.products.forEach((p: CartProduct) => {
       if (p.product.id == product.id) {
-        p.number--
+        if (removeAll) {
+          p.number = 0
+        } else {
+          p.number--
+        }
       }
     })
     this.products = this.products.filter((product: CartProduct) => product.number > 0)

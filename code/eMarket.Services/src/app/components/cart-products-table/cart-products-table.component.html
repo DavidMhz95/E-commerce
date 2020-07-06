@@ -22,7 +22,7 @@
             </div>
             <div style="color:#545454; opacity:0.8; font-size: 12px;">Talla</div>
             <div *ngIf="editable">
-                <a style="font-size: 10px; opacity:0.7;" (click)="deleteProduct(element?.product)">
+                <a style="font-size: 10px; opacity:0.7;" (click)="deleteProduct(element?.product, true)">
                     Eliminar
                 </a>
             </div>
@@ -43,7 +43,8 @@
     <ng-container matColumnDef="number">
         <th mat-header-cell style="text-align: right;" *matHeaderCellDef> Unidades </th>
         <td mat-cell style="text-align: right;" *matCellDef="let element">
-            <app-quantity-selector *ngIf="editable" [value]='element?.number' (valueChanged)="valueChanged($event, element)">
+            <app-quantity-selector *ngIf="editable" [value]='element?.number' maxValue=30 minValue=0
+                (valueChanged)="valueChanged($event, element)">
             </app-quantity-selector>
             <div *ngIf="!editable" style="font-size: 12px;">{{element?.number}} </div>
         </td>

@@ -12,7 +12,10 @@ export class QuantitySelectorComponent implements OnInit {
   constructor() { }
 
   @Input('value') public value : number = 1
-  @Output()valueChanged: EventEmitter<number> = new EventEmitter()
+  @Input('maxValue') public maxValue : number = 30 
+  @Input('minValue') public minValue : number = 0
+
+  @Output() valueChanged: EventEmitter<number> = new EventEmitter()
   
 
 
@@ -20,20 +23,18 @@ export class QuantitySelectorComponent implements OnInit {
   }
 
   public removeOne(){
-    if(this.value <= 1){
-      this.value = 1
-    }else{
-      this.value = this.value-1;
+    this.value--;
+    if(this.value <= this.minValue){
+      this.value = this.minValue
     }
     this.valueChanged.emit(this.value)
   }
 
   
-  public addOne(){
-    if(this.value >= 30){
-      this.value = 30
-    }else{
-      this.value = this.value+1;
+  public addOne(){ 
+    this.value++;
+    if(this.value >= this.maxValue){
+      this.value = this.maxValue
     }
     this.valueChanged.emit(this.value)
   }

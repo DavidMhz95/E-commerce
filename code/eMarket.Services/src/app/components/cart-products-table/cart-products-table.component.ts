@@ -21,15 +21,19 @@ export class CartProductsTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.internalDataSource = new MatTableDataSource(this.dataSource)
+    this.internalDataSource = new MatTableDataSource(this.dataSource.filter((product: CartProduct) => product.number > 0))
   }
 
-  deleteProduct(product: Product) {
-    this.cartService.RemoveProduct(product)
-    this.internalDataSource = new MatTableDataSource(this.dataSource)
+  deleteProduct(product: Product, removeAll:boolean) {
+    this.cartService.RemoveProduct(product, removeAll)
+    this.internalDataSource = new MatTableDataSource(this.dataSource.filter((product: CartProduct) => product.number > 0))
   }
 
   public valueChanged(event:number, product: CartProduct){
     product.number = event
+
+    if(product.number <= 0){
+      this.deleteProduct(product.product, true)
+    }
   }
 }

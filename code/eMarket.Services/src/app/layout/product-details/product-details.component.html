@@ -47,7 +47,7 @@
       </select>
     </div>
     <label *ngIf="product?.stockNumber>0" for="Quantity" class="quantity">Cantidad</label>
-    <app-quantity-selector *ngIf="product?.stockNumber>0" (valueChanged)="valueChanged($event)"></app-quantity-selector>
+    <app-quantity-selector *ngIf="product?.stockNumber>0" (valueChanged)="valueChanged($event)" maxValue=30 minValue=0></app-quantity-selector>
     <div class="buttons" *ngIf="product?.stockNumber>0">
       <button type="submit" name="add" class="btnAdd" (click)="cartService?.AddProduct(product, value)">
         <span>
