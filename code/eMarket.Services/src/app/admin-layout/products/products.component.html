@@ -71,7 +71,7 @@
         <mat-card class="card" style="margin-top: 20px"> 
             <span>Lista de Tipos de producto</span>
             
-            <app-type-of-product-table></app-type-of-product-table>
+            <app-type-of-product-table [typeOfProducts]='dataService?.typeOfProduct' (copy)="setProductType($event)"></app-type-of-product-table>
 
         </mat-card>
 

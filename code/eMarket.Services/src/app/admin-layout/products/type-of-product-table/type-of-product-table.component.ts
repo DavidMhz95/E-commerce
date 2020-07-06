@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+
 
 @Component({
   selector: 'app-type-of-product-table',
@@ -11,34 +12,39 @@ export class TypeOfProductTableComponent implements OnInit {
 
   constructor() { }
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+ // @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  @Input('properties') properties: any
+  @Output() copy: EventEmitter<any> = new EventEmitter()
+  @Input('typeOfProducts') typeOfProducts: any
   
     ngOnInit(): void {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.data = this.properties
+      //this.dataSource.paginator = this.paginator;
+      this.dataSource = new MatTableDataSource(this.typeOfProducts);
     }
   
-    displayedColumns: string[] = ['name', 'options'];
+    displayedColumns: string[] = ['name', 'properties', 'opciones'];
     dataSource = new MatTableDataSource();
   
-    applyFilter(event: Event) {
-      const filterValue = (event.target as HTMLInputElement).value;
-      this.dataSource.filter = filterValue.trim().toLowerCase();
-    }
+    // applyFilter(event: Event) {
+    //   const filterValue = (event.target as HTMLInputElement).value;
+    //   this.dataSource.filter = filterValue.trim().toLowerCase();
+    // }
   
-    setTypeOfProduct(){
-
+    setTypeOfProduct(row){
+      this.copy.emit(row)
     }
    
-    duplicateTypeOfProduct( ) {
-    
+    duplicateTypeOfProduct(row ) {
+      this.copy.emit(row)
     }
   
-    removeTypeOfProduct() {
-
+    removeTypeOfProduct(row) {
+      this.copy.emit(row)
     }
+
+  ngAfterViewChecked(){
+    this.dataSource = new MatTableDataSource(this.typeOfProducts);
+  }
 
 
 

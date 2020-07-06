@@ -10,7 +10,12 @@ import { RandomDate } from 'src/app/app.utils';
 })
 export class DataService {
 
-  constructor() { }
+  constructor() {
+    this.typeOfProduct[0].properties.set('Talla',['S','M','L'])
+    this.typeOfProduct[0].properties.set('Color',['Rojo','Azul'])
+    this.typeOfProduct[1].properties.set('Talla',['S','XL'])
+    this.typeOfProduct[1].properties.set('Color',['Rojo','Azul'])
+   }
 
   productTypes: ProductTypes[] = [
     {
@@ -330,6 +335,18 @@ export class DataService {
     }
   ]
 
+  public typeOfProduct: typeOfProduct[] =  [
+    {
+    name: 'Camisetas', 
+    properties:  new Dictionary()
+    },
+    {
+      name: 'Pantalones', 
+      properties:  new Dictionary()
+      }
+]
+   
+
   public generateRandomOrders(number: number): Order[] {
     var result: Order[] = []
     for (var i = 0; i < number; i++) {
@@ -429,3 +446,34 @@ export enum DiscountApplication {
   //Subsection = "Subsección", 
   All = "Todo",
 }
+
+
+export interface typeOfProduct{
+  name: string,
+  properties : Dictionary
+}
+
+
+export class Dictionary {
+  items = {};
+  constructor() {
+    this.items = {};
+  }
+  public has(key) {
+    return key in this.items;
+  }
+  public set(key,value) {
+    this.items[key] = value;
+  }
+  public get(key) {
+    return this.items[key];
+  }
+  public delete(key) {
+    if( this.has(key) ){
+      delete this.items[key]
+      return true;
+    }
+    return false;
+  }
+}
+

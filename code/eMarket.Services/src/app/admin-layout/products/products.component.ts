@@ -31,8 +31,6 @@ export class ProductsComponent implements OnInit {
   public newPropertyValue: string [] = []
   public newTypeOfProductName: string
 
-  typeOfProducts: typeOfProduct[] = []
-
 
   ngOnInit(): void {
      this.product = this.dataService.products.filter((p: Product)=>{ return this.activatedRoute.snapshot.params.id == p.id})[0]   
@@ -77,10 +75,8 @@ export class ProductsComponent implements OnInit {
     if(!keyPairValue){
       keyPairValue = []
     }
-
     keyPairValue.push(this.newPropertyValue)
     this.newPropertyValue = undefined
-    console.log(this.properties)
   }
 
   public remove(key: string, propertyValue: string) {
@@ -94,14 +90,16 @@ export class ProductsComponent implements OnInit {
   public addProductType(){
 
     var newTypeOfProduct: typeOfProduct =  {name: this.newTypeOfProductName, properties: this.properties }
-    console.log(newTypeOfProduct)
     //Añadimos los tipos de producto
-    this.typeOfProducts.push(newTypeOfProduct)
-    console.log(this.typeOfProducts)
+    this.dataService.typeOfProduct.push(newTypeOfProduct)
 
     //Limpiamos el diccionario
     this.properties = undefined
     this.newTypeOfProductName = undefined
+  }
+
+  public setProductType(value){
+    console.log(value)
   }
 
 }
