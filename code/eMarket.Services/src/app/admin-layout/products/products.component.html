@@ -68,7 +68,7 @@
             </div>
         </mat-card>
 
-        <mat-card class="card" style="margin-top: 20px"> 
+        <mat-card class="card" style="margin-top: 20px" *ngIf="isTypeProduct && dataService?.typeOfProduct.length>0"> 
             <span>Lista de Tipos de producto</span>
             
             <app-type-of-product-table [typeOfProducts]='dataService?.typeOfProduct' (copy)="setProductType($event)"></app-type-of-product-table>
