@@ -16,7 +16,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { DiscountEditorComponent } from './discount-editor/discount-editor.component';
 import { MatPaginatorModule} from '@angular/material/paginator';
@@ -50,6 +50,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatTableModule,
     MatInputModule, 
     MatTooltipModule
+  ],
+  providers:[
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
   ]
 })
 export class DiscountsModule { }

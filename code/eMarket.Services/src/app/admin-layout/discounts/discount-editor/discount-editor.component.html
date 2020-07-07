@@ -16,7 +16,7 @@
     <div style="margin-top: 10px;" class="preInput">
         Tipo de descuento:
     </div>
-    <div style="padding-bottom: 25px;">
+    <div>
         <mat-select placeholder="Seleccione un tipo" [(ngModel)]="discount.type">
             <mat-option *ngFor="let type of discountType | keyvalue" [value]="type?.value">
                 {{type.value}}
