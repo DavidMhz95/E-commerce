@@ -24,6 +24,7 @@ import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import {MatChipsModule} from '@angular/material/chips';
 import { TypeOfProductTableComponent } from './type-of-product-table/type-of-product-table.component';
+import { TypeOfProductComponent } from './type-of-product/type-of-product.component';
 
 
 
@@ -31,7 +32,8 @@ import { TypeOfProductTableComponent } from './type-of-product-table/type-of-pro
 @NgModule({
   declarations: [ProductsComponent,TableProductsComponent, DialogOverviewExampleDialog,PropertiesProductTableComponent,
     TypeProductTableComponent,
-    TypeOfProductTableComponent],
+    TypeOfProductTableComponent,
+    TypeOfProductComponent],
 
   imports: [
     CommonModule,

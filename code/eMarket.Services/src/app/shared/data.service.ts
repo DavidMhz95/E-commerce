@@ -11,34 +11,11 @@ import { RandomDate } from 'src/app/app.utils';
 export class DataService {
 
   constructor() {
-    this.typeOfProduct[0].properties.set('Talla',['S','M','L'])
-    this.typeOfProduct[0].properties.set('Color',['Rojo','Azul'])
-    this.typeOfProduct[1].properties.set('Talla',['S','XL'])
-    this.typeOfProduct[1].properties.set('Color',['Rojo','Azul'])
-   }
-
-  productTypes: ProductTypes[] = [
-    {
-      id: 0,
-      name: 'Camisetas'
-    },
-    {
-      id: 1,
-      name: 'Pantalones Cortos'
-    }
-  ]
-
-  properties: Properties[] = [
-    {
-      id: 0,
-      name: 'Color'
-    },
-    {
-      id: 2,
-      name: 'Talla'
-    }
-  ]
-
+    this.typeOfProduct[0].properties.set('Talla', ['S', 'M', 'L'])
+    this.typeOfProduct[0].properties.set('Color', ['Rojo', 'Azul'])
+    this.typeOfProduct[1].properties.set('Talla', ['S', 'XL'])
+    this.typeOfProduct[1].properties.set('Color', ['Rojo', 'Azul'])
+  }
 
   products: Product[] = [
     {
@@ -234,7 +211,7 @@ export class DataService {
       title: "leggings",
       sections: []
     }
-  ]
+    ]
   }, {
     title: "morena",
     sections: [{
@@ -310,13 +287,13 @@ export class DataService {
       repetitions: -1,
       type: DiscountType.AbsoluteValue,
       value: 3.45,
-      products:undefined,
-      section:undefined,
-      subsection:undefined,
-      minPurchase:0,
-      color:undefined,
-      dateFrom:undefined,
-      dateTo:undefined
+      products: undefined,
+      section: undefined,
+      subsection: undefined,
+      minPurchase: 0,
+      color: undefined,
+      dateFrom: undefined,
+      dateTo: undefined
     },
     {
       application: DiscountApplication.Shipment,
@@ -325,27 +302,27 @@ export class DataService {
       repetitions: 1,
       type: DiscountType.Percentage,
       value: 20,
-      products:undefined,
-      section:"Rubia",
-      subsection:undefined,
-      minPurchase:20,
-      color:'#d21a5e',
-      dateFrom:undefined,
-      dateTo:undefined
+      products: undefined,
+      section: "Rubia",
+      subsection: undefined,
+      minPurchase: 20,
+      color: '#d21a5e',
+      dateFrom: undefined,
+      dateTo: undefined
     }
   ]
 
-  public typeOfProduct: typeOfProduct[] =  [
+  public typeOfProduct: TypeOfProduct[] = [
     {
-    name: 'Camisetas', 
-    properties:  new Dictionary()
+      name: 'Camisetas',
+      properties: new Dictionary(),
     },
     {
-      name: 'Pantalones', 
-      properties:  new Dictionary()
-      }
-]
-   
+      name: 'Pantalones',
+      properties: new Dictionary(),
+    }
+  ]
+
 
   public generateRandomOrders(number: number): Order[] {
     var result: Order[] = []
@@ -399,9 +376,9 @@ export interface Section {
   sections: Section[]
 }
 
-export interface ProductTypes {
-  id: number
-  name: string
+export interface TypeOfProduct {
+  name: string,
+  properties: Dictionary,
 }
 
 export interface Customer {
@@ -425,22 +402,22 @@ export interface DiscountCode {
   application: DiscountApplication //Envío, Productos, Categoria, Subcategoria, Todo
   repetitions: number
   customers: Customer[]
-  products:Product[]
-  section:string
-  subsection:string
-  minPurchase:number
-  color:string
-  dateFrom:Date
-  dateTo:Date
+  products: Product[]
+  section: string
+  subsection: string
+  minPurchase: number
+  color: string
+  dateFrom: Date
+  dateTo: Date
 }
 
 export enum DiscountType {
-  Percentage ="Porcentaje", 
+  Percentage = "Porcentaje",
   AbsoluteValue = "Valor",
 }
 
 export enum DiscountApplication {
-  Shipment  = "Envío",
+  Shipment = "Envío",
   //Product = "Producto",
   //Section  = "Sección",
   //Subsection = "Subsección", 
@@ -448,9 +425,9 @@ export enum DiscountApplication {
 }
 
 
-export interface typeOfProduct{
+export interface TypeOfProduct {
   name: string,
-  properties : Dictionary
+  properties: Dictionary
 }
 
 
@@ -462,14 +439,14 @@ export class Dictionary {
   public has(key) {
     return key in this.items;
   }
-  public set(key,value) {
+  public set(key, value) {
     this.items[key] = value;
   }
   public get(key) {
     return this.items[key];
   }
   public delete(key) {
-    if( this.has(key) ){
+    if (this.has(key)) {
       delete this.items[key]
       return true;
     }

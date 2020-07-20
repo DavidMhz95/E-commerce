@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { DataService, Dictionary, TypeOfProduct } from 'src/app/shared/data.service';
 import { CopyObject } from 'src/app/app.utils';
+import { TypeOfProductComponent } from '../type-of-product/type-of-product.component';
 
 
 @Component({
@@ -15,8 +17,12 @@ export class TypeOfProductTableComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  @Output() copy: EventEmitter<any> = new EventEmitter()
+  @Output() edit: EventEmitter<any> = new EventEmitter()
   @Input('typeOfProducts') typeOfProducts: any
+
+  editEmission(typeOfProduct:TypeOfProduct){
+    this.edit.emit(typeOfProduct)
+  }
 
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -37,11 +43,7 @@ export class TypeOfProductTableComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     //this.dataSource.sort = this.sort;
   }
-
-  setTypeOfProduct(row) {
-    this.copy.emit(row)
-  }
-
+ 
   duplicateTypeOfProduct(row) {
     this.typeOfProducts.push(CopyObject(row))
     this.UpdateDataSource()
