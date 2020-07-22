@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router, NavigationStart, NavigationEnd} from '@angular/router';
 import { DataService } from 'src/app/shared/data.service';
 import { ShoppingCartService } from 'src/app/shared/shopping-cart.service';
@@ -17,6 +17,8 @@ export class ProductDetailsComponent implements OnInit {
 
   @Input('product') product: Product
   @Input('isSimpleView') isSimpleView : boolean = false
+  @Output() addedInCart = new EventEmitter<string>()
+
 
   public value: number = 1
 
@@ -39,5 +41,10 @@ export class ProductDetailsComponent implements OnInit {
   public valueChanged(event:number){
     this.value = event 
   }
+
+  public emitAddedInCart(){
+    this.addedInCart.emit("Product added")
+  }
+
 
 }

@@ -31,17 +31,23 @@ a:hover {
   opacity: 0.6;
 }
 
-.btnAdd {
+.btn {
   border: 1px solid #dcdcdc;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-weight: 500;
   cursor: pointer;
-  background: #b1b1b1;
-  color: #fff;
-  padding: 14px 14px;
-  font-size: 12px;
-  font-weight: 600;
-  width: 100%;
-  margin-top: 20px;
-  font-family: "Century Gothic", sans-serif !important;
-  text-transform: uppercase;
+  font-size: 14px;
+  padding: 5px 14px;
+  margin: 10px 10px 0 0;
+  min-width: 250px;
+  flex: auto;
+  max-width: 400px;
+  outline: none;
+  border-radius: 0px;
 }
 
+.btn:focus{
+    box-shadow: none !important;
+}

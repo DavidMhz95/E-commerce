@@ -24,5 +24,5 @@
 
 
 <mat-dialog-content id="dialog" style="padding-bottom: 5px;">
-    <app-product-details [isSimpleView]=true [product]='product'></app-product-details>
+    <app-product-details [isSimpleView]=true [product]='product' (addedInCart)="closeDialog()"></app-product-details>
 </mat-dialog-content>
