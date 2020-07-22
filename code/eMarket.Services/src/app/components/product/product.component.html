@@ -1,6 +1,6 @@
 <a [routerLink]="'/landing/products/'+product?.id">
     <div #imageDiv class="imageDiv">
-        <div *ngIf="product?.isSale" class="sale">
+        <div *ngIf="product?.offerPrice" class="sale">
             Oferta
         </div>
         <div class="slideup" (click)="$event.preventDefault(); $event?.stopPropagation(); productService?.openDialog(product)">
@@ -11,15 +11,15 @@
 
 
 <div class="details">
-    <div class="title">{{product?.title}}</div>
+    <div class="title">{{product?.name}}</div>
 
-    <div *ngIf="product?.isSale">
+    <div *ngIf="product?.offerPrice">
         <span
-            style="padding-right: 10px; text-decoration: line-through; color: #030303; opacity: .5;">€{{product?.actualPrize}}</span>
-        <span style="color:#be563f">€{{product?.beforePrize}}</span>
+            style="padding-right: 10px; text-decoration: line-through; color: #030303; opacity: .5;">€{{product?.offerPrice}}</span>
+        <span style="color:#be563f">€{{product?.price}}</span>
     </div>
 
-    <div *ngIf="product?.isSale==false">
-        <span>€{{product?.actualPrize}}</span>
+    <div *ngIf="!product?.offerPrice">
+        <span>€{{product?.price}}</span>
     </div>
 </div>

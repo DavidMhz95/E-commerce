@@ -9,6 +9,10 @@
 <mat-drawer-container class="container" autosize>
     <mat-drawer #drawer class="rightPanel" position="end" mode="side">
         <!-- Parte Derecha -->
+        <div style="cursor: pointer;">
+            <mat-icon (click)="drawer.close()"> keyboard_tab</mat-icon>
+        </div>
+        
         <app-type-of-product [typeOfProduct]="typeOfProduct" [isEdition]="isEdition"></app-type-of-product>
         
         <mat-card class="card" style="margin-top: 20px" *ngIf="dataService?.typeOfProduct?.length>0">
@@ -18,88 +22,13 @@
             </app-type-of-product-table>
 
         </mat-card>
+        <app-product-form></app-product-form>
 
-        <mat-card class="card" style="margin-top: 20px" *ngIf="isProduct">
-            <span>Nuevo Producto</span>
+        <mat-card class="card" style="margin-top: 20px" *ngIf="dataService?.typeOfProduct?.length>0">
+            <span>Lista de Producto</span>
 
-            <div class="preInput">
-                Referencia:
-            </div>
-            <div style="position: relative">
-                <input matInput placeholder="Ex. Niked20019N" style="padding-right: 30px;">
-            </div>
-            <div class="preInput">
-                Nombre:
-            </div>
-            <div style="position: relative">
-                <input matInput placeholder="Ex. Zapatillas, Camisetas, Tarros de miel..." style="padding-right: 30px;">
-            </div>
-
-            <!-- <div class="preInput" style="padding-top: 10px; padding-bottom: 10px">
-                Tipo de producto*:
-            </div>
-            <div>
-                <mat-select placeholder="Seleccione un tipo">
-                    <mat-option>
-
-                    </mat-option>
-                </mat-select>
-            </div> -->
-
-            <mat-radio-group aria-label="Select an option" [(ngModel)]="isSaleEnabled">
-                <mat-radio-button [value]="true">Oferta</mat-radio-button>
-                <mat-radio-button [value]="false">Sin Oferta</mat-radio-button>
-            </mat-radio-group>
-
-            <div [ngClass]="{'hidden': !isSaleEnabled, 'visible':isSaleEnabled }">
-                <div class="preInput" style="margin-top: 10px">
-                    Precio Oferta
-                </div>
-                <div style="position: relative">
-                    <input matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
-                </div>
-            </div>
-
-
-            <div class="preInput" style="margin-top: 10px">
-                Precio
-            </div>
-            <div style="position: relative">
-                <input matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
-            </div>
-
-            <div class="preInput" style="margin-top: 10px">
-                Imagenes
-            </div>
-            <div style="position: relative">
-                <input matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
-            </div>
-
-            <div class="preInput" style="margin-top: 10px">
-                Descripcion
-            </div>
-            <div style="position: relative">
-                <input matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
-            </div>
-
-            <div class="preInput" style="margin-top: 10px">
-                Detalles
-            </div>
-            <div style="position: relative">
-                <input matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
-            </div>
-
-            <div class="preInput" style="margin-top: 10px">
-                Cantidad en Stock
-            </div>
-            <div style="position: relative">
-                <input matInput placeholder="Ex. 1,3,28" style="padding-right: 30px;">
-            </div>
-
-            <div style="margin-top: 20px">
-                <button style="float:right" mat-flat-button color="primary">Añadir Producto</button>
-                <div style="clear:both"></div>
-            </div>
+            <app-table-products [productsData]='dataService?.products' >
+            </app-table-products>
 
         </mat-card>
 
@@ -139,7 +68,7 @@
                 <!-- Primer Producto, usado para crear nuevos -->
                 <div class="padding7 col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12"
                     [ngClass]="{'col-xl-12 col-lg-12': drawer?.opened}" style="margin-bottom: 20px;">
-                    <!-- <mat-card class="card dashed" (click)="productoToggle(); drawer.toggle()"
+                     <mat-card class="card dashed" (click)="drawer.open()"
                         style="padding: 15px 24px;">
                         <div class="flex-container">
                             <mat-icon style="margin-right: 10px;">add_circle</mat-icon>
@@ -147,7 +76,7 @@
                                 Crear tipo de producto
                             </div>
                         </div>
-                    </mat-card> -->
+                    </mat-card> 
                 </div>
                 <div style="float: left; padding: 0;" class="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-xs-12"
                     *ngFor="let product of dataService?.products">

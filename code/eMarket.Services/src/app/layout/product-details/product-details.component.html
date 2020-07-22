@@ -4,13 +4,13 @@
   </div>
 
   <div style="float: right;" class="auto-clear col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
-    <h1 style="margin-top: 10px; user-select: none; font-size: 26px; text-transform: uppercase;">{{product?.title}}</h1>
+    <h1 style="margin-top: 10px; user-select: none; font-size: 26px; text-transform: uppercase;">{{product?.name}}</h1>
     <div class="price">
-      <span class="actualPrize">
-        €{{product?.actualPrize}}
+      <span *ngIf="product?.offerPrice!=undefined" class="offerPrice">
+        €{{product?.offerPrice}}
       </span>
-      <s class="beforePrize">
-        €{{product?.beforePrize}}
+      <s class="price">
+        €{{product?.price}}
       </s>
     </div>
     <br>
@@ -72,13 +72,6 @@
         <li *ngFor="let detail of product?.details">{{detail}}</li>
 
       </ul>
-      <div class="moreDetails">
-        <p><strong>COMPOSICIÓN Y LAVADO</strong></p>
-        <ul>
-          <li *ngFor="let moreDetail of product?.moreDetails">{{moreDetail}}</li>
-        </ul>
-        <ul></ul>
-      </div>
     </div>
 
     <div class="marketInformation" *ngIf="!isSimpleView">

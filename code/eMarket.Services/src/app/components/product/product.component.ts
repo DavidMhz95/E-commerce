@@ -59,15 +59,13 @@ export class ProductComponent implements OnInit {
 }
 
 export interface Product {
-  isSale: boolean
-  title: string
-  actualPrize: number
-  beforePrize: number
-  images: string[]
   id: number
+  name: string
+  offerPrice: number
+  price: number
+  images: string[]
   description: string
   details: string[]
-  moreDetails: string[]
   stockNumber: number
   section:string
   subsection:string

@@ -1,7 +1,9 @@
-import { Component, OnInit, Input, ViewChild, Inject } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Inject, Output, EventEmitter } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { CopyObject } from 'src/app/app.utils';
+import { Product } from '../product/product.component';
 
 @Component({
   selector: 'app-table-products',
@@ -14,6 +16,7 @@ export class TableProductsComponent implements OnInit {
 @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
 @Input('productsData') productsData: any
+@Output() edit: EventEmitter<any> = new EventEmitter()
 
   constructor(private dialog : MatDialog) { }
 
@@ -22,7 +25,7 @@ export class TableProductsComponent implements OnInit {
     this.dataSource.data = this.productsData
   }
   
-  displayedColumns: string[] = ['id', 'title', 'actualPrize', 'beforePrize','images','show' ,'update', 'delete' ];
+  displayedColumns: string[] = ['id', 'title', 'offerprice', 'price','images','opciones'];
   dataSource = new MatTableDataSource();
 
   applyFilter(event: Event) {
@@ -52,9 +55,32 @@ export class TableProductsComponent implements OnInit {
     console.log(id)
   }
 
+  duplicateTypeOfProduct(row) {
+    this.productsData.push(CopyObject(row))
+    this.UpdateDataSource()
+  }
+
+  removeTypeOfProduct(row) {
+    if (confirm('¿Estás seguro de eliminar producto?')) {
+      const index = this.productsData.indexOf(row)
+      if (index > -1) {
+        this.productsData.splice(index, 1)
+        this.UpdateDataSource()
+      }
+    }
+  }
+
+  private UpdateDataSource() {
+    this.dataSource = new MatTableDataSource(this.productsData);
+    this.dataSource.paginator = this.paginator;
+  }
+
+  editEmission(product:Product){
+    this.edit.emit(product)
+  }
 
 }
-//
+
 @Component({
   selector: 'dialog-overview-example-dialog',
   template: `

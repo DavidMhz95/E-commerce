@@ -50,7 +50,7 @@ export class ShoppingCartService {
   public GetPrize(): string {
     this.totalPrice = 0;
     this.products.forEach((element: CartProduct) => {
-      this.totalPrice += element.product.actualPrize * element.number
+      this.totalPrice += element.product.offerPrice * element.number
     })
     return this.totalPrice.toFixed(2)
   }

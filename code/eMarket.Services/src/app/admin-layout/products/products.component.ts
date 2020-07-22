@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductsComponent implements OnInit {
 
-  isSaleEnabled: boolean = false
+  
   isTypeProduct: boolean = false
   isProduct: boolean = false
   isEdition:boolean = false

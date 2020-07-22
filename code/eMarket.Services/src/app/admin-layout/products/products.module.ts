@@ -25,6 +25,7 @@ import { FormsModule } from '@angular/forms';
 import {MatChipsModule} from '@angular/material/chips';
 import { TypeOfProductTableComponent } from './type-of-product-table/type-of-product-table.component';
 import { TypeOfProductComponent } from './type-of-product/type-of-product.component';
+import { ProductFormComponent } from './product-form/product-form.component';
 
 
 
@@ -33,7 +34,8 @@ import { TypeOfProductComponent } from './type-of-product/type-of-product.compon
   declarations: [ProductsComponent,TableProductsComponent, DialogOverviewExampleDialog,PropertiesProductTableComponent,
     TypeProductTableComponent,
     TypeOfProductTableComponent,
-    TypeOfProductComponent],
+    TypeOfProductComponent,
+    ProductFormComponent],
 
   imports: [
     CommonModule,
