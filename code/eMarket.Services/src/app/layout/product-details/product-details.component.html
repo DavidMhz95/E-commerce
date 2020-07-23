@@ -5,11 +5,14 @@
 
   <div style="float: right;" class="auto-clear col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
     <h1 style="margin-top: 10px; user-select: none; font-size: 26px; text-transform: uppercase;">{{product?.name}}</h1>
-    <div class="price">
+    <div>
       <span *ngIf="product?.offerPrice!=undefined" class="offerPrice">
         €{{product?.offerPrice}}
       </span>
-      <s class="price">
+      <span *ngIf="product?.offerPrice==undefined" class="offerPrice">
+        €{{product?.price}}
+      </span>
+      <s class="price" *ngIf="product?.offerPrice!=undefined">
         €{{product?.price}}
       </s>
     </div>

@@ -33,9 +33,9 @@
     <ng-container matColumnDef="prize">
         <th mat-header-cell *matHeaderCellDef> Precio </th>
         <td mat-cell *matCellDef="let element">
-            <div style="opacity: 0.6; text-decoration: line-through; font-size: 12px;margin-bottom: 5px;"
-                *ngIf="element?.product?.isSale">€{{element?.product?.price}} </div>
-            <div style="font-size: 12px;">€{{element?.product?.offerprice}} </div>
+            <div *ngIf="element?.product?.offerPrice" style="opacity: 0.6; text-decoration: line-through; font-size: 12px;margin-bottom: 5px;">€{{element?.product?.price}} </div>
+            <div *ngIf="!element?.product?.offerPrice" style="font-size: 12px;margin-bottom: 5px;">€{{element?.product?.price}} </div>
+            <div *ngIf="element?.product?.offerPrice" style="font-size: 12px;">€{{element?.product?.offerPrice}} </div>
         </td>
     </ng-container>
 
