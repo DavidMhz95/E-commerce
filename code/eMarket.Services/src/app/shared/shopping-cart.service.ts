@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../components/product/product.component';
+import { DataService } from './data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,9 @@ export class ShoppingCartService {
 
   public products: CartProduct[] = []
 
-  constructor() { }
+  constructor(private dataService:DataService) {
+    this.AddProduct(this.dataService.products[0], 4)
+  }
 
   public AddProduct(product: Product, value: number) {
     var found: boolean

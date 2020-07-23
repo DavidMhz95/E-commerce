@@ -238,18 +238,21 @@ export class DataService {
       image: "https://avatars1.githubusercontent.com/u/28922716?s=460&u=9e4b0d836649dcc75d61f9457365b554fbcec22e&v=4",
       email: "mispanas@gmail.com",
       totalSpent: 1235.12,
+      isSubscribed:true
     },
     {
       name: "Sergio David Hasselhoff",
       email: "levantahierros69@gmail.com",
       image: "https://avatars2.githubusercontent.com/u/58731792?s=460&u=8836f461d6e0868af099b477a6d38c53c3159b44&v=4",
       totalSpent: 659.64,
+      isSubscribed:true
     },
     {
       name: "Miguel Á. Rozalén",
       email: "rztop93@gmail.com",
       image: "https://avatars2.githubusercontent.com/u/19685231?s=460&u=16a48c0c0537610918d5ece0eab5272116073d66&v=4",
       totalSpent: 324.45,
+      isSubscribed:false
     }
   ]
 
@@ -360,6 +363,7 @@ export interface Customer {
   image: string
   email: string
   totalSpent: number
+  isSubscribed:boolean
 }
 
 export interface Order {
@@ -367,6 +371,7 @@ export interface Order {
   date: string,
   customer: Customer,
   products: CartProduct[],
+
 }
 
 export interface DiscountCode {
