@@ -27,8 +27,7 @@
         <mat-card class="card" style="margin-top: 20px" *ngIf="dataService?.typeOfProduct?.length>0">
             <span>Lista de Producto</span>
 
-            <app-table-products [productsData]='dataService?.products' >
-            </app-table-products>
+            <app-table-products [productsData]='dataService?.products' ></app-table-products>
 
         </mat-card>
 

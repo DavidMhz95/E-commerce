@@ -12,20 +12,20 @@
     </ng-container>
 
     <!-- title Column -->
-    <ng-container matColumnDef="title">
+    <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Titulo </th>
-        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
 
     <!-- offerprice Column -->
-    <ng-container matColumnDef="offerprice">
-        <th mat-header-cell *matHeaderCellDef> Precio Actual </th>
-        <td mat-cell *matCellDef="let element"> {{element.offerprice}} </td>
+    <ng-container matColumnDef="offerPrice">
+        <th mat-header-cell *matHeaderCellDef> Precio Oferta </th>
+        <td mat-cell *matCellDef="let element"> {{element.offerPrice}} </td>
     </ng-container>
 
     <!-- price Column -->
     <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef> Precio Anterior </th>
+        <th mat-header-cell *matHeaderCellDef> Precio </th>
         <td mat-cell *matCellDef="let element"> {{element.price}} </td>
     </ng-container>
 
