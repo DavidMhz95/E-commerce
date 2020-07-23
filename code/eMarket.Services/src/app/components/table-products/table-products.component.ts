@@ -25,7 +25,7 @@ export class TableProductsComponent implements OnInit {
     this.dataSource.data = this.productsData
   }
   
-  displayedColumns: string[] = ['id', 'title', 'offerprice', 'price','images','opciones'];
+  displayedColumns: string[] = ['id', 'name', 'offerPrice', 'price','images','opciones'];
   dataSource = new MatTableDataSource();
 
   applyFilter(event: Event) {
