@@ -5,13 +5,13 @@
         Referencia:
     </div>
     <div style="position: relative">
-        <input matInput placeholder="Ex. Niked20019N" style="padding-right: 30px;">
+        <input [(ngModel)]="id" matInput placeholder="Ex. Niked20019N" style="padding-right: 30px;">
     </div>
     <div class="preInput">
         Nombre:
     </div>
     <div style="position: relative">
-        <input matInput placeholder="Ex. Zapatillas, Camisetas, Tarros de miel..." style="padding-right: 30px;">
+        <input [(ngModel)]="name" matInput placeholder="Ex. Zapatillas, Camisetas, Tarros de miel..." style="padding-right: 30px;">
     </div>
 
      <div class="preInput" style="padding-top: 10px; padding-bottom: 10px">
@@ -35,7 +35,7 @@
             Precio Oferta
         </div>
         <div style="position: relative">
-            <input matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
+            <input [(ngModel)]="offerPrice" matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
         </div>
     </div>
 
@@ -44,35 +44,35 @@
         Precio
     </div>
     <div style="position: relative">
-        <input matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
+        <input [(ngModel)]="price" matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
     </div>
 
     <div class="preInput" style="margin-top: 10px">
         Imagenes
     </div>
     <div style="position: relative">
-        <input matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
+        <input [(ngModel)]="images" matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
     </div>
 
     <div class="preInput" style="margin-top: 10px">
         Descripcion
     </div>
     <div style="position: relative">
-        <input matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
+        <input [(ngModel)]="description" matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
     </div>
 
     <div class="preInput" style="margin-top: 10px">
         Detalles
     </div>
     <div style="position: relative">
-        <input matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
+        <input [(ngModel)]="details" matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
     </div>
 
     <div class="preInput" style="margin-top: 10px">
         Cantidad en Stock
     </div>
     <div style="position: relative">
-        <input matInput placeholder="Ex. 1,3,28" style="padding-right: 30px;">
+        <input [(ngModel)]="stock" matInput placeholder="Ex. 1,3,28" style="padding-right: 30px;">
     </div>
 
     <div style="margin-top: 20px">
