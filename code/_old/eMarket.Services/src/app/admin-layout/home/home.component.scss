@@ -1,0 +1,72 @@
+.card {
+  padding: 10px 15px;
+  border-radius: 2px;
+  box-shadow: none;
+  min-height: 140px;
+  margin-bottom: 14px;
+}
+
+.card-title {
+  font-size: 11px;
+  opacity: 0.5;
+  font-weight: 600;
+  width: max-content;
+}
+
+.card-sb {
+  font-size: 12px;
+  opacity: 0.6;
+  font-weight: 500;
+  text-align: left !important;
+}
+
+.ellipsis{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.card-number {
+  width: max-content;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+}
+
+.flex-container > div {
+  text-align: right;
+  flex-grow: 1;
+}
+
+.live {
+  background-color: #333333;
+  color: white;
+  border-radius: 3px;
+  font-size: 10px;
+  padding: 0px 7px;
+  cursor: default;
+  width: max-content;
+}
+
+.material-icons {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.width12{
+  max-width: 12px;
+}
+
+.padding7{
+  padding: 0 7px !important;
+}

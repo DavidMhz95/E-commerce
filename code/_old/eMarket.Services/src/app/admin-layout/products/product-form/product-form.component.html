@@ -1,0 +1,82 @@
+<mat-card class="card" style="margin-top: 20px">
+    <span>Nuevo Producto</span>
+
+    <div class="preInput">
+        Referencia:
+    </div>
+    <div style="position: relative">
+        <input matInput placeholder="Ex. Niked20019N" style="padding-right: 30px;">
+    </div>
+    <div class="preInput">
+        Nombre:
+    </div>
+    <div style="position: relative">
+        <input matInput placeholder="Ex. Zapatillas, Camisetas, Tarros de miel..." style="padding-right: 30px;">
+    </div>
+
+     <div class="preInput" style="padding-top: 10px; padding-bottom: 10px">
+        Tipo de producto*:
+    </div>
+    <div>
+        <mat-select placeholder="Seleccione un tipo">
+            <mat-option>
+
+            </mat-option>
+        </mat-select>
+    </div> 
+
+    <mat-radio-group aria-label="Select an option" [(ngModel)]="isSaleEnabled">
+        <mat-radio-button [value]="true">Oferta</mat-radio-button>
+        <mat-radio-button [value]="false">Sin Oferta</mat-radio-button>
+    </mat-radio-group>
+
+    <div [ngClass]="{'hidden': !isSaleEnabled, 'visible':isSaleEnabled }">
+        <div class="preInput" style="margin-top: 10px">
+            Precio Oferta
+        </div>
+        <div style="position: relative">
+            <input matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
+        </div>
+    </div>
+
+
+    <div class="preInput" style="margin-top: 10px">
+        Precio
+    </div>
+    <div style="position: relative">
+        <input matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
+    </div>
+
+    <div class="preInput" style="margin-top: 10px">
+        Imagenes
+    </div>
+    <div style="position: relative">
+        <input matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
+    </div>
+
+    <div class="preInput" style="margin-top: 10px">
+        Descripcion
+    </div>
+    <div style="position: relative">
+        <input matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
+    </div>
+
+    <div class="preInput" style="margin-top: 10px">
+        Detalles
+    </div>
+    <div style="position: relative">
+        <input matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
+    </div>
+
+    <div class="preInput" style="margin-top: 10px">
+        Cantidad en Stock
+    </div>
+    <div style="position: relative">
+        <input matInput placeholder="Ex. 1,3,28" style="padding-right: 30px;">
+    </div>
+
+    <div style="margin-top: 20px">
+        <button style="float:right" mat-flat-button color="primary">Añadir Producto</button>
+        <div style="clear:both"></div>
+    </div>
+</mat-card>

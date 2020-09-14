@@ -1,0 +1,23 @@
+<div style="margin-top:30px;" class="title">Carrito de Compra
+    <span *ngIf="cartService?.GetElements()>0">({{cartService?.GetElements()}})</span>
+</div>
+
+<div style="padding: 12px 15px">
+    <div style="float: left;  max-height: 450px; overflow-y: auto;"
+        class="col-xl-8 col-lg-8 col-md-8 col-sm-6 col-xs-12">
+        <app-cart-products-table [editable]="'true'" [dataSource]="cartService?.products"></app-cart-products-table>
+    </div>
+    <div style="float: left;" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+        <div style="padding: 10px 30px; font-size: 22px; line-height: 1.5;">
+            Total Parcial: €{{cartService?.GetPrize()}}
+            <a routerLink="./checkout">
+                <button mat-stroked-button class="btn" style="color:white; background-color: #545454">
+                    COMPRAR
+                </button>
+            </a>
+        </div>
+
+    </div>
+    <div style="clear:both"></div>
+</div>
+<router-outlet></router-outlet>

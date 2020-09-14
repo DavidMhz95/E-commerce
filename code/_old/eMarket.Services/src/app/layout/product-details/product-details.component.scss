@@ -1,0 +1,114 @@
+:host {
+  font-family: "Century Gothic", sans-serif;
+}
+
+.price {
+    color: #be563f;
+    margin-right: 15px;
+}
+
+.selector-talla {
+  min-width: 50%;
+  flex-grow: 1;
+  padding-right: 5px;
+}
+
+.selector-talla select {
+  width: 80%;
+}
+
+select {
+  cursor: pointer;
+}
+
+select:focus,
+select:hover {
+  outline: none;
+}
+
+.quantity {
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+input,
+textarea,
+select,
+.input-group {
+  border: 1px solid #f0f0f0;
+  font-size: 0.95em;
+  border-radius: 0px;
+  max-width: 100%;
+  padding: 9px 16px;
+  margin: 7px 0;
+  background: rgba(255, 255, 255, 0);
+  font-family: "Century Gothic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  outline: none;
+}
+
+.buttons {
+  margin: 0 0 10px 0;
+  display: inline-flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.btn {
+  border: 1px solid #dcdcdc;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 5px 14px;
+  margin: 10px 10px 0 0;
+  min-width: 250px;
+  flex: auto;
+  max-width: 400px;
+  outline: none;
+  border-radius: 0px;
+}
+
+.btn:focus{
+    box-shadow: none !important;
+}
+
+
+p,
+.p,
+.search .search-query,
+.cart table th,
+.cart table tbody td {
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0 0 0.5em;
+}
+
+.userSelect {
+  user-select: none;
+}
+
+.offerPrice {
+    padding: 5px;
+}
+
+.descripcion {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.detalles.p {
+  text-transform: uppercase;
+  font-size: 26px;
+}
+
+.marketInformation {
+  margin-top: 20px;
+  text-align: left;
+}

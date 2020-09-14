@@ -1,0 +1,117 @@
+<div style="opacity:0.8; margin-left: 15px;" class="title">
+    Clientes de la Tienda
+</div>
+
+<div style="margin-top: 10px;  margin-bottom: 10px; margin-left:8px">
+
+    <div style="float: left;" class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+        <mat-card class="card">
+            <div class="flex-container">
+                <div style="text-align:left;margin-right: 20px;">
+                    <div class="card-title uppercase">Total de Ventas</div>
+                    <div class="card-number">€214.96</div>
+                </div>
+                <div style="margin-top: 5px;">
+                    <x-chartist [type]="type" [data]="data" [options]="options" [events]="events"></x-chartist>
+
+                </div>
+            </div>
+            <div style="margin:15px 0; border-top:1px solid rgba(0, 0, 0, 0.125)"></div>
+            <div style="margin-bottom: 5px;" class="flex-container">
+                <div class="card-sb">6 Pedidos</div>
+                <div class="clickable ellipsis">Ver Reporte</div>
+            </div>
+        </mat-card>
+    </div>
+
+    <div style="float: left;" class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+        <mat-card class="card">
+            <div class="flex-container">
+                <div style="text-align:left;margin-right: 20px;">
+                    <div class="card-title uppercase">Total de Sesiones</div>
+                    <div class="card-number">266</div>
+                </div>
+                <div style="margin-top: 5px;">
+                    <x-chartist [type]="type" [data]="data2" [options]="options" [events]="events"></x-chartist>
+                </div>
+            </div>
+
+            <div style="margin:15px 0; border-top:1px solid rgba(0, 0, 0, 0.125)"></div>
+            <div style="margin-bottom: 5px;" class="flex-container">
+                <div>
+                    <div class="live">
+                        <mat-icon class="width12" style="font-size: 8px; margin-bottom: 1px;">stop_circle</mat-icon>
+                        Directo
+                    </div>
+                </div>
+
+                <div class="card-sb ellipsis">6 Visitantes</div>
+                <div  class="clickable ellipsis">Ver Reporte</div>
+            </div>
+        </mat-card>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+
+<div style="opacity:0.8;  margin-left: 15px;" class="title">
+    Últimos Clientes
+</div>
+
+<div style="margin-top: 10px; margin-bottom: 10px; margin-left:8px;">
+    <div style="float: left;" *ngFor="let customer of lastestCustomers" class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+        <mat-card class="card">
+            <div class="flex-container">
+                <div style="flex-grow: unset">
+                    <img class="profile-img"  [src]="customer?.image">
+                </div>
+                <div class="flex-container">
+                    <div style="text-align:left;margin-right: 20px;">
+                        <div style="margin-bottom: 0px;" class="card-title uppercase">{{customer?.name}}</div>
+                        <div class="card-subtitle">{{customer?.email}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-container" style="text-align:right; margin-top: 5px;">
+                <div class="card-number">{{customer?.totalSpent|number}}€</div>
+            </div>
+            <div style="margin:15px 0; border-top:1px solid rgba(0, 0, 0, 0.125)"></div>
+            <div style="margin-bottom: 5px;" class="flex-container">
+                <div class="card-sb">Productos: 1</div>
+                <div class="clickable ellipsis" (click)="showHistory(customer)">Ver Historial</div>
+            </div>
+        </mat-card>
+    </div>
+
+    <div style="clear: both;"></div>
+</div>
+
+<div style="opacity:0.8; margin-left: 15px;" class="title">
+    Mejores Clientes
+</div>
+
+<div style="margin-top: 10px;  margin-bottom: 10px; margin-left:8px;">
+    <div style="float: left;" *ngFor="let customer of bestCustomers" class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+        <mat-card class="card">
+            <div class="flex-container">
+                <div style="flex-grow: unset">
+                    <img class="profile-img"  [src]="customer?.image">
+                </div>
+                <div class="flex-container">
+                    <div style="text-align:left;margin-right: 20px;">
+                        <div style="margin-bottom: 0px;" class="card-title uppercase">{{customer?.name}}</div>
+                        <div class="card-subtitle">{{customer?.email}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-container" style="text-align:right; margin-top: 5px;">
+                <div class="card-number">{{customer?.totalSpent|number}}€</div>
+            </div>
+            <div style="margin:15px 0; border-top:1px solid rgba(0, 0, 0, 0.125)"></div>
+            <div style="margin-bottom: 5px;" class="flex-container">
+                <div class="card-sb">Productos: 1</div>
+                <div class="clickable ellipsis" (click)="showHistory(customer)">Ver Historial</div>
+            </div>
+        </mat-card>
+    </div>
+    <div style="clear: both;"></div>
+</div>

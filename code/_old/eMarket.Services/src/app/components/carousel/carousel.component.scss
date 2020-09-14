@@ -1,0 +1,43 @@
+@media (max-width:576px) {
+    .hideInLowResolution {
+        display: none;
+    }
+}
+
+@media (min-width:576px) {
+    .hideInHighResolution {
+        display: none;
+    }
+}
+
+.controlCarousel {
+    img {
+        cursor: pointer;
+        opacity: 0.5;
+    }
+}
+
+.controlCarousel:hover {
+    img {
+        opacity: 1;
+    }
+}
+
+.actions {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    height: 10px;
+    cursor: pointer;
+    svg {
+        height: 25px;
+    }
+}
+
+.imageDiv {
+    background-size: cover;
+    background-position: center center;
+    transition: all 0.5s;
+}

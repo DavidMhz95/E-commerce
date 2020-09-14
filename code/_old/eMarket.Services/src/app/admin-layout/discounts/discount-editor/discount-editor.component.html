@@ -1,0 +1,145 @@
+<div class="title" style="margin-bottom:10px;">
+    Crear código de descuento
+</div>
+<mat-card class="card">
+    <span>Código de descuento</span>
+    <div style="margin-top: 10px">
+        <input matInput style="text-transform: uppercase;" placeholder="DISCOUNT20" [(ngModel)]="discount.code">
+    </div>
+    <div class="subInput">
+        Este es el código de descuento que deberá introducir el usuario antes de realizar la compra
+    </div>
+</mat-card>
+
+<mat-card class="card" style="margin-top: 20px">
+    <span>Opciones</span>
+    <div style="margin-top: 10px;" class="preInput">
+        Tipo de descuento:
+    </div>
+    <div>
+        <mat-select placeholder="Seleccione un tipo" [(ngModel)]="discount.type">
+            <mat-option *ngFor="let type of discountType | keyvalue" [value]="type?.value">
+                {{type.value}}
+            </mat-option>
+        </mat-select>
+    </div>
+    <div class="preInput" style="margin-top: 10px">
+        Valor:
+    </div>
+    <div style="position: relative">
+        <input matInput placeholder="Valor del descuento" style="padding-right: 30px;" [(ngModel)]="discount.value">
+        <mat-icon style="position: absolute; top: 13px;right: 5px; font-size: 18px;
+        opacity: 0.7;" matSuffix>{{discount?.type==discountType.Percentage?'data_usage':'euro_symbol'}}
+        </mat-icon>
+    </div>
+
+    <mat-divider style="margin:20px 0"></mat-divider>
+    <div style="margin-top: 35px; font-size: 13px">
+        <mat-checkbox [(ngModel)]="isMinPurchaseEnabled">¿Requiere compra mínima?
+        </mat-checkbox>
+    </div>
+    <div style="position: relative" class="animated"
+        [ngClass]="{'hidden': !isMinPurchaseEnabled, 'visible':isMinPurchaseEnabled }">
+        <input matInput placeholder="Valor mínimo" style="padding-right: 30px;" [(ngModel)]="discount.minPurchase">
+        <mat-icon style="position: absolute; top: 13px;right: 5px; font-size: 18px;
+        opacity: 0.7;" matSuffix>euro_symbol</mat-icon>
+    </div>
+</mat-card>
+
+
+<mat-card class="card" style="margin-top: 20px">
+    <span>Aplica a:</span>
+    <div>
+        <mat-radio-group name="applyRadio" class="radio-group" [(ngModel)]="discount.application">
+            <mat-radio-button class="radio-button" name="applyRadio" *ngFor="let type of discountApplication | keyvalue"
+                [value]="type?.value">
+                {{type.value}}
+            </mat-radio-button>
+        </mat-radio-group>
+    </div>
+</mat-card>
+
+<mat-card class="card" style="margin-top: 20px">
+    <span>Selección de Clientes:</span>
+    <div>
+        <mat-radio-group name="customerRadio" class="radio-group" [(ngModel)]="isAnyCustomerSelected">
+            <mat-radio-button class="radio-button" name="customerRadio" [value]="false">
+                Todos
+            </mat-radio-button>
+            <mat-radio-button class="radio-button" name="customerRadio" [value]="true">
+                Clientes Seleccionados
+            </mat-radio-button>
+        </mat-radio-group>
+
+    </div>
+    <div style="position: relative" class="animated"
+        [ngClass]="{'hidden': !isAnyCustomerSelected, 'visible':isAnyCustomerSelected }">
+        <mat-select placeholder="Seleccione un cliente" (selectionChange)="selectedCustomer($event)"
+            style="margin-bottom: 15px;">
+            <mat-option style="height: 50px;"
+                *ngFor="let customer of dataService?.customers | filterDuplicates:discount?.customers"
+                [value]="customer">
+                <div class="flex-container">
+                    <img class="profile-img" [src]="customer?.image">
+                    <div class="flex-container" style="line-height: 1.3;">
+                        <div style="text-align:left;">
+                            <div style="font-size: 13px; margin-bottom: 0px;">{{customer?.name}}
+                            </div>
+                            <div style="font-size: 10px; opacity: 0.8;">{{customer?.email}}</div>
+                        </div>
+                    </div>
+                </div>
+            </mat-option>
+        </mat-select>
+
+        <div *ngFor="let customer of discount?.customers" style="padding: 10px 5px;">
+            <div class="flex-container">
+                <img class="profile-img" [src]="customer?.image">
+                <div class="flex-container" style="line-height: 1.3; margin-right: 10px; flex-grow: 1;">
+                    <div style="text-align:left;">
+                        <div style="font-size: 13px; margin-bottom: 0px;">{{customer?.name}}
+                        </div>
+                        <div style="font-size: 10px; opacity: 0.8;">{{customer?.email}}</div>
+                    </div>
+                </div>
+                <mat-icon style="cursor:pointer" (click)="removeFromCustomers(customer)">delete_outline
+                </mat-icon>
+            </div>
+        </div>
+    </div>
+</mat-card>
+
+<mat-card class="card" style="margin-top: 20px">
+    <span>Periodo de Validez:</span>
+    <div>
+        <div class="preInput" style="margin-top: 10px">
+            Desde:
+        </div>
+        <div style="position: relative;">
+            <input matInput style="text-transform: uppercase;" [matDatepicker]="picker" [(ngModel)]="discount.dateFrom">
+            <mat-datepicker-toggle style="position: absolute; top: 1px; font-size: 18px; opacity: 0.7; right:0"
+                matSuffix [for]="picker" class="outlineNone"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </div>
+        <div class="preInput" style="margin-top: 10px">
+            Hasta:
+        </div>
+        <div style="position: relative; margin-bottom: 5px;">
+            <input matInput style="text-transform: uppercase;" [matDatepicker]="picker2" [(ngModel)]="discount.dateTo">
+            <mat-datepicker-toggle style="position: absolute; top: 1px; font-size: 18px; opacity: 0.7; right:0"
+                matSuffix [for]="picker2" class="outlineNone"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+        </div>
+    </div>
+</mat-card>
+
+<mat-card class="card" style="margin-top: 20px">
+    <span>Color de la promoción:</span>
+    <div style="margin-top: 10px; cursor: pointer;">
+        <input class="pointer" [style.color]="colorService?.getColor(discount.color)" [(colorPicker)]="discount.color"
+            [style.background]="discount.color" [cpPosition]="'bottom'" [value]="discount.color" />
+    </div>
+    <div class="subInput">
+        Este es el color que se utilizará para identificar el descuento
+    </div>
+</mat-card>

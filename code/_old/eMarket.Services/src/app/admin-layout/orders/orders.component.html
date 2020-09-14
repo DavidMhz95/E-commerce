@@ -1,0 +1,153 @@
+<div style="margin-left:8px;">
+    <div style="opacity:0.8; margin-left: 8px;" class="title">
+        Resumen de Pedidos
+    </div>
+
+    <div style="float: left; margin-top:10px; margin-bottom:10px"
+        class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+        <mat-card class="card">
+            <div class="flex-container">
+                <div style="text-align:left;margin-right: 20px;">
+                    <div class="card-title uppercase">Total de Ventas</div>
+                    <div class="card-number">€214.96</div>
+                </div>
+                <div style="margin-top: 5px;">
+                    <x-chartist [type]="type" [data]="data" [options]="options" [events]="events"></x-chartist>
+                </div>
+            </div>
+
+            <div style="margin:15px 0; border-top:1px solid rgba(0, 0, 0, 0.125)"></div>
+            <div style="margin-bottom: 5px;" class="flex-container">
+                <div class="card-sb">6 Pedidos</div>
+                <div style="font-size: 12px; color: #333333">Ver Reporte</div>
+            </div>
+        </mat-card>
+    </div>
+
+    <div style="float: left; margin-top:10px; margin-bottom:10px"
+        class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+        <mat-card class="card">
+            <div class="flex-container">
+                <div style="text-align:left;margin-right: 20px;">
+                    <div class="card-title uppercase">Total de Sesiones</div>
+                    <div class="card-number">266</div>
+                </div>
+                <div style="margin-top: 5px;">
+                    <x-chartist [type]="type" [data]="data2" [options]="options" [events]="events"></x-chartist>
+                </div>
+            </div>
+
+            <div style="margin:15px 0; border-top:1px solid rgba(0, 0, 0, 0.125)"></div>
+            <div style="margin-bottom: 5px;" class="flex-container">
+                <div>
+                    <div class="live">
+                        <mat-icon class="width12" style="font-size: 8px; margin-bottom: 1px;">stop_circle</mat-icon>
+                        Directo
+                    </div>
+                </div>
+
+                <div class="card-sb ellipsis">6 Visitantes</div>
+                <div style="font-size: 12px; color: #333333" class="ellipsis">Ver Reporte</div>
+            </div>
+        </mat-card>
+    </div>
+
+    <div style="float: left; margin-top:10px; margin-bottom:10px"
+        class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+        <mat-card class="card">
+            <div class="flex-container">
+                <div style="text-align:left;margin-right: 20px;">
+                    <div class="card-title uppercase">Total de Sesiones</div>
+                    <div class="card-number">266</div>
+                </div>
+                <div style="margin-top: 5px;">
+                    <x-chartist [type]="type" [data]="data2" [options]="options" [events]="events"></x-chartist>
+                </div>
+            </div>
+
+            <div style="margin:15px 0; border-top:1px solid rgba(0, 0, 0, 0.125)"></div>
+            <div style="margin-bottom: 5px;" class="flex-container">
+                <div>
+                    <div class="live">
+                        <mat-icon class="width12" style="font-size: 8px; margin-bottom: 1px;">stop_circle</mat-icon>
+                        Directo
+                    </div>
+                </div>
+
+                <div class="card-sb ellipsis">6 Visitantes</div>
+                <div style="font-size: 12px; color: #333333" class="ellipsis">Ver Reporte</div>
+            </div>
+        </mat-card>
+    </div>
+
+    <div style="clear: both;"></div>
+
+    <div style="margin-top: 13px; opacity:0.8; margin-left: 8px;" class="title">
+        Pedidos por procesar ({{toProcessOrders?.length}})
+    </div>
+
+    <div style="margin-top:10px; margin-bottom: 20px" class="padding7 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let order of toProcessOrders; let index=index" [expanded]="index==0"
+                class="mat-elevation-z">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon style="margin-right: 10px;">receipt_long</mat-icon>
+                        <span style="margin-right: 5px;">Pedido #{{order?.id|number:'6.0-0'|noComma}}</span>
+                        <span style="opacity: 0.7;">por procesar</span>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{order?.date}}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <app-order [products]="order?.products" [customer]="order?.customer"></app-order>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
+    <div style="opacity:0.8; margin-left: 8px; clear: both;" class="title">
+        Pedidos enviados ({{sentOrders?.length}})
+    </div>
+
+    <div style="margin-top:10px; margin-bottom: 20px" class="padding7 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let order of sentOrders; let index=index" [expanded]="index==0"
+                class="mat-elevation-z">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon style="margin-right: 10px;">local_shipping</mat-icon>
+                        <span style="margin-right: 5px;">Pedido #{{order?.id|number:'6.0-0'|noComma}}</span>
+                        <span style="opacity: 0.7;">enviado</span>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{order?.date}}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <app-order [products]="order?.products" [customer]="order?.customer"></app-order>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
+    <div style="opacity:0.8; margin-left: 8px; clear: both;" class="title">
+        Pedidos entregados ({{deliveredOrders?.length}})
+    </div>
+
+    <div style="margin-top:10px; margin-bottom: 20px" class="padding7 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let order of deliveredOrders; let index=index" [expanded]="index==0"
+                class="mat-elevation-z">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon style="margin-right: 10px;">markunread_mailbox</mat-icon>
+                        <span style="margin-right: 5px;">Pedido #{{order?.id|number:'6.0-0'|noComma}}</span>
+                        <span style="opacity: 0.7;">entregado</span>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{order?.date}}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <app-order [products]="order?.products" [customer]="order?.customer"></app-order>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+</div>

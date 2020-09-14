@@ -1,0 +1,98 @@
+<div style="padding: 15px">
+  <div style="float: left;" class="auto-clear col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <app-carousel [images]='product?.images'></app-carousel>
+  </div>
+
+  <div style="float: right;" class="auto-clear col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+    <h1 style="margin-top: 10px; user-select: none; font-size: 26px; text-transform: uppercase;">{{product?.name}}</h1>
+    <div>
+      <span *ngIf="product?.offerPrice!=undefined" class="offerPrice">
+        €{{product?.offerPrice}}
+      </span>
+      <span *ngIf="product?.offerPrice==undefined" class="offerPrice">
+        €{{product?.price}}
+      </span>
+      <s class="price" *ngIf="product?.offerPrice!=undefined">
+        €{{product?.price}}
+      </s>
+    </div>
+    <br>
+    <div>
+      <label *ngIf="product?.stockNumber==0" style="width: 100%; font-size: 12px; font-weight: bold; color: #be563f;">
+        AGOTADO
+      </label>
+    </div>
+
+    <div class="selector-talla" *ngIf="product?.stockNumber>0">
+      <label style="width: 100%; font-size: 12px; font-weight: bold;">
+        Talla
+      </label>
+      <select style="outline: none;" id="OptionSelection">
+        <option value="XS" selected="selected">
+          XS
+        </option>
+
+        <option style="outline: none;" value="S" selected="selected">
+          S
+        </option>
+
+        <option value="M">
+          M
+        </option>
+
+        <option value="L">
+          L
+        </option>
+
+        <option value="XL">
+          XL
+        </option>
+      </select>
+    </div>
+    <label *ngIf="product?.stockNumber>0" for="Quantity" class="quantity">Cantidad</label>
+    <app-quantity-selector *ngIf="product?.stockNumber>0" (valueChanged)="valueChanged($event)" maxValue=30 minValue=0>
+    </app-quantity-selector>
+    <div class="buttons" *ngIf="product?.stockNumber>0">
+
+      <button mat-stroked-button class="btn" (click)="cartService?.AddProduct(product, value); emitAddedInCart()">
+        AGREGAR AL CARRITO
+      </button>
+
+      <button mat-stroked-button class="btn" style="color:white; background-color: #545454"
+        (click)="emitAddedInCart()">
+        COMPRAR
+      </button>
+    </div>
+
+    <div class="descripcion">
+      <p>{{product?.description}}</p>
+      <p>&nbsp;</p>
+    </div>
+    <div class="detalles" *ngIf="!isSimpleView">
+      <p><strong>DETALLES</strong></p>
+      <ul>
+        <li *ngFor="let detail of product?.details">{{detail}}</li>
+
+      </ul>
+    </div>
+
+    <div class="marketInformation" *ngIf="!isSimpleView">
+      <mat-tab-group>
+        <mat-tab *ngFor="let item of dataService?.info" label={{item?.nameInformation}} style="margin-bottom: 20px;">
+          {{item?.descriptionInformation}}</mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
+<div style="clear: both;"></div>
+
+<div>
+  <h2 style="margin-top: 40px; user-select: none; font-size: 18px; text-transform: uppercase; text-align: center;">
+    Tambien
+    te podría interesar</h2>
+  <div style="float: left; padding: 0;" class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12"
+    *ngFor="let product of dataService?.products | slice:0:4; let i=index">
+    <app-product [product]="product"></app-product>
+  </div>
+  <div style="clear: both;"></div>
+</div>

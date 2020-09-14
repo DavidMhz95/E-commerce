@@ -1,0 +1,9 @@
+<div [ngSwitch]="type" style="float: left;">
+    <american-express *ngSwitchCase="enumType?.AmericanExpress"></american-express>
+    <apple-pay *ngSwitchCase="enumType?.ApplePay"></apple-pay>
+    <google-pay *ngSwitchCase="enumType?.GooglePay"></google-pay>
+    <maestro *ngSwitchCase="enumType?.Maestro"></maestro>
+    <mastercard *ngSwitchCase="enumType?.MasterCard"></mastercard>
+    <paypal *ngSwitchCase="enumType?.PayPal"></paypal>
+    <visa *ngSwitchCase="enumType?.Visa"></visa>
+</div>

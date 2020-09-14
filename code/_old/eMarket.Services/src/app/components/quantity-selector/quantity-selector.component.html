@@ -1,0 +1,9 @@
+<div class="quantity-selector" style="width: 100%;">
+
+    <div style="border: 1px solid #ccc; display: flex; align-items: stretch; justify-content: center; vertical-align: middle; padding-top: 7px; padding-bottom: 7px;">
+        <mat-icon class="remove" style="cursor: pointer;font-size: 14px;text-align: center; display: inline-flex;" (click)="removeOne()">remove</mat-icon>
+        <input type="text" [(ngModel)]=value style="border:0; width: 60px; text-align: center;" min="1" pattern="[0-9]*" name="quantity">
+        <mat-icon class="add" style="cursor: pointer; font-size: 14px; text-align: center;display: inline-flex;" (click)="addOne()">add</mat-icon>
+    </div>
+
+</div>

@@ -1,0 +1,28 @@
+<div style="position: relative;">
+    <!-- <a *ngIf="pProduct" class="actions" (click)="prevProduct()">
+        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow-left-thin" viewBox="0 0 14 27">
+            <g stroke="#979797" fill="none" fill-rule="evenodd" stroke-linecap="square">
+                <path d="M.5 13.5l13-13M13.5 26.5l-13-13"></path>
+            </g>
+        </svg>
+    </a>
+    <a *ngIf="nProduct" class="actions" (click)="nextProduct()">
+        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow-right-thin" viewBox="0 0 14 27">
+            <g stroke="#979797" fill="none" fill-rule="evenodd" stroke-linecap="square">
+                <path d="M13.5 13.5l-13 13M.5.5l13 13"></path>
+            </g>
+        </svg>
+    </a> -->
+    <a type="button" mat-dialog-close style="position: absolute; right: 10px; top: 10px; z-index: 10;" class="actions">
+        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close-thin" viewBox="0 0 27 27">
+            <g stroke="#979797" fill="none" fill-rule="evenodd" stroke-linecap="square">
+                <path d="M.5.5l26 26M26.5.5l-26 26"></path>
+            </g>
+        </svg>
+    </a>
+</div>
+
+
+<mat-dialog-content id="dialog" style="padding-bottom: 5px;">
+    <app-product-details [isSimpleView]=true [product]='product' (addedInCart)="closeDialog()"></app-product-details>
+</mat-dialog-content>

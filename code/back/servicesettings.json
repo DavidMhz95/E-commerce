@@ -1,0 +1,11 @@
+{
+    "elasticsearch": {
+        "dbServer": "http://185.170.99.10/elastic",
+        "dbName": "rtve-index4",
+        "dbUser": "kcs",
+        "dbPassword": "rtvekcs7690"
+    },
+    "node": {
+        "port": 4300
+    }
+}

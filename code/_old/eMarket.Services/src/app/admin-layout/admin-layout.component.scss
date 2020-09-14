@@ -1,0 +1,76 @@
+mat-drawer-container {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.sidenav {
+  min-width: 200px;
+  padding: 0px;
+  background-color: #fafafa;
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+mat-toolbar {
+  height: 50px;
+  background-color: #333333;
+  color: white;
+}
+
+button:focus {
+  outline: none;
+}
+
+.material-icons {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.title-text {
+  margin-top: 3px;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  font-family: "Century Gothic", sans-serif;
+  text-transform: uppercase;
+}
+
+::ng-deep .mat-list-item {
+  height: 38px !important;
+  font-size: 14px !important;
+}
+
+::ng-deep .mat-nav-list .mat-list-item:focus{
+    background-color: darken($color: #fafafa, $amount: 10);
+}
+
+.active-link {
+  background-color: darken($color: #fafafa, $amount: 10);
+  opacity:1 !important;
+}
+
+.profile-img {
+  height: 28px;
+  width: 28px;
+  margin-right: 10px;
+  border-radius: 50%;
+  margin-top: 0;
+  vertical-align: bottom;
+}
+
+.profile-name {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.list-icon{
+   margin-right: 15px; font-size: 20px
+}

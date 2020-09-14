@@ -1,0 +1,76 @@
+$font-color: #545454;
+
+:host {
+  font-family: "Century Gothic", sans-serif;
+  background-color: #ffffff;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Century Gothic", sans-serif;
+  font-weight: 400 !important;
+  font-size: 12px;
+
+  h1 {
+    font-size: 2.25rem;
+    line-height: 1.1;
+    padding: 0;
+    margin: 0;
+    padding: 30px;
+    font-weight: 400;
+    font-family: "Century Gothic", sans-serif;
+  }
+}
+
+::ng-deep .mat-progress-bar-buffer {
+  background-color: #545454;
+}
+
+::ng-deep .mat-progress-bar-fill::after {
+  background-color: #f0f0f0;
+}
+
+.send {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 7px 12px;
+  color: white;
+  background-color: #545454;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.send:active {
+  div {
+    margin-top: 1px;
+    margin-bottom: -1px;
+  }
+}
+
+::ng-deep .mat-ink-bar {
+  background-color: #545454 !important;
+  height: 2px !important;
+  // margin-bottom: 5px !important;
+}
+::ng-deep .mat-tab-label-content {
+  font-family: "Century Gothic", sans-serif;
+}
+
+button:focus {
+  outline: none;
+}
+
+.mini-fab {
+  background-color: #545454;
+  color: white;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1;
+  opacity: 1;
+  transition: all  .5s ease-in-out;
+}
+
+.hidden{
+  transition: all .5s ease-in-out;
+  opacity: 0;
+}

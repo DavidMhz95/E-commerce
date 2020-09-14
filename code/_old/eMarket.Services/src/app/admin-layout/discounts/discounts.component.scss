@@ -1,0 +1,161 @@
+.sidenav-content {
+  display: flex;
+}
+
+.rightPanel {
+  padding: 20px;
+  min-width: 510px;
+  max-width: 510px;
+  background-color: #fafafa;
+}
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: unset;
+  padding: 0;
+}
+
+.padding7 {
+  padding: 0 7px !important;
+}
+
+.card {
+  padding: 15px 24px;
+  border-radius: 2px;
+  box-shadow: none;
+  min-height: 48px;
+  margin-bottom: 14px;
+}
+
+.dashed:hover {
+  background: rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+}
+
+.dashed {
+  border: 1px dashed rgba(0, 0, 0, 0.2);
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 11px;
+}
+
+mat-select,
+input {
+  width: 100%;
+  margin-top: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 3px;
+  padding: 6px 10px;
+}
+
+.subInput {
+  margin-top: 5px;
+  font-size: 10px;
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+.preInput {
+  font-size: 12px;
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+.hidden {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
+}
+
+.visible {
+  max-height: 500px;
+  opacity: 1;
+}
+
+.animated {
+  transition: all 0.5s ease-in-out;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0 0 0;
+}
+
+.radio-button {
+  margin: 5px;
+  font-size: 13px;
+}
+
+.profile-img {
+  height: 32px;
+  width: 32px;
+  margin-right: 10px;
+  border-radius: 50%;
+  margin-top: 0;
+  vertical-align: bottom;
+}
+
+.outlineNone:focus {
+  outline: none;
+}
+
+mat-datepicker-toggle:focus,
+::ng-deep mat-datepicker-toggle button:focus {
+  outline: none;
+}
+
+::ng-deep .color-picker {
+  border: 1px solid #f2f2f2 !important;
+  border-radius: 3px !important;
+}
+
+::ng-deep .color-picker .arrow.arrow-bottom {
+  visibility: hidden !important;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+::ng-deep .align-right .mat-sort-header-container {
+  display: flex;
+  padding: 21px 0;
+  justify-content: flex-end;
+}
+
+th.mat-header-cell.align-right:last-of-type {
+  text-align: right;
+}
+
+
+.actions {
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 0.8;
+  height: 10px;
+  cursor: pointer;
+  svg {
+    height: 10px;
+  }
+}
+
+.actions:hover {
+  opacity: 1;
+}

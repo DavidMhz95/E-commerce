@@ -1,0 +1,92 @@
+<!--Cosas que tenemos que hacer:
+    1. Creacion de un Producto
+    2. Edicion de un Producto
+    3. Lista de productos
+    4. Borrado de productos. -> Colocar como Outlet, nunca borrar en una bbdd relacional.
+-->
+
+
+<mat-drawer-container class="container" autosize>
+    <mat-drawer #drawer class="rightPanel" position="end" mode="side">
+        <!-- Parte Derecha -->
+        <div style="cursor: pointer;">
+            <mat-icon (click)="drawer.close()"> keyboard_tab</mat-icon>
+        </div>
+        
+        <app-type-of-product [typeOfProduct]="typeOfProduct" [isEdition]="isEdition"></app-type-of-product>
+        
+        <mat-card class="card" style="margin-top: 20px" *ngIf="dataService?.typeOfProduct?.length>0">
+            <span>Lista de Tipos de producto</span>
+
+            <app-type-of-product-table [typeOfProducts]='dataService?.typeOfProduct' (edit)="isEdition=true; typeOfProduct=$event" >
+            </app-type-of-product-table>
+
+        </mat-card>
+        <app-product-form></app-product-form>
+
+        <mat-card class="card" style="margin-top: 20px" *ngIf="dataService?.typeOfProduct?.length>0">
+            <span>Lista de Producto</span>
+
+            <app-table-products [productsData]='dataService?.products' ></app-table-products>
+
+        </mat-card>
+
+    </mat-drawer>
+
+    <div class="sidenav-content">
+        <div style="margin-left:8px; padding: 40px 20px;">
+
+            <div style="opacity:0.8; margin-left: 8px; width: 100%;">
+                <!-- Parte Izquierda -->
+                <h2 style="float: left;">Tipos de Productos</h2>
+            </div>
+            <div style="clear: both;"></div>
+
+            <div class="padding7 col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12"
+                [ngClass]="{'col-xl-12 col-lg-12': drawer?.opened}">
+                <mat-card class="card dashed" (click)="resetTypeOfProduct(); drawer.open()"
+                    style="padding: 15px 24px;">
+                    <div class="flex-container">
+                        <mat-icon style="margin-right: 10px;">add_circle</mat-icon>
+                        <div style="flex-grow:1">
+                            Crear tipo de producto
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+ 
+
+
+            <div style="opacity:0.8; margin-left: 8px; width: 100%; margin-top: 20px;">
+                <!-- Parte Izquierda -->
+                <h2 style="float: left;">Productos</h2>
+            </div>
+            <div style="clear: both;"></div>
+
+            <div *ngIf="productView">
+                <!-- Primer Producto, usado para crear nuevos -->
+                <div class="padding7 col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12"
+                    [ngClass]="{'col-xl-12 col-lg-12': drawer?.opened}" style="margin-bottom: 20px;">
+                     <mat-card class="card dashed" (click)="drawer.open()"
+                        style="padding: 15px 24px;">
+                        <div class="flex-container">
+                            <mat-icon style="margin-right: 10px;">add_circle</mat-icon>
+                            <div style="flex-grow:1">
+                                Crear tipo de producto
+                            </div>
+                        </div>
+                    </mat-card> 
+                </div>
+                <div style="float: left; padding: 0;" class="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-xs-12"
+                    *ngFor="let product of dataService?.products">
+                    <app-product [product]="product"></app-product>
+                </div>
+            </div>
+
+            <div *ngIf="tableView" style="width: 750px;">
+                <app-table-products [productsData]="dataService?.products"></app-table-products>
+            </div>
+
+        </div>
+    </div>
+</mat-drawer-container>

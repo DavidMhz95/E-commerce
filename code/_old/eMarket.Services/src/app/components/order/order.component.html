@@ -1,0 +1,32 @@
+<div style="margin-bottom:15px;">
+    <mat-divider></mat-divider>
+</div>
+
+<div class="flex-container">
+    <div style="flex-grow: unset">
+        <img class="profile-img" [src]="customer?.image">
+    </div>
+    <div class="flex-container">
+        <div style="text-align:left;margin-right: 20px;">
+            <div style="margin-bottom: 0px;" class="card-title uppercase">{{customer?.name}}</div>
+            <div class="card-subtitle">{{customer?.email}}</div>
+        </div>
+        <div style="font-size: 20px; opacity: 0.85;" class="card-number">{{price |number}}€</div>
+    </div>
+</div>
+
+<app-cart-products-table [dataSource]="products"></app-cart-products-table>
+
+<div style="margin: 15px 0 5px 0;
+font-size: 12px;
+opacity: 0.8;">
+    <mat-icon style="margin-right: 10px;padding-bottom: 3px;">location_on</mat-icon><span>{{location}}</span>
+</div>
+
+<div style="margin: 0;
+font-size: 12px;
+opacity: 0.8;">
+    <!-- <mat-icon style="margin-right: 10px;">credit_card</mat-icon> -->
+    <app-payment [type]="paymentType" style="margin-right: 10px;"></app-payment>
+    <span>{{payment}}</span>
+</div>
