@@ -1,14 +1,14 @@
 {
   "name": "cake.semanticretrieval.services.alacarta.node",
   "version": "1.0.0",
-  "description": "Sistema de búsqueda y recuperación de contenidos almacenados en el sistema 'A la carta' propiedad de Radio Televisión Española (RTVE)",
+  "description": "Sistema de búsqueda y recuperación de contenidos almacenados en el sistema 'Black Market' propiedad del trio de oro (MAD)",
   "main": "dist/app.js",
   "scripts": {
-    "build": "(if exist dist rmdir dist /q /s) && tsc && copyfiles  --flat src/ssl/*.* dist && copyfiles --flat src/views/*.* dist && copyfiles --flat src/images/*.* dist && copyfiles servicesettings.json dist && copyfiles package.json dist",
+    "build": "(if exist dist rmdir dist /q /s) && tsc && copyfiles servicesettings.json dist && copyfiles --flat src/images/*.* dist  && copyfiles --flat src/views/*.* dist && copyfiles package.json dist",
     "start": "node dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "The REUSE Company",
+  "author": "MAD",
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^4.17.7",
@@ -26,6 +26,7 @@
     "http-errors": "^1.8.0",
     "morgan": "^1.10.0",
     "rxjs": "^6.6.0",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "validator": "^13.1.1"
   }
 }

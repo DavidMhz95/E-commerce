@@ -8,7 +8,6 @@ import fs from 'fs';
 
 require('./utils')
 var indexRouter = require('./index')
-var alacartaRouter = require('./alacarta')
 
 var cors = require('cors')
 var compression = require('compression')
@@ -23,7 +22,11 @@ let serviceSettings = JSON.parse(rawdata.toString())
 
 const port = serviceSettings.node.port
 const app = express()
-const https = require('https');
+
+
+
+
+// const https = require('https');
 
 app.use(logger('dev'))
 app.use(cors())
@@ -33,8 +36,10 @@ app.use(cookieParser())
 app.use(compression())
 app.use(favicon(path.join(__dirname, 'favicon.ico')))
 
-app.use('/', indexRouter)
-app.use('/alacarta', alacartaRouter)
+app.use('/Index', indexRouter)
+
+//Añadir prefijos a rutas / Cargar rutas
+app.use('/', require(path.join(__dirname, './rutas.js')));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

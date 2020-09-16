@@ -1,9 +1,9 @@
 {
     "elasticsearch": {
-        "dbServer": "http://185.170.99.10/elastic",
-        "dbName": "rtve-index4",
-        "dbUser": "kcs",
-        "dbPassword": "rtvekcs7690"
+        "dbServer": "http://2.153.90.86:9200/",
+        "dbName": "black-market",
+        "dbUser": "",
+        "dbPassword": ""
     },
     "node": {
         "port": 4300

@@ -13,7 +13,7 @@ const settings = {
 }
 const client = new Client(settings)
 
-export async function executeQuery(query:any) {
+export async function executeQuery(query: any) {
     return await client.search({
         index: serviceSettings.elasticsearch.dbName,
         body: query
@@ -21,4 +21,13 @@ export async function executeQuery(query:any) {
         ignore: [404],
         maxRetries: 3
     })
+}
+
+export async function saveUser(user: any) {
+    return await client.index(
+        {
+            index: "black-market",
+            body: user
+        }
+    )
 }
