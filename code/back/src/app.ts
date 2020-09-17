@@ -24,8 +24,6 @@ const port = serviceSettings.node.port
 const app = express()
 
 
-
-
 // const https = require('https');
 
 app.use(logger('dev'))

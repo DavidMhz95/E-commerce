@@ -1,5 +1,7 @@
 import fs from 'fs';
 import { Client, ClientOptions } from '@elastic/elasticsearch'
+import { User } from './models/user';
+
 
 let rawdata = fs.readFileSync('servicesettings.json')
 let serviceSettings = JSON.parse(rawdata.toString())
@@ -23,11 +25,11 @@ export async function executeQuery(query: any) {
     })
 }
 
-export async function saveUser(user: any) {
-    return await client.index(
-        {
-            index: "black-market",
+export async function saveUser(user: User) {
+    return await client.index({
+            index: serviceSettings.elasticsearch.dbName,
             body: user
         }
     )
 }
+

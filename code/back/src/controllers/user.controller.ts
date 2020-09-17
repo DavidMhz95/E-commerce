@@ -1,64 +1,86 @@
-import express from 'express';
 import { executeQuery, saveUser } from '../elastic';
-import { queryGenerator, generateDefaultQueryExample } from '../queryGenerator';
-import { Dictionary, KeyValuePair, sortKeys } from '../utils';
-import {User} from '../models/user'
+import { User } from '../models/user'
 
-var router = express.Router()
-var validator = require('validator');
+const esb = require('elastic-builder'); // the builder
 
+export interface UserController {
+    add: Function,
+    getById: Function,
+    // getAll: Function,
+    // update: Function,
+    // delete: Function,
+}
 
+export var controller: UserController = {
+    add: (req, res) => add(req, res),
+    getById: (req, res) => getById(req, res),
+}
 
-var controller = {
-    test: (req, res) => {
+function getById(req, res) {
+    //Recoger los parámetros por post
+    var userId = req.params.id;
+    if (userId) {
+        const requestBody = new esb.RequestBodySearch()
+            .query(new esb.MatchPhraseQuery('name', userId));
+        // Build the request body
+        var query = requestBody.toJSON()
+        executeQuery(query).then(result => {
+            return res.status(200).send({
+                results: result.body.hits.hits
+            });
+        })
+    } else {
         return res.status(200).send({
-            message: 'Soy el rest del controlador de USUARIOS'
+            status: 'error',
+            message: 'Faltan datos por enviar'
         });
-    },
-    save: (req, res) => {
-        //Recoger los parámetros por post
-        var params = req.body;
-        console.log(req.body)
-        //Validar datos (validator)
-        try {
-            var validate_name = !validator.isEmpty(params.name);
-            var validate_surname = !validator.isEmpty(params.surname);
-            var validate_email = !validator.isEmpty(params.email);
-            var validate_hashPassword = !validator.isEmpty(params.hash_password);
-            var validate_type = !validator.isEmpty(params.type);
-        } catch (err) {
-            return res.status(200).send({
-                status: 'error',
-                message: 'Faltan datos por enviar'
-            });
-        }
-
-        if (validate_name && validate_surname && validate_email && validate_hashPassword && validate_type) {
-            //Crear objeto a guarda
-            saveUser(params).then( ()=>{
-                return res.status(200).send({
-                    status: 'success',
-                    message: 'User guardado'
-                });
-            },
-            error => console.log(error))
-
-        } else {
-            return res.status(200).send({
-                status: 'error',
-                message: 'Los datos no son validos'
-            });
-        }
-
-    },
-
-    getUsers: (req, res) => {
-    
-    
     }
 
+}
 
-};
+function add(req, res) {
+    //Recoger los parámetros por post
+    var params = req.body;
+
+    if (params.name &&
+        params.surname &&
+        params.email &&
+        params.hash_password &&
+        params.type) {
+
+        var user: User = {
+            name: params.name,
+            surname: params.surname,
+            address: undefined,
+            email: params.email,
+            hash_password: params.hash_password,
+            type: params.type
+        }
+
+        const requestBody = new esb.RequestBodySearch().query(new esb.MatchPhraseQuery('email', user.email))
+        executeQuery(requestBody.toJSON()).then(result => {
+            if (result.body.hits.hits.length > 0) {
+                res.status(200).send({
+                    response: false
+                });
+            } else {
+                saveUser(user).then(() => {
+                    return res.status(200).send({
+                        response: true
+                    });
+                },
+                error => console.log(error))
+            }
+        })
+
+    } else {
+        return res.status(200).send({
+            status: 'error',
+            message: 'Faltan datos por enviar'
+        });
+    }
+}
+
 
 module.exports = controller;
 
