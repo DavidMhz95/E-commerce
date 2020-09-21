@@ -25,11 +25,36 @@ export async function executeQuery(query: any) {
     })
 }
 
+export async function getIdByEmail(query: any) {
+    return await client.search({
+        index: serviceSettings.elasticsearch.dbName,
+        body: query
+    }, {
+        ignore: [404],
+        maxRetries: 3
+    })
+}
+
 export async function saveUser(user: User) {
     return await client.index({
             index: serviceSettings.elasticsearch.dbName,
             body: user
         }
     )
+}
+
+export async function updateUser(id, user: User) {
+    return await client.update({
+        id: id,
+        index: serviceSettings.elasticsearch.dbName,
+        body:  {doc:user}
+       })
+}
+
+export async function deleteUser(id) {
+    return await client.delete({
+        id: id,
+        index: serviceSettings.elasticsearch.dbName
+    })
 }
 
