@@ -9,7 +9,7 @@ export class User {
         public email: string,
         public hash_password: string,
         public type: ObjectType = 0,
-        public address: UserAddress
+        public rol: string
 
         //Estas están fuera del modelo de datos, hay que hablar de si se meten o no ;)
         //public image: string,

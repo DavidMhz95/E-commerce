@@ -71,12 +71,12 @@ function update(req, res) {
         params.email &&
         params.hash_password &&
         params.type &&
-        params.address) {
+        params.rol) {
 
         var user: User = {
             name: params.name,
             surname: params.surname,
-            address: params.address,
+            rol: params.rol,
             email: params.email,
             hash_password: params.hash_password,
             type: params.type
@@ -122,8 +122,8 @@ function add(req, res) {
         var user: User = {
             name: params.name,
             surname: params.surname,
-            address: params.address,
-            email: params.email,
+            rol: params.address,
+            email: params.rol,
             hash_password: params.hash_password,
             type: params.type
         }

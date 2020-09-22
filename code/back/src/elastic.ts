@@ -1,6 +1,7 @@
 import fs from 'fs';
 import { Client, ClientOptions } from '@elastic/elasticsearch'
 import { User } from './models/user';
+import { Product } from './models/product';
 
 
 let rawdata = fs.readFileSync('servicesettings.json')
@@ -25,6 +26,7 @@ export async function executeQuery(query: any) {
     })
 }
 
+//  USUARIOS 
 export async function getIdByEmail(query: any) {
     return await client.search({
         index: serviceSettings.elasticsearch.dbName,
@@ -57,4 +59,39 @@ export async function deleteUser(id) {
         index: serviceSettings.elasticsearch.dbName
     })
 }
+
+// PRODUCTOS 
+
+export async function getIdByRef(query: any) {
+    return await client.search({
+        index: serviceSettings.elasticsearch.dbName,
+        body: query
+    }, {
+        ignore: [404],
+        maxRetries: 3
+    })
+}
+
+export async function saveProduct(product: Product) {
+    return await client.index({
+            index: serviceSettings.elasticsearch.dbName,
+            body: product
+        }
+    )
+}
+
+export async function updateProduct(id,product: Product) {
+    return await client.update({
+        id: id,
+        index: serviceSettings.elasticsearch.dbName,
+        body:  {doc:product}
+       })
+}
+
+export async function deleteProduct(id) {
+    return await client.delete({
+        id: id,
+        index: serviceSettings.elasticsearch.dbName
+    })
+} 
 

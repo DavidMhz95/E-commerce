@@ -4,7 +4,7 @@ import { TypeOfProduct } from './typeOfProduct';
 export class Product {
 
     constructor(
-        public id: number,
+        public ref: number,
         public typeOfProduct: TypeOfProduct,
         public name: string,
         public offerPrice: number,
