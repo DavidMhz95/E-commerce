@@ -23,8 +23,13 @@ function getUserByEmail(req, res) {
     //Recoger los parámetros por post
     var userEmail = req.params.email;
     if (userEmail) {
-        const requestBody = new esb.RequestBodySearch()
-            .query(new esb.MatchPhraseQuery('email', userEmail));
+
+        const requestBody = esb.requestBodySearch().query(
+            esb.boolQuery()
+                .must(esb.MatchPhraseQuery('email', userEmail))
+                .must(esb.MatchPhraseQuery('type', 0))
+        );
+
         // Build the request body
         var query = requestBody.toJSON()
         executeQuery(query).then(result => {
@@ -51,14 +56,14 @@ function getAll(req, res) {
         return res.status(200).send({
             results: result.body.hits.hits
         });
-    },error => {
+    }, error => {
         return res.status(400).send({
             status: 'error',
             message: error.message
         });
     })
 
-    
+
 
 }
 
