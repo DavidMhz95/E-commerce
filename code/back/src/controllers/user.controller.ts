@@ -116,19 +116,24 @@ function update(req, res) {
 function add(req, res) {
     //Recoger los parámetros por post
     var params = req.body;
-
+    console.log(params.name)
+    console.log(params.surname)
+    console.log(params.type)
+    console.log(params.rol)
+    console.log(params.email)
+    console.log(params.hash_password)
     if (params.name &&
         params.surname &&
         params.email &&
         params.hash_password &&
-        params.type &&
-        params.address) {
+        params.type != undefined &&
+        params.rol != undefined) {
 
         var user: User = {
             name: params.name,
             surname: params.surname,
-            rol: params.address,
-            email: params.rol,
+            rol: params.rol,
+            email: params.email,
             hash_password: params.hash_password,
             type: params.type
         }
@@ -137,12 +142,14 @@ function add(req, res) {
         executeQuery(requestBody.toJSON()).then(result => {
             if (result.body.hits.hits.length > 0) {
                 res.status(200).send({
-                    response: false
+                    status: 'error',
+                    message: 'Ya existe un usuario registrado con este email'
                 });
             } else {
                 saveUser(user).then(() => {
                     return res.status(201).send({
-                        response: true
+                        status: "success",
+                        user: user
                     });
                 },
                     error => console.log(error))

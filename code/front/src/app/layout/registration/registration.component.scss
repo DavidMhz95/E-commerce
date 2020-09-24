@@ -1,0 +1,54 @@
+.mid-form {
+    width: 50%;
+    margin: 0px auto;
+}
+
+
+.subheader {
+    font-size: 38px;
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+}
+
+.mid-form label {
+    text-align: left;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 17px;
+    margin-top: 10px;
+}
+
+.center {
+    width: 75%;
+    margin: 0px auto;
+}
+
+.clearfix {
+    clear: both;
+    float: none;
+}
+
+#content {
+    width: 70%;
+    float: left;
+    min-height: 650px;
+    margin-right: 25px;
+}
+
+input[type="text"],
+input[type="file"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%;
+    min-height: 30px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    padding: 4px;
+}
+
+input[type="text"]:focus,
+textarea {
+    box-shadow: 0px 0px 5px #eee inset;
+    transition: 300ms all;
+}

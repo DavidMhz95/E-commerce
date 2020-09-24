@@ -13,6 +13,7 @@ const routes: Routes = [
       { path: 'collections/:section', loadChildren: () => import('./products-view/products-view.module').then(m => m.ProductsViewModule) },
       { path: 'collections/:section/:subsection', loadChildren: () => import('./products-view/products-view.module').then(m => m.ProductsViewModule) },
       { path: 'cart', loadChildren: () => import('./shopping-cart/shopping-cart.module').then(m => m.ShoppingCartModule) },
+      { path: 'registration', loadChildren: () => import('./registration/registration.module').then(m => m.RegistrationModule) },
       { path: '', redirectTo: 'products' },
       { path: '**', redirectTo: 'products' },
     ]

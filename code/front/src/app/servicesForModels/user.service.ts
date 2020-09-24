@@ -8,8 +8,8 @@ export class userService {
     public users: User[]
     public url: string
 
-    constructor(private _http: HttpClient) {
-        this.url="urlgenerica.lol"
+    constructor(public _http: HttpClient) {
+        this.url="http://localhost:4300/"
     }
 
     pruebas() {
@@ -27,6 +27,12 @@ export class userService {
 
     search(searchString): Observable<any> {
         return this._http.get(this.url + 'search/' + searchString)
+    }
+
+    create(user): Observable<any>{
+        let params = JSON.stringify(user)
+        let headers = new HttpHeaders().set('Content-type', 'application/json') 
+        return this._http.post(this.url+'user', params, {headers:headers})
     }
 
     //Habrá que añadir mas llamadas cuando las tengamos...
