@@ -19,15 +19,18 @@ export var controller: ProductController = {
     update: (req, res) => update(req, res),
     deleteByRef: (req, res) => deleteByRef(req, res),
     getAll: (req, res) => getAll(req, res),
-    productExample: (req,res) => productExample(req,res)
+    productExample: (req, res) => productExample(req, res)
 }
 
 function getProductByRef(req, res) {
     //Recoger los parámetros por post
     var productRef = req.params.ref;
     if (productRef) {
-        const requestBody = new esb.RequestBodySearch()
-            .query(new esb.MatchPhraseQuery('ref', productRef));
+        const requestBody = esb.requestBodySearch().query(
+            esb.boolQuery()
+                .must(esb.MatchPhraseQuery('ref', productRef))
+                .must(esb.MatchPhraseQuery('type', 1))
+        );
         // Build the request body
         var query = requestBody.toJSON()
         executeQuery(query).then(result => {
@@ -152,33 +155,33 @@ function add(req, res) {
     }
 }
 
-function productExample(req,res){
+function productExample(req, res) {
 
     var dictionary = new Dictionary()
     var dictionary1 = new Dictionary()
 
-    dictionary.set("talla","S")
-    dictionary.set("talla","XS")
-    dictionary.set("talla","M")
+    dictionary.set("talla", "S")
+    dictionary.set("talla", "XS")
+    dictionary.set("talla", "M")
 
-    dictionary1.set("color","rojo")
-    dictionary1.set("color","azul")
+    dictionary1.set("color", "rojo")
+    dictionary1.set("color", "azul")
 
-    var typeOfProduct: TypeOfProduct={
+    var typeOfProduct: TypeOfProduct = {
         name: "Camiseta",
-        properties: [dictionary,dictionary1]
+        properties: [dictionary, dictionary1]
     }
-    
-    var product: Product = 
+
+    var product: Product =
     {
         ref: 12345,
-        typeOfProduct: typeOfProduct,       
+        typeOfProduct: typeOfProduct,
         name: "Camiseta HardRock",
         offerPrice: 50,
         price: 100,
-        images: ["https://content.asos-media.com/-/media/homepages/ww/2020/09/14/ww_hourglass_moment_870x1110.jpg","https://content.asos-media.com/-/media/homepages/ww/2020/09/14/ww_flares_moment_870x1110-v2.jpg"],
+        images: ["https://content.asos-media.com/-/media/homepages/ww/2020/09/14/ww_hourglass_moment_870x1110.jpg", "https://content.asos-media.com/-/media/homepages/ww/2020/09/14/ww_flares_moment_870x1110-v2.jpg"],
         description: "Camiseta de puta madre",
-        details:["Detalles de la camiseta","Algodon 60%","Cocaina 100%"],
+        details: ["Detalles de la camiseta", "Algodon 60%", "Cocaina 100%"],
         stockNumber: 50,
         section: "Camisetas",
         subsection: "Verano",
@@ -188,7 +191,7 @@ function productExample(req,res){
     return res.status(201).send({
         product
     });
-    
+
 }
 function deleteByRef(req, res) {
     //Recoger los parámetros por post

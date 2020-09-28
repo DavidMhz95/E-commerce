@@ -2,6 +2,7 @@ import fs from 'fs';
 import { Client, ClientOptions } from '@elastic/elasticsearch'
 import { User } from './models/user';
 import { Product } from './models/product';
+import { Order } from './models/Order';
 
 
 let rawdata = fs.readFileSync('servicesettings.json')
@@ -95,3 +96,37 @@ export async function deleteProduct(id) {
     })
 } 
 
+//PEDIDOS 
+
+export async function getByOrderId(query: any) {
+    return await client.search({
+        index: serviceSettings.elasticsearch.dbName,
+        body: query
+    }, {
+        ignore: [404],
+        maxRetries: 3
+    })
+}
+
+export async function saveOrder(order: Order) {
+    return await client.index({
+            index: serviceSettings.elasticsearch.dbName,
+            body: order
+        }
+    )
+}
+
+export async function updateOrder(id,order: Order) {
+    return await client.update({
+        id: id,
+        index: serviceSettings.elasticsearch.dbName,
+        body:  {doc:order}
+       })
+}
+
+export async function deleteOrder(id) {
+    return await client.delete({
+        id: id,
+        index: serviceSettings.elasticsearch.dbName
+    })
+} 
