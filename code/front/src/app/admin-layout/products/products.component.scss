@@ -119,3 +119,20 @@ mat-chip {
   .dashed {
     border: 1px dashed rgba(0, 0, 0, 0.2);
   }
+
+  .actions {
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.8;
+    height: 10px;
+    cursor: pointer;
+    svg {
+      height: 10px;
+    }
+  }
+  
+  .actions:hover {
+    opacity: 1;
+  }

@@ -1,5 +1,8 @@
+<div class="title" style="margin-bottom:10px;">
+    Crear Producto
+</div>
+
 <mat-card class="card" style="margin-top: 20px">
-    <span>Nuevo Producto</span>
 
     <div class="preInput">
         Referencia:
@@ -14,21 +17,61 @@
         <input matInput placeholder="Ex. Zapatillas, Camisetas, Tarros de miel..." style="padding-right: 30px;">
     </div>
 
-     <div class="preInput" style="padding-top: 10px; padding-bottom: 10px">
-        Tipo de producto*:
+</mat-card>
+
+<mat-card class="card" style="margin-top: 20px">
+    <!-- Propiedades -->
+     <div class="preInput">
+        Propiedad:
     </div>
-    <div>
-        <mat-select placeholder="Seleccione un tipo">
-            <mat-option>
+    <!--
+    <div style="position: relative">
+        <input [(ngModel)]="newProperty" matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
+    </div>
+    <div style="margin-top: 20px">
+        <button style="float:right" mat-flat-button color="secundary" (click)="addProperty()">Añadir
+            Propiedad</button>
+        <div style="clear:both"></div>
+    </div>
 
-            </mat-option>
-        </mat-select>
-    </div> 
+    <div *ngFor="let property of typeOfProduct?.properties?.items| keyvalue; let i=index" style="padding: 10px 5px;">
+        <div style="font-size: 13px; margin-bottom: 0px; width: 100%; " class="preInput">{{property?.key}}</div>
+        <div class="flex-container">
+            <div class="flex-container" style="line-height: 1.3; margin-right: 10px; flex-grow: 1;">
+                <div style="width: 100%;">
+                    <input [(ngModel)]="newPropertyValue[i]" matInput placeholder="Ex. S,M,L,XL"
+                        style="padding-right: 30px;">
+                </div>
+            </div>
+            <mat-icon style="cursor:pointer" matTooltip="Añade un valor" (click)="addPropertyValue(property, i)">
+                add
+            </mat-icon>
+            <mat-icon style="cursor:pointer" matTooltip="Elimina la propiedad"
+                (click)="removeFromProperties(property)">clear</mat-icon>
+        </div>
+        <div class="subInput">
+            <mat-chip-list aria-label="Color selection">
+                <mat-chip selected style="font-size: 12px" *ngFor="let value of property?.value">
+                    {{value}}
+                    <mat-icon
+                        style="font-size: 15px; text-align: center; vertical-align: middle; margin-top: 8px; padding-left: 12px; "
+                        (click)="remove(property.key,value)">cancel</mat-icon>
+                </mat-chip>
+            </mat-chip-list>
+        </div>
+    </div> -->
 
-    <mat-radio-group aria-label="Select an option" [(ngModel)]="isSaleEnabled">
-        <mat-radio-button [value]="true">Oferta</mat-radio-button>
-        <mat-radio-button [value]="false">Sin Oferta</mat-radio-button>
-    </mat-radio-group>
+    <!-- Fin propiedades -->
+</mat-card>
+
+
+<mat-card class="card" style="margin-top: 20px">
+    <div class="preInput" style="margin-top: 10px">
+        Precio
+    </div>
+    <div style="position: relative">
+        <input matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
+    </div>
 
     <div [ngClass]="{'hidden': !isSaleEnabled, 'visible':isSaleEnabled }">
         <div class="preInput" style="margin-top: 10px">
@@ -39,44 +82,57 @@
         </div>
     </div>
 
-
-    <div class="preInput" style="margin-top: 10px">
-        Precio
+    <div style="margin-top: 15px;">
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="isSaleEnabled" >
+            <mat-radio-button [value]="true">Oferta</mat-radio-button>
+            <mat-radio-button [value]="false">Sin Oferta</mat-radio-button>
+        </mat-radio-group>
     </div>
-    <div style="position: relative">
-        <input matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
-    </div>
 
+</mat-card>
+
+
+
+
+
+<mat-card class="card" style="margin-top: 20px">
     <div class="preInput" style="margin-top: 10px">
         Imagenes
     </div>
     <div style="position: relative">
-        <input matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
+        <input type="file" name="file0" />
     </div>
+</mat-card>
 
+<mat-card class="card" style="margin-top: 20px">
     <div class="preInput" style="margin-top: 10px">
         Descripcion
     </div>
     <div style="position: relative">
-        <input matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
+        <input matInput placeholder="Informacion sobre el producto" style="padding-right: 30px;">
     </div>
-
+    
     <div class="preInput" style="margin-top: 10px">
         Detalles
     </div>
     <div style="position: relative">
-        <input matInput placeholder="Ex.Talla, Tamaño, Color" style="padding-right: 30px;">
+        <input matInput placeholder="Algodon, HandMade.." style="padding-right: 30px;">
     </div>
+</mat-card>
 
+<mat-card class="card" style="margin-top: 20px">
     <div class="preInput" style="margin-top: 10px">
         Cantidad en Stock
     </div>
     <div style="position: relative">
         <input matInput placeholder="Ex. 1,3,28" style="padding-right: 30px;">
     </div>
-
-    <div style="margin-top: 20px">
-        <button style="float:right" mat-flat-button color="primary">Añadir Producto</button>
-        <div style="clear:both"></div>
-    </div>
 </mat-card>
+
+
+
+
+<div style="margin-top: 20px">
+    <button style="float:right" mat-flat-button color="primary">Añadir Producto</button>
+    <div style="clear:both"></div>
+</div>

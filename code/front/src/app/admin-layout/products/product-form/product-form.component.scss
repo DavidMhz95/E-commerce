@@ -110,6 +110,13 @@ mat-chip {
     max-width: 200px;
 }
 
+.title {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 11px;
+  }
+
 
 .dashed:hover {
     background: rgba(0, 0, 0, 0.04);
@@ -119,3 +126,6 @@ mat-chip {
   .dashed {
     border: 1px dashed rgba(0, 0, 0, 0.2);
   }
+
+
+  

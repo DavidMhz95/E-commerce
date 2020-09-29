@@ -1,3 +1,4 @@
+
 export function CopyObject(object: any): any {
     return JSON.parse(JSON.stringify(object))
 }
@@ -73,6 +74,8 @@ export function HexToRgb(hex) {
     b: parseInt(result[3], 16)
   } : null;
 }
+
+export var globalUrl: string = "http://localhost:4300/";
 
 export class Dictionary {
   items = {};

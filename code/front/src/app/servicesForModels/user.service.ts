@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { globalUrl } from '../app.utils';
 
 @Injectable()
 export class userService {
@@ -9,7 +10,7 @@ export class userService {
     public url: string
 
     constructor(public _http: HttpClient) {
-        this.url="http://localhost:4300/"
+        this.url= globalUrl
     }
 
     pruebas() {
