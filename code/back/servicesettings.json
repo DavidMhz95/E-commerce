@@ -6,6 +6,6 @@
         "dbPassword": ""
     },
     "node": {
-        "port": 4300
+        "port": 88
     }
 }
