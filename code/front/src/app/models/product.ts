@@ -1,10 +1,10 @@
-import { TypeOfProduct } from './typeOfProduct';
+import { Properties } from './properties';
 
 export class Product {
 
     constructor(
         public ref: number,
-        public typeOfProduct: TypeOfProduct,
+        public properties: Properties[],
         public name: string,
         public offerPrice: number,
         public price: number,

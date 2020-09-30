@@ -75,7 +75,7 @@ export function HexToRgb(hex) {
   } : null;
 }
 
-export var globalUrl: string = "http://localhost:4300/";
+export var globalUrl: string = "http://2.153.90.86:88/";
 
 export class Dictionary {
   items = {};
