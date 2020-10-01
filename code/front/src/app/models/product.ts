@@ -1,10 +1,10 @@
-import { Properties } from './properties';
+import { Property } from './property';
 
 export class Product {
 
     constructor(
         public ref: number,
-        public properties: Properties[],
+        public properties: Property[],
         public name: string,
         public offerPrice: number,
         public price: number,
