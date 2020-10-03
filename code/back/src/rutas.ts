@@ -7,11 +7,12 @@ var express = require('express');
 var router = express.Router();
 
 //Rutas para Usuarios
-router.post('/user', UserController.add)
+router.post('/user', UserController.create)
 router.get('/users', UserController.getAll)
-router.get('/user/:email', UserController.getUserByEmail)
+router.get('/user/:email', UserController.getByEmail)
 router.delete('/user/:email', UserController.deleteByEmail)
 router.post('/updateUser', UserController.update)
+router.post('/logIn', UserController.logIn)
 
 //Rutas para Productos
 router.post('/product', ProductController.add)
@@ -21,5 +22,8 @@ router.delete('/user/:ref', ProductController.deleteByRef)
 router.post('/updateProduct', ProductController.update)
 router.get('/exampleProduct', ProductController.productExample)
 
+router.get('/', function (req, res, next) {
+    res.sendFile('index.html', { root: __dirname })
+});
 
 module.exports = router;

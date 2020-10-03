@@ -7,8 +7,6 @@ import favicon from 'serve-favicon'
 import fs from 'fs';
 
 require('./utils')
-var indexRouter = require('./index')
-
 var cors = require('cors')
 var compression = require('compression')
 
@@ -33,8 +31,6 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(compression())
 app.use(favicon(path.join(__dirname, 'favicon.ico')))
-
-app.use('/Index', indexRouter)
 
 //Añadir prefijos a rutas / Cargar rutas
 app.use('/', require(path.join(__dirname, './rutas.js')));

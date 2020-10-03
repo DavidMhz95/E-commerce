@@ -4,47 +4,100 @@ import { User } from '../models/user'
 const esb = require('elastic-builder'); // the builder
 
 export interface UserController {
-    add: Function,
-    getUserByEmail: Function,
+    create: Function,
+    getByEmail: Function,
     getAll: Function,
     update: Function,
-    deleteByEmail: Function
+    deleteByEmail: Function,
+    logIn: Function,
 }
 
 export var controller: UserController = {
-    add: (req, res) => add(req, res),
-    getUserByEmail: (req, res) => getUserByEmail(req, res),
-    update: (req, res) => update(req, res),
-    deleteByEmail: (req, res) => deleteByEmail(req, res),
-    getAll: (req, res) => getAll(req, res),
+    create: (req: any, res: any) => create(req, res),
+    getByEmail: (req: any, res: any) => getByEmail(req, res),
+    update: (req: any, res: any) => update(req, res),
+    deleteByEmail: (req: any, res: any) => deleteByEmail(req, res),
+    getAll: (req: any, res: any) => getAll(req, res),
+    logIn: (req: any, res: any) => logIn(req, res)
 }
 
-function getUserByEmail(req, res) {
+
+function _getUserByEmail(email: string, pass: string = undefined): Promise<any> {
+    if (email) {
+        var boolQuery = new esb.boolQuery()
+            .must(new esb.MatchPhraseQuery('email', email))
+            .must(new esb.MatchPhraseQuery('type', 0))
+        if (pass) {
+            boolQuery = boolQuery.must(new esb.MatchPhraseQuery('hash_password', pass))
+        }
+        const requestBody = new esb.requestBodySearch().query(boolQuery);
+        // Build the request body      
+        return executeQuery(requestBody.toJSON())
+    }
+}
+
+function logIn(req: any, res: any) {
+    _getUserByEmail(req.body.email, req.body.pass).then(((response: any) => {
+        var user: User
+        if (response?.body?.hits?.hits?.length > 0) {
+            user = response.body.hits.hits[0]._source
+        }
+        return res.status(200).send(user);
+    }), (error: any) => {
+        return res.status(400).send(error);
+    })
+}
+
+
+function getByEmail(req, res) {
+    _getUserByEmail(req.params.email).then(((response: any) => {
+        var user: User
+        if (response?.body?.hits?.hits?.length > 0) {
+            user = response.body.hits.hits[0]._source
+        }
+        return res.status(200).send(user);
+    }), (error: any) => {
+        return res.status(400).send(error);
+    })
+}
+
+function create(req, res) {
     //Recoger los parámetros por post
-    var userEmail = req.params.email;
-    if (userEmail) {
 
-        const requestBody = esb.requestBodySearch().query(
-            esb.boolQuery()
-                .must(esb.MatchPhraseQuery('email', userEmail))
-                .must(esb.MatchPhraseQuery('type', 0))
-        );
+    if (req.body.name &&
+        //params.surname &&
+        req.body.email &&
+        req.body.hash_password &&
+        req.body.type != undefined &&
+        req.body.rol != undefined) {
 
-        // Build the request body
-        var query = requestBody.toJSON()
-        executeQuery(query).then(result => {
-            return res.status(200).send({
-                results: result.body.hits.hits
-            });
+        var user: User = {
+            name: req.body.name,
+            surname: req.body.surname,
+            rol: req.body.rol,
+            email: req.body.email,
+            hash_password: req.body.hash_password,
+            type: req.body.type
+        }
+
+        _getUserByEmail(user.email).then((response: any) => {
+            if (response?.body?.hits?.hits?.length > 0) {
+                res.status(400).send('Ya existe un usuario registrado con este email.');
+            } else {
+                saveUser(user).then(() => {
+                    return res.status(201).send(user)
+                }, (error: any) => {
+                    return res.status(400).send(error);
+                })
+            }
+        }, (error: any) => {
+            return res.status(400).send(error);
         })
     } else {
-        return res.status(400).send({
-            status: 'error',
-            message: 'Faltan datos por enviar'
-        });
+        return res.status(400).send('Faltan datos por enviar');
     }
-
 }
+
 
 
 function getAll(req, res) {
@@ -53,14 +106,9 @@ function getAll(req, res) {
     // Build the request body
     var query = requestBody.toJSON()
     executeQuery(query).then(result => {
-        return res.status(200).send({
-            results: result.body.hits.hits
-        });
+        return res.status(200).send(result.body.hits.hits.map((user: any) => user._source));
     }, error => {
-        return res.status(400).send({
-            status: 'error',
-            message: error.message
-        });
+        return res.status(400).send(error);
     })
 
 
@@ -113,83 +161,24 @@ function update(req, res) {
     }
 }
 
-function add(req, res) {
-    //Recoger los parámetros por post
-    var params = req.body;
-    console.log(params.name)
-    console.log(params.surname)
-    console.log(params.type)
-    console.log(params.rol)
-    console.log(params.email)
-    console.log(params.hash_password)
-    if (params.name &&
-        params.surname &&
-        params.email &&
-        params.hash_password &&
-        params.type != undefined &&
-        params.rol != undefined) {
 
-        var user: User = {
-            name: params.name,
-            surname: params.surname,
-            rol: params.rol,
-            email: params.email,
-            hash_password: params.hash_password,
-            type: params.type
-        }
-
-        const requestBody = new esb.RequestBodySearch().query(new esb.MatchPhraseQuery('email', user.email))
-        executeQuery(requestBody.toJSON()).then(result => {
-            if (result.body.hits.hits.length > 0) {
-                res.status(200).send({
-                    status: 'error',
-                    message: 'Ya existe un usuario registrado con este email'
-                });
-            } else {
-                saveUser(user).then(() => {
-                    return res.status(201).send({
-                        status: "success",
-                        user: user
-                    });
-                },
-                    error => console.log(error))
-            }
-        })
-
-    } else {
-        return res.status(400).send({
-            status: 'error',
-            message: 'Faltan datos por enviar'
-        });
-    }
-}
 
 function deleteByEmail(req, res) {
     //Recoger los parámetros por post
     var userEmail = req.params.email;
     if (userEmail) {
-        const requestBody = new esb.RequestBodySearch().query(new esb.MatchPhraseQuery('email', userEmail))
-        executeQuery(requestBody.toJSON()).then(result => {
-
-            var user = result.body.hits.hits[0];
-            if (user) {
-                deleteUser(user._id).then(() => {
-                    return res.status(200).send({
-                        response: true
-                    });
-                },
-                    error => {
-                        return res.status(500).send({
-                            status: 'error',
-                            message: error.message
-                        });
-                    })
+        _getUserByEmail(userEmail).then((response: any) => {
+            if (response?.body?.hits?.hits?.length > 0) {
+                deleteUser(response.body.hits.hits[0]._id).then(() => {
+                    return res.status(200).send(true);
+                }, error => {
+                    return res.status(500).send(error);
+                })
             } else {
-                return res.status(204).send({
-                    status: 'error',
-                    message: 'No se encuentra el usuario'
-                });
+                res.status(204).send(true)
             }
+        }, (error: any) => {
+            return res.status(400).send(error);
         })
     }
 }
