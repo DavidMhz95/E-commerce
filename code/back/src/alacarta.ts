@@ -1,4 +1,4 @@
-import express from 'express' ;
+import express from 'express';
 import { executeQuery } from './elastic';
 import { queryGenerator, generateDefaultQueryExample } from './queryGenerator';
 import { Dictionary, KeyValuePair, sortKeys } from './utils';
