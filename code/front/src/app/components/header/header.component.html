@@ -2,6 +2,8 @@
     <a routerLink="/landing">
         BLACK MARKET
     </a>
-    <mat-icon *ngIf="cartService?.products?.length==0" style="position: absolute; cursor: pointer; right: 10px;" routerLink="/landing/cart">shopping_cart</mat-icon>
-    <mat-icon *ngIf="cartService?.products?.length>0" style="position: absolute; cursor: pointer; right: 10px;" routerLink="/landing/cart" [matBadge]="cartService?.GetElements()" matBadgeColor="warn">shopping_cart</mat-icon>
+    <mat-icon *ngIf="!userService?.loggedUser" class="user-badge" matTooltip="Conectarse" routerLink="/registration">person</mat-icon>
+    <img *ngIf="userService?.loggedUser" src="/assets/images/defaultProfile.png" matTooltip="Perfil" class="profile-img user-badge">
+    <mat-icon *ngIf="cartService?.products?.length==0" class="badge" routerLink="/landing/cart">shopping_cart</mat-icon>
+    <mat-icon *ngIf="cartService?.products?.length>0" class="cart-badge" routerLink="/landing/cart" [matBadge]="cartService?.GetElements()" matBadgeColor="warn">shopping_cart</mat-icon>
 </div>

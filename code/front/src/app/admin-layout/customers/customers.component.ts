@@ -3,6 +3,8 @@ import { ChartEvent, ChartType } from 'ng-chartist';
 import { IChartistAnimationOptions, IChartistData } from 'chartist';
 import { Customer, DataService, Order } from 'src/app/shared/data.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UserService } from 'src/app/servicesForModels/user.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-customers',
@@ -13,22 +15,28 @@ export class CustomersComponent implements OnInit {
 
   lastestCustomers: Customer[]
   bestCustomers: Customer[]
-  constructor(private dataService: DataService, public dialog: MatDialog) { }
+
+  allCustomers: User[]
+
+  constructor(private dataService: DataService, public dialog: MatDialog, private userService: UserService) { }
 
   ngOnInit(): void {
     this.lastestCustomers = this.generateRandomCustomer(2)
     this.bestCustomers = this.generateRandomCustomer(4)
+    this.userService.getUsers().subscribe((users: User[]) => {
+      this.allCustomers = users
+    })
   }
 
   showHistory(customer: Customer) {
-    var orders:Order[] = this.dataService.generateRandomOrders(6)
-    orders.forEach((o)=>{
+    var orders: Order[] = this.dataService.generateRandomOrders(6)
+    orders.forEach((o) => {
       o.customer = customer
     })
     const dialogRef = this.dialog.open(CustomerHistoryDialog, {
-      data: {orders, customer},
+      data: { orders, customer },
       maxHeight: '80vh',
-      width:'60vw'
+      width: '60vw'
     });
   }
 
@@ -90,6 +98,18 @@ export class CustomersComponent implements OnInit {
       }
     }
   };
+
+
+  deleteUser(user: User) {
+    if (confirm("Está seguro de que desea eliminar al usuario: " + user.email)) {
+      this.userService.deleteUser(user).subscribe((response) => {
+        this.allCustomers = this.allCustomers.filter((u: User) => u.email != user.email)
+      }, (err: any) => {
+        console.log(err)
+      })
+    }
+  }
+
 }
 
 @Component({

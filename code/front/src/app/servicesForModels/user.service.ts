@@ -4,13 +4,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { globalUrl } from '../app.utils';
 
-@Injectable()
-export class userService {
-    public users: User[]
-    public url: string
+@Injectable({
+    providedIn: 'root'
+})
+export class UserService {
+
+    public loggedUser: User
 
     constructor(public _http: HttpClient) {
-        this.url= globalUrl
+
     }
 
     pruebas() {
@@ -19,26 +21,31 @@ export class userService {
 
     getUsers(): Observable<any> {
         var users = 'users'
-        return this._http.get(this.url + users);
+        return this._http.get(globalUrl + users);
     }
 
     getUser(userId): Observable<any> {
-        return this._http.get(this.url + 'user/' + userId)
+        return this._http.get(globalUrl + 'user/' + userId)
     }
 
     search(searchString): Observable<any> {
-        return this._http.get(this.url + 'search/' + searchString)
+        return this._http.get(globalUrl + 'search/' + searchString)
     }
 
-    create(user): Observable<any>{
-        let params = JSON.stringify(user)
-        let headers = new HttpHeaders().set('Content-type', 'application/json') 
-        return this._http.post(this.url+'user', params, {headers:headers})
+    login(email: string, pass: string) {
+        return this._http.post(globalUrl + 'login', { email, pass })
+    }
+
+    create(user: User): Observable<any> {
+        let headers = new HttpHeaders().set('Content-type', 'application/json')
+        return this._http.post(globalUrl + 'user', user, { headers })
+    }
+
+    deleteUser(user: User): Observable<any> {
+        return this._http.delete(globalUrl + 'user/' + user.email)
     }
 
     //Habrá que añadir mas llamadas cuando las tengamos...
 
-
-    //More llamadas...
 
 }

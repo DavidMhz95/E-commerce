@@ -1,0 +1,89 @@
+<app-header></app-header>
+
+<div style="background-color: #f2f2f2; height: 80vh; padding:0 30px;" class="flex-container">
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+        <mat-tab-group mat-align-tabs="start" (selectedTabChange)="errorMessage=undefined">
+            <mat-tab label="Conectarse">
+                <mat-card style="border: solid 0px rgba(0,0,0,0.12); box-shadow: none; border-radius: 2px;">
+                    <span *ngIf="errorMessage" class="errorMessage">{{errorMessage}}</span>
+                    <form class="mid-form" #userForm="ngForm" (ngSubmit)="onLoginSubmit()">
+                        <div style="position: relative">
+                            <span [class.hidden]="!email" class="preInput">Correo electrónico</span>
+                            <input type="email" name="email" [(ngModel)]="email" [class.completeInput]="email" matInput
+                                placeholder="Correo electrónico" required>
+                        </div>
+                        <div style="position: relative">
+                            <span [class.hidden]="!pass" class="preInput">Contraseña</span>
+                            <input [type]="isPass?'password':'text'" [class.completeInput]="pass" matInput name="pass"
+                                [(ngModel)]="pass" placeholder="Contraseña" required>
+                            <mat-icon class="pass-visibility" (click)="isPass=!isPass">
+                                {{isPass?'visibility':'visibility_off'}} </mat-icon>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px;">
+                            <mat-checkbox name="remember" [(ngModel)]="remember">Mantener sesión iniciada
+                            </mat-checkbox>
+                        </div>
+                        <button type="submit" mat-flat-button class="btn"
+                            [disabled]=userForm.invalid>Conectarse</button>
+                    </form>
+
+                </mat-card>
+            </mat-tab>
+            <mat-tab label="Registrarse">
+                <mat-card style="border: solid 0px rgba(0,0,0,0.12); box-shadow: none; border-radius: 2px;">
+                    <span *ngIf="errorMessage" class="errorMessage">{{errorMessage}}</span>
+                    <form class="mid-form" #userForm2="ngForm" (ngSubmit)="onRegisterSubmit()">
+
+                        <div style="position: relative">
+                            <span [class.hidden]="!user.name" class="preInput">Nombre</span>
+                            <input type="text" name="name" [(ngModel)]="user.name" [class.completeInput]="user.name"
+                                matInput placeholder="Nombre" required>
+                        </div>
+
+                        <div style="position: relative">
+                            <span [class.hidden]="!user.surname" class="preInput">Apellido (Opcional)</span>
+                            <input type="text" name="surname" [(ngModel)]="user.surname"
+                                [class.completeInput]="user.surname" matInput placeholder="Apellido">
+                        </div>
+
+                        <div style="position: relative">
+                            <span [class.hidden]="!user.email" class="preInput">Correo electrónico</span>
+                            <input type="email" name="email" [(ngModel)]="user.email" [class.completeInput]="user.email"
+                                matInput placeholder="Correo electrónico" required>
+                        </div>
+
+                        <div style="position: relative">
+                            <span [class.hidden]="!registrationPass" class="preInput">Contraseña</span>
+                            <input type="password" name="registrationPass" [(ngModel)]="registrationPass"
+                                [class.completeInput]="registrationPass" matInput placeholder="Contraseña" required>
+                        </div>
+
+                        <div style="position: relative">
+                            <span [class.hidden]="!registrationPass2" class="preInput">Contraseña</span>
+                            <input type="password" name="registrationPass2" [(ngModel)]="registrationPass2"
+                                [class.completeInput]="registrationPass2" matInput placeholder="Repita Contraseña" required>
+                        </div>
+
+                        <div style="margin-top: 10px; font-size: 12px;">
+                            <mat-checkbox name="isAccept" [(ngModel)]="isAccept" required>He leído y acepto los termnios y
+                                condiciones de BlackMarket
+                            </mat-checkbox >
+                        </div>
+
+                        <div style="font-size: 12px;">
+                            <mat-checkbox name="isSubscribed" [(ngModel)]="isSubscribed">Deseo subscribirme al boletín
+                                de
+                                noticias para recibir descuentos y promociones especiales
+                            </mat-checkbox>
+                        </div>
+
+                        <button type="submit" mat-flat-button class="btn"
+                            [disabled]=userForm2.invalid>Registrarse</button>
+                    </form>
+                </mat-card>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>
+
+<app-footer></app-footer>

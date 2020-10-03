@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: 'landing', loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule)  },
+  { path: 'registration', loadChildren: () => import('./registration/registration.module').then(m => m.RegistrationModule) },
   { path: 'admin', loadChildren: () => import('./admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)},
   { path: '**', redirectTo:'landing'}
 ];

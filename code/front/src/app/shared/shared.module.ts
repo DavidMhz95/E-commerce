@@ -14,28 +14,38 @@ import { MatTableModule } from '@angular/material/table';
 import { NoCommaPipe } from './no-comma.pipe';
 import { PaymentTypesModule } from '../components/payment-types/payments.module';
 import { FilterDuplicatesPipe } from './filter-duplicates.pipe';
+import { HeaderOrderComponent } from '../components/header-order/header-order.component';
+import { HeaderComponent } from '../components/header/header.component';
+import { FooterComponent } from '../components/footer/footer.component';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
 @NgModule({
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatBadgeModule,
+    FormsModule,
+    MatTabsModule,
+    MatDividerModule,
+    MatTooltipModule,
+    RouterModule,
+    MatTableModule,
+    PaymentTypesModule
+  ],
   declarations: [
-    CarouselComponent, 
-    QuantitySelectorComponent, 
-    ProductComponent, 
+    CarouselComponent,
+    QuantitySelectorComponent,
+    ProductComponent,
     OrderComponent,
     CartProductsTableComponent,
     NoCommaPipe,
     FilterDuplicatesPipe,
-  ],
-  imports: [
-    CommonModule,
-    MatIconModule,
-    FormsModule,
-    MatTabsModule,
-    MatDividerModule,
-    RouterModule,
-    MatTableModule,
-    PaymentTypesModule
+    HeaderOrderComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   exports: [
     CarouselComponent,
@@ -45,6 +55,9 @@ import { FilterDuplicatesPipe } from './filter-duplicates.pipe';
     CartProductsTableComponent,
     NoCommaPipe,
     FilterDuplicatesPipe,
-  ]
+    HeaderOrderComponent,
+    HeaderComponent,
+    FooterComponent,
+  ],
 })
 export class SharedModule { }

@@ -3,13 +3,15 @@ import { Product } from '../models/product';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class ProductService {
     public productos: Product[]
     public url: string
 
     constructor(private _http: HttpClient) {
-        this.url="urlgenerica.lol"
+        this.url = "urlgenerica.lol"
     }
 
     pruebas() {

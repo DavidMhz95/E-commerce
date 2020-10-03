@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="card-sb ellipsis">6 Visitantes</div>
-                <div  class="clickable ellipsis">Ver Reporte</div>
+                <div class="clickable ellipsis">Ver Reporte</div>
             </div>
         </mat-card>
     </div>
@@ -58,11 +58,12 @@
 </div>
 
 <div style="margin-top: 10px; margin-bottom: 10px; margin-left:8px;">
-    <div style="float: left;" *ngFor="let customer of lastestCustomers" class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+    <div style="float: left;" *ngFor="let customer of lastestCustomers"
+        class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
         <mat-card class="card">
             <div class="flex-container">
                 <div style="flex-grow: unset">
-                    <img class="profile-img"  [src]="customer?.image">
+                    <img class="profile-img" [src]="customer?.image">
                 </div>
                 <div class="flex-container">
                     <div style="text-align:left;margin-right: 20px;">
@@ -90,11 +91,12 @@
 </div>
 
 <div style="margin-top: 10px;  margin-bottom: 10px; margin-left:8px;">
-    <div style="float: left;" *ngFor="let customer of bestCustomers" class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+    <div style="float: left;" *ngFor="let customer of bestCustomers"
+        class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
         <mat-card class="card">
             <div class="flex-container">
                 <div style="flex-grow: unset">
-                    <img class="profile-img"  [src]="customer?.image">
+                    <img class="profile-img" [src]="customer?.image">
                 </div>
                 <div class="flex-container">
                     <div style="text-align:left;margin-right: 20px;">
@@ -110,6 +112,39 @@
             <div style="margin-bottom: 5px;" class="flex-container">
                 <div class="card-sb">Productos: 1</div>
                 <div class="clickable ellipsis" (click)="showHistory(customer)">Ver Historial</div>
+            </div>
+        </mat-card>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+
+<div style="opacity:0.8; margin-left: 15px;" class="title">
+    Todos los Clientes
+</div>
+
+<div style="margin-top: 10px;  margin-bottom: 10px; margin-left:8px;">
+    <div style="float: left;" *ngFor="let user of allCustomers"
+        class="padding7 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+        <mat-card class="card">
+            <mat-icon class="delete-user" (click)="deleteUser(user)">close</mat-icon>
+            <div class="flex-container">
+                <div style="flex-grow: unset">
+                    <img class="profile-img" [src]="user?.image?user.image:'assets/images/defaultProfile.png'">
+                </div>
+                <div class="flex-container">
+                    <div style="text-align:left;margin-right: 20px;">
+                        <div style="margin-bottom: 0px;" class="card-title uppercase">{{user?.name}} {{user?.surname}}</div>
+                        <div class="card-subtitle">{{user?.email}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-container" style="text-align:right; margin-top: 5px;">
+                <div class="card-number">{{user?.totalSpent?user?.totalSpent:0|number}}€</div>
+            </div>
+            <div style="margin:15px 0; border-top:1px solid rgba(0, 0, 0, 0.125)"></div>
+            <div style="margin-bottom: 5px;" class="flex-container">
+                <div class="card-sb">Productos: 1</div>
+                <div class="clickable ellipsis" (click)="showHistory(user)">Ver Historial</div>
             </div>
         </mat-card>
     </div>

@@ -1,0 +1,122 @@
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: black !important;
+  height: 3px !important;
+}
+
+::ng-deep .mat-tab-header {
+  border: 0px !important;
+}
+
+::ng-deep .mat-tab-label-active {
+  opacity: 1 !important;
+}
+
+div {
+  font-family: "Century Gothic", sans-serif !important;
+}
+
+.btn {
+  text-transform: uppercase;
+  padding: 4px 12px;
+  color: white;
+  background-color: #323232;
+  font-size: 12px;
+  font-weight: 600;
+  width: 100%;
+  border-radius: 3px;
+}
+
+.btn:focus {
+  box-shadow: none !important;
+}
+
+mat-select,
+input[type="text"],
+input[type="file"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  margin-top: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 3px;
+  padding: 15px 14px;
+  font-size: 14px;
+  height: 57px;
+}
+
+input:not(:placeholder-shown) {
+  padding: 20px 14px 5px 14px;
+}
+
+input[type="text"]:focus,
+input[type="file"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea {
+  box-shadow: 0px 0px 5px #eee inset;
+  transition: 300ms all;
+}
+
+.completeInput {
+  padding: 22px 10px 8px 10px;
+}
+
+.subInput {
+  margin-top: 5px;
+  font-size: 10px;
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+.preInput {
+  font-size: 12px;
+  opacity: 0.8;
+  line-height: 1.6;
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  opacity: 1;
+  transition: top 0.3s ease-in-out;
+  z-index: 1;
+}
+
+.hidden {
+  opacity: 0;
+  top: 20px;
+  z-index: -1;
+}
+
+mat-checkbox {
+  font-family: "Century Gothic", sans-serif !important;
+  opacity: 0.8;
+}
+
+.pass-visibility {
+  position: absolute;
+  font-size: 24px;
+  opacity: 0.4;
+  right: 15px;
+  top: 23px;
+  cursor: pointer;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 12px;
+}
+
+::ng-deep .mat-checkbox-layout .mat-checkbox-label {
+  line-height: 20px !important;
+}
+
+::ng-deep .mat-checkbox-layout {
+  white-space: normal !important;
+}
+

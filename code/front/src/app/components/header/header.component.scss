@@ -15,20 +15,38 @@
     justify-content: center;
   }
 
-  a{
+  a {
     cursor: pointer;
     color: #545454;
   }
-  a:hover{
+  a:hover {
     text-decoration: none;
   }
 }
 
-
-::ng-deep .mat-badge-content{
+::ng-deep .mat-badge-content {
   font-size: 10px !important;
   height: 20px !important;
   width: 20px !important;
   line-height: 20px !important;
   font-weight: 400 !important;
+}
+
+.cart-badge {
+  position: absolute;
+  cursor: pointer;
+  right: 10px;
+}
+
+.user-badge {
+  position: absolute;
+  cursor: pointer;
+  right: 60px;
+  font-size: 26px;
+}
+
+.profile-img {
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
 }

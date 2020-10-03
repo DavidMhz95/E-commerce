@@ -20,14 +20,12 @@ import { PaymentTypesModule } from '../components/payment-types/payments.module'
     LayoutRoutingModule,
     MatIconModule,
     MatBadgeModule,
-    PaymentTypesModule
+    PaymentTypesModule,
+    SharedModule,
   ],
   declarations: [
     LayoutComponent,
-    HeaderOrderComponent,
-    HeaderComponent,
-    HeaderSectionsComponent,
-    FooterComponent,
+    HeaderSectionsComponent,   
   ],
 })
 export class LayoutModule { }

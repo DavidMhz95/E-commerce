@@ -3,13 +3,15 @@ import { Order } from '../models/order';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class OrderService {
     public orders: Order[]
     public url: string
 
     constructor(private _http: HttpClient) {
-        this.url="urlgenerica.lol"
+        this.url = "urlgenerica.lol"
     }
 
     pruebas() {
