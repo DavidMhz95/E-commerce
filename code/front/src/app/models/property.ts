@@ -1,4 +1,4 @@
-  export class Properties {
+  export class Property {
 
     constructor(
         public name: string,
