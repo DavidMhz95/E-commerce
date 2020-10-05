@@ -17,8 +17,8 @@ router.post('/logIn', UserController.logIn)
 //Rutas para Productos
 router.post('/product', ProductController.add)
 router.get('/products', ProductController.getAll)
-router.get('/user/:ref', ProductController.getProductByRef)
-router.delete('/user/:ref', ProductController.deleteByRef)
+router.get('/product/:ref', ProductController.getProductByRef)
+router.delete('/product/:ref', ProductController.deleteByRef)
 router.post('/updateProduct', ProductController.update)
 router.get('/exampleProduct', ProductController.productExample)
 
