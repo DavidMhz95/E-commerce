@@ -9,7 +9,7 @@
                     <form class="mid-form" #userForm="ngForm" (ngSubmit)="onLoginSubmit()">
                         <div style="position: relative">
                             <span [class.hidden]="!email" class="preInput">Correo electrónico</span>
-                            <input type="email" name="email" [(ngModel)]="email" [class.completeInput]="email" matInput
+                            <input type="email" autofocus name="email" [(ngModel)]="email" [class.completeInput]="email" matInput
                                 placeholder="Correo electrónico" required>
                         </div>
                         <div style="position: relative">

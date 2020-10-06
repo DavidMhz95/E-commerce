@@ -15,10 +15,6 @@ export class UserService {
 
     }
 
-    pruebas() {
-        return 'Soy el servicio de users'
-    }
-
     getUsers(): Observable<any> {
         var users = 'users'
         return this._http.get(globalUrl + users);
@@ -36,6 +32,10 @@ export class UserService {
         return this._http.post(globalUrl + 'login', { email, pass })
     }
 
+    logout(){
+        this.loggedUser = undefined
+    }
+
     create(user: User): Observable<any> {
         let headers = new HttpHeaders().set('Content-type', 'application/json')
         return this._http.post(globalUrl + 'user', user, { headers })
@@ -44,8 +44,4 @@ export class UserService {
     deleteUser(user: User): Observable<any> {
         return this._http.delete(globalUrl + 'user/' + user.email)
     }
-
-    //Habrá que añadir mas llamadas cuando las tengamos...
-
-
 }

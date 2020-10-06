@@ -1,0 +1,18 @@
+<app-header></app-header>
+
+<div style="background-color: #f2f2f2; height: 80vh; padding:0 30px;" class="flex-container">
+    <div style="float: left" class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+        <mat-card style="border: solid 0px rgba(0,0,0,0.12); box-shadow: none; border-radius: 2px;">
+            Profile Information
+            <button type="submit" mat-flat-button class="btn" (click)="userService?.logout()" routerLink="/landing/products">Desconectar</button>
+        </mat-card>
+    </div>
+
+    <div style="float: left" class="col-xl-8 col-lg-8 col-md-6 col-sm-6 col-xs-12">
+        <mat-card style="border: solid 0px rgba(0,0,0,0.12); box-shadow: none; border-radius: 2px;">
+            Profile Information
+        </mat-card>
+    </div>
+</div>
+
+<app-footer></app-footer>

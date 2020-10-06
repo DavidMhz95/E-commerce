@@ -44,7 +44,10 @@ export class RegistrationComponent {
         if (user) {
           //Guardar en localstorage el user
           this.userService.loggedUser = user
-          this.router.navigate(['/'])
+          if (this.remember) {
+            localStorage.setItem('BM_User', JSON.stringify({ email: user.email, hash_password: hash_pass }))
+          }
+          this.router.navigate(['/profile'])
         } else {
           this.errorMessage = "Has introducido un email o contraseña erróneo."
         }
@@ -63,7 +66,7 @@ export class RegistrationComponent {
         if (user) {
           //Guardar en localstorage el user
           this.userService.loggedUser = user
-          this.router.navigate(['/'])
+          this.router.navigate(['/profile'])
         } else {
           this.errorMessage = "Has introducido un email o contraseña erróneo."
         }

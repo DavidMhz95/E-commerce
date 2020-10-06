@@ -137,7 +137,8 @@ mat-icon:focus {
   margin-bottom: 5px !important;
 }
 
-.mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
+.mat-expansion-panel-header-title,
+.mat-expansion-panel-header-description {
   align-items: center !important;
 }
 
@@ -146,10 +147,14 @@ mat-icon:focus {
   width: calc(100% - 15px);
 }
 
-mat-datepicker-toggle:focus{
-  outline: none
+mat-datepicker-toggle:focus {
+  outline: none;
 }
 
-button:focus{
+button:focus {
+  outline: none !important;
+}
+
+:focus {
   outline: none !important;
 }
