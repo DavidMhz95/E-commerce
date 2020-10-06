@@ -128,33 +128,41 @@ function update(req, res) {
 
 function add(req, res) {
     //Recoger los parámetros por post
-    var product : Product = req.body;
-    product.type = 1
-    var boolQuery = new esb.boolQuery()
-    .must(new esb.MatchPhraseQuery('reference', product.reference))
-    .must(new esb.MatchPhraseQuery('type', 1))
-    if (product) {
-        const requestBody = new esb.requestBodySearch().query(boolQuery);
-        executeQuery(requestBody.toJSON()).then(
-            result => {
-                if (result.body.hits.hits.length > 0) {
-                    res.status(200).send({
-                        response: false
-                    });
-                } else {
-                    saveProduct(product).then(() => {
-                        return res.status(201).send({
-                            response: true,
-                            product: product
+    var product: Product = req.body;
+    if (product.reference &&
+        product.name &&
+        product.price &&
+        product.description &&
+        product.stockNumber &&
+        product.section &&
+        product.subsection) {
+        product.type = 1
+        var boolQuery = new esb.boolQuery()
+            .must(new esb.MatchPhraseQuery('reference', product.reference))
+            .must(new esb.MatchPhraseQuery('type', 1))
+        if (product) {
+            const requestBody = new esb.requestBodySearch().query(boolQuery);
+            executeQuery(requestBody.toJSON()).then(
+                result => {
+                    if (result.body.hits.hits.length > 0) {
+                        res.status(200).send({
+                            response: false
                         });
-                    },
-                        error => console.log(error))
+                    } else {
+                        saveProduct(product).then(() => {
+                            return res.status(201).send({
+                                response: true,
+                                product: product
+                            });
+                        },
+                            error => console.log(error))
+                    }
+                }, error => {
+                    console.log(error)
                 }
-            }, error =>{
-                console.log(error)
-            }
             )
 
+        }
     } else {
         return res.status(400).send({
             status: 'error',
