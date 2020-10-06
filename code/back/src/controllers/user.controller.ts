@@ -48,7 +48,6 @@ function logIn(req: any, res: any) {
     })
 }
 
-
 function getByEmail(req, res) {
     _getUserByEmail(req.params.email).then(((response: any) => {
         var user: User
@@ -97,8 +96,6 @@ function create(req, res) {
         return res.status(400).send('Faltan datos por enviar');
     }
 }
-
-
 
 function getAll(req, res) {
     const requestBody = new esb.RequestBodySearch()
@@ -161,8 +158,6 @@ function update(req, res) {
     }
 }
 
-
-
 function deleteByEmail(req, res) {
     //Recoger los parámetros por post
     var userEmail = req.params.email;
@@ -182,7 +177,6 @@ function deleteByEmail(req, res) {
         })
     }
 }
-
 
 module.exports = controller;
 
