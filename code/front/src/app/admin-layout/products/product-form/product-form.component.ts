@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Product } from 'src/app/models/product';
+import { ProductService } from 'src/app/servicesForModels/product.service';
 import { Property } from 'src/app/models/property';
-
+import { globalUrl } from '../../../app.utils';
 
 @Component({
   selector: 'app-product-form',
@@ -9,29 +11,71 @@ import { Property } from 'src/app/models/property';
 })
 export class ProductFormComponent implements OnInit {
 
-
   @Input('isEdition') isEdition: boolean;
 
   isSaleEnabled: boolean = false
 
-  public properties: Property[] = []
   public fakeProperty: Property
-
   public newPropertyName: string
   public newPropertyValues: string[] = []
   public detail: string
 
-  public details : String [] = []
-  constructor() { }
+  //Product
+  public details: string[] = []
+  public properties: Property[] = []
+
+  public product: Product
+  constructor(public productService: ProductService) {
+    this.product = new Product('', null, '', 0, 0, null, '', null, 0, '', '')
+  }
 
   ngOnInit(): void {
   }
 
-  onSubmit(){
-    
+  imageUpload(data) {
+    let image_data = data.body.image;
+    //this.product.image = image_data
   }
-  // Properties
 
+  afuConfig = {
+    multiple: true,
+    formatsAllowed: ".jpg,.png,.jpeg",
+    maxSize: "50",
+    uploadAPI: {
+      url: globalUrl //+  Metodo para subir imagen
+    },
+    theme: "attachPin",
+    hideProgressBar: true,
+    hideResetBtn: true,
+    hideSelectBtn: false,
+    fileNameIndex: true,
+    replaceTexts: {
+      selectFileBtn: 'Select Files',
+      resetBtn: 'Reset',
+      uploadBtn: 'Upload',
+      dragNDropBox: 'Drag N Drop',
+      attachPinBtn: 'Sube tu imagen...',
+      afterUploadMsg_success: 'Successfully Uploaded !',
+      afterUploadMsg_error: 'Upload Failed !',
+      sizeLimit: 'Size Limit'
+    }
+  };
+
+  onProductSubmit() {
+    this.product.properties = this.properties
+    this.product.details = this.details
+    this.productService.create(this.product).subscribe(
+      response => {
+        console.log(response)
+      },
+      error => {
+        console.log(error)
+
+      }
+    )
+  }
+
+  // Properties
   public addPropertyName() {
     if (this.newPropertyName) {
       this.fakeProperty = new Property(this.newPropertyName, []);
@@ -54,7 +98,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   public addPropertyValue(property, i) {
-    console.log(property,i)
+    console.log(property, i)
     if (this.newPropertyValues[i] && !property.values.includes(this.newPropertyValues[i])) {
       property.values.push((this.newPropertyValues[i]))
     }
@@ -75,7 +119,7 @@ export class ProductFormComponent implements OnInit {
 
   }
 
-  public addDetails(){
+  public addDetails() {
     if (this.detail) {
       this.details.push(this.detail)
     }
@@ -83,7 +127,7 @@ export class ProductFormComponent implements OnInit {
     this.detail = undefined
   }
 
-  public removeFromDetails(detail){
+  public removeFromDetails(detail) {
 
     this.details.forEach(element => {
       if (element == detail) {

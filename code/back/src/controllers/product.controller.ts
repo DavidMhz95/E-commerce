@@ -86,7 +86,7 @@ function update(req, res) {
         params.type) {
 
         var Product: Product = {
-            ref: params.ref,
+            reference: params.reference,
             typeOfProduct: params.typeOfProduct,
             name: params.name,
             offerPrice: params.offerPrice,
@@ -100,7 +100,7 @@ function update(req, res) {
             type: params.type
         }
 
-        const requestBody = new esb.RequestBodySearch().query(new esb.MatchPhraseQuery('ref', Product.ref))
+        const requestBody = new esb.RequestBodySearch().query(new esb.MatchPhraseQuery('reference', Product.reference))
         executeQuery(requestBody.toJSON()).then(result => {
             var actualProduct = result.body.hits.hits[0];
             if (actualProduct) {
@@ -128,25 +128,41 @@ function update(req, res) {
 
 function add(req, res) {
     //Recoger los parámetros por post
-    var params = req.body;
-    var product: Product = JSON.parse(params.product)
-    if (product) {
-        const requestBody = new esb.RequestBodySearch().query(new esb.MatchPhraseQuery('ref', product.ref))
-        executeQuery(requestBody.toJSON()).then(result => {
-            if (result.body.hits.hits.length > 0) {
-                res.status(200).send({
-                    response: false
-                });
-            } else {
-                saveProduct(product).then(() => {
-                    return res.status(201).send({
-                        response: true
-                    });
-                },
-                    error => console.log(error))
-            }
-        })
+    var product: Product = req.body;
+    if (product.reference &&
+        product.name &&
+        product.price &&
+        product.description &&
+        product.stockNumber &&
+        product.section &&
+        product.subsection) {
+        product.type = 1
+        var boolQuery = new esb.boolQuery()
+            .must(new esb.MatchPhraseQuery('reference', product.reference))
+            .must(new esb.MatchPhraseQuery('type', 1))
+        if (product) {
+            const requestBody = new esb.requestBodySearch().query(boolQuery);
+            executeQuery(requestBody.toJSON()).then(
+                result => {
+                    if (result.body.hits.hits.length > 0) {
+                        res.status(200).send({
+                            response: false
+                        });
+                    } else {
+                        saveProduct(product).then(() => {
+                            return res.status(201).send({
+                                response: true,
+                                product: product
+                            });
+                        },
+                            error => console.log(error))
+                    }
+                }, error => {
+                    console.log(error)
+                }
+            )
 
+        }
     } else {
         return res.status(400).send({
             status: 'error',
@@ -174,7 +190,7 @@ function productExample(req, res) {
 
     var product: Product =
     {
-        ref: 12345,
+        reference: 12345,
         typeOfProduct: typeOfProduct,
         name: "Camiseta HardRock",
         offerPrice: 50,
@@ -197,7 +213,7 @@ function deleteByRef(req, res) {
     //Recoger los parámetros por post
     var productRef = req.params.ref;
     if (productRef) {
-        const requestBody = new esb.RequestBodySearch().query(new esb.MatchPhraseQuery('ref', productRef))
+        const requestBody = new esb.RequestBodySearch().query(new esb.MatchPhraseQuery('reference', productRef))
         executeQuery(requestBody.toJSON()).then(result => {
 
             var Product = result.body.hits.hits[0];

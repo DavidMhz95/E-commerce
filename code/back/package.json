@@ -1,5 +1,5 @@
 {
-  "name": "cake.semanticretrieval.services.alacarta.node",
+  "name": "black.market.node",
   "version": "1.0.0",
   "description": "Sistema de búsqueda y recuperación de contenidos almacenados en el sistema 'Black Market' propiedad del trio de oro (MAD)",
   "main": "dist/app.js",

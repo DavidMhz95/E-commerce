@@ -3,7 +3,7 @@ import { Property } from './property';
 export class Product {
 
     constructor(
-        public ref: number,
+        public reference: string,
         public properties: Property[],
         public name: string,
         public offerPrice: number,

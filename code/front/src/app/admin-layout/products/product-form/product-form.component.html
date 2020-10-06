@@ -1,20 +1,26 @@
 <div class="title" style="margin-bottom:10px;">
     Crear Producto
 </div>
-<form class="mid-form" #productForm="ngForm" (ngSubmit)="onSubmit()">
+<form class="mid-form" #productForm="ngForm" (ngSubmit)="onProductSubmit()">
     <mat-card class="card" style="margin-top: 20px">
 
         <div class="preInput">
             Referencia:
         </div>
         <div style="position: relative">
-            <input matInput placeholder="Ex. Niked20019N" style="padding-right: 30px;">
+            <input matInput placeholder="Ex. Niked20019N" #reference="ngModel" [(ngModel)]="product.reference" name="reference"  style="padding-right: 30px;" required>
+            <small style="color: red;" *ngIf="!reference.valid && reference.touched">
+                La referencia no es válida
+            </small>
         </div>
         <div class="preInput">
             Nombre:
         </div>
         <div style="position: relative">
-            <input matInput placeholder="Ex. Zapatillas, Camisetas, Tarros de miel..." style="padding-right: 30px;">
+            <input matInput placeholder="Ex. Zapatillas, Camisetas, Tarros de miel..."  #name="ngModel" [(ngModel)]="product.name" name="name"  style="padding-right: 30px;" required>
+            <small style="color: red;" *ngIf="!name.valid && name.touched">
+                El Nombre no es válido
+            </small>
         </div>
 
     </mat-card>
@@ -26,7 +32,7 @@
         </div>
 
         <div style="position: relative">
-            <input [(ngModel)]="newPropertyName" matInput placeholder="Ex.Talla, Tamaño, Color"
+            <input [(ngModel)]="newPropertyName" name="newPropertyName" matInput placeholder="Ex.Talla, Tamaño, Color"
                 style="padding-right: 30px;">
         </div>
         <div style="margin-top: 20px">
@@ -40,8 +46,8 @@
             <div class="flex-container">
                 <div class="flex-container" style="line-height: 1.3; margin-right: 10px; flex-grow: 1;">
                     <div style="width: 100%;">
-                        <input [(ngModel)]="newPropertyValues[i]" matInput placeholder="Ex. S,M,L,XL"
-                            style="padding-right: 30px;">
+                        <input [(ngModel)]="newPropertyValues[i]" name="newPropertyValues" matInput placeholder="Ex. S,M,L,XL"
+                            style="padding-right: 30px;" >
                     </div>
                 </div>
                 <mat-icon style="cursor:pointer" matTooltip="Añade un valor" (click)="addPropertyValue(property, i)">
@@ -72,7 +78,10 @@
             Precio
         </div>
         <div style="position: relative">
-            <input matInput placeholder="10€" style="padding-right: 30px;">
+            <input matInput placeholder="10€" [(ngModel)]="product.price" name="price"  #price="ngModel" type="number" style="padding-right: 30px;" required>
+            <small style="color: red;" *ngIf="!price.valid && price.touched">
+                El precio no es válido
+            </small>
         </div>
 
         <div [ngClass]="{'hidden': !isSaleEnabled, 'visible':isSaleEnabled }">
@@ -80,12 +89,12 @@
                 Precio Oferta
             </div>
             <div style="position: relative">
-                <input matInput placeholder="10€" style="padding-right: 30px;">
+                <input matInput placeholder="10€" [(ngModel)]="product.offerPrice" name="offerPrice" type="number" style="padding-right: 30px;" >
             </div>
         </div>
 
         <div style="margin-top: 15px;">
-            <mat-radio-group aria-label="Select an option" [(ngModel)]="isSaleEnabled">
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="isSaleEnabled" name="offerEnable">
                 <mat-radio-button [value]="true">Oferta</mat-radio-button>
                 <mat-radio-button [value]="false">Sin Oferta</mat-radio-button>
             </mat-radio-group>
@@ -99,7 +108,11 @@
             Imagenes
         </div>
         <div style="position: relative">
-            <input type="file" name="file0" />
+            
+            <angular-file-uploader [config]="afuConfig" (ApiResponse)="imageUpload($event)">
+            </angular-file-uploader>
+
+
         </div>
     </mat-card>
 
@@ -108,14 +121,17 @@
             Descripcion
         </div>
         <div style="position: relative">
-            <input matInput placeholder="Informacion sobre el producto" style="padding-right: 30px;">
+            <input matInput placeholder="Informacion sobre el producto"  [(ngModel)]="product.description" name="description"  #description="ngModel" style="padding-right: 30px;" required>
+            <small style="color: red;" *ngIf="!description.valid && description.touched">
+                La informacion del producto no es válida
+            </small>
         </div>
 
         <div class="preInput" style="margin-top: 10px">
             Detalles
         </div>
         <div style="position: relative">
-            <input matInput [(ngModel)]="detail" placeholder="Algodon, HandMade.." style="padding-right: 30px;">
+            <input matInput [(ngModel)]="detail" name="detail" placeholder="Algodon, HandMade.." style="padding-right: 30px;" >
         </div>
         <div style="margin-top: 20px">
             <div style="font-size: 13px; margin-bottom: 0px; width: 100%;  " class="detalles">
@@ -135,18 +151,38 @@
         </div>
 
     </mat-card>
-
     <mat-card class="card" style="margin-top: 20px">
         <div class="preInput" style="margin-top: 10px">
             Cantidad en Stock
         </div>
         <div style="position: relative">
-            <input matInput placeholder="Ex. 1,3,28" style="padding-right: 30px;">
+            <input  type="number" matInput placeholder="Ex. 1,3,28" [(ngModel)]="product.stockNumber" name="stockNumber" #stockNumber="ngModel" style="padding-right: 30px;" required>
+            <small style="color: red;" *ngIf="!stockNumber.valid && stockNumber.touched">
+                El Numero de stock no es válido
+            </small>
+        </div>
+        <div class="preInput" style="margin-top: 10px">
+            Seccion
+        </div>
+        <div style="position: relative">
+            <input matInput placeholder="Ex. Hombre, Mujer, Niño ..." [(ngModel)]="product.section" name="section" #section="ngModel" style="padding-right: 30px;" required>
+            <small style="color: red;" *ngIf="!section.valid && section.touched">
+                La seccion no es válida
+            </small>
+        </div>
+        <div class="preInput" style="margin-top: 10px">
+           Subseccion
+        </div>
+        <div style="position: relative">
+            <input matInput placeholder="Ex. Top, Pantalones, Zapatillas..." [(ngModel)]="product.subsection" #subsection="ngModel" name="subsection" style="padding-right: 30px;" required>
+            <small style="color: red;" *ngIf="!subsection.valid && subsection.touched">
+                La subseccion no es válida
+            </small>
         </div>
     </mat-card>
 
     <div style="margin-top: 20px">
-        <button style="float:right" mat-flat-button color="primary">Añadir Producto</button>
+        <button style="float:right" mat-flat-button class="btn" color="primary" [disabled]=productForm.invalid>Añadir Producto</button>
         <div style="clear:both"></div>
     </div>
 

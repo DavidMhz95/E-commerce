@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { globalUrl } from '../app.utils';
 
 @Injectable({
     providedIn: 'root'
@@ -30,9 +31,11 @@ export class ProductService {
     search(searchString): Observable<any> {
         return this._http.get(this.url + 'search/' + searchString)
     }
-
-    //Habrá que añadir mas llamadas cuando las tengamos...
-
+    
+    create(product: Product): Observable<any> {
+        return this._http.post(globalUrl + 'product', product)
+    }
+    
 
     //More llamadas...
 
