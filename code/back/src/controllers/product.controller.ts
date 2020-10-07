@@ -10,7 +10,6 @@ export interface ProductController {
     getAll: Function,
     update: Function,
     deleteByRef: Function,
-    productExample: Function
 }
 
 export var controller: ProductController = {
@@ -19,7 +18,6 @@ export var controller: ProductController = {
     update: (req, res) => update(req, res),
     deleteByRef: (req, res) => deleteByRef(req, res),
     getAll: (req, res) => getAll(req, res),
-    productExample: (req, res) => productExample(req, res)
 }
 
 function getProductByRef(req, res) {
@@ -34,9 +32,9 @@ function getProductByRef(req, res) {
         // Build the request body
         var query = requestBody.toJSON()
         executeQuery(query).then(result => {
-            return res.status(200).send({
-                results: result.body.hits.hits
-            });
+            return res.status(200).send(
+                result.body.hits.hits.map(h => h._source)
+            );
         })
     } else {
         return res.status(400).send({
@@ -54,9 +52,9 @@ function getAll(req, res) {
     // Build the request body
     var query = requestBody.toJSON()
     executeQuery(query).then(result => {
-        return res.status(200).send({
-            results: result.body.hits.hits
-        });
+        return res.status(200).send(
+            result.body.hits.hits.map(h => h._source)
+        );
     }, error => {
         return res.status(400).send({
             status: 'error',
@@ -105,9 +103,9 @@ function update(req, res) {
             var actualProduct = result.body.hits.hits[0];
             if (actualProduct) {
                 updateProduct(actualProduct._id, Product).then(() => {
-                    return res.status(200).send({
-                        response: true
-                    });
+                    return res.status(200).send(
+                        true
+                    );
                 }, error => {
                     console.log(error)
                 })
@@ -171,44 +169,6 @@ function add(req, res) {
     }
 }
 
-function productExample(req, res) {
-
-    var dictionary = new Dictionary()
-    var dictionary1 = new Dictionary()
-
-    dictionary.set("talla", "S")
-    dictionary.set("talla", "XS")
-    dictionary.set("talla", "M")
-
-    dictionary1.set("color", "rojo")
-    dictionary1.set("color", "azul")
-
-    var typeOfProduct: TypeOfProduct = {
-        name: "Camiseta",
-        properties: [dictionary, dictionary1]
-    }
-
-    var product: Product =
-    {
-        reference: 12345,
-        typeOfProduct: typeOfProduct,
-        name: "Camiseta HardRock",
-        offerPrice: 50,
-        price: 100,
-        images: ["https://content.asos-media.com/-/media/homepages/ww/2020/09/14/ww_hourglass_moment_870x1110.jpg", "https://content.asos-media.com/-/media/homepages/ww/2020/09/14/ww_flares_moment_870x1110-v2.jpg"],
-        description: "Camiseta de puta madre",
-        details: ["Detalles de la camiseta", "Algodon 60%", "Cocaina 100%"],
-        stockNumber: 50,
-        section: "Camisetas",
-        subsection: "Verano",
-        type: 1
-    }
-
-    return res.status(201).send({
-        product
-    });
-
-}
 function deleteByRef(req, res) {
     //Recoger los parámetros por post
     var productRef = req.params.ref;
@@ -219,9 +179,9 @@ function deleteByRef(req, res) {
             var Product = result.body.hits.hits[0];
             if (Product) {
                 deleteProduct(Product._id).then(() => {
-                    return res.status(200).send({
-                        response: true
-                    });
+                    return res.status(200).send(
+                         true
+                    );
                 },
                     error => {
                         return res.status(500).send({
