@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DataService, Dictionary, TypeOfProduct } from 'src/app/shared/data.service';
-import { Product } from 'src/app/components/product/product.component';
+import { Product } from 'src/app/models/product';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -25,7 +25,7 @@ export class ProductsComponent implements OnInit {
   constructor(public dataService: DataService, public activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.product = this.dataService.products.filter((p: Product) => { return this.activatedRoute.snapshot.params.id == p.id })[0]
+    this.product = this.dataService.products.filter((p: Product) => { return this.activatedRoute.snapshot.params.id == p.reference })[0]
     this.resetTypeOfProduct()
   }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService, CartProduct } from 'src/app/shared/shopping-cart.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { Product } from 'src/app/components/product/product.component';
+import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-shopping-cart',

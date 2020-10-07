@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ProductModalComponent } from '../product-modal/product-modal.component';
-import { Product } from './product.component';
+import { Product } from 'src/app/models/product';
 
 @Injectable({
   providedIn: 'root'

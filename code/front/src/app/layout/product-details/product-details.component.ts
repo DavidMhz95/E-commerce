@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router, NavigationStart, NavigationEnd} from '@angular/router';
 import { DataService } from 'src/app/shared/data.service';
 import { ShoppingCartService } from 'src/app/shared/shopping-cart.service';
-import { Product } from 'src/app/components/product/product.component';
+import { Product } from 'src/app/models/product';
 import { Route } from '@angular/compiler/src/core';
 
 
@@ -26,7 +26,7 @@ export class ProductDetailsComponent implements OnInit {
     router.events.subscribe((event)=>{
       if(event instanceof NavigationEnd){
         this.product = undefined
-        this.product = this.dataService.products.filter((p: Product)=>{ return this.activatedRoute.snapshot.params.id == p.id})[0]  
+        this.product = this.dataService.products.filter((p: Product)=>{ return this.activatedRoute.snapshot.params.id == p.reference})[0]  
       }
     })
    }
@@ -34,7 +34,7 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     if(!this.product){
       this.activatedRoute.snapshot.params.id
-      this.product = this.dataService.products.filter((p: Product)=>{ return this.activatedRoute.snapshot.params.id == p.id})[0]       
+      this.product = this.dataService.products.filter((p: Product)=>{ return this.activatedRoute.snapshot.params.id == p.reference})[0]       
     }
   }
 

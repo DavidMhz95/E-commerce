@@ -6,6 +6,7 @@ import { ProductModalComponent } from '../product-modal/product-modal.component'
 import { NoopScrollStrategy } from '@angular/cdk/overlay';
 import { DataService } from 'src/app/shared/data.service';
 import { ProductService } from './product.service';
+import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-product',
@@ -58,15 +59,3 @@ export class ProductComponent implements OnInit {
 
 }
 
-export interface Product {
-  id: number
-  name: string
-  offerPrice: number
-  price: number
-  images: string[]
-  description: string
-  details: string[]
-  stockNumber: number
-  section:string
-  subsection:string
-}

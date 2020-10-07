@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogContent } from '@angular/material/dialog';
-import { Product } from '../product/product.component';
+import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-product-modal',

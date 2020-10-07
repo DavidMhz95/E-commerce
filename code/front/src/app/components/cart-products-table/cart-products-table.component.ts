@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Product } from '../product/product.component';
+import { Product } from 'src/app/models/product';
 import { ShoppingCartService, CartProduct } from 'src/app/shared/shopping-cart.service';
 import { MatTableDataSource } from '@angular/material/table';
 

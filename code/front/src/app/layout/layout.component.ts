@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../shared/data.service';
 import { ShoppingCartService } from '../shared/shopping-cart.service';
 import { Router, NavigationStart } from '@angular/router';
+import { ProductService } from 'src/app/servicesForModels/product.service';
 
 @Component({
   selector: 'app-layout',
@@ -10,12 +11,24 @@ import { Router, NavigationStart } from '@angular/router';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor(private router: Router, private dataService: DataService, private cartService: ShoppingCartService) { }
+  constructor(private router: Router, private dataService: DataService, private cartService: ShoppingCartService, public productService : ProductService) { }
 
   ngOnInit(): void {
-    // this.dataService.products.forEach((product:Product)=>{
-    //   this.cartService.AddProduct(product, 1)
-    // })
+
+    this.productService.getProducts().subscribe(
+      response =>{
+        if(response){
+          this.dataService.products = response
+          console.log(this.dataService.products)
+        }
+      },
+      error =>{
+        console.log(error)
+      }
+    )
+    
+
+
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationStart) {
         document.body.scrollTop = 0; // Safari

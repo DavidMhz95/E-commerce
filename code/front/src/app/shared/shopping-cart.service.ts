@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../components/product/product.component';
+import { Product } from 'src/app/models/product';
 import { DataService } from './data.service';
 
 @Injectable({
@@ -19,7 +19,7 @@ export class ShoppingCartService {
   public AddProduct(product: Product, value: number) {
     var found: boolean
     this.products.forEach((p: CartProduct) => {
-      if (p.product.id == product.id) {
+      if (p.product.reference == product.reference) {
         if (value) {
           p.number += value
         } else {
@@ -39,7 +39,7 @@ export class ShoppingCartService {
 
   public RemoveProduct(product: Product, removeAll: boolean) {
     this.products.forEach((p: CartProduct) => {
-      if (p.product.id == product.id) {
+      if (p.product.reference == product.reference) {
         if (removeAll) {
           p.number = 0
         } else {

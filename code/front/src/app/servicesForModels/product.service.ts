@@ -9,10 +9,8 @@ import { globalUrl } from '../app.utils';
 })
 export class ProductService {
     public productos: Product[]
-    public url: string
 
     constructor(private _http: HttpClient) {
-        this.url = "urlgenerica.lol"
     }
 
     pruebas() {
@@ -21,15 +19,15 @@ export class ProductService {
 
     getProducts(): Observable<any> {
         var products = 'products'
-        return this._http.get(this.url + products);
+        return this._http.get(globalUrl + products);
     }
 
     getProduct(productId): Observable<any> {
-        return this._http.get(this.url + 'product/' + productId)
+        return this._http.get(globalUrl + 'product/' + productId)
     }
 
     search(searchString): Observable<any> {
-        return this._http.get(this.url + 'search/' + searchString)
+        return this._http.get(globalUrl+ 'search/' + searchString)
     }
     
     create(product: Product): Observable<any> {

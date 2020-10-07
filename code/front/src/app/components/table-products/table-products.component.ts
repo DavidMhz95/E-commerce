@@ -3,7 +3,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { CopyObject } from 'src/app/app.utils';
-import { Product } from '../product/product.component';
+import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-table-products',
