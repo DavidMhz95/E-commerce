@@ -119,3 +119,20 @@ mat-checkbox {
 ::ng-deep .mat-checkbox-layout {
   white-space: normal !important;
 }
+
+.profile-img {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
+
+::ng-deep .mat-list-item-content {
+  text-transform: uppercase;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0 32px !important;
+}
+
+::ng-deep .mat-list-item-content:hover {
+  background-color: darken($color: #fff, $amount: 5);
+}

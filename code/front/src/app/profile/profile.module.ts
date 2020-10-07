@@ -11,7 +11,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from '../shared/shared.module';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [ProfileComponent],
@@ -25,6 +27,9 @@ import { SharedModule } from '../shared/shared.module';
     MatButtonModule,
     MatCheckboxModule,
     MatIconModule,
+    MatTooltipModule,
+    MatListModule,
+    MatDividerModule,
     SharedModule,
   ]
 })
