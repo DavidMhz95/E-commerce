@@ -20,7 +20,6 @@ router.get('/products', ProductController.getAll)
 router.get('/product/:ref', ProductController.getProductByRef)
 router.delete('/product/:ref', ProductController.deleteByRef)
 router.post('/updateProduct', ProductController.update)
-router.get('/exampleProduct', ProductController.productExample)
 
 router.get('/', function (req, res, next) {
     res.sendFile('index.html', { root: __dirname })
