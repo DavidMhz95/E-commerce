@@ -27,6 +27,7 @@ import { TypeOfProductTableComponent } from './type-of-product-table/type-of-pro
 import { TypeOfProductComponent } from './type-of-product/type-of-product.component';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
+import { ProductFormEditComponent } from './product-form-edit/product-form-edit.component';
 
 
 
@@ -36,7 +37,8 @@ import { AngularFileUploaderModule } from 'angular-file-uploader';
     TypeProductTableComponent,
     TypeOfProductTableComponent,
     TypeOfProductComponent,
-    ProductFormComponent],
+    ProductFormComponent,
+    ProductFormEditComponent],
 
   imports: [
     CommonModule,

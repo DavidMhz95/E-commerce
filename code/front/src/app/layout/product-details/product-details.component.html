@@ -6,13 +6,13 @@
   <div style="float: right;" class="auto-clear col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
     <h1 style="margin-top: 10px; user-select: none; font-size: 26px; text-transform: uppercase;">{{product?.name}}</h1>
     <div>
-      <span *ngIf="product?.offerPrice!=undefined" class="offerPrice">
+      <span *ngIf="product?.offerPrice!=0" class="offerPrice">
         €{{product?.offerPrice}}
       </span>
-      <span *ngIf="product?.offerPrice==undefined" class="offerPrice">
+      <span *ngIf="product?.offerPrice==0" class="offerPrice">
         €{{product?.price}}
       </span>
-      <s class="price" *ngIf="product?.offerPrice!=undefined">
+      <s class="price" *ngIf="product?.offerPrice!=0">
         €{{product?.price}}
       </s>
     </div>
@@ -23,29 +23,13 @@
       </label>
     </div>
 
-    <div class="selector-talla" *ngIf="product?.stockNumber>0">
-      <label style="width: 100%; font-size: 12px; font-weight: bold;">
-        Talla
+    <div class="selector-talla"  *ngFor="let property of product?.properties">
+      <label *ngIf="product?.stockNumber>0" style="width: 100%; font-size: 12px; font-weight: bold;">
+        {{property.name}}
       </label>
-      <select style="outline: none;" id="OptionSelection">
-        <option value="XS" selected="selected">
-          XS
-        </option>
-
-        <option style="outline: none;" value="S" selected="selected">
-          S
-        </option>
-
-        <option value="M">
-          M
-        </option>
-
-        <option value="L">
-          L
-        </option>
-
-        <option value="XL">
-          XL
+      <select *ngIf="product?.stockNumber>0" style="outline: none;" id="OptionSelection">
+        <option value="" selected="selected" *ngFor="let propertyValues of property?.values">
+          {{propertyValues}}
         </option>
       </select>
     </div>
@@ -82,6 +66,11 @@
           {{item?.descriptionInformation}}</mat-tab>
       </mat-tab-group>
     </div>
+    
+    <a style="margin-top: 35px;" [routerLink]="['/admin/products', product?.reference]" mat-stroked-button class="btn">
+      EDITAR
+    </a>
+
   </div>
 </div>
 <div style="clear: both;"></div>

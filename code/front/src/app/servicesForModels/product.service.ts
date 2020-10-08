@@ -34,6 +34,10 @@ export class ProductService {
         return this._http.post(globalUrl + 'product', product)
     }
     
+    update(productId, product) : Observable<any> {
+        let params = JSON.stringify(product);
+        return this._http.post(globalUrl+'product/'+productId,params)
+    }
 
     //More llamadas...
 
