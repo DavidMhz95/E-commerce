@@ -1,13 +1,19 @@
 <app-header></app-header>
 
-<div style="background-color: #f2f2f2; height: 80vh; padding:30px 15px;">
+<div style="background-color: #f2f2f2; min-height: 80vh; padding:30px 15px;">
 
     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12" style="float: left;">
         <mat-card style="border: solid 0px rgba(0,0,0,0.12); box-shadow: none; border-radius: 2px;">
             <div style="text-align: center; margin-top: 10px;">
-                <img src="/assets/images/defaultProfile.png" routerLink="/profile"
+                <img [src]="imageSrc" routerLink="/profile"
                     [matTooltip]="userService?.loggedUser?.name + ' ' + userService?.loggedUser?.surname"
                     class="profile-img user-badge">
+
+                <h1>Upload file</h1>
+                <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+                    <input type="file" (change)="onFileChange($event)" />
+                    <input type="submit" [disabled]="formGroup.invalid" value="upload" />
+                </form>
             </div>
 
             <div
@@ -41,11 +47,13 @@
             Información de pedido
         </mat-card>
 
-        <div style="margin-top: 30px; font-size: 18px; text-transform: uppercase; margin-bottom: 10px">Otros Pedidos</div>
+        <div style="margin-top: 30px; font-size: 18px; text-transform: uppercase; margin-bottom: 10px">Otros Pedidos
+        </div>
         <mat-card style="border: solid 0px rgba(0,0,0,0.12); box-shadow: none; border-radius: 2px;">
             Información de pedido
         </mat-card>
     </div>
+    <div style="clear: both"></div>
 </div>
 
 <app-footer></app-footer>

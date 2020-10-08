@@ -11,7 +11,7 @@ export class OrderService {
     public url: string
 
     constructor(private _http: HttpClient) {
-        this.url = "urlgenerica.lol"
+    
     }
 
     pruebas() {
