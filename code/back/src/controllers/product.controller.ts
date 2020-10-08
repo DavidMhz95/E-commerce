@@ -131,7 +131,7 @@ function add(req, res) {
         product.name &&
         product.price &&
         product.description &&
-        product.stockNumber &&
+        Number.isInteger(product.stockNumber) &&
         product.section &&
         product.subsection) {
         product.type = 1
