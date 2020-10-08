@@ -1,10 +1,17 @@
 import { UserController } from './controllers/user.controller'
 import { ProductController } from './controllers/product.controller'
+import { ImageController } from './controllers/image.controller'
+
 var UserController: UserController = require('./controllers/user.controller')
 var ProductController: ProductController = require('./controllers/product.controller')
+var ImageController: ImageController = require('./controllers/image.controller')
 
 var express = require('express');
 var router = express.Router();
+
+//Rutas para Imagenes
+router.post('/images/upload', ImageController.upload)
+router.get('/images/:id', ImageController.get)
 
 //Rutas para Usuarios
 router.post('/user', UserController.create)
