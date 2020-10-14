@@ -11,7 +11,7 @@ import { ImageService } from '../servicesForModels/image.service';
 })
 export class ProfileComponent implements OnInit {
 
-  private imageSrc: string
+  imageSrc: string
 
   constructor(public userService: UserService, private fb: FormBuilder, private imageService: ImageService) { }
 
