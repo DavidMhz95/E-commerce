@@ -4,6 +4,7 @@ import { ProductService } from 'src/app/servicesForModels/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Property } from 'src/app/models/property';
 import { globalUrl } from '../../../app.utils';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-product-form-edit',
@@ -17,13 +18,13 @@ export class ProductFormEditComponent implements OnInit {
   public newPropertyValues: string[] = []
   public detail: string
   public isEdit: boolean
-
+  public images: string [] = []
   //Product
   public details: string[] = []
   public properties: Property[] = []
 
   public product: Product
-  constructor(public productService: ProductService, private _route: ActivatedRoute, private _router: Router) {
+  constructor(public productService: ProductService, private _route: ActivatedRoute, private _router: Router,  private fb: FormBuilder) {
     this.product = new Product('', null, '', 0, 0, null, '', null, 0, '', '')
     this.isEdit = true
   }
@@ -38,30 +39,6 @@ export class ProductFormEditComponent implements OnInit {
     let image_data = data.body.image;
     //this.product.image = image_data
   }
-
-  afuConfig = {
-    multiple: true,
-    formatsAllowed: ".jpg,.png,.jpeg",
-    maxSize: "50",
-    uploadAPI: {
-      url: globalUrl //+  Metodo para subir imagen
-    },
-    theme: "attachPin",
-    hideProgressBar: true,
-    hideResetBtn: true,
-    hideSelectBtn: false,
-    fileNameIndex: true,
-    replaceTexts: {
-      selectFileBtn: 'Select Files',
-      resetBtn: 'Reset',
-      uploadBtn: 'Upload',
-      dragNDropBox: 'Drag N Drop',
-      attachPinBtn: 'Sube tu imagen...',
-      afterUploadMsg_success: 'Successfully Uploaded !',
-      afterUploadMsg_error: 'Upload Failed !',
-      sizeLimit: 'Size Limit'
-    }
-  };
 
   onProductSubmit() {
     this.product.properties = this.properties
@@ -161,4 +138,25 @@ export class ProductFormEditComponent implements OnInit {
     })
   }
 
+
+  
+  public productForm = this.fb.group({
+    file: [null, Validators.required]
+  });
+  
+  public onFileChange(event) {
+    const reader = new FileReader();
+
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      console.log(file)
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.productForm.patchValue({
+          file: reader.result
+        });
+      };
+
+    }
+  }
 }

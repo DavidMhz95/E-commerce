@@ -42,7 +42,7 @@ export class ProfileComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this.imageService.upload(this.fileName, this.formGroup.get('file').value).subscribe((result: any) => {
+    this.imageService.upload(this.formGroup.get('file').value).subscribe((result: any) => {
       this.imageSrc = globalUrl + "images/" + result.id
     })
   }

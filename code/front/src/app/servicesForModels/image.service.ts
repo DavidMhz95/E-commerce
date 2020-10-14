@@ -9,7 +9,7 @@ export class ImageService {
 
   constructor(private _http: HttpClient) { }
 
-  upload(name: string, file: string) {
-    return this._http.post(globalUrl + 'images/upload', { name, file: JSON.stringify(file) })
+  upload(file: string) {
+    return this._http.post(globalUrl + 'images/upload', { file: JSON.stringify(file) })
   }
 }

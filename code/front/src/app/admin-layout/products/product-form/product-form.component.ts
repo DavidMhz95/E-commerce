@@ -3,6 +3,9 @@ import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/servicesForModels/product.service';
 import { Property } from 'src/app/models/property';
 import { globalUrl } from '../../../app.utils';
+import { ImageService } from 'src/app/servicesForModels/image.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-product-form',
@@ -19,13 +22,14 @@ export class ProductFormComponent implements OnInit {
   public newPropertyName: string
   public newPropertyValues: string[] = []
   public detail: string
+  public images: string [] = []
 
   //Product
   public details: string[] = []
   public properties: Property[] = []
 
   public product: Product
-  constructor(public productService: ProductService) {
+  constructor(public productService: ProductService, public imageService : ImageService, private fb: FormBuilder) {
     this.product = new Product('', null, '', 0, 0, null, '', null, 0, '', '')
   }
 
@@ -37,42 +41,38 @@ export class ProductFormComponent implements OnInit {
     //this.product.image = image_data
   }
 
-  afuConfig = {
-    multiple: true,
-    formatsAllowed: ".jpg,.png,.jpeg",
-    maxSize: "50",
-    uploadAPI: {
-      url: globalUrl //+  Metodo para subir imagen
-    },
-    theme: "attachPin",
-    hideProgressBar: true,
-    hideResetBtn: true,
-    hideSelectBtn: false,
-    fileNameIndex: true,
-    replaceTexts: {
-      selectFileBtn: 'Select Files',
-      resetBtn: 'Reset',
-      uploadBtn: 'Upload',
-      dragNDropBox: 'Drag N Drop',
-      attachPinBtn: 'Sube tu imagen...',
-      afterUploadMsg_success: 'Successfully Uploaded !',
-      afterUploadMsg_error: 'Upload Failed !',
-      sizeLimit: 'Size Limit'
-    }
-  };
-
   onProductSubmit() {
     this.product.properties = this.properties
     this.product.details = this.details
-    this.productService.create(this.product).subscribe(
-      response => {
-        console.log(response)
-      },
-      error => {
-        console.log(error)
+    var promises : any [] = []
+    this.files.forEach(file => {
+      promises.push(this.imageService.upload(file))
 
+    });
+    forkJoin(promises).subscribe(
+      response =>{
+        console.log(response)
+        response.forEach((element : any) => {
+          this.product.images.push(element.id) 
+        });
+
+        this.productService.create(this.product).subscribe(
+          response => {
+            console.log(response)
+          },
+          error => {
+            console.log(error)
+    
+          }
+        )
+
+      },
+      error =>{
+        console.log(error)
       }
     )
+
+
   }
 
   // Properties
@@ -140,4 +140,25 @@ export class ProductFormComponent implements OnInit {
 
   }
   //End of properties
+
+  public productForm = this.fb.group({
+    file: [null, Validators.required]
+  });
+  
+  public files : any [] 
+
+  public onFileChange(event) {
+    this.files = []
+    const reader = new FileReader();
+    console.log(event.target.files)
+    if (event.target.files && event.target.files.length) {
+        (event.target.files).forEach(element => {
+        reader.readAsDataURL(element);
+        reader.onload = () => {
+          this.files.push(reader.result)
+        };
+      });
+  
+    }
+  }
 }
