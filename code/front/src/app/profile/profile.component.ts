@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this.imageService.upload(undefined, this.formGroup.get('file').value).subscribe((result: any) => {
+    this.imageService.upload(this.formGroup.get('file').value).subscribe((result: any) => {
       this.userService.loggedUser.image = result.id
       this.imageSrc = globalUrl + "images/" + this.userService.loggedUser.image
       this.userService.updateUser(this.userService.loggedUser).subscribe((result: any) => {

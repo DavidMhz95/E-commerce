@@ -107,12 +107,9 @@
         <div class="preInput" style="margin-top: 10px">
             Imagenes
         </div>
-        <div style="position: relative">
             
-            <angular-file-uploader [config]="afuConfig" (ApiResponse)="imageUpload($event)">
-            </angular-file-uploader>
-
-
+        <div style="position: relative">
+            <input type="file" (change)="onFileChange($event)" [(ngModel)]="images" multiple />
         </div>
     </mat-card>
 

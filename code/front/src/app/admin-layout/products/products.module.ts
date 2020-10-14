@@ -21,7 +21,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
 import { TypeOfProductTableComponent } from './type-of-product-table/type-of-product-table.component';
 import { TypeOfProductComponent } from './type-of-product/type-of-product.component';
@@ -52,6 +52,7 @@ import { ProductFormEditComponent } from './product-form-edit/product-form-edit.
     MatRadioModule,
     MatTooltipModule,
     MatSelectModule,
+    ReactiveFormsModule,
     MatSidenavModule,
     SharedModule,
     MatButtonToggleModule,
