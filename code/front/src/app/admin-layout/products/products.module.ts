@@ -28,9 +28,6 @@ import { TypeOfProductComponent } from './type-of-product/type-of-product.compon
 import { ProductFormComponent } from './product-form/product-form.component';
 import { ProductFormEditComponent } from './product-form-edit/product-form-edit.component';
 
-
-
-
 @NgModule({
   declarations: [ProductsComponent, TableProductsComponent, DialogOverviewExampleDialog, PropertiesProductTableComponent,
     TypeProductTableComponent,

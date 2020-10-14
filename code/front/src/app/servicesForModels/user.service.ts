@@ -44,4 +44,8 @@ export class UserService {
     deleteUser(user: User): Observable<any> {
         return this._http.delete(globalUrl + 'user/' + user.email)
     }
+
+    updateUser(user: User){
+        return this._http.post(globalUrl + 'updateUser', user)
+    }
 }

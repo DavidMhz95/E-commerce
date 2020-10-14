@@ -76,7 +76,8 @@ function create(req, res) {
             rol: req.body.rol,
             email: req.body.email,
             hash_password: req.body.hash_password,
-            type: req.body.type
+            type: req.body.type,
+            image: undefined
         }
 
         _getUserByEmail(user.email).then((response: any) => {
@@ -120,8 +121,9 @@ function update(req, res) {
         params.surname &&
         params.email &&
         params.hash_password &&
-        params.type &&
-        params.rol) {
+        params.type != undefined &&
+        params.image &&
+        params.rol != undefined) {
 
         var user: User = {
             name: params.name,
@@ -129,7 +131,8 @@ function update(req, res) {
             rol: params.rol,
             email: params.email,
             hash_password: params.hash_password,
-            type: params.type
+            type: params.type,
+            image: params.image
         }
 
         const requestBody = new esb.RequestBodySearch().query(new esb.MatchPhraseQuery('email', user.email))

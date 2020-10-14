@@ -13,31 +13,33 @@ export var controller: ImageController = {
     get: (req, res) => download(req, res)
 }
 
-function upload(req, res) {
 
+const URI = "./../../images"
+function upload(req, res) {
     try {
-        var id = new Date().getTime().toString()
-        var fileName = path.join(__dirname, "./../", id)
+        const id = new Date().getTime().toString()
+        const local_path = path.join(__dirname, URI)
+        const fileName = path.join(local_path, id)
+        if (!fs.existsSync(local_path)) {
+            fs.mkdirSync(local_path)
+        }
         fs.writeFile(fileName, JSON.parse(req.body.file).toString().split(';base64,').pop(), 'base64', function (err) {
             if (err) {
                 return res.status(400).send(err);
             } else {
                 return res.status(200).send({ id });
             }
-
         })
-    }
-    catch (err) {
+    } catch (err) {
         return res.status(400).send(err);
     }
 }
 
 function download(req, res) {
-    var fileName = path.join(__dirname, "./../", req.params.id)
+    const fileName = path.join(__dirname, URI, req.params.id)
     try {
         res.sendFile(fileName);
-    }
-    catch (err) {
+    } catch (err) {
         return res.status(400).send(err);
     }
 }

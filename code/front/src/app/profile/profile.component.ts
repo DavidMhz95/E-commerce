@@ -11,11 +11,16 @@ import { ImageService } from '../servicesForModels/image.service';
 })
 export class ProfileComponent implements OnInit {
 
-  imageSrc = "/assets/images/defaultProfile.png"
+  private imageSrc: string
 
   constructor(public userService: UserService, private fb: FormBuilder, private imageService: ImageService) { }
 
   ngOnInit(): void {
+    if (this.userService.loggedUser.image) {
+      this.imageSrc = globalUrl + "images/" + this.userService.loggedUser.image
+    } else {
+      this.imageSrc = "/assets/images/defaultProfile.png"
+    }
     console.log(this.userService.loggedUser)
   }
 
@@ -23,13 +28,11 @@ export class ProfileComponent implements OnInit {
     file: [null, Validators.required]
   });
 
-  private fileName;
 
   public onFileChange(event) {
     const reader = new FileReader();
 
     if (event.target.files && event.target.files.length) {
-      this.fileName = event.target.files[0].name;
       const [file] = event.target.files;
       reader.readAsDataURL(file);
 
@@ -42,8 +45,12 @@ export class ProfileComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this.imageService.upload(this.fileName, this.formGroup.get('file').value).subscribe((result: any) => {
-      this.imageSrc = globalUrl + "images/" + result.id
+    this.imageService.upload(undefined, this.formGroup.get('file').value).subscribe((result: any) => {
+      this.userService.loggedUser.image = result.id
+      this.imageSrc = globalUrl + "images/" + this.userService.loggedUser.image
+      this.userService.updateUser(this.userService.loggedUser).subscribe((result: any) => {
+        console.log("VAMOOOOS")
+      })
     })
   }
 }

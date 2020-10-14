@@ -1,5 +1,5 @@
-export var globalUrl: string = "http://2.153.90.86:88/";
-//export var globalUrl: string = "http://localhost:88/";
+//export var globalUrl: string = "http://2.153.90.86:88/";
+export var globalUrl: string = "http://localhost:88/";
 
 export function CopyObject(object: any): any {
     return JSON.parse(JSON.stringify(object))

@@ -31,6 +31,7 @@ export class RegistrationComponent {
       surname: '',
       email: '',
       hash_password: '',
+      image: undefined,
       type: 0,
       rol: 0
     }
