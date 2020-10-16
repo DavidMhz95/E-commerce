@@ -45,34 +45,37 @@ export class ProductFormComponent implements OnInit {
     this.product.properties = this.properties
     this.product.details = this.details
     var promises : any [] = []
-    this.files?.forEach(file => {
-      promises.push(this.imageService.upload(file))
+    console.log('hola')
+    if(this.files && this.files.length > 0){
 
-    });
-    forkJoin(promises).subscribe(
-      response =>{
-        console.log(response)
-        response.forEach((element : any) => {
-          this.product.images.push(element.id) 
-        });
+      this.files.forEach(file => {
+        promises.push(this.imageService.upload(file))
+  
+      });
+      forkJoin(promises).subscribe(
+        response =>{
+          console.log(response)
+          response.forEach((element : any) => {
+            this.product.images.push(element.id) 
+          });
+  
+          this.productService.create(this.product).subscribe(
+            response => {
+              console.log(response)
+            },
+            error => {
+              console.log(error)
+      
+            }
+          )
+  
+        },
+        error =>{
+          console.log(error)
+        }
+      )
 
-        this.productService.create(this.product).subscribe(
-          response => {
-            console.log(response)
-          },
-          error => {
-            console.log(error)
-    
-          }
-        )
-
-      },
-      error =>{
-        console.log(error)
-      }
-    )
-
-
+    }
   }
 
   // Properties
@@ -161,5 +164,6 @@ export class ProductFormComponent implements OnInit {
        });
     }
     this.files = filesAux
+    console.log(this.files)
   }
 }
