@@ -45,7 +45,7 @@ export class ProductFormComponent implements OnInit {
     this.product.properties = this.properties
     this.product.details = this.details
     var promises : any [] = []
-    this.files.forEach(file => {
+    this.files?.forEach(file => {
       promises.push(this.imageService.upload(file))
 
     });
@@ -149,16 +149,17 @@ export class ProductFormComponent implements OnInit {
 
   public onFileChange(event) {
     this.files = []
-    const reader = new FileReader();
-    console.log(event.target.files)
+    var filesAux: any []= []
     if (event.target.files && event.target.files.length) {
-        (event.target.files).forEach(element => {
-        reader.readAsDataURL(element);
+
+      Array.prototype.forEach.call(event.target.files, function(file) { 
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
         reader.onload = () => {
-          this.files.push(reader.result)
+          filesAux.push(reader.result)
         };
-      });
-  
+       });
     }
+    this.files = filesAux
   }
 }
