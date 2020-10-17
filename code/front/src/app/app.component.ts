@@ -9,7 +9,7 @@ import { UserService } from './servicesForModels/user.service';
 })
 export class AppComponent implements OnInit {
 
-  title = 'Black Market';
+  title = 'Not Black Market';
 
   constructor(private userService: UserService) { }
 

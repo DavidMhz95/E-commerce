@@ -3,6 +3,7 @@ import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/servicesForModels/user.service';
 import { Md5 } from 'ts-md5/dist/md5';
 import { Router } from '@angular/router';
+import { globalUrl } from '../app.utils';
 
 @Component({
   selector: 'app-registration',

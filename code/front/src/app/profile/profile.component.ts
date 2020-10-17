@@ -11,46 +11,27 @@ import { ImageService } from '../servicesForModels/image.service';
 })
 export class ProfileComponent implements OnInit {
 
-  imageSrc: string
 
-  constructor(public userService: UserService, private fb: FormBuilder, private imageService: ImageService) { }
+  constructor(public userService: UserService, private imageService: ImageService) { }
 
   ngOnInit(): void {
-    if (this.userService.loggedUser.image) {
-      this.imageSrc = globalUrl + "images/" + this.userService.loggedUser.image
-    } else {
-      this.imageSrc = "/assets/images/defaultProfile.png"
-    }
-    console.log(this.userService.loggedUser)
+    
   }
-
-  public formGroup = this.fb.group({
-    file: [null, Validators.required]
-  });
-
 
   public onFileChange(event) {
     const reader = new FileReader();
-
     if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;
       reader.readAsDataURL(file);
-
       reader.onload = () => {
-        this.formGroup.patchValue({
-          file: reader.result
-        });
-      };
+        this.imageService.upload(reader.result.toString()).subscribe((result: any) => {
+          this.userService.loggedUser.image = result.id
+          this.userService.updateUser(this.userService.loggedUser).subscribe((result: any) => {
+            console.log("Usuario actualizado")
+          })
+        })
+      }
     }
   }
 
-  public onSubmit(): void {
-    this.imageService.upload(this.formGroup.get('file').value).subscribe((result: any) => {
-      this.userService.loggedUser.image = result.id
-      this.imageSrc = globalUrl + "images/" + this.userService.loggedUser.image
-      this.userService.updateUser(this.userService.loggedUser).subscribe((result: any) => {
-        console.log("VAMOOOOS")
-      })
-    })
-  }
 }

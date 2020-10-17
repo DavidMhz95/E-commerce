@@ -19,6 +19,7 @@
     cursor: pointer;
     color: #545454;
   }
+
   a:hover {
     text-decoration: none;
   }
@@ -49,4 +50,9 @@
   height: 28px;
   width: 28px;
   border-radius: 50%;
+  background-size: cover;
+  background-position: top center;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 0px !important;
 }

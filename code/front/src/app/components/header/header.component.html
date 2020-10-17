@@ -1,9 +1,13 @@
 <div>
-    <a routerLink="/landing">
-        BLACK MARKET
-    </a>
-    <img *ngIf="userService?.loggedUser" src="/assets/images/defaultProfile.png" routerLink="/profile" [matTooltip]="userService?.loggedUser?.name" class="profile-img user-badge">
-    <mat-icon *ngIf="!userService?.loggedUser" class="user-badge" matTooltip="Conectarse" routerLink="/registration">person</mat-icon>
-    <mat-icon *ngIf="cartService?.products?.length==0" class="badge" routerLink="/landing/cart">shopping_cart</mat-icon>
-    <mat-icon *ngIf="cartService?.products?.length>0" class="cart-badge" routerLink="/landing/cart" [matBadge]="cartService?.GetElements()" matBadgeColor="warn">shopping_cart</mat-icon>
+  <a routerLink="/landing">
+    NOT BLACK MARKET
+  </a>
+  <div *ngIf="userService?.loggedUser" class="profile-img user-badge" routerLink="/profile"
+    [matTooltip]="userService?.loggedUser?.name" [style.backgroundImage]="'url(' + userService?.getUserProfileImage() + ')'">
+  </div>
+  <mat-icon *ngIf="!userService?.loggedUser" class="user-badge" matTooltip="Conectarse" routerLink="/registration">
+    person</mat-icon>
+  <mat-icon *ngIf="cartService?.products?.length == 0" class="badge" routerLink="/landing/cart">shopping_cart</mat-icon>
+  <mat-icon *ngIf="cartService?.products?.length > 0" class="cart-badge" routerLink="/landing/cart"
+    [matBadge]="cartService?.GetElements()" matBadgeColor="warn">shopping_cart</mat-icon>
 </div>

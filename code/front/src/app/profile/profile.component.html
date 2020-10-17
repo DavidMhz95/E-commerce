@@ -1,59 +1,58 @@
 <app-header></app-header>
 
 <div style="background-color: #f2f2f2; min-height: 80vh; padding:30px 15px;">
-
-    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12" style="float: left;">
-        <mat-card style="border: solid 0px rgba(0,0,0,0.12); box-shadow: none; border-radius: 2px;">
-            <div style="text-align: center; margin-top: 10px;">
-                <img [src]="imageSrc" routerLink="/profile"
-                    [matTooltip]="userService?.loggedUser?.name + ' ' + userService?.loggedUser?.surname"
-                    class="profile-img user-badge">
-
-                <h1>Upload file</h1>
-                <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-                    <input type="file" (change)="onFileChange($event)" />
-                    <input type="submit" [disabled]="formGroup.invalid" value="upload" />
-                </form>
-            </div>
-
-            <div
-                style="font-weight:400; margin-top: 20px; text-align: center; font-size: 18px; text-transform: uppercase; margin-bottom: 5px">
-                {{userService?.loggedUser?.name}}
-            </div>
-
-            <div
-                style="text-align: center; font-size: 14px; text-transform: lowercase; margin-bottom: 10px; opacity: 0.75">
-                {{userService?.loggedUser?.email}}
-            </div>
-
-            <mat-list style="margin-left: -16px; margin-right: -16px;">
-                <mat-divider></mat-divider>
-                <mat-list-item> Mi cuenta </mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item> Mi información personal </mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item> Mis pedidos </mat-list-item>
-                <mat-divider></mat-divider>
-            </mat-list>
-
-            <button type="submit" mat-flat-button class="btn" style="margin-top:20px" (click)="userService?.logout()"
-                routerLink="/landing/products">Desconectar</button>
-        </mat-card>
-    </div>
-
-    <div class="col-xl-9 col-lg-9 col-md-8 col-sm-6 col-xs-12" style="float: left;">
-        <div style="font-size: 18px; text-transform: uppercase; margin-bottom: 10px">Mi último pedido</div>
-        <mat-card style="border: solid 0px rgba(0,0,0,0.12); box-shadow: none; border-radius: 2px;">
-            Información de pedido
-        </mat-card>
-
-        <div style="margin-top: 30px; font-size: 18px; text-transform: uppercase; margin-bottom: 10px">Otros Pedidos
+  <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12" style="float: left;">
+    <mat-card style="border: solid 0px rgba(0,0,0,0.12); box-shadow: none; border-radius: 2px;">
+      <div style="text-align: center; margin-top: 10px;">
+        <div class="profile-img user-badge" (click)="imageInput?.click()"
+          [style.backgroundImage]="'url(' + userService?.getUserProfileImage() + ')'">
+          <input #imageInput style="display: none" type="file" accept="image/png, image/jpeg" data-max-size="10240"
+            (change)="onFileChange($event)" />
         </div>
-        <mat-card style="border: solid 0px rgba(0,0,0,0.12); box-shadow: none; border-radius: 2px;">
-            Información de pedido
-        </mat-card>
+      </div>
+
+      <div
+        style="font-weight:400; margin-top: 20px; text-align: center; font-size: 18px; text-transform: uppercase; margin-bottom: 5px">
+        {{ userService?.loggedUser?.name }}
+      </div>
+
+      <div style="text-align: center; font-size: 14px; text-transform: lowercase; margin-bottom: 10px; opacity: 0.75">
+        {{ userService?.loggedUser?.email }}
+      </div>
+
+      <mat-list style="margin-left: -16px; margin-right: -16px;">
+        <mat-divider></mat-divider>
+        <mat-list-item> Mi cuenta </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item> Mi información personal </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item> Mis pedidos </mat-list-item>
+        <mat-divider></mat-divider>
+      </mat-list>
+
+      <button type="submit" mat-flat-button class="btn" style="margin-top:20px" (click)="userService?.logout()"
+        routerLink="/landing/products">
+        Desconectar
+      </button>
+    </mat-card>
+  </div>
+
+  <div class="col-xl-9 col-lg-9 col-md-8 col-sm-6 col-xs-12" style="float: left;">
+    <div style="font-size: 18px; text-transform: uppercase; margin-bottom: 10px">
+      Mi último pedido
     </div>
-    <div style="clear: both"></div>
+    <mat-card style="border: solid 0px rgba(0,0,0,0.12); box-shadow: none; border-radius: 2px;">
+      Información de pedido
+    </mat-card>
+
+    <div style="margin-top: 30px; font-size: 18px; text-transform: uppercase; margin-bottom: 10px">
+      Otros Pedidos
+    </div>
+    <mat-card style="border: solid 0px rgba(0,0,0,0.12); box-shadow: none; border-radius: 2px;">
+      Información de pedido
+    </mat-card>
+  </div>
+  <div style="clear: both"></div>
 </div>
 
 <app-footer></app-footer>
