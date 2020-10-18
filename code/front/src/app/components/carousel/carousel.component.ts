@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, HostListener, ChangeDetectorRef } from '@angular/core';
+import { Product } from 'src/app/models/product';
+import { ProductService } from 'src/app/servicesForModels/product.service';
 
 @Component({
   selector: 'app-carousel',
@@ -13,38 +15,40 @@ export class CarouselComponent implements OnInit {
   }
 
   @ViewChild('imageDiv', {static: true}) imageDiv:ElementRef
-  @Input('images') images:string[]
+  @Input('product') product: Product
 
   public selectedIndex:number = 0
-  constructor() { }
+  constructor( public productService: ProductService) { }
 
   ngAfterViewChecked(): void {
     this.imageDiv.nativeElement.style.height = this.imageDiv.nativeElement.offsetWidth+'px'
   }
 
   ngOnInit(): void {
+    console.log(this.product)
     this.imageDiv.nativeElement.style.height = this.imageDiv.nativeElement.offsetWidth+'px'
   }
 
   public selectImage(image:string){
-    this.imageDiv.nativeElement.style.backgroundImage='url(' + image + ')' 
+    console.log(image)
+    this.imageDiv.nativeElement.style.backgroundImage= 'url(' + this.productService?.getProductImages(image) + ')'
   }
 
   public nextImage(){
     this.selectedIndex++
-    if(this.selectedIndex>this.images.length-1){
+    if(this.selectedIndex>this.product.images.length-1){
       this.selectedIndex = 0
     }
-    this.imageDiv.nativeElement.style.backgroundImage='url(' + this.images[this.selectedIndex] + ')'
+    this.imageDiv.nativeElement.style.backgroundImage='url(' + this.productService?.getProductImages(this.product.images[this.selectedIndex]) + ')'
   }
 
 
   public previousImage(){
     this.selectedIndex--
     if(this.selectedIndex< 0){
-      this.selectedIndex = this.images.length-1
+      this.selectedIndex = this.product.images.length-1
     }
-    this.imageDiv.nativeElement.style.backgroundImage='url(' + this.images[this.selectedIndex] + ')' 
+    this.imageDiv.nativeElement.style.backgroundImage='url(' + this.productService?.getProductImages(this.product.images[this.selectedIndex]) + ')' 
   }
 
 }

@@ -56,7 +56,10 @@ export class ProductFormComponent implements OnInit {
         response =>{
           console.log(response)
           response.forEach((element : any) => {
-            this.product.images.push(element.id) 
+            console.log(element.id)
+            this.images.push(element.id)
+            this.product.images = this.images
+            console.log(this.product)
           });
   
           this.productService.create(this.product).subscribe(

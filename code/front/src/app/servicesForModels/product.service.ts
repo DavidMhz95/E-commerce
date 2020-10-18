@@ -3,6 +3,8 @@ import { Product } from '../models/product';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { globalUrl } from '../app.utils';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ProductModalComponent } from '../components/product-modal/product-modal.component';
 
 @Injectable({
     providedIn: 'root'
@@ -10,7 +12,7 @@ import { globalUrl } from '../app.utils';
 export class ProductService {
     public productos: Product[]
 
-    constructor(private _http: HttpClient) {
+    constructor(private _http: HttpClient, public productDialog: MatDialog) {
     }
 
     pruebas() {
@@ -39,6 +41,24 @@ export class ProductService {
         return this._http.post(globalUrl+'product/'+productId,params)
     }
 
-    //More llamadas...
+    getProductImages(image): string {
+        return  globalUrl + "images/" + image
+    }
+    
+
+
+  private dialogRef:MatDialogRef<ProductModalComponent, any>
+  openDialog(product:Product){
+    if (this.dialogRef && this.productDialog && this.productDialog.openDialogs && this.productDialog.openDialogs.length>0){
+      //Only changes data
+      this.dialogRef.componentInstance.product = product
+    }else{
+      //Open dialog
+      this.dialogRef = this.productDialog.open(ProductModalComponent, {
+        data: product,
+      })
+    }   
+    document.getElementById("dialog").scrollTop = 0
+  }
 
 }

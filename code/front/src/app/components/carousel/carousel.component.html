@@ -1,4 +1,4 @@
-<div #imageDiv class="imageDiv" [style.backgroundImage]="'url('+images[0]+') '">
+<div #imageDiv class="imageDiv" [style.backgroundImage]="'url(' + productService?.getProductImages(this.product?.images[0]) + ')'">
     <div style="width: 50px;  position: absolute; top: 50%; bottom: 0; left: 30px; margin: auto;" class="hideInHighResolution">
         <a class="actions" (click)="previousImage()">
             <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow-left-thin" viewBox="0 0 14 27">
@@ -21,7 +21,7 @@
 </div>
 
 <div style="margin-top: 10px;" class="hideInLowResolution">
-    <div style="float: left; padding: 0;" class="controlCarousel col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6" *ngFor="let image of images" (click)="selectImage(image)">
-        <img style="width: 100%;" [src]="image" alt="First slide">
+    <div style="float: left; padding: 0;" class="controlCarousel col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6" *ngFor="let image of product?.images" (click)="selectImage(image)">
+        <img style="width: 100%;" [src]="'url(' + this.productService?.getProductImages(image) + ')'" alt="First slide">
     </div>
 </div>
