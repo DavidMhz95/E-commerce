@@ -4,6 +4,7 @@ import { DataService } from 'src/app/shared/data.service';
 import { ShoppingCartService } from 'src/app/shared/shopping-cart.service';
 import { Product } from 'src/app/models/product';
 import { Route } from '@angular/compiler/src/core';
+import { ProductService } from 'src/app/servicesForModels/product.service';
 
 
 
@@ -22,7 +23,7 @@ export class ProductDetailsComponent implements OnInit {
 
   public value: number = 1
 
-  constructor(public dataService:DataService, public activatedRoute:ActivatedRoute, public cartService:ShoppingCartService, public router:Router) {
+  constructor(public dataService:DataService, public activatedRoute:ActivatedRoute, public cartService:ShoppingCartService, public router:Router, public productService: ProductService) {
     router.events.subscribe((event)=>{
       if(event instanceof NavigationEnd){
         this.product = undefined
@@ -46,5 +47,30 @@ export class ProductDetailsComponent implements OnInit {
     this.addedInCart.emit("Product added")
   }
 
+  public deleteProduct(ref){
+    this.productService.delete(ref).subscribe(
+      response => {
+        if(response){
+          this.router.navigate(['/'])
+        }
+      },
+      error => {
+        console.log(error)
+      }
+    )
+    
+    this.productService.getProducts().subscribe(
+      response => {
+        if(response){
+          this.dataService.products = response
+          console.log(this.dataService.products)
+        }
+      },
+      error => {
+        console.log(error)
+      }
+    )
+
+  }
 
 }

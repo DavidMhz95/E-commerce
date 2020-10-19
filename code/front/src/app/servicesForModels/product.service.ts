@@ -45,6 +45,9 @@ export class ProductService {
         return  globalUrl + "images/" + image
     }
     
+    delete(ref): Observable<any> {
+      return this._http.delete(globalUrl+'product/'+ref)
+    }
 
 
   private dialogRef:MatDialogRef<ProductModalComponent, any>
