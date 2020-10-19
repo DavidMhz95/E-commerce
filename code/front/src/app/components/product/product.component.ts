@@ -27,36 +27,33 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(this.product.images){
-    this.imageDiv.nativeElement.style.height = this.imageDiv.nativeElement.offsetWidth + 'px'
-    this.imageDiv.nativeElement.addEventListener("mouseover", (event: any) => {
-      if (this.product.images.length > 1) {
-        this.imageDiv.nativeElement.style.backgroundImage = 'url(' + this.productService?.getProductImages( this.product.images[1]) + ')'
-      }
-    }, false);
-    this.imageDiv.nativeElement.addEventListener("mouseout", (event: any) => {
-      if (event && event.toElement && event.toElement.parentNode && event.toElement.parentNode != this.imageDiv.nativeElement) {
-        this.imageDiv.nativeElement.style.backgroundImage = 'url(' + this.productService?.getProductImages( this.product.images[0]) + ')'
-      }
-    }, false);
+    if (this.product.images && this.product.images.length > 0) {
+      this.imageDiv.nativeElement.style.height = this.imageDiv.nativeElement.offsetWidth + 'px'
+      this.imageDiv.nativeElement.addEventListener("mouseover", (event: any) => {
+        if (this.product.images.length > 1) {
+          this.imageDiv.nativeElement.style.backgroundImage = 'url(' + this.productService.getProductImages(this.product.images[1]) + ')'
+        }
+      }, false);
+      this.imageDiv.nativeElement.addEventListener("mouseout", (event: any) => {
+        if (event && event.toElement && event.toElement.parentNode && event.toElement.parentNode != this.imageDiv.nativeElement) {
+          this.imageDiv.nativeElement.style.backgroundImage = 'url(' + this.productService.getProductImages(this.product.images[0]) + ')'
+        }
+      }, false);
 
+      // this.product.images.forEach((imageSrc: string) => {
+      //   let img = new Image()
+      //   img.src = this.productService.getProductImages(imageSrc)
+      // })
 
-    this.product.images.forEach((imageSrc: string) => {
       let img = new Image()
-      img.src = imageSrc
-    })
-
-
-
-    let img = new Image()
-    img.src = this.product.images[0]
-    img.onload = () => {
-      console.log(img.src)
-      this.imageDiv.nativeElement.style.backgroundImage = 'url(' + this.productService?.getProductImages( this.product.images[0]) + ')'
-    }
-    img.onerror = () => {
-      //this.imageDiv.nativeElement.style.backgroundImage = 'url(' + this.product.images[0] + ')'
-    }
+      img.src = this.productService.getProductImages(this.product.images[0])
+      img.onload = () => {
+        console.log(img.src)
+        this.imageDiv.nativeElement.style.backgroundImage = 'url(' + this.productService.getProductImages(this.product.images[0]) + ')'
+      }
+      img.onerror = () => {
+        //this.imageDiv.nativeElement.style.backgroundImage = 'url(' + this.product.images[0] + ')'
+      }
     }
 
   }
@@ -65,17 +62,17 @@ export class ProductComponent implements OnInit {
     this.imageDiv.nativeElement.style.height = this.imageDiv.nativeElement.offsetWidth + 'px'
   }
 
-  private dialogRef:MatDialogRef<ProductModalComponent, any>
-  openDialog(product:Product){
-    if (this.dialogRef && this.productDialog && this.productDialog.openDialogs && this.productDialog.openDialogs.length>0){
+  private dialogRef: MatDialogRef<ProductModalComponent, any>
+  openDialog(product: Product) {
+    if (this.dialogRef && this.productDialog && this.productDialog.openDialogs && this.productDialog.openDialogs.length > 0) {
       //Only changes data
       this.dialogRef.componentInstance.product = product
-    }else{
+    } else {
       //Open dialog
       this.dialogRef = this.productDialog.open(ProductModalComponent, {
         data: product,
       })
-    }   
+    }
     document.getElementById("dialog").scrollTop = 0
   }
 

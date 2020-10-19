@@ -1,6 +1,6 @@
 {
-  "name": "e-market",
-  "version": "0.0.0",
+  "name": "black-market",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
