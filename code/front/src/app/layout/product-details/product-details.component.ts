@@ -73,4 +73,8 @@ export class ProductDetailsComponent implements OnInit {
 
   }
 
+  public editProduct(ref){
+    this.router.navigate(['/admin/products'])
+  }
+
 }

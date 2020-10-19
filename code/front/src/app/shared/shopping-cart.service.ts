@@ -13,11 +13,12 @@ export class ShoppingCartService {
   public products: CartProduct[] = []
 
   constructor(private dataService:DataService) {
-    this.AddProduct(this.dataService.products[0], 4)
+    //this.AddProduct(this.dataService.products[0], 4)
   }
 
   public AddProduct(product: Product, value: number) {
     var found: boolean
+    console.log(product,value)
     this.products.forEach((p: CartProduct) => {
       if (p.product.reference == product.reference) {
         if (value) {
