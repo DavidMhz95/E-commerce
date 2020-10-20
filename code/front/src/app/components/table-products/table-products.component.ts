@@ -20,7 +20,7 @@ export class TableProductsComponent implements OnInit {
 @Input('productsData') productsData: Product[]
 @Output() edit: EventEmitter<any> = new EventEmitter()
 
-  constructor(private dialog : MatDialog, public dataService : DataService) { }
+  constructor(private dialog : MatDialog, public dataService : DataService, public productService: ProductService) { }
 
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -63,13 +63,34 @@ export class TableProductsComponent implements OnInit {
     this.UpdateDataSource()
   }
 
-  removeTypeOfProduct(row) {
-    if (confirm('¿Estás seguro de eliminar producto?')) {
-      const index = this.productsData.indexOf(row)
-      if (index > -1) {
-        this.productsData.splice(index, 1)
-        this.UpdateDataSource()
-      }
+  removeProduct(row) {
+    console.log(row.reference)
+    // var promises : any [] = []
+    // promises.push(this.productService.getProduct(row.reference))
+    // promises.push(this.productService.delete)
+    if(confirm("¿Seguro que quieres borrar el producto "+ row.name+ "? ")) {
+      this.productService.delete(row.reference).subscribe(
+        response => {
+          if(response){
+            this.productService.getProducts().subscribe(
+              response => {
+                if(response){
+                  this.dataService.products = response
+                  console.log(this.dataService.products)
+                }
+              },
+              error => {
+                console.log(error)
+              }
+            )
+            alert("Producto borrado correctamente")
+            
+          }
+        },
+        error => {
+          console.log(error)
+        }
+      )
     }
   }
 
