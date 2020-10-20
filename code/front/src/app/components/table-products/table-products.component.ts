@@ -4,6 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { CopyObject } from 'src/app/app.utils';
 import { Product } from 'src/app/models/product';
+import { DataService } from 'src/app/shared/data.service';
+import { ProductService } from 'src/app/servicesForModels/product.service';
 
 @Component({
   selector: 'app-table-products',
@@ -15,17 +17,18 @@ export class TableProductsComponent implements OnInit {
 
 @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-@Input('productsData') productsData: any
+@Input('productsData') productsData: Product[]
 @Output() edit: EventEmitter<any> = new EventEmitter()
 
-  constructor(private dialog : MatDialog) { }
+  constructor(private dialog : MatDialog, public dataService : DataService) { }
 
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.data = this.productsData
+    
   }
   
-  displayedColumns: string[] = ['id', 'name', 'offerPrice', 'price','images','opciones'];
+  displayedColumns: string[] = ['reference', 'name', 'offerPrice', 'price','images','opciones'];
   dataSource = new MatTableDataSource();
 
   applyFilter(event: Event) {
@@ -35,9 +38,9 @@ export class TableProductsComponent implements OnInit {
 
   openModal(images){
     console.log(images)
-
+  
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '250px',
+      width: '300px',
       data: {images}
     });
     
@@ -84,8 +87,7 @@ export class TableProductsComponent implements OnInit {
 @Component({
   selector: 'dialog-overview-example-dialog',
   template: `
-  <div *ngFor="let image of data?.images" style="text-align:center">
-    <img src="{{image}}" style="height:150px; width:150px; padding:10px;">
+  <div *ngFor="let image of data?.images" style="height: 250px; width: 250px; border: 10px;  background-size: cover;  background-position: center center;" [style.backgroundImage]="'url(' + productService?.getProductImages(image) + ')'">
   </div>
   `
 })
@@ -93,7 +95,7 @@ export class DialogOverviewExampleDialog {
 
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any, public productService: ProductService) {
       for (let image of data.images)
       console.log(image)
     }

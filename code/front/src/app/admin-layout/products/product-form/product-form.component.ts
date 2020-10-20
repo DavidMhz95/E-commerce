@@ -45,7 +45,6 @@ export class ProductFormComponent implements OnInit {
     this.product.properties = this.properties
     this.product.details = this.details
     var promises : any [] = []
-    console.log('hola')
     if(this.files && this.files.length > 0){
 
       this.files.forEach(file => {
@@ -64,7 +63,11 @@ export class ProductFormComponent implements OnInit {
   
           this.productService.create(this.product).subscribe(
             response => {
-              console.log(response)
+              if(response){
+                console.log(response)
+                alert("Producto Creado correctamente")
+                this.cleanNgModels()
+              }
             },
             error => {
               console.log(error)
@@ -81,6 +84,19 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
+
+  public cleanNgModels(){
+  this.fakeProperty = null
+   this.newPropertyName= ""
+   this.newPropertyValues= []
+   this.detail = ""
+   this.images = []
+
+  //Product
+   this.details = []
+   this.properties = []
+   this.product = null
+  }
   // Properties
   public addPropertyName() {
     if (this.newPropertyName) {

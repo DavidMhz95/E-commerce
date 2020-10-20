@@ -48,28 +48,34 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   public deleteProduct(ref){
-    this.productService.delete(ref).subscribe(
-      response => {
-        if(response){
-          this.router.navigate(['/'])
+    if(confirm("¿Seguro que quieres borrar el producto "+ this.product.name+ "? ")) {
+      this.productService.delete(ref).subscribe(
+        response => {
+          if(response){
+            this.productService.getProducts().subscribe(
+              response => {
+                if(response){
+                  this.dataService.products = response
+                  console.log(this.dataService.products)
+                  this.router.navigate(['/'])
+                }
+              },
+              error => {
+                console.log(error)
+              }
+            )
+            alert("Producto borrado correctamente")
+            
+          }
+        },
+        error => {
+          console.log(error)
         }
-      },
-      error => {
-        console.log(error)
-      }
-    )
+      )
+    }
+   
     
-    this.productService.getProducts().subscribe(
-      response => {
-        if(response){
-          this.dataService.products = response
-          console.log(this.dataService.products)
-        }
-      },
-      error => {
-        console.log(error)
-      }
-    )
+    
 
   }
 

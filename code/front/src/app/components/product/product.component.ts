@@ -48,7 +48,6 @@ export class ProductComponent implements OnInit {
       let img = new Image()
       img.src = this.productService.getProductImages(this.product.images[0])
       img.onload = () => {
-        console.log(img.src)
         this.imageDiv.nativeElement.style.backgroundImage = 'url(' + this.productService.getProductImages(this.product.images[0]) + ')'
       }
       img.onerror = () => {

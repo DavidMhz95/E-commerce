@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DataService, Dictionary, TypeOfProduct } from 'src/app/shared/data.service';
 import { Product } from 'src/app/models/product';
 import { ActivatedRoute } from '@angular/router';
+import { ProductService } from 'src/app/servicesForModels/product.service';
 
 @Component({
   selector: 'app-products',
@@ -22,17 +23,24 @@ export class ProductsComponent implements OnInit {
   public productView: boolean = true
   public tableView: boolean = false
 
-  constructor(public dataService: DataService, public activatedRoute: ActivatedRoute) { }
+  constructor(public dataService: DataService, public activatedRoute: ActivatedRoute, public productService : ProductService) { }
 
   ngOnInit(): void {
     this.product = this.dataService.products.filter((p: Product) => { return this.activatedRoute.snapshot.params.id == p.reference })[0]
-    this.resetTypeOfProduct()
+    
+
+    this.productService.getProducts().subscribe(
+      response =>{
+        if(response){
+          this.dataService.products = response
+        }
+      },
+      error =>{
+        console.log(error)
+      }
+    )
   }
 
-  resetTypeOfProduct(){
-    this.typeOfProduct = { name: undefined, properties: new Dictionary }
-    this.isEdition = false
-  }
 
 }
 
