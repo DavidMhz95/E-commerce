@@ -24,13 +24,12 @@ import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
 import { ProductFormComponent } from './product-form/product-form.component';
-import { ProductFormEditComponent } from './product-form-edit/product-form-edit.component';
+
 
 @NgModule({
   declarations: [ProductsComponent, TableProductsComponent, DialogOverviewExampleDialog, PropertiesProductTableComponent,
     TypeProductTableComponent,
-    ProductFormComponent,
-    ProductFormEditComponent],
+    ProductFormComponent],
 
   imports: [
     CommonModule,
@@ -55,6 +54,6 @@ import { ProductFormEditComponent } from './product-form-edit/product-form-edit.
     MatCardModule,
     FormsModule,
     MatChipsModule
-  ]
+  ],
 })
 export class ProductsModule { }

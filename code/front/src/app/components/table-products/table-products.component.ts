@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, ViewChild, Inject, Output, EventEmitter } from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
+import { Component, OnInit, Input, ViewChild, Inject, Output, EventEmitter, OnChanges } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { CopyObject } from 'src/app/app.utils';
@@ -13,96 +13,38 @@ import { ProductService } from 'src/app/servicesForModels/product.service';
   styleUrls: ['./table-products.component.scss']
 })
 
-export class TableProductsComponent implements OnInit {
+export class TableProductsComponent implements OnInit, OnChanges {
 
-@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @Output() edit: EventEmitter<string> = new EventEmitter()
+  @Output() remove: EventEmitter<string> = new EventEmitter()
+  @Input() products: Product[] = []
 
-@Input('productsData') productsData: Product[]
-@Output() edit: EventEmitter<any> = new EventEmitter()
+  displayedColumns: string[] = ['reference', 'name', 'offerPrice', 'price', 'images', 'opciones'];
+  dataSource = new MatTableDataSource();
 
-  constructor(private dialog : MatDialog, public dataService : DataService, public productService: ProductService) { }
+  constructor(private dialog: MatDialog, public productService: ProductService) { }
 
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
-    this.dataSource.data = this.productsData
-    
   }
-  
-  displayedColumns: string[] = ['reference', 'name', 'offerPrice', 'price','images','opciones'];
-  dataSource = new MatTableDataSource();
+
+  ngOnChanges(event) {
+    this.dataSource = new MatTableDataSource(this.products)
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  openModal(images){
-    console.log(images)
-  
+  openModal(images) {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '300px',
-      data: {images}
+      data: { images }
     });
-    
-  }
-
-  deleteProduct(id){
-    //Hay que borrar de dataService?.products pero lo borro del input de momento pa no borrar mil productos jeje
-    for(let i in this.dataSource.data){
-      console.log(this.dataSource.data[i]); 
-    }
 
   }
-
-  updateProduct(id){
-    console.log(id)
-  }
-
-  duplicateTypeOfProduct(row) {
-    this.productsData.push(CopyObject(row))
-    this.UpdateDataSource()
-  }
-
-  removeProduct(row) {
-    console.log(row.reference)
-    // var promises : any [] = []
-    // promises.push(this.productService.getProduct(row.reference))
-    // promises.push(this.productService.delete)
-    if(confirm("¿Seguro que quieres borrar el producto "+ row.name+ "? ")) {
-      this.productService.delete(row.reference).subscribe(
-        response => {
-          if(response){
-            this.productService.getProducts().subscribe(
-              response => {
-                if(response){
-                  this.dataService.products = response
-                  console.log(this.dataService.products)
-                }
-              },
-              error => {
-                console.log(error)
-              }
-            )
-            alert("Producto borrado correctamente")
-            
-          }
-        },
-        error => {
-          console.log(error)
-        }
-      )
-    }
-  }
-
-  private UpdateDataSource() {
-    this.dataSource = new MatTableDataSource(this.productsData);
-    this.dataSource.paginator = this.paginator;
-  }
-
-  editEmission(product:Product){
-    this.edit.emit(product)
-  }
-
 }
 
 @Component({
@@ -117,9 +59,9 @@ export class DialogOverviewExampleDialog {
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any, public productService: ProductService) {
-      for (let image of data.images)
+    for (let image of data.images)
       console.log(image)
-    }
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

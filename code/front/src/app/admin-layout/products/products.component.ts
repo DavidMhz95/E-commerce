@@ -3,6 +3,8 @@ import { DataService, Dictionary, TypeOfProduct } from 'src/app/shared/data.serv
 import { Product } from 'src/app/models/product';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/servicesForModels/product.service';
+import { CdkCell } from '@angular/cdk/table';
+import { CopyObject } from 'src/app/app.utils';
 
 @Component({
   selector: 'app-products',
@@ -11,34 +13,53 @@ import { ProductService } from 'src/app/servicesForModels/product.service';
 })
 export class ProductsComponent implements OnInit {
 
-  
-  isTypeProduct: boolean = false
-  isProduct: boolean = false
-  isEdition:boolean = false
-  typeOfProduct: TypeOfProduct
+  public product:Product
+  public isEditionMode:boolean
 
-  @Input('product') product: Product
-  @Input('productsData') productsData: any
-
-  public productView: boolean = true
-  public tableView: boolean = false
-
-  constructor(public dataService: DataService, public activatedRoute: ActivatedRoute, public productService : ProductService) { }
+  constructor(public dataService: DataService, public activatedRoute: ActivatedRoute, public productService: ProductService) { }
 
   ngOnInit(): void {
-    this.product = this.dataService.products.filter((p: Product) => { return this.activatedRoute.snapshot.params.id == p.reference })[0]
-    
-
-    this.productService.getProducts().subscribe(
-      response =>{
-        if(response){
-          this.dataService.products = response
-        }
-      },
-      error =>{
-        console.log(error)
+    this.productService.getProducts().subscribe(response => {
+      if (response) {
+        this.dataService.products = response
+      } else {
+        this.dataService.products = []
       }
-    )
+    }, error => {
+      console.log(error)
+    })
+  }
+
+  remove(reference: string) {
+    if (reference && confirm("¿Seguro que quieres borrar el producto con referencia: " + reference + "? ")) {
+      this.productService.delete(reference).subscribe(response => {
+        if (response) {
+          this.dataService.products = this.dataService.products.filter((p: Product) => p.reference != reference)
+          alert("Producto borrado correctamente")
+        }
+      }, error => {
+        console.log(error)
+      })
+    }
+  }
+
+  add(product: Product) {
+    console.log(product)
+    this.productService.create(product).subscribe(response => {
+      if (response) {
+        let listOfProducts = CopyObject(this.dataService.products)
+        listOfProducts.push(product)
+        this.dataService.products = listOfProducts
+        alert("Producto Creado correctamente")
+      }
+    }, error => {
+      console.log(error)
+    })
+  }
+
+  edit(product: Product){
+    this.isEditionMode = true
+    this.product = product
   }
 
 

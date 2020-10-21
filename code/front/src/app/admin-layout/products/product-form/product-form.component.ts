@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/servicesForModels/product.service';
 import { Property } from 'src/app/models/property';
@@ -14,7 +14,9 @@ import { forkJoin } from 'rxjs';
 })
 export class ProductFormComponent implements OnInit {
 
-  @Input('isEdition') isEdition: boolean;
+  @Input('product') product: Product
+  @Input('isEditionMode') isEditionMode: boolean
+  @Output() add: EventEmitter<Product> = new EventEmitter()
 
   isSaleEnabled: boolean = false
 
@@ -22,18 +24,18 @@ export class ProductFormComponent implements OnInit {
   public newPropertyName: string
   public newPropertyValues: string[] = []
   public detail: string
-  public images: string [] = []
-
+  public images: string[] = []
   //Product
   public details: string[] = []
   public properties: Property[] = []
 
-  public product: Product
-  constructor(public productService: ProductService, public imageService : ImageService, private fb: FormBuilder) {
-    this.product = new Product('', null, '', 0, 0, null, '', null, 0, '', '')
+  constructor(public productService: ProductService, public imageService: ImageService, private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
+    if (!this.product) {
+      this.product = new Product('', null, '', 0, 0, null, '', null, 0, '', '')
+    }
   }
 
   imageUpload(data) {
@@ -41,61 +43,35 @@ export class ProductFormComponent implements OnInit {
     //this.product.image = image_data
   }
 
-  onProductSubmit() {
+  addProduct() {
     this.product.properties = this.properties
     this.product.details = this.details
-    var promises : any [] = []
-    if(this.files && this.files.length > 0){
-
+    var promises: any[] = []
+    if (this.files && this.files.length > 0) {
       this.files.forEach(file => {
         promises.push(this.imageService.upload(file))
-  
-      });
+      })
       forkJoin(promises).subscribe(
-        response =>{
-          console.log(response)
-          response.forEach((element : any) => {
-            console.log(element.id)
-            this.images.push(element.id)
-            this.product.images = this.images
-            console.log(this.product)
-          });
-  
-          this.productService.create(this.product).subscribe(
-            response => {
-              if(response){
-                console.log(response)
-                alert("Producto Creado correctamente")
-                this.cleanNgModels()
-              }
-            },
-            error => {
-              console.log(error)
-      
-            }
-          )
-  
-        },
-        error =>{
+        (response: string[]) => {
+          this.product.images = response.map((image: any) => image.id)
+          this.add.emit(this.product)
+        }, error => {
           console.log(error)
-        }
-      )
-
+        })
     }
   }
 
 
-  public cleanNgModels(){
-  this.fakeProperty = null
-   this.newPropertyName= ""
-   this.newPropertyValues= []
-   this.detail = ""
-   this.images = []
+  public cleanNgModels() {
+    this.fakeProperty = null
+    this.newPropertyName = ""
+    this.newPropertyValues = []
+    this.detail = ""
 
-  //Product
-   this.details = []
-   this.properties = []
-   this.product = null
+    //Product
+    this.details = []
+    this.properties = []
+    this.product = null
   }
   // Properties
   public addPropertyName() {
@@ -141,46 +117,39 @@ export class ProductFormComponent implements OnInit {
 
   }
 
-  public addDetails() {
-    if (this.detail) {
-      this.details.push(this.detail)
-    }
-    console.log(this.details)
-    this.detail = undefined
-  }
-
-  public removeFromDetails(detail) {
-
-    this.details.forEach(element => {
-      if (element == detail) {
-        const index = this.details.indexOf(element, 0);
-        if (index > -1) {
-          this.details.splice(index, 1);
-        }
+  public removeDetails(isEditionMode: boolean, detail: string) {
+    if (isEditionMode) {
+      let index = this.product.details.indexOf(detail)
+      if (index >= 0) {
+        this.product.details.splice(index, 1);
       }
-    });
-
+    } else {
+      let index = this.details.indexOf(detail)
+      if (index >= 0) {
+        this.details.splice(index, 1);
+      }
+    }
   }
   //End of properties
 
   public productForm = this.fb.group({
     file: [null, Validators.required]
   });
-  
-  public files : any [] 
+
+  public files: any[]
 
   public onFileChange(event) {
     this.files = []
-    var filesAux: any []= []
+    var filesAux: any[] = []
     if (event.target.files && event.target.files.length) {
 
-      Array.prototype.forEach.call(event.target.files, function(file) { 
+      Array.prototype.forEach.call(event.target.files, function (file) {
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
           filesAux.push(reader.result)
         };
-       });
+      });
     }
     this.files = filesAux
     console.log(this.files)
