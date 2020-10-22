@@ -38,12 +38,14 @@
         style="padding-right: 30px;">
     </div>
     <div style="margin-top: 20px">
-      <div style="float:right; cursor: pointer;" mat-flat-button color="secundary" (click)="addPropertyName()">Añadir
+      <div style="float:right; cursor: pointer;" mat-flat-button color="secundary"
+        (click)="addPropertyName(isEditionMode)">Añadir
         Propiedad</div>
       <div style="clear:both"></div>
     </div>
 
-    <div *ngFor="let property of properties let i=index" style="padding: 10px 5px;">
+    <div *ngFor="let property of (isEditionMode? product?.properties:properties) let i=index"
+      style="padding: 10px 5px;">
       <div style="font-size: 13px; margin-bottom: 0px; width: 100%; " class="preInput">{{property?.name}}</div>
       <div class="flex-container">
         <div class="flex-container" style="line-height: 1.3; margin-right: 10px; flex-grow: 1;">
@@ -52,20 +54,33 @@
               style="padding-right: 30px;">
           </div>
         </div>
-        <mat-icon style="cursor:pointer" matTooltip="Añade un valor" (click)="addPropertyValue(property, i)">
+        <mat-icon style="cursor:pointer" matTooltip="Añade un valor" (click)="addPropertyValue(property, i, isEditionMode)">
           add
         </mat-icon>
-        <mat-icon style="cursor:pointer" matTooltip="Elimina la propiedad" (click)="removeFromProperties(property)">
+        <mat-icon style="cursor:pointer" matTooltip="Elimina la propiedad" (click)="removeFromProperties(property, isEditionMode)">
           clear</mat-icon>
       </div>
       <div class="subInput">
         <mat-chip-list aria-label="Color selection">
-          <mat-chip selected style="font-size: 12px" *ngFor="let value of property?.values">
-            {{value}}
-            <mat-icon
-              style="font-size: 15px; text-align: center; vertical-align: middle; margin-top: 8px; padding-left: 12px; "
-              (click)="remove(property.key,value)">cancel</mat-icon>
-          </mat-chip>
+
+          <div *ngIf="isEditionMode">
+            <mat-chip selected style="font-size: 12px" *ngFor="let value of property?.values">
+              {{value}}
+              <mat-icon
+                style="font-size: 15px; text-align: center; vertical-align: middle; margin-top: 8px; padding-left: 12px; "
+                (click)="removeEditing(property,property.value)">cancel</mat-icon>
+            </mat-chip>
+          </div>
+
+          <div *ngIf="!isEditionMode">
+            <mat-chip selected style="font-size: 12px" *ngFor="let value of property?.values">
+              {{value}}
+              <mat-icon
+                style="font-size: 15px; text-align: center; vertical-align: middle; margin-top: 8px; padding-left: 12px; "
+                (click)="remove(property,value)">cancel</mat-icon>
+            </mat-chip>
+          </div>
+
         </mat-chip-list>
       </div>
     </div>

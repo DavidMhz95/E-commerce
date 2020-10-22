@@ -74,47 +74,89 @@ export class ProductFormComponent implements OnInit {
     this.product = null
   }
   // Properties
-  public addPropertyName() {
-    if (this.newPropertyName) {
-      this.fakeProperty = new Property(this.newPropertyName, []);
-      this.properties.push(this.fakeProperty)
-      console.log(this.properties)
-    }
-    this.newPropertyName = undefined
-  }
+  public addPropertyName(isEditionMode: boolean) {
 
-  public removeFromProperties(property) {
-
-    this.properties.forEach(element => {
-      if (element.name == property.name) {
-        const index = this.properties.indexOf(element, 0);
-        if (index > -1) {
-          this.properties.splice(index, 1);
-        }
+    if (isEditionMode) {
+      if (this.newPropertyName) {
+        this.fakeProperty = new Property(this.newPropertyName, []);
+        this.product?.properties.push(this.fakeProperty)
       }
-    });
+    } else {
+      if (this.newPropertyName) {
+        this.fakeProperty = new Property(this.newPropertyName, []);
+        this.properties.push(this.fakeProperty)
+      }
+      this.newPropertyName = undefined
+    }
+
   }
 
-  public addPropertyValue(property, i) {
-    console.log(property, i)
-    if (this.newPropertyValues[i] && !property.values.includes(this.newPropertyValues[i])) {
-      property.values.push((this.newPropertyValues[i]))
+  public removeFromProperties(property, isEditionMode) {
+    if(isEditionMode){
+      this.product.properties.forEach(element => {
+        if (element.name == property.name) {
+          const index = this.product.properties.indexOf(element, 0);
+          if (index > -1) {
+            this.product.properties.splice(index, 1);
+          }
+        }
+      });
+    }else{
+      this.properties.forEach(element => {
+        if (element.name == property.name) {
+          const index = this.properties.indexOf(element, 0);
+          if (index > -1) {
+            this.properties.splice(index, 1);
+          }
+        }
+      });
     }
-    this.newPropertyValues[i] = undefined
+
+  }
+
+  public addPropertyValue(property, i, isEditionMode: boolean) {
+    if(isEditionMode){
+      this.product.properties.forEach(element => {
+         if(element == property && !element.values.includes(this.newPropertyValues[i])){
+           element.values.push((this.newPropertyValues[i]))
+         }
+      });
+      this.newPropertyValues[i] = undefined
+    }else{
+      if (this.newPropertyValues[i] && !property.values.includes(this.newPropertyValues[i])) {
+        property.values.push((this.newPropertyValues[i]))
+      }
+      this.newPropertyValues[i] = undefined
+    }
   }
 
   public remove(property, value) {
-    var values = property.values
-    values.forEach(element => {
+    property.values.forEach(element => {
       if (element == value) {
-        const index = values.indexOf(element.value);
-        if (index >= 0) {
-          values.splice(index, 1);
+        const index = property.values.indexOf(element);
+        if (index > -1) {
+          property.values.splice(index, 1);
         }
       }
 
     });
 
+  }
+
+  //SEGUIR AQUI MI NIÑO
+  public removeEditing(property, value) {
+    this.product.properties.forEach(element => {
+      if(element == property){
+        element.values.forEach(valor => {
+          if(valor == value){
+            const index = element.values.indexOf(value);
+            if (index > -1) {
+              element.values.splice(index, 1);
+            }
+          }
+        });
+      }     
+    });
   }
 
   public removeDetails(isEditionMode: boolean, detail: string) {
@@ -152,6 +194,5 @@ export class ProductFormComponent implements OnInit {
       });
     }
     this.files = filesAux
-    console.log(this.files)
   }
 }

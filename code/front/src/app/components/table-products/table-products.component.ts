@@ -59,8 +59,7 @@ export class DialogOverviewExampleDialog {
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any, public productService: ProductService) {
-    for (let image of data.images)
-      console.log(image)
+     
   }
 
   onNoClick(): void {
