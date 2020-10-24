@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ProductModalComponent } from '../components/product-modal/product-modal.component';
-import { CartProduct } from './shopping-cart.service';
 import { RandomDate } from 'src/app/app.utils';
 import { Product } from '../models/product';
 
@@ -81,21 +80,21 @@ export class DataService {
       image: "https://avatars1.githubusercontent.com/u/28922716?s=460&u=9e4b0d836649dcc75d61f9457365b554fbcec22e&v=4",
       email: "mispanas@gmail.com",
       totalSpent: 1235.12,
-      isSubscribed:true
+      isSubscribed: true
     },
     {
       name: "Sergio David Hasselhoff",
       email: "levantahierros69@gmail.com",
       image: "https://avatars2.githubusercontent.com/u/58731792?s=460&u=8836f461d6e0868af099b477a6d38c53c3159b44&v=4",
       totalSpent: 659.64,
-      isSubscribed:true
+      isSubscribed: true
     },
     {
       name: "Miguel Á. Rozalén",
       email: "rztop93@gmail.com",
       image: "https://avatars2.githubusercontent.com/u/19685231?s=460&u=16a48c0c0537610918d5ece0eab5272116073d66&v=4",
       totalSpent: 324.45,
-      isSubscribed:false
+      isSubscribed: false
     }
   ]
 
@@ -144,33 +143,7 @@ export class DataService {
   ]
 
 
-  public generateRandomOrders(number: number): Order[] {
-    var result: Order[] = []
-    for (var i = 0; i < number; i++) {
-      var randomCustomer = Math.floor((Math.random() * this.customers.length))
-      var randomProducts = Math.floor((Math.random() * 4)) + 1
-      var randomId = Math.floor((Math.random() * 1000000))
 
-      var products: CartProduct[] = []
-
-      for (var j = 0; j < randomProducts; j++) {
-        var randomProductId = Math.floor((Math.random() * this.products.length))
-        var randomProductNumber = Math.floor((Math.random() * 2)) + 1
-        products.push({
-          product: this.products[randomProductId],
-          number: randomProductNumber
-        })
-      }
-
-      result.push({
-        id: randomId,
-        customer: this.customers[randomCustomer],
-        products: products,
-        date: RandomDate(new Date(2012, 0, 1), new Date()).toLocaleDateString('es-ES')
-      })
-    }
-    return result
-  }
 }
 
 export interface marketInformation {
@@ -206,15 +179,7 @@ export interface Customer {
   image: string
   email: string
   totalSpent: number
-  isSubscribed:boolean
-}
-
-export interface Order {
-  id: number,
-  date: string,
-  customer: Customer,
-  products: CartProduct[],
-
+  isSubscribed: boolean
 }
 
 export interface DiscountCode {

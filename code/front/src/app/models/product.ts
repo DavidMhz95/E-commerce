@@ -14,7 +14,6 @@ export class Product {
         public stockNumber: number,
         public section:string,
         public subsection:string
-        
     ) {}
 
   }

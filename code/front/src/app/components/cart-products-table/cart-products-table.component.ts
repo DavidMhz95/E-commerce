@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/models/product';
-import { ShoppingCartService, CartProduct } from 'src/app/shared/shopping-cart.service';
+import { ShoppingCartService } from 'src/app/shared/shopping-cart.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProductService } from 'src/app/servicesForModels/product.service';
+import { CartProduct } from 'src/app/models/cart-product';
 
 @Component({
   selector: 'app-cart-products-table',

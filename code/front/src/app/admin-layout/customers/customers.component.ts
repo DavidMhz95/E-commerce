@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ChartEvent, ChartType } from 'ng-chartist';
 import { IChartistAnimationOptions, IChartistData } from 'chartist';
-import { Customer, DataService, Order } from 'src/app/shared/data.service';
+import { Customer, DataService } from 'src/app/shared/data.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserService } from 'src/app/servicesForModels/user.service';
 import { User } from 'src/app/models/user';
@@ -29,15 +29,15 @@ export class CustomersComponent implements OnInit {
   }
 
   showHistory(customer: Customer) {
-    var orders: Order[] = this.dataService.generateRandomOrders(6)
-    orders.forEach((o) => {
-      o.customer = customer
-    })
-    const dialogRef = this.dialog.open(CustomerHistoryDialog, {
-      data: { orders, customer },
-      maxHeight: '80vh',
-      width: '60vw'
-    });
+    // var orders: Order[] = this.dataService.generateRandomOrders(6)
+    // orders.forEach((o) => {
+    //   o.customer = customer
+    // })
+    // const dialogRef = this.dialog.open(CustomerHistoryDialog, {
+    //   data: { orders, customer },
+    //   maxHeight: '80vh',
+    //   width: '60vw'
+    // });
   }
 
   generateRandomCustomer(number: number): Customer[] {

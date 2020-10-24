@@ -5,7 +5,7 @@
     <mat-card style="border: solid 0px rgba(0,0,0,0.12); box-shadow: none; border-radius: 2px;">
       <div style="text-align: center; margin-top: 10px;">
         <div class="profile-img user-badge" (click)="imageInput?.click()"
-          [style.backgroundImage]="'url(' + userService?.getUserProfileImage() + ')'">
+        [style.backgroundImage]="sanitizer?.bypassSecurityTrustStyle('url(' + userService?.getUserProfileImage() + '), url(assets/images/defaultProfile.png)')">
           <input #imageInput style="display: none" type="file" accept="image/png, image/jpeg" data-max-size="10240"
             (change)="onFileChange($event)" />
         </div>

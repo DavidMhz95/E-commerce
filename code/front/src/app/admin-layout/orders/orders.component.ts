@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Order, DataService } from 'src/app/shared/data.service';
-import { CartProduct } from 'src/app/shared/shopping-cart.service';
+import { DataService } from 'src/app/shared/data.service';
 import { RandomDate } from 'src/app/app.utils';
 // bar-chart.component.ts
 import {
@@ -9,6 +8,7 @@ import {
   IChartistData
 } from 'chartist';
 import { ChartType, ChartEvent } from 'ng-chartist';
+import { Order } from 'src/app/models/order';
 
 @Component({
   selector: 'app-orders',
@@ -24,9 +24,9 @@ export class OrdersComponent implements OnInit {
   constructor(private dataService:DataService) { }
 
   ngOnInit(): void {
-    this.toProcessOrders = this.dataService.generateRandomOrders(4)
-    this.sentOrders = this.dataService.generateRandomOrders(6)
-    this.deliveredOrders = this.dataService.generateRandomOrders(20)
+    // this.toProcessOrders = this.dataService.generateRandomOrders(4)
+    // this.sentOrders = this.dataService.generateRandomOrders(6)
+    // this.deliveredOrders = this.dataService.generateRandomOrders(20)
   }
 
  

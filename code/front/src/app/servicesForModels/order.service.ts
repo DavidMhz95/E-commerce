@@ -2,38 +2,43 @@ import { Injectable } from '@angular/core';
 import { Order } from '../models/order';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { globalUrl } from '../app.utils';
+import { JsonPipe } from '@angular/common';
+import { User } from '../models/user';
 
 @Injectable({
     providedIn: 'root'
 })
 export class OrderService {
-    public orders: Order[]
-    public url: string
+    orders: string = 'orders/'
 
-    constructor(private _http: HttpClient) {
-    
-    }
-
-    pruebas() {
-        return 'Soy el servicio de orders'
-    }
+    constructor(private _http: HttpClient) { }
 
     getOrders(): Observable<any> {
-        var orders = 'orders'
-        return this._http.get(this.url + orders);
+        return this._http.get(globalUrl + this.orders);
     }
 
-    getOrder(orderId): Observable<any> {
-        return this._http.get(this.url + 'order/' + orderId)
+    getOrderById(order: Order): Observable<any> {
+        return this._http.get(globalUrl + this.orders + order.id)
+    }
+
+    getOrderByUser(user: User): Observable<any> {
+        return this._http.get(globalUrl + 'userOrders/' + user.email)
     }
 
     search(searchString): Observable<any> {
-        return this._http.get(this.url + 'search/' + searchString)
+        return this._http.get(globalUrl + 'search/' + searchString)
     }
 
-    //Habrá que añadir mas llamadas cuando las tengamos...
+    create(order: Order): Observable<any> {
+        return this._http.post(globalUrl + 'order/', order)
+    }
 
+    update(order: Order): Observable<any> {
+        return this._http.post(globalUrl + 'updateOrder/', order)
+    }
 
-    //More llamadas...
-
+    delete(order: Order): Observable<any> {
+        return this._http.delete(globalUrl + this.orders + order.id)
+    }
 }

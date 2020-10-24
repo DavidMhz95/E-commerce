@@ -3,8 +3,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ProductModalComponent } from '../product-modal/product-modal.component';
-import { NoopScrollStrategy } from '@angular/cdk/overlay';
-import { DataService } from 'src/app/shared/data.service';
 import { ProductService } from 'src/app/servicesForModels/product.service';
 import { Product } from 'src/app/models/product';
 

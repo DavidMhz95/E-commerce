@@ -8,7 +8,8 @@ import {
 } from 'chartist';
 
 import { ChartEvent, ChartType } from 'ng-chartist';
-import { Order, DataService } from 'src/app/shared/data.service';
+import { DataService } from 'src/app/shared/data.service';
+import { Order } from 'src/app/models/order';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.toProcessOrders = this.dataService.generateRandomOrders(4)
+    // this.toProcessOrders = this.dataService.generateRandomOrders(4)
 
   }
 

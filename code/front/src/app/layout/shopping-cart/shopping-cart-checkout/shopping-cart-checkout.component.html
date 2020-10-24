@@ -1,81 +1,116 @@
-<div style="padding:0 14px 0px 14px">
-    <div style="margin-top:30px;  float: left;" class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
-        <div style="padding-left: 0" class="title">
-            Información de Contacto
-        </div>
-        <div style="position: relative">
-            <span [class.hidden]="!order?.customer?.email" class="preInput">Correo electrónico</span>
-            <input [class.completeInput]="order?.customer?.email" matInput placeholder="Correo electrónico"
-                [(ngModel)]="order.customer.email">
-        </div>
-        <div style="margin-top: 10px; font-size: 12px;">
-            <mat-checkbox [(ngModel)]="order.customer.isSubscribed">Quiero recibir noticias y ofertas exclusivas
-            </mat-checkbox>
-        </div>
+<div style="margin-bottom: 30px;">
 
-        <div style="padding-left: 0; margin-top: 15px" class="title">
-            Dirección de Envío
-        </div>
-        <div style="position: relative">
-            <span [class.hidden]="!order?.customer?.email" class="preInput">Correo electrónico</span>
-            <input [class.completeInput]="order?.customer?.email" matInput placeholder="Correo electrónico"
-                [(ngModel)]="order.customer.email">
-        </div>
-        <div style="position: relative">
-            <span [class.hidden]="!order?.customer?.email" class="preInput">Correo electrónico</span>
-            <input [class.completeInput]="order?.customer?.email" matInput placeholder="Correo electrónico"
-                [(ngModel)]="order.customer.email">
-        </div>
-        <div style="position: relative">
-            <span [class.hidden]="!order?.customer?.email" class="preInput">Correo electrónico</span>
-            <input [class.completeInput]="order?.customer?.email" matInput placeholder="Correo electrónico"
-                [(ngModel)]="order.customer.email">
-        </div>
-        <div style="position: relative">
-            <span [class.hidden]="!order?.customer?.email" class="preInput">Correo electrónico</span>
-            <input [class.completeInput]="order?.customer?.email" matInput placeholder="Correo electrónico"
-                [(ngModel)]="order.customer.email">
-        </div>
+  <div style="padding:0 14px 0px 14px;" *ngIf="userService?.loggedUser">
+    <div style="margin-top:30px;  float: left;" class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+      <div style="padding-left: 0" class="title">
+        Datos de Contacto
+      </div>
+      <div style="position: relative">
+        <span [class.hidden]="!address?.name" class="preInput">Nombre</span>
+        <input [class.completeInput]="address?.name" matInput placeholder="Nombre"
+          [(ngModel)]="address.name">
+      </div>
+      <div style="position: relative">
+        <span [class.hidden]="!address?.surname" class="preInput">Apellido</span>
+        <input [class.completeInput]="address?.surname" matInput placeholder="Apellido"
+          [(ngModel)]="address.surname">
+      </div>
+
+      <div style="padding-left: 0; margin-top: 15px" class="title">
+        Dirección de Envío
+      </div>
+      <div style="position: relative">
+        <span [class.hidden]="!address?.street" class="preInput">Dirección 1</span>
+        <input [class.completeInput]="address?.street" matInput placeholder="Dirección 1"
+          [(ngModel)]="address.street">
+      </div>
+
+      <div style="position: relative">
+        <span [class.hidden]="!address?.streetAlt" class="preInput">Dirección 2</span>
+        <input [class.completeInput]="address?.streetAlt" matInput placeholder="Dirección 2"
+          [(ngModel)]="address.streetAlt">
+      </div>
+
+      <div style="position: relative">
+        <span [class.hidden]="!address?.zip" class="preInput">Código Postal</span>
+        <input [class.completeInput]="address?.zip" matInput placeholder="Código Postal"
+          [(ngModel)]="address.zip">
+      </div>
+
+      <div style="position: relative">
+        <span [class.hidden]="!address?.city" class="preInput">Ciudad</span>
+        <input [class.completeInput]="address?.city" matInput placeholder="Ciudad"
+          [(ngModel)]="address.city">
+      </div>
+
+      <div style="position: relative">
+        <span [class.hidden]="!address?.telephone" class="preInput">Teléfono</span>
+        <input [class.completeInput]="address?.telephone" matInput placeholder="Teléfono"
+          [(ngModel)]="address.telephone">
+      </div>
+
+      <div style="margin-top: 10px; font-size: 12px;">
+        <mat-checkbox [(ngModel)]="saveShippingInformation">Guardar información de envío
+        </mat-checkbox>
+      </div>
 
     </div>
 
     <div style="margin-top:30px; float: left;" class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
-        <div style="padding-left: 0" class="title">
-            Tipo de Envío
-        </div>
-        <div style="position: relative">
-            <span [class.hidden]="!order?.customer?.email" class="preInput">Correo electrónico</span>
-            <input [class.completeInput]="order?.customer?.email" matInput placeholder="Correo electrónico"
-                [(ngModel)]="order.customer.email">
-        </div>
-        <div style="margin-top: 10px; font-size: 12px;">
-            <mat-checkbox [(ngModel)]="order.customer.isSubscribed">Quiero recibir noticias y ofertas exclusivas
-            </mat-checkbox>
-        </div>
-
-        <div style="padding-left: 0; margin-top: 15px" class="title">
-            Información de Cobro
-        </div>
-        <div style="position: relative">
-            <span [class.hidden]="!order?.customer?.email" class="preInput">Correo electrónico</span>
-            <input [class.completeInput]="order?.customer?.email" matInput placeholder="Correo electrónico"
-                [(ngModel)]="order.customer.email">
-        </div>
-        <div style="position: relative">
-            <span [class.hidden]="!order?.customer?.email" class="preInput">Correo electrónico</span>
-            <input [class.completeInput]="order?.customer?.email" matInput placeholder="Correo electrónico"
-                [(ngModel)]="order.customer.email">
-        </div>
-        <div style="position: relative">
-            <span [class.hidden]="!order?.customer?.email" class="preInput">Correo electrónico</span>
-            <input [class.completeInput]="order?.customer?.email" matInput placeholder="Correo electrónico"
-                [(ngModel)]="order.customer.email">
-        </div>
-        <div style="position: relative">
-            <span [class.hidden]="!order?.customer?.email" class="preInput">Correo electrónico</span>
-            <input [class.completeInput]="order?.customer?.email" matInput placeholder="Correo electrónico"
-                [(ngModel)]="order.customer.email">
-        </div>
+      <div style="padding-left: 0" class="title">
+        Tipo de Envío
+      </div>
+      <mat-radio-group class="radio-group" [(ngModel)]="order.typeShipment">
+        <mat-radio-button class="radio-button" *ngFor="let shipmentType of shipmentTypes" [value]="shipmentType">
+          {{shipmentType?.type}} <span class="shipment-type-price">Gastos de envío {{shipmentType?.price}}€
+            ({{shipmentType?.details}}).</span>
+        </mat-radio-button>
+      </mat-radio-group>
+      <div style="padding-left: 0" class="title">
+        Método de Pago
+      </div>
+      <div style="position: relative">
+        <span [class.hidden]="!paymentInfo?.owner" class="preInput">Titular</span>
+        <input [class.completeInput]="paymentInfo?.owner" matInput placeholder="Titular"
+          [(ngModel)]="paymentInfo.owner">
+      </div>
+      <div style="position: relative">
+        <span [class.hidden]="!paymentInfo?.number" class="preInput">Número</span>
+        <input [class.completeInput]="paymentInfo?.number" matInput placeholder="Número"
+          [(ngModel)]="paymentInfo.number">
+      </div>
+      <div style="position: relative">
+        <span [class.hidden]="!paymentInfo?.date" class="preInput">Vencimiento (mm/aa)</span>
+        <input [class.completeInput]="paymentInfo?.date" matInput placeholder="Vencimiento (mm/aa)"
+          [(ngModel)]="paymentInfo.date">
+      </div>
+      <div style="position: relative">
+        <span [class.hidden]="!paymentInfo?.csv" class="preInput">CSV</span>
+        <input [class.completeInput]="paymentInfo?.csv" matInput placeholder="CSV"
+          [(ngModel)]="paymentInfo.csv">
+      </div>
+      <div style="margin-top: 10px; font-size: 12px;">
+        <mat-checkbox [(ngModel)]="savePaymenInformation">Guardar información de cobro
+        </mat-checkbox>
+      </div>
     </div>
-    <div style="clear: both;"></div>
+  </div>
+
+  <div style="margin-top:30px; float: left;" class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+    <div style="padding: 10px 30px; font-size: 22px; line-height: 1.5;">
+      Total Final: €{{(cartService?.GetPrize()+order?.typeShipment?.price).toFixed(2)}}
+      <button mat-stroked-button class="btn" style="color:white; background-color: #545454" (click)="orderSubmit()">
+        COMPRAR
+      </button>
+    </div>
+  </div>
+</div>
+<div style="padding:0 14px 0px 14px" *ngIf="userService?.loggedUser==undefined">
+  Debes estar registrado para realizar el pedido
+  <button mat-stroked-button class="btn" routerLink="/registration" style="color:white; background-color: #545454">
+    Registrarme
+  </button>
+</div>
+
+<div style="clear: both;">
 </div>

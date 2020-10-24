@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { globalUrl } from '../app.utils';
 
@@ -37,8 +37,7 @@ export class UserService {
     }
 
     create(user: User): Observable<any> {
-        let headers = new HttpHeaders().set('Content-type', 'application/json')
-        return this._http.post(globalUrl + 'user', user, { headers })
+        return this._http.post(globalUrl + 'user', user)
     }
 
     deleteUser(user: User): Observable<any> {

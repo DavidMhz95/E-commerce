@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ShoppingCartCheckoutComponent } from './shopping-cart-checkout/shopping-cart-checkout.component';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     ProductDetailsModule,
     SharedModule,
     MatButtonModule,
+    MatRadioModule,
     FormsModule,
     MatCheckboxModule,
   ]

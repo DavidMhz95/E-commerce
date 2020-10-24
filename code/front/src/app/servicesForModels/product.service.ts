@@ -20,7 +20,7 @@ export class ProductService {
     }
 
     getProducts(): Observable<any> {
-        var products = 'products'
+        const products = 'products'
         return this._http.get(globalUrl + products);
     }
 

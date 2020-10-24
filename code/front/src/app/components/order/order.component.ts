@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core'
-import { CartProduct } from 'src/app/shared/shopping-cart.service'
 import { DataService, Customer } from 'src/app/shared/data.service'
 import { PaymentType, PaymentTypeEnum } from '../payment-types/payments.component';
 import { RandomEnum } from 'src/app/app.utils';
+import { CartProduct } from 'src/app/models/cart-product';
 
 @Component({
   selector: 'app-order',

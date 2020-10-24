@@ -3,7 +3,8 @@
     NOT BLACK MARKET
   </a>
   <div *ngIf="userService?.loggedUser" class="profile-img user-badge" routerLink="/profile"
-    [matTooltip]="userService?.loggedUser?.name" [style.backgroundImage]="'url(' + userService?.getUserProfileImage() + ')'">
+    [matTooltip]="userService?.loggedUser?.name"
+    [style.backgroundImage]="sanitizer?.bypassSecurityTrustStyle('url(' + userService?.getUserProfileImage() + '), url(assets/images/defaultProfile.png)')">
   </div>
   <mat-icon *ngIf="!userService?.loggedUser" class="user-badge" matTooltip="Conectarse" routerLink="/registration">
     person</mat-icon>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { DataService } from './data.service';
+import { CartProduct } from '../models/cart-product';
 
 @Injectable({
   providedIn: 'root'
@@ -51,7 +52,7 @@ export class ShoppingCartService {
     this.products = this.products.filter((product: CartProduct) => product.number > 0)
   }
 
-  public GetPrize(): string {
+  public GetPrize(): number {
     this.totalPrice = 0;
     this.products.forEach((element: CartProduct) => {
       if(element.product.offerPrice){
@@ -60,7 +61,7 @@ export class ShoppingCartService {
         this.totalPrice += element.product.price * element.number 
       }
     })
-    return this.totalPrice.toFixed(2)
+    return this.totalPrice
   }
 
   public GetElements(): string {
@@ -72,7 +73,4 @@ export class ShoppingCartService {
   }
 }
 
-export interface CartProduct {
-  product: Product
-  number: number
-}
+

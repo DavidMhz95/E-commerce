@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../servicesForModels/user.service';
-import { globalUrl } from '../app.utils';
-import { FormBuilder, Validators } from '@angular/forms';
 import { ImageService } from '../servicesForModels/image.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { OrderService } from '../servicesForModels/order.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,10 +12,12 @@ import { ImageService } from '../servicesForModels/image.service';
 export class ProfileComponent implements OnInit {
 
 
-  constructor(public userService: UserService, private imageService: ImageService) { }
+  constructor(public userService: UserService, private imageService: ImageService, public orderService:OrderService,  public sanitizer:DomSanitizer) { }
 
   ngOnInit(): void {
-    
+    this.orderService.getOrderByUser(this.userService.loggedUser).subscribe((response)=>{
+      console.log(response)
+    })
   }
 
   public onFileChange(event) {

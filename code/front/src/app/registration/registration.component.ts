@@ -27,15 +27,7 @@ export class RegistrationComponent {
   public isAccept: boolean
 
   constructor(public userService: UserService, private router: Router) {
-    this.user = {
-      name: '',
-      surname: '',
-      email: '',
-      hash_password: '',
-      image: undefined,
-      type: 0,
-      rol: 0
-    }
+    this.user = new User()
   }
 
   onLoginSubmit() {
