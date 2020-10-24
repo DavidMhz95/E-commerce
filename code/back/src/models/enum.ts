@@ -3,11 +3,11 @@ export interface IObjectyType {
 }
 
 export enum ObjectType {
-  User = 0,
-  Product = 1,
-  Order = 2,
-  Other = 3
-}
+    User = 0,
+    Product = 1,
+    Order = 2,
+    DiscountCode = 3
+  }
 
 export enum orderState {
   Realizado = 0,

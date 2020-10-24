@@ -19,7 +19,6 @@ export class LayoutComponent implements OnInit {
       response =>{
         if(response){
           this.dataService.products = response
-          console.log(this.dataService.products)
         }
       },
       error =>{

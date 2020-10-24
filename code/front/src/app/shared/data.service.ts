@@ -104,7 +104,7 @@ export class DataService {
       code: "FREEDELIVER",
       customers: undefined,
       repetitions: -1,
-      type: DiscountType.AbsoluteValue,
+      discountType: DiscountType.AbsoluteValue,
       value: 3.45,
       products: undefined,
       section: undefined,
@@ -119,7 +119,7 @@ export class DataService {
       code: "20OFFSALE",
       customers: undefined,
       repetitions: 1,
-      type: DiscountType.Percentage,
+      discountType: DiscountType.Percentage,
       value: 20,
       products: undefined,
       section: "Rubia",
@@ -184,7 +184,7 @@ export interface Customer {
 
 export interface DiscountCode {
   code: string
-  type: DiscountType //Porcentaje, valor absoluto,
+  discountType: DiscountType //Porcentaje, valor absoluto,
   value: number
   application: DiscountApplication //Envío, Productos, Categoria, Subcategoria, Todo
   repetitions: number
@@ -204,11 +204,11 @@ export enum DiscountType {
 }
 
 export enum DiscountApplication {
-  Shipment = "Envío",
+  All = "Todo",
   //Product = "Producto",
   //Section  = "Sección",
   //Subsection = "Subsección", 
-  All = "Todo",
+  Shipment = "Envío"
 }
 
 

@@ -23,18 +23,13 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
-import { TypeOfProductTableComponent } from './type-of-product-table/type-of-product-table.component';
-import { TypeOfProductComponent } from './type-of-product/type-of-product.component';
 import { ProductFormComponent } from './product-form/product-form.component';
-import { ProductFormEditComponent } from './product-form-edit/product-form-edit.component';
+
 
 @NgModule({
   declarations: [ProductsComponent, TableProductsComponent, DialogOverviewExampleDialog, PropertiesProductTableComponent,
     TypeProductTableComponent,
-    TypeOfProductTableComponent,
-    TypeOfProductComponent,
-    ProductFormComponent,
-    ProductFormEditComponent],
+    ProductFormComponent],
 
   imports: [
     CommonModule,
@@ -59,6 +54,6 @@ import { ProductFormEditComponent } from './product-form-edit/product-form-edit.
     MatCardModule,
     FormsModule,
     MatChipsModule
-  ]
+  ],
 })
 export class ProductsModule { }
