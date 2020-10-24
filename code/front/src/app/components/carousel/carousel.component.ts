@@ -31,7 +31,7 @@ export class CarouselComponent implements OnInit {
 
   public selectImage(image:string){
     console.log(image)
-    this.imageDiv.nativeElement.style.backgroundImage= 'url(' + this.productService?.getProductImages(image) + ')'
+    this.imageDiv.nativeElement.style.backgroundImage= 'url(' + this.productService.getProductImages(image) + ')'
   }
 
   public nextImage(){
@@ -39,7 +39,7 @@ export class CarouselComponent implements OnInit {
     if(this.selectedIndex>this.product.images.length-1){
       this.selectedIndex = 0
     }
-    this.imageDiv.nativeElement.style.backgroundImage='url(' + this.productService?.getProductImages(this.product.images[this.selectedIndex]) + ')'
+    this.imageDiv.nativeElement.style.backgroundImage='url(' + this.productService.getProductImages(this.product.images[this.selectedIndex]) + ')'
   }
 
 

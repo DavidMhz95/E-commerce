@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ShoppingCartService, CartProduct } from 'src/app/shared/shopping-cart.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { ProductService } from 'src/app/servicesForModels/product.service';
 
 @Component({
   selector: 'app-cart-products-table',
@@ -16,7 +17,7 @@ export class CartProductsTableComponent implements OnInit {
   displayedColumns: string[] = ['image', 'name', 'prize', 'number'];
   public internalDataSource:MatTableDataSource<CartProduct>
 
-  constructor(public cartService: ShoppingCartService) { 
+  constructor(public cartService: ShoppingCartService, public productService: ProductService) { 
 
   }
 

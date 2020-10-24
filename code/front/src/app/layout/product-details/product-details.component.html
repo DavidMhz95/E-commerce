@@ -67,8 +67,11 @@
       </mat-tab-group>
     </div>
     
-    <a style="margin-top: 35px;" [routerLink]="['/admin/products', product?.reference]" mat-stroked-button class="btn">
+    <a style="margin-top: 35px;"(click)="editProduct(product?.reference)" mat-stroked-button class="btn">
       EDITAR
+    </a>
+    <a style="margin-top: 35px;" (click)="deleteProduct(product?.reference)" mat-stroked-button class="btn">
+      BORRAR
     </a>
 
   </div>
