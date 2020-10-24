@@ -3,6 +3,7 @@ import { Client, ClientOptions } from '@elastic/elasticsearch'
 import { User } from './models/user';
 import { Product } from './models/product';
 import { Order } from './models/Order';
+import { DiscountCode } from './models/discountCode';
 
 
 let rawdata = fs.readFileSync('servicesettings.json')
@@ -27,7 +28,7 @@ export async function executeQuery(query: any) {
     })
 }
 
-//  USUARIOS 
+// USUARIOS 
 export async function getIdByEmail(query: any) {
     return await client.search({
         index: serviceSettings.elasticsearch.dbName,
@@ -96,7 +97,7 @@ export async function deleteProduct(id) {
     })
 } 
 
-//PEDIDOS 
+// PEDIDOS 
 
 export async function getByOrderId(query: any) {
     return await client.search({
@@ -129,4 +130,13 @@ export async function deleteOrder(id) {
         id: id,
         index: serviceSettings.elasticsearch.dbName
     })
-} 
+}
+
+// DESCUENTOS
+export async function saveDiscountCode(discountCode: DiscountCode) {
+    return await client.index({
+            index: serviceSettings.elasticsearch.dbName,
+            body: discountCode
+        }
+    )
+}

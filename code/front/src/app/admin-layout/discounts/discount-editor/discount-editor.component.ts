@@ -40,7 +40,7 @@ export class DiscountEditorComponent implements OnInit {
       code: undefined,
       customers: undefined,
       repetitions: undefined,
-      type: undefined,
+      discountType: undefined,
       value: undefined,
       products: undefined,
       section: undefined,

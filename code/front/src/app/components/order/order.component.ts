@@ -22,7 +22,7 @@ export class OrderComponent implements OnInit {
   constructor() { }
   ngOnInit(): void {
     this.products.forEach((p) => {
-      this.price += p.product.offerPrice * p.number
+      this.price += p.product?.offerPrice * p.number
     })
 
     this.location = "Calle Falsa 123, Madrid 28045 Madrid (Spain)"

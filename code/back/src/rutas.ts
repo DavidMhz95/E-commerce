@@ -1,10 +1,12 @@
 import { UserController } from './controllers/user.controller'
 import { ProductController } from './controllers/product.controller'
 import { ImageController } from './controllers/image.controller'
+import { DiscountCodeController } from './controllers/discountCode.controller'
 
 var UserController: UserController = require('./controllers/user.controller')
 var ProductController: ProductController = require('./controllers/product.controller')
 var ImageController: ImageController = require('./controllers/image.controller')
+var DiscountCodeController : DiscountCodeController = require('./controllers/discountCode.controller')
 
 var express = require('express');
 var router = express.Router();
@@ -27,6 +29,9 @@ router.get('/products', ProductController.getAll)
 router.get('/product/:ref', ProductController.getProductByRef)
 router.delete('/product/:ref', ProductController.deleteByRef)
 router.post('/updateProduct', ProductController.update)
+
+//Rutas para Descuentos
+router.post('/discountCode', DiscountCodeController.create)
 
 router.get('/', function (req, res, next) {
     res.sendFile('index.html', { root: __dirname })

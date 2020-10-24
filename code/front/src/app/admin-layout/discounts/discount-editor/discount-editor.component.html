@@ -17,7 +17,7 @@
         Tipo de descuento:
     </div>
     <div>
-        <mat-select placeholder="Seleccione un tipo" [(ngModel)]="discount.type">
+        <mat-select placeholder="Seleccione un tipo" [(ngModel)]="discount.discountType">
             <mat-option *ngFor="let type of discountType | keyvalue" [value]="type?.value">
                 {{type.value}}
             </mat-option>
@@ -29,7 +29,7 @@
     <div style="position: relative">
         <input matInput placeholder="Valor del descuento" style="padding-right: 30px;" [(ngModel)]="discount.value">
         <mat-icon style="position: absolute; top: 13px;right: 5px; font-size: 18px;
-        opacity: 0.7;" matSuffix>{{discount?.type==discountType.Percentage?'data_usage':'euro_symbol'}}
+        opacity: 0.7;" matSuffix>{{discount?.discountType==discountType.Percentage?'data_usage':'euro_symbol'}}
         </mat-icon>
     </div>
 

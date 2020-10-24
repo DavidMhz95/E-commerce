@@ -9,7 +9,7 @@ export class User {
         public hash_password: string,
         public type: number,
         public rol: number,
-        public image: string,
+        public image: string
 
         //Estas están fuera del modelo de datos, hay que hablar de si se meten o no ;)
         //public rol: string,
