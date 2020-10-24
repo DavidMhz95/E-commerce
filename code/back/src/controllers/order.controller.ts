@@ -1,221 +1,194 @@
-import { executeQuery, saveOrder, deleteOrder, updateOrder } from '../elastic';
+import { executeQuery, saveOrder, deleteOrder, updateOrder } from '../elastic'
 import { Order } from '../models/Order'
+import { ObjectType } from '../models/enum'
 
-
-const esb = require('elastic-builder'); // the builder
+const esb = require('elastic-builder') // the builder
 
 export interface OrderController {
-    add: Function,
-    getOrderById: Function,
     getAll: Function,
+    getById: Function,
+    getByUser: Function,
+    add: Function,
     update: Function,
-    deleteByRef: Function,
-    OrderExample: Function
+    deleteById: Function,
 }
 
 export var controller: OrderController = {
-    add: (req, res) => add(req, res),
-    getOrderById: (req, res) => getOrderById(req, res),
-    update: (req, res) => update(req, res),
-    deleteByRef: (req, res) => deleteByRef(req, res),
     getAll: (req, res) => getAll(req, res),
-    OrderExample: (req, res) => OrderExample(req, res)
+    getById: (req, res) => getById(req, res),
+    getByUser: (req, res) => getByUser(req, res),
+    add: (req, res) => add(req, res),
+    update: (req, res) => update(req, res),
+    deleteById: (req, res) => deleteById(req, res),
 }
 
-function getOrderById(req, res) {
+function getAll(req, res) {
+    const requestBody = new esb.RequestBodySearch()
+        .query(new esb.MatchPhraseQuery('type', ObjectType.Order))
+    // Build the request body
+    var query = requestBody.toJSON()
+    executeQuery(query).then(result => {
+        return res.status(200).send({
+            results: result.body.hits.hits.map((hit: any) => hit._source)
+        })
+    }, error => {
+        return res.status(400).send({
+            status: 'error',
+            message: error.message
+        })
+    })
+}
+
+function getById(req, res) {
     //Recoger los parámetros por post
-    var orderId = req.params.orderId;
+    var orderId = req.params.ref
     if (orderId) {
-        const requestBody = esb.requestBodySearch().query(
-            esb.boolQuery()
-                .must(esb.MatchPhraseQuery('orderId', orderId))
-                .must(esb.MatchPhraseQuery('type', 2))
-        );
+        const requestBody = new esb.requestBodySearch().query(
+            new esb.boolQuery()
+                .must(new esb.MatchPhraseQuery('orderId', orderId))
+                .must(new esb.MatchPhraseQuery('type', ObjectType.Order))
+        )
 
         // Build the request body
         var query = requestBody.toJSON()
         executeQuery(query).then(result => {
             return res.status(200).send({
-                results: result.body.hits.hits
-            });
+                results: result.body.hits.hits.map((hit: any) => hit._source)
+            })
         })
     } else {
         return res.status(400).send({
             status: 'error',
             message: 'Faltan datos por enviar'
-        });
+        })
     }
-
 }
 
-
-function getAll(req, res) {
-    const requestBody = new esb.RequestBodySearch()
-        .query(new esb.MatchPhraseQuery('type', "2"));
-    // Build the request body
-    var query = requestBody.toJSON()
-    executeQuery(query).then(result => {
-        return res.status(200).send({
-            results: result.body.hits.hits
-        });
-    }, error => {
-        return res.status(400).send({
-            status: 'error',
-            message: error.message
-        });
-    })
-
-}
-
-function update(req, res) {
+function getByUser(req, res) {
     //Recoger los parámetros por post
-    var params = req.body;
-
-    if (params.orderId &&
-        params.user &&
-        params.products &&
-        params.dateOrder &&
-        params.dateShipment &&
-        params.information &&
-        params.state &&
-        params.type 
-        ) {
-
-        var Order: Order = {
-            orderId: params.orderId,
-            user: params.user,
-            products: params.products,
-            dateOrder: params.dateOrder,
-            dateShipment: params.dateShipment,
-            information: params.information,
-            state: params.state,
-            type: params.type
-        }
-
-        const requestBody = new esb.RequestBodySearch().query(new esb.MatchPhraseQuery('orderId', Order.orderId))
-        executeQuery(requestBody.toJSON()).then(result => {
-            var actualOrder = result.body.hits.hits[0];
-            if (actualOrder) {
-                updateOrder(actualOrder._id, Order).then(() => {
-                    return res.status(200).send({
-                        response: true
-                    });
-                }, error => {
-                    console.log(error)
-                })
-            } else {
-                return res.status(200).send({
-                    status: 'error',
-                    message: 'No existe el id'
-                });
-            }
+    var userEmail = req.params.email
+    if (userEmail) {
+        const requestBody = new esb.requestBodySearch().query(
+            new esb.boolQuery()
+                .must(new esb.MatchPhraseQuery('user.email', userEmail))
+                .must(new esb.MatchPhraseQuery('type', ObjectType.Order))
+        )
+        // Build the request body
+        var query = requestBody.toJSON()
+        executeQuery(query).then(result => {
+            return res.status(200).send({
+                results: result.body.hits.hits.map((hit: any) => hit._source)
+            })
+        }, error => {
+            return res.status(500).send({
+                status: 'error',
+                message: error
+            })
         })
     } else {
         return res.status(400).send({
             status: 'error',
             message: 'Faltan datos por enviar'
-        });
+        })
     }
 }
 
 function add(req, res) {
     //Recoger los parámetros por post
-    var params = req.body;
-    var Order: Order = JSON.parse(params.Order)
-    if (Order) {
-        const requestBody = new esb.RequestBodySearch().query(new esb.MatchPhraseQuery('orderId', Order.orderId))
-        executeQuery(requestBody.toJSON()).then(result => {
-            if (result.body.hits.hits.length > 0) {
-                res.status(200).send({
-                    response: false
-                });
-            } else {
-                saveOrder(Order).then(() => {
-                    return res.status(201).send({
-                        response: true
-                    });
-                },
-                    error => console.log(error))
-            }
-        })
+    let order: Order = req.body
+    if (order) {
+        saveOrder(order).then(() => {
+            return res.status(201).send({
+                response: true
+            })
+        }, error => console.log(error))
     } else {
         return res.status(400).send({
             status: 'error',
             message: 'Faltan datos por enviar'
-        });
-    }
-}
-
-function OrderExample(req, res) {
-
-    // var dictionary = new Dictionary()
-    // var dictionary1 = new Dictionary()
-
-    // dictionary.set("talla", "S")
-    // dictionary.set("talla", "XS")
-    // dictionary.set("talla", "M")
-
-    // dictionary1.set("color", "rojo")
-    // dictionary1.set("color", "azul")
-
-    // var typeOfOrder: TypeOfOrder = {
-    //     name: "Camiseta",
-    //     properties: [dictionary, dictionary1]
-    // }
-
-    // var Order: Order =
-    // {
-    //     ref: 12345,
-    //     typeOfOrder: typeOfOrder,
-    //     name: "Camiseta HardRock",
-    //     offerPrice: 50,
-    //     price: 100,
-    //     images: ["https://content.asos-media.com/-/media/homepages/ww/2020/09/14/ww_hourglass_moment_870x1110.jpg", "https://content.asos-media.com/-/media/homepages/ww/2020/09/14/ww_flares_moment_870x1110-v2.jpg"],
-    //     description: "Camiseta de puta madre",
-    //     details: ["Detalles de la camiseta", "Algodon 60%", "Cocaina 100%"],
-    //     stockNumber: 50,
-    //     section: "Camisetas",
-    //     subsection: "Verano",
-    //     type: 1
-    // }
-
-    // return res.status(201).send({
-    //     Order
-    // });
-
-}
-
-function deleteByRef(req, res) {
-    //Recoger los parámetros por post
-    var orderId = req.params.orderId;
-    if (orderId) {
-        const requestBody = new esb.RequestBodySearch().query(new esb.MatchPhraseQuery('orderId', orderId))
-        executeQuery(requestBody.toJSON()).then(result => {
-            var Order = result.body.hits.hits[0];
-            if (Order) {
-                deleteOrder(Order._id).then(() => {
-                    return res.status(200).send({
-                        response: true
-                    });
-                },
-                    error => {
-                        return res.status(500).send({
-                            status: 'error',
-                            message: error.message
-                        });
-                    })
-            } else {
-                return res.status(204).send({
-                    status: 'error',
-                    message: 'No se encuentra el Order'
-                });
-            }
         })
     }
 }
 
+function update(req, res) {
+    //Recoger los parámetros por post
+    var order: Order = req.body
+    if (order.id) {
+        const requestBody = new esb.requestBodySearch().query(new esb.boolQuery()
+            .must(new esb.MatchPhraseQuery('orderId', order.id))
+            .must(new esb.MatchPhraseQuery('type', ObjectType.Order)))
 
-module.exports = controller;
+        executeQuery(requestBody.toJSON()).then(result => {
+            var actualOrder = result.body.hits.hits[0]
+            if (actualOrder) {
+                updateOrder(actualOrder._id, order).then(() => {
+                    return res.status(200).send({
+                        response: true
+                    })
+                }, error => {
+                    return res.status(500).send({
+                        status: 'error',
+                        message: 'Error al actualizar el pedido'
+                    })
+                })
+            } else {
+                return res.status(404).send({
+                    status: 'error',
+                    message: 'No existe el id'
+                })
+            }
+        })
+    } else {
+        return res.status(404).send({
+            status: 'error',
+            message: 'No existe el id'
+        })
+    }
+}
+
+function deleteById(req, res) {
+
+    var orderId = req.params.ref
+    if (orderId) {
+        const requestBody = new esb.requestBodySearch().query(
+            new esb.boolQuery()
+                .must(new esb.MatchPhraseQuery('orderId', orderId))
+                .must(new esb.MatchPhraseQuery('type', ObjectType.Order))
+        )
+
+        // Build the request body
+        executeQuery(requestBody.toJSON()).then(result => {
+            var deletedOrder = result.body.hits.hits[0]
+            if (deletedOrder) {
+                deleteOrder(deletedOrder._id).then(() => {
+                    return res.status(200).send({
+                        response: true
+                    })
+                }, (error: any) => {
+                    return res.status(500).send({
+                        status: 'error',
+                        message: error.message
+                    })
+                })
+            } else {
+                return res.status(204).send({
+                    status: 'error',
+                    message: 'No existe el id'
+                })
+            }
+        })
+
+
+
+    } else {
+        return res.status(400).send({
+            status: 'error',
+            message: 'Faltan datos por enviar'
+        })
+    }
+}
+
+module.exports = controller
 
 
 

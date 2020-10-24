@@ -1,10 +1,13 @@
 import { UserController } from './controllers/user.controller'
 import { ProductController } from './controllers/product.controller'
 import { ImageController } from './controllers/image.controller'
+import { OrderController } from './controllers/order.controller'
 
 var UserController: UserController = require('./controllers/user.controller')
 var ProductController: ProductController = require('./controllers/product.controller')
 var ImageController: ImageController = require('./controllers/image.controller')
+var OrderController: OrderController = require('./controllers/order.controller')
+
 
 var express = require('express');
 var router = express.Router();
@@ -27,6 +30,14 @@ router.get('/products', ProductController.getAll)
 router.get('/product/:ref', ProductController.getProductByRef)
 router.delete('/product/:ref', ProductController.deleteByRef)
 router.post('/updateProduct', ProductController.update)
+
+//Rutas para Pedidos
+router.get('/orders', OrderController.getAll)
+router.get('/orders/:ref', OrderController.getById)
+router.get('/userOrders/:email', OrderController.getByUser)
+router.post('/order', OrderController.add)
+router.post('/updateOrder', OrderController.update)
+router.delete('/orders/:ref', OrderController.update)
 
 router.get('/', function (req, res, next) {
     res.sendFile('index.html', { root: __dirname })

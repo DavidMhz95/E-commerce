@@ -1,21 +1,24 @@
-import { orderState } from './enum';
-import { PaymentInfo } from './paymentInfo';
+import { State } from './state';
+import { PaymentInfo } from './payment-info';
 import { User } from './user';
-import { Product } from './product';
-import { ObjectType } from './enum';
+import { CartProduct } from './cart-product';
+import { ShipmentType } from './shipment-type';
+import { ObjectType, IObjectyType } from './enum';
 
-export class Order {
+export class Order implements IObjectyType {
+
+    type: ObjectType = ObjectType.Order
 
     constructor(
-        public orderId: number,
-        public user: User,
-        public products: Product[],
-        public dateOrder: Date,
-        public dateShipment: Date,
-        public information: String[],
-        public state: orderState = 0,
-        //public paymentInfo: PaymentInfo, TODO: Chequear si esto debemos guardarlo o de que manera 
-        public type: ObjectType = 2
-    ) {}
+        public id?: number,
+        public user?: User,
+        public products?: CartProduct[],
+        public dateOrder?: Date,
+        public dateShipment?: Date,
+        public information?: number,
+        public state?: State,
+        public paymentInfo?: PaymentInfo,
+        public typeShipment?: ShipmentType
+    ) { }
 
-  }
+}

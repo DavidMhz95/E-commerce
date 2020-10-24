@@ -62,40 +62,21 @@ function getByEmail(req, res) {
 
 function create(req, res) {
     //Recoger los parámetros por post
-
-    if (req.body.name &&
-        //params.surname &&
-        req.body.email &&
-        req.body.hash_password &&
-        req.body.type != undefined &&
-        req.body.rol != undefined) {
-
-        var user: User = {
-            name: req.body.name,
-            surname: req.body.surname,
-            rol: req.body.rol,
-            email: req.body.email,
-            hash_password: req.body.hash_password,
-            type: req.body.type,
-            image: undefined
+    var user: User = req.body
+    _getUserByEmail(user.email).then((response: any) => {
+        if (response?.body?.hits?.hits?.length > 0) {
+            res.status(400).send('Ya existe un usuario registrado con este email.');
+        } else {
+            saveUser(user).then(() => {
+                return res.status(201).send(user)
+            }, (error: any) => {
+                return res.status(400).send(error);
+            })
         }
+    }, (error: any) => {
+        return res.status(400).send(error);
+    })
 
-        _getUserByEmail(user.email).then((response: any) => {
-            if (response?.body?.hits?.hits?.length > 0) {
-                res.status(400).send('Ya existe un usuario registrado con este email.');
-            } else {
-                saveUser(user).then(() => {
-                    return res.status(201).send(user)
-                }, (error: any) => {
-                    return res.status(400).send(error);
-                })
-            }
-        }, (error: any) => {
-            return res.status(400).send(error);
-        })
-    } else {
-        return res.status(400).send('Faltan datos por enviar');
-    }
 }
 
 function getAll(req, res) {
@@ -108,33 +89,12 @@ function getAll(req, res) {
     }, error => {
         return res.status(400).send(error);
     })
-
-
-
 }
 
 function update(req, res) {
     //Recoger los parámetros por post
-    var params = req.body;
-
-    if (params.name &&
-        params.surname &&
-        params.email &&
-        params.hash_password &&
-        params.type != undefined &&
-        params.image &&
-        params.rol != undefined) {
-
-        var user: User = {
-            name: params.name,
-            surname: params.surname,
-            rol: params.rol,
-            email: params.email,
-            hash_password: params.hash_password,
-            type: params.type,
-            image: params.image
-        }
-
+    var user: User = req.body
+    if (user) {
         const requestBody = new esb.RequestBodySearch().query(new esb.MatchPhraseQuery('email', user.email))
         executeQuery(requestBody.toJSON()).then(result => {
             var actualUser = result.body.hits.hits[0];
@@ -163,7 +123,7 @@ function update(req, res) {
 
 function deleteByEmail(req, res) {
     //Recoger los parámetros por post
-    var userEmail = req.params.email;
+    var userEmail = req.params.email
     if (userEmail) {
         _getUserByEmail(userEmail).then((response: any) => {
             if (response?.body?.hits?.hits?.length > 0) {

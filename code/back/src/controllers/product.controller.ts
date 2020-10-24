@@ -83,9 +83,9 @@ function update(req, res) {
         params.subsection &&
         params.type) {
 
-        var Product: Product = {
+        var p: Product = {
             reference: params.reference,
-            typeOfProduct: params.typeOfProduct,
+            type: params.type,
             name: params.name,
             offerPrice: params.offerPrice,
             price: params.price,
@@ -95,14 +95,14 @@ function update(req, res) {
             stockNumber: params.stockNumber,
             section: params.section,
             subsection: params.subsection,
-            type: params.type
+            properties: params.properties
         }
 
-        const requestBody = new esb.RequestBodySearch().query(new esb.MatchPhraseQuery('reference', Product.reference))
+        const requestBody = new esb.RequestBodySearch().query(new esb.MatchPhraseQuery('reference', p.reference))
         executeQuery(requestBody.toJSON()).then(result => {
             var actualProduct = result.body.hits.hits[0];
             if (actualProduct) {
-                updateProduct(actualProduct._id, Product).then(() => {
+                updateProduct(actualProduct._id, p).then(() => {
                     return res.status(200).send(
                         true
                     );
@@ -180,7 +180,7 @@ function deleteByRef(req, res) {
             if (Product) {
                 deleteProduct(Product._id).then(() => {
                     return res.status(200).send(
-                         true
+                        true
                     );
                 },
                     error => {

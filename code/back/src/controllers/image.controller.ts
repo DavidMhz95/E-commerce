@@ -1,4 +1,3 @@
-import { executeQuery, saveOrder, deleteOrder, updateOrder } from '../elastic';
 import path from 'path'
 
 var fs = require('fs');

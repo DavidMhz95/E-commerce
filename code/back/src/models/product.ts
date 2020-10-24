@@ -1,11 +1,13 @@
-import { ObjectType } from './enum';
-import { TypeOfProduct } from './typeOfProduct';
+import { Property } from './property';
+import { ObjectType, IObjectyType } from './enum';
 
-export class Product {
+export class Product implements IObjectyType {
 
+    type: ObjectType = ObjectType.Product
+    
     constructor(
-        public reference: number,
-        public typeOfProduct: TypeOfProduct,
+        public reference: string,
+        public properties: Property[],
         public name: string,
         public offerPrice: number,
         public price: number,
@@ -13,9 +15,8 @@ export class Product {
         public description: string,
         public details: string[],
         public stockNumber: number,
-        public section:string,
-        public subsection:string,
-        public type: ObjectType = 1
-    ) {}
+        public section: string,
+        public subsection: string,
+    ) { }
 
-  }
+}

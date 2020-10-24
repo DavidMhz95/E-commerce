@@ -1,8 +1,9 @@
 import fs from 'fs';
-import { Client, ClientOptions } from '@elastic/elasticsearch'
+import { Client } from '@elastic/elasticsearch'
 import { User } from './models/user';
 import { Product } from './models/product';
 import { Order } from './models/Order';
+import { ObjectType } from './models/enum';
 
 
 let rawdata = fs.readFileSync('servicesettings.json')
@@ -39,10 +40,13 @@ export async function getIdByEmail(query: any) {
 }
 
 export async function saveUser(user: User) {
+    if(!user.type){
+        user.type = ObjectType.User
+    }
     return await client.index({
-            index: serviceSettings.elasticsearch.dbName,
-            body: user
-        }
+        index: serviceSettings.elasticsearch.dbName,
+        body: user
+    }
     )
 }
 
@@ -50,8 +54,8 @@ export async function updateUser(id, user: User) {
     return await client.update({
         id: id,
         index: serviceSettings.elasticsearch.dbName,
-        body:  {doc:user}
-       })
+        body: { doc: user }
+    })
 }
 
 export async function deleteUser(id) {
@@ -74,30 +78,34 @@ export async function getIdByRef(query: any) {
 }
 
 export async function saveProduct(product: Product) {
+    if(!product.type){
+        product.type = ObjectType.Order
+    }
     return await client.index({
-            index: serviceSettings.elasticsearch.dbName,
-            body: product
-        }
-    )
+        index: serviceSettings.elasticsearch.dbName,
+        body: product
+    })
 }
 
-export async function updateProduct(id,product: Product) {
+export async function updateProduct(id:string, product: Product) {
+    if(!product.type){
+        product.type = ObjectType.Order
+    }
     return await client.update({
         id: id,
         index: serviceSettings.elasticsearch.dbName,
-        body:  {doc:product}
-       })
+        body: { doc: product }
+    })
 }
 
-export async function deleteProduct(id) {
+export async function deleteProduct(id:string) {
     return await client.delete({
         id: id,
         index: serviceSettings.elasticsearch.dbName
     })
-} 
+}
 
 //PEDIDOS 
-
 export async function getByOrderId(query: any) {
     return await client.search({
         index: serviceSettings.elasticsearch.dbName,
@@ -109,22 +117,30 @@ export async function getByOrderId(query: any) {
 }
 
 export async function saveOrder(order: Order) {
+    if (!order.id) {
+        order.id = new Date().getTime()
+    }
+    if(!order.type){
+        order.type = ObjectType.Order
+    }
     return await client.index({
-            index: serviceSettings.elasticsearch.dbName,
-            body: order
-        }
-    )
+        index: serviceSettings.elasticsearch.dbName,
+        body: order
+    })
 }
 
-export async function updateOrder(id,order: Order) {
+export async function updateOrder(id: string, order: Order) {
+    if(!order.type){
+        order.type = ObjectType.Order
+    }
     return await client.update({
         id: id,
         index: serviceSettings.elasticsearch.dbName,
-        body:  {doc:order}
-       })
+        body: { doc: order }
+    })
 }
 
-export async function deleteOrder(id) {
+export async function deleteOrder(id:string) {
     return await client.delete({
         id: id,
         index: serviceSettings.elasticsearch.dbName
