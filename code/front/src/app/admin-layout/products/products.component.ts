@@ -13,8 +13,8 @@ import { CopyObject } from 'src/app/app.utils';
 })
 export class ProductsComponent implements OnInit {
 
-  public product:Product
-  public isEditionMode:boolean
+  public product: Product
+  public isEditionMode: boolean
 
   constructor(public dataService: DataService, public activatedRoute: ActivatedRoute, public productService: ProductService) { }
 
@@ -57,7 +57,18 @@ export class ProductsComponent implements OnInit {
     })
   }
 
-  edit(product: Product){
+  editProduct(product: Product) {
+    this.productService.update(product).subscribe(response => {
+      if (response) {
+        this.dataService.products = response
+        alert("Producto editado correctamente")
+      }
+    }, error => {
+      console.log(error)
+    })
+  }
+
+  edit(product: Product) {
     this.isEditionMode = true
     this.product = product
   }

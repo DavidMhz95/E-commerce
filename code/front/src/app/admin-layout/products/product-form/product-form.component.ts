@@ -17,6 +17,7 @@ export class ProductFormComponent implements OnInit {
   @Input('product') product: Product
   @Input('isEditionMode') isEditionMode: boolean
   @Output() add: EventEmitter<Product> = new EventEmitter()
+  @Output() editProduct: EventEmitter<Product> = new EventEmitter()
 
   isSaleEnabled: boolean = false
 
@@ -43,24 +44,41 @@ export class ProductFormComponent implements OnInit {
     //this.product.image = image_data
   }
 
-  addProduct() {
-    this.product.properties = this.properties
-    this.product.details = this.details
-    var promises: any[] = []
-    if (this.files && this.files.length > 0) {
-      this.files.forEach(file => {
-        promises.push(this.imageService.upload(file))
-      })
-      forkJoin(promises).subscribe(
-        (response: string[]) => {
-          this.product.images = response.map((image: any) => image.id)
-          this.add.emit(this.product)
-        }, error => {
-          console.log(error)
+  addProduct(isEditionMode) {
+    if(!isEditionMode){
+      this.product.properties = this.properties
+      this.product.details = this.details
+      var promises: any[] = []
+      if (this.files && this.files.length > 0) {
+        this.files.forEach(file => {
+          promises.push(this.imageService.upload(file))
         })
+        forkJoin(promises).subscribe(
+          (response: string[]) => {
+            this.product.images = response.map((image: any) => image.id)
+            this.add.emit(this.product)
+          }, error => {
+            console.log(error)
+          })
+      }
+    }else{
+      this.product.properties = this.properties
+      this.product.details = this.details
+      var promises: any[] = []
+      if (this.files && this.files.length > 0) {
+        this.files.forEach(file => {
+          promises.push(this.imageService.upload(file))
+        })
+        forkJoin(promises).subscribe(
+          (response: string[]) => {
+            this.product.images = response.map((image: any) => image.id)
+            this.editProduct.emit(this.product)
+          }, error => {
+            console.log(error)
+          })
+      }
     }
   }
-
 
   public cleanNgModels() {
     this.fakeProperty = null
@@ -73,6 +91,7 @@ export class ProductFormComponent implements OnInit {
     this.properties = []
     this.product = null
   }
+
   // Properties
   public addPropertyName(isEditionMode: boolean) {
 
