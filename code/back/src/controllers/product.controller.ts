@@ -24,10 +24,10 @@ function getProductByRef(req, res) {
     //Recoger los parámetros por post
     var productRef = req.params.ref;
     if (productRef) {
-        const requestBody = esb.requestBodySearch().query(
-            esb.boolQuery()
-                .must(esb.MatchPhraseQuery('ref', productRef))
-                .must(esb.MatchPhraseQuery('type', 1))
+        const requestBody = new esb.requestBodySearch().query(
+            new esb.boolQuery()
+                .must(new esb.MatchPhraseQuery('reference', productRef))
+                .must(new esb.MatchPhraseQuery('type', 1))
         );
         // Build the request body
         var query = requestBody.toJSON()
@@ -68,41 +68,14 @@ function getAll(req, res) {
 
 function update(req, res) {
     //Recoger los parámetros por post
-    var params = req.body;
+    let product: Product = req.body
 
-    if (params.ref &&
-        params.typeOfProduct &&
-        params.name &&
-        params.offerPrice &&
-        params.price &&
-        params.images &&
-        params.description &&
-        params.details &&
-        params.stockNumber &&
-        params.section &&
-        params.subsection &&
-        params.type) {
-
-        var p: Product = {
-            reference: params.reference,
-            type: params.type,
-            name: params.name,
-            offerPrice: params.offerPrice,
-            price: params.price,
-            images: params.images,
-            description: params.description,
-            details: params.details,
-            stockNumber: params.stockNumber,
-            section: params.section,
-            subsection: params.subsection,
-            properties: params.properties
-        }
-
-        const requestBody = new esb.RequestBodySearch().query(new esb.MatchPhraseQuery('reference', p.reference))
+    if (product){
+        const requestBody = new esb.RequestBodySearch().query(new esb.MatchPhraseQuery('reference', product.reference))
         executeQuery(requestBody.toJSON()).then(result => {
             var actualProduct = result.body.hits.hits[0];
             if (actualProduct) {
-                updateProduct(actualProduct._id, p).then(() => {
+                updateProduct(actualProduct._id, product).then(() => {
                     return res.status(200).send(
                         true
                     );
@@ -126,7 +99,8 @@ function update(req, res) {
 
 function add(req, res) {
     //Recoger los parámetros por post
-    var product: Product = req.body;
+    let product: Product = req.body;
+    
     if (product.reference &&
         product.name &&
         product.price &&

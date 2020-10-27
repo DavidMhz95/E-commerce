@@ -2,15 +2,15 @@
   {{isEditionMode?'Editar':'Crear' }} Producto
 </div>
 
-<form class="mid-form" #productForm="ngForm" (ngSubmit)="addProduct()">
+<form class="mid-form" #productForm="ngForm" (ngSubmit)="addProduct(isEditionMode)">
   <mat-card class="card" style="margin-top: 20px">
     <div class="preInput">
       Referencia:
     </div>
     <div style="position: relative">
-      <input matInput placeholder="Ex. Niked20019N" #reference="ngModel" [(ngModel)]="product.reference"
+      <input matInput placeholder="Ex. Niked20019N" #reference="ngModel" [(ngModel)]="product.reference" [disabled]="isEditionMode"
         name="reference" style="padding-right: 30px;" required>
-      <small style="color: red;" *ngIf="!reference.valid && reference.touched">
+      <small style="color: red;" *ngIf="!reference.valid && reference.touched && !isEditionMode">
         La referencia no es válida
       </small>
     </div>
@@ -68,7 +68,7 @@
               {{value}}
               <mat-icon
                 style="font-size: 15px; text-align: center; vertical-align: middle; margin-top: 8px; padding-left: 12px; "
-                (click)="removeEditing(property,property.value)">cancel</mat-icon>
+                (click)="removeEditing(property, value)">cancel</mat-icon>
             </mat-chip>
           </div>
 
@@ -127,8 +127,9 @@
     </div>
 
     <div style="position: relative">
-      <input type="file" (change)="onFileChange($event)" [(ngModel)]="images" multiple />
+      <input required type="file" (change)="onFileChange($event)" [(ngModel)]="images"  multiple required/>
     </div>
+  
   </mat-card>
 
   <mat-card class="card" style="margin-top: 20px">
@@ -166,8 +167,8 @@
         Detalle</div>
       <div style="clear:both"></div>
     </div>
-
   </mat-card>
+  
   <mat-card class="card" style="margin-top: 20px">
     <div class="preInput" style="margin-top: 10px">
       Cantidad en Stock
@@ -179,6 +180,7 @@
         El Numero de stock no es válido
       </small>
     </div>
+
     <div class="preInput" style="margin-top: 10px">
       Seccion
     </div>
@@ -202,7 +204,7 @@
   </mat-card>
 
   <div style="margin-top: 20px">
-    <button style="float:right" mat-flat-button class="btn" color="primary" [disabled]=productForm.invalid>
+    <button style="float:right" mat-flat-button class="btn" color="primary" [disabled]="productForm.invalid && !fileSelected  ? true : null" >
       {{isEditionMode?'Editar':'Añadir' }} Producto</button>
     <div style="clear:both"></div>
   </div>
