@@ -13,44 +13,48 @@ export var controller: DiscountCodeController = {
 }
 
 function create(req, res) {
-    //Control de errores
-    if (req.body.code != undefined) {
-        if (req.body.value != undefined) {
-            if (req.body.discountType != undefined) {
+    //Recogemos el objeto
+    if (req.body) {
+        //Control de errores
+        if (req.body.code != undefined) {
+            if (req.body.value != undefined) {
+                if (req.body.discountType != undefined) {
 
-                //Crear código de descuento
-                var discountCode: DiscountCode = {
-                    code: req.body.code,
-                    discountType: req.body.discountType,
-                    value: req.body.value,
-                    application: req.body.application.key,
-                    repetitions: req.body.repetitions,
-                    customers: req.body.customers,
-                    products: req.body.products,
-                    section: req.body.section,
-                    subsection: req.body.subsection,
-                    minPurchase: req.body.minPurchase,
-                    color: req.body.color,
-                    dateFrom: req.body.dateFrom,
-                    dateTo: req.body.dateTo,
-                    type: ObjectType.DiscountCode
+                    //Crear código de descuento
+                    let discountCode: DiscountCode = {
+                        code: req.body.code,
+                        discountType: req.body.discountType,
+                        value: req.body.value,
+                        discountApplication: req.body.discountApplication,
+                        repetitions: req.body.repetitions,
+                        customers: req.body.customers,
+                        products: req.body.products,
+                        section: req.body.section,
+                        subsection: req.body.subsection,
+                        minPurchase: req.body.minPurchase,
+                        color: req.body.color,
+                        dateFrom: req.body.dateFrom,
+                        dateTo: req.body.dateTo,
+                        type: ObjectType.DiscountCode
+                    }
+
+                    //Guardar
+                    saveDiscountCode(discountCode).then(() => {
+                        return res.status(201).send(discountCode)
+                    }, (error: any) => {
+                        return res.status(400).send(error);
+                    })
+                } else {
+                    return res.status(400).send('Falta tipo de descuento descuento.');
                 }
-
-                //Guardar
-                saveDiscountCode(discountCode).then(() => {
-                    return res.status(201).send(discountCode)
-                }, (error: any) => {
-                    return res.status(400).send(error);
-                })
-
             } else {
-                return res.status(400).send('Falta typo de descuento descuento.');
+                return res.status(400).send('Valor de descuento no introducido.');
             }
         } else {
-            return res.status(400).send('Valor de descuento no introducido.');
+            return res.status(400).send('Código de descuento no introducido.');
         }
     } else {
-        return res.status(400).send('Código de descuento no introducido.');
+        return res.status(400).send('Descuento no introducido.');
     }
 }
 

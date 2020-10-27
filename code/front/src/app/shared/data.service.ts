@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ProductModalComponent } from '../components/product-modal/product-modal.component';
 import { RandomDate } from 'src/app/app.utils';
 import { Product } from '../models/product';
+import { DiscountApplication, DiscountCode, DiscountType } from '../models/discountCode';
 
 @Injectable({
   providedIn: 'root'
@@ -100,7 +101,7 @@ export class DataService {
 
   public discounts: DiscountCode[] = [
     {
-      application: DiscountApplication.Shipment,
+      discountApplication: DiscountApplication.Envio,
       code: "FREEDELIVER",
       customers: undefined,
       repetitions: -1,
@@ -115,7 +116,7 @@ export class DataService {
       dateTo: undefined
     },
     {
-      application: DiscountApplication.Shipment,
+      discountApplication: DiscountApplication.Envio,
       code: "20OFFSALE",
       customers: undefined,
       repetitions: 1,
@@ -141,8 +142,6 @@ export class DataService {
       properties: new Dictionary(),
     }
   ]
-
-
 
 }
 
@@ -182,41 +181,10 @@ export interface Customer {
   isSubscribed: boolean
 }
 
-export interface DiscountCode {
-  code: string
-  discountType: DiscountType //Porcentaje, valor absoluto,
-  value: number
-  application: DiscountApplication //Envío, Productos, Categoria, Subcategoria, Todo
-  repetitions: number
-  customers: Customer[]
-  products: Product[]
-  section: string
-  subsection: string
-  minPurchase: number
-  color: string
-  dateFrom: Date
-  dateTo: Date
-}
-
-export enum DiscountType {
-  Percentage = "Porcentaje",
-  AbsoluteValue = "Valor",
-}
-
-export enum DiscountApplication {
-  All = "Todo",
-  //Product = "Producto",
-  //Section  = "Sección",
-  //Subsection = "Subsección", 
-  Shipment = "Envío"
-}
-
-
 export interface TypeOfProduct {
   name: string,
   properties: Dictionary
 }
-
 
 export class Dictionary {
   items = {};

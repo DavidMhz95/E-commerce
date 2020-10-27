@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DataService, DiscountType, DiscountCode, DiscountApplication } from './../../shared/data.service';
+import { DataService } from './../../shared/data.service';
 import { ColorService } from 'src/app/shared/color.service';
 import { DiscountCodeService } from 'src/app/servicesForModels/discountCode.service';
 import { MatPaginator } from '@angular/material/paginator';
@@ -7,6 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CopyObject } from 'src/app/app.utils';
 import { Router } from '@angular/router';
+import { DiscountApplication, DiscountCode, DiscountType } from 'src/app/models/discountCode';
 
 @Component({
   selector: 'app-discounts',
@@ -42,24 +43,16 @@ export class DiscountsComponent implements OnInit {
 
   saveDiscount() {
     this.errorMessage = undefined
-    
+
     this.discountCodeService.create(this.discount).subscribe((discount : any) => {
       if (discount){
-        this.router.navigate(['/discountCode'])
+        alert("Descuento creado correctamente.")
       }else{
         this.errorMessage = "Descuento erróneo."
       }
     }, error => {
       console.log(error)
     })
-
-    
-    // this.discount.code = this.discount.code.toUpperCase()
-    // const index: number = this.dataService.discounts.indexOf(this.discount)
-    // if (index == -1) {
-    //   this.dataService.discounts.push(this.discount)
-    //   this.dataSource = new MatTableDataSource(this.dataService.discounts)
-    // }
   }
 
   duplicateDiscount(discount: DiscountCode) {
@@ -81,7 +74,7 @@ export class DiscountsComponent implements OnInit {
 
   resetDiscount() {
     this.discount = {
-      application: DiscountApplication.All,
+      discountApplication: undefined,
       code: undefined,
       customers: undefined,
       repetitions: undefined,

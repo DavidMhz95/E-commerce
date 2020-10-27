@@ -1,4 +1,4 @@
-import { Customer, DiscountApplication, DiscountType } from '../shared/data.service';
+import { Customer, } from '../shared/data.service';
 import { Product } from './product';
 
 export class DiscountCode {
@@ -7,7 +7,7 @@ export class DiscountCode {
         public code: string,
         public discountType: DiscountType, //Porcentaje, valor absoluto,
         public value: number,
-        public application: DiscountApplication, //Envío, Productos, Categoria, Subcategoria, Todo
+        public discountApplication: DiscountApplication, //Envío, Productos, Categoria, Subcategoria, Todo
         public repetitions: number,
         public customers: Customer[],
         public products: Product[],
@@ -19,4 +19,17 @@ export class DiscountCode {
         public dateTo: Date
     ){ }
 
+}
+
+export enum DiscountType {
+    Percentage = "Porcentaje",
+    AbsoluteValue = "Valor",
+}
+
+export enum DiscountApplication {
+    Todo = "Todo",
+    //Product = "Producto",
+    //Section  = "Sección",
+    //Subsection = "Subsección", 
+    Envio = "Envio",
 }

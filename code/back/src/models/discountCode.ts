@@ -11,7 +11,7 @@ export class DiscountCode {
         public code: string,
         public discountType: DiscountType, //Porcentaje, valor absoluto,
         public value: number,
-        public application: DiscountApplication, //Envío, Productos, Categoria, Subcategoria, Todo
+        public discountApplication: DiscountApplication, //Envío, Productos, Categoria, Subcategoria, Todo
         public repetitions: number,
         public customers: Customer[],
         public products: Product[],
@@ -22,19 +22,19 @@ export class DiscountCode {
         public dateFrom: Date,
         public dateTo: Date,
         public type: ObjectType
-    ){ }
+    ) { }
 
 }
 
 export enum DiscountType {
-    Percentage = 0,
-    AbsoluteValue = 1,
+    Percentage = "Porcentaje",
+    AbsoluteValue = "Valor",
 }
 
 export enum DiscountApplication {
-    All = "Todo",
+    Todo = "Todo",
     //Product = "Producto",
     //Section  = "Sección",
     //Subsection = "Subsección", 
-    Shipment = "Envío"
-  }
+    Envio = "Envio",
+}

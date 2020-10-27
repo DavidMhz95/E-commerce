@@ -50,7 +50,7 @@
 <mat-card class="card" style="margin-top: 20px">
     <span>Aplica a:</span>
     <div>
-        <mat-radio-group name="applyRadio" class="radio-group" [(ngModel)]="discount.application">
+        <mat-radio-group name="applyRadio" class="radio-group" [(ngModel)]="discount.discountApplication">
             <mat-radio-button class="radio-button" name="applyRadio" *ngFor="let type of discountApplication | keyvalue"
                 [value]="type?.value">
                 {{type.value}}

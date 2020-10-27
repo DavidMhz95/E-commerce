@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DiscountCode, DataService, DiscountType, DiscountApplication } from 'src/app/shared/data.service';
+import { DataService } from 'src/app/shared/data.service';
 import { ColorService } from 'src/app/shared/color.service';
 import { MatDrawer } from '@angular/material/sidenav';
+import { DiscountApplication, DiscountCode, DiscountType } from 'src/app/models/discountCode';
 
 @Component({
   selector: 'app-discount-editor',
@@ -36,7 +37,7 @@ export class DiscountEditorComponent implements OnInit {
 
   resetDiscount() {
     this.discount = {
-      application: DiscountApplication.All,
+      discountApplication: undefined,
       code: undefined,
       customers: undefined,
       repetitions: undefined,
