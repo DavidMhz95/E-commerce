@@ -45,7 +45,8 @@ export class ProductFormComponent implements OnInit {
   }
 
   addProduct(isEditionMode) {
-    if(!isEditionMode){
+    console.log(this.fileSelected)
+    if (!isEditionMode) {
       this.product.properties = this.properties
       this.product.details = this.details
       var promises: any[] = []
@@ -57,13 +58,12 @@ export class ProductFormComponent implements OnInit {
           (response: string[]) => {
             this.product.images = response.map((image: any) => image.id)
             this.add.emit(this.product)
+            this.resetProduct();
           }, error => {
             console.log(error)
           })
       }
-    }else{
-      this.product.properties = this.properties
-      this.product.details = this.details
+    } else {
       var promises: any[] = []
       if (this.files && this.files.length > 0) {
         this.files.forEach(file => {
@@ -73,24 +73,41 @@ export class ProductFormComponent implements OnInit {
           (response: string[]) => {
             this.product.images = response.map((image: any) => image.id)
             this.editProduct.emit(this.product)
+            this.resetProduct();
           }, error => {
             console.log(error)
           })
+      }else{
+        this.editProduct.emit(this.product)
+        this.resetProduct();
       }
     }
   }
 
-  public cleanNgModels() {
+  resetProduct() {
     this.fakeProperty = null
-    this.newPropertyName = ""
+    this.newPropertyName = undefined
     this.newPropertyValues = []
-    this.detail = ""
+    this.detail = undefined
 
     //Product
     this.details = []
     this.properties = []
-    this.product = null
+    this.product = {
+      reference: undefined,
+       properties: [],
+       name: undefined,
+       offerPrice:undefined,
+       price: undefined,
+       images: [],
+       description: undefined,
+       details: [],
+       stockNumber: undefined,
+       section: undefined,
+       subsection: undefined
+    }
   }
+
 
   // Properties
   public addPropertyName(isEditionMode: boolean) {
@@ -111,7 +128,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   public removeFromProperties(property, isEditionMode) {
-    if(isEditionMode){
+    if (isEditionMode) {
       this.product.properties.forEach(element => {
         if (element.name == property.name) {
           const index = this.product.properties.indexOf(element, 0);
@@ -120,7 +137,7 @@ export class ProductFormComponent implements OnInit {
           }
         }
       });
-    }else{
+    } else {
       this.properties.forEach(element => {
         if (element.name == property.name) {
           const index = this.properties.indexOf(element, 0);
@@ -134,14 +151,14 @@ export class ProductFormComponent implements OnInit {
   }
 
   public addPropertyValue(property, i, isEditionMode: boolean) {
-    if(isEditionMode){
+    if (isEditionMode) {
       this.product.properties.forEach(element => {
-         if(element == property && !element.values.includes(this.newPropertyValues[i])){
-           element.values.push((this.newPropertyValues[i]))
-         }
+        if (element == property && !element.values.includes(this.newPropertyValues[i])) {
+          element.values.push((this.newPropertyValues[i]))
+        }
       });
       this.newPropertyValues[i] = undefined
-    }else{
+    } else {
       if (this.newPropertyValues[i] && !property.values.includes(this.newPropertyValues[i])) {
         property.values.push((this.newPropertyValues[i]))
       }
@@ -162,19 +179,18 @@ export class ProductFormComponent implements OnInit {
 
   }
 
-  //SEGUIR AQUI MI NIÑO
   public removeEditing(property, value) {
     this.product.properties.forEach(element => {
-      if(element == property){
+      if (element == property) {
         element.values.forEach(valor => {
-          if(valor == value){
+          if (valor == value) {
             const index = element.values.indexOf(value);
             if (index > -1) {
               element.values.splice(index, 1);
             }
           }
         });
-      }     
+      }
     });
   }
 
@@ -198,6 +214,7 @@ export class ProductFormComponent implements OnInit {
   });
 
   public files: any[]
+  public fileSelected: boolean = false
 
   public onFileChange(event) {
     this.files = []
@@ -212,6 +229,7 @@ export class ProductFormComponent implements OnInit {
         };
       });
     }
+    this.fileSelected = true
     this.files = filesAux
   }
 }

@@ -34,8 +34,13 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     if(!this.product){
-      this.activatedRoute.snapshot.params.id
-      this.product = this.dataService.products.filter((p: Product)=>{ return this.activatedRoute.snapshot.params.id == p.reference})[0]       
+      
+      this.product = this.dataService.products.filter((p: Product)=>{ return this.activatedRoute.snapshot.params.id == p.reference})[0]    
+      if(!this.product)   {
+        this.productService.getProduct(this.activatedRoute.snapshot.params.id).subscribe((product: Product[]) => {
+          this.product = product[0]
+        } )
+      }
     }
   }
 

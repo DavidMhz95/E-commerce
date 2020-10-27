@@ -60,7 +60,6 @@ export class ProductsComponent implements OnInit {
   editProduct(product: Product) {
     this.productService.update(product).subscribe(response => {
       if (response) {
-        this.dataService.products = response
         alert("Producto editado correctamente")
       }
     }, error => {
