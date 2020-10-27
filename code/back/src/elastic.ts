@@ -47,8 +47,7 @@ export async function saveUser(user: User) {
     return await client.index({
         index: serviceSettings.elasticsearch.dbName,
         body: user
-    }
-    )
+    })
 }
 
 export async function updateUser(id, user: User) {

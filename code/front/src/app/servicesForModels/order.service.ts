@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Order } from '../models/order';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { globalUrl } from '../app.utils';
-import { JsonPipe } from '@angular/common';
 import { User } from '../models/user';
 
 @Injectable({

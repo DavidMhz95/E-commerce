@@ -76,9 +76,7 @@ function getByUser(req, res) {
         // Build the request body
         var query = requestBody.toJSON()
         executeQuery(query).then(result => {
-            return res.status(200).send({
-                results: result.body.hits.hits.map((hit: any) => hit._source)
-            })
+            return res.status(200).send(result.body.hits.hits.map((hit: any) => hit._source))
         }, error => {
             return res.status(500).send({
                 status: 'error',

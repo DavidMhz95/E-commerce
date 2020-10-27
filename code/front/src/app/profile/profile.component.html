@@ -5,7 +5,7 @@
     <mat-card style="border: solid 0px rgba(0,0,0,0.12); box-shadow: none; border-radius: 2px;">
       <div style="text-align: center; margin-top: 10px;">
         <div class="profile-img user-badge" (click)="imageInput?.click()"
-        [style.backgroundImage]="sanitizer?.bypassSecurityTrustStyle('url(' + userService?.getUserProfileImage() + '), url(assets/images/defaultProfile.png)')">
+          [style.backgroundImage]="sanitizer?.bypassSecurityTrustStyle('url(' + userService?.getUserProfileImage() + '), url(assets/images/defaultProfile.png)')">
           <input #imageInput style="display: none" type="file" accept="image/png, image/jpeg" data-max-size="10240"
             (change)="onFileChange($event)" />
         </div>
@@ -38,19 +38,35 @@
   </div>
 
   <div class="col-xl-9 col-lg-9 col-md-8 col-sm-6 col-xs-12" style="float: left; padding:30px 15px">
+    <ng-template #ticket let-order="order">
+      <div class="ticket">
+        <mat-card style="border: solid 0px rgba(0,0,0,0.12); box-shadow: none; border-radius: 2px;">
+          <div style="padding: 40px 40px 30px; font-size: 17px;">
+            {{order?.id| date: 'dd/MM/yyyy'}} - Pedido Nº <strong>{{order?.id}}</strong>
+          </div>
+          <mat-divider></mat-divider>
+          <div style="margin: 10px 30px;">
+            <app-cart-products-table [editable]="false" [dataSource]="order?.products"></app-cart-products-table>
+          </div>
+          <div style="padding: 20px 30px 20px; font-size: 14px;">
+            Detalles del Pedido
+          </div>
+        </mat-card>
+      </div>
+    </ng-template>
+
     <div style="font-size: 18px; text-transform: uppercase; margin-bottom: 10px">
       Mi último pedido
     </div>
-    <mat-card style="border: solid 0px rgba(0,0,0,0.12); box-shadow: none; border-radius: 2px;">
-      Información de pedido
-    </mat-card>
-
-    <div style="margin-top: 30px; font-size: 18px; text-transform: uppercase; margin-bottom: 10px">
-      Otros Pedidos
+    <div style="position: relative;">
+      <ng-container [ngTemplateOutlet]="ticket" [ngTemplateOutletContext]="{order:lastOrder}"></ng-container>
     </div>
-    <mat-card style="border: solid 0px rgba(0,0,0,0.12); box-shadow: none; border-radius: 2px;">
-      Información de pedido
-    </mat-card>
+    <div style="margin-top: 30px; font-size: 18px; text-transform: uppercase; margin-bottom: 10px">
+      Otros Pedidos ({{orders?.length}})
+    </div>
+    <div style="position: relative;" *ngFor="let order of orders">
+      <ng-container [ngTemplateOutlet]="ticket" [ngTemplateOutletContext]="{order:order}"></ng-container>
+    </div>
   </div>
   <div style="clear: both"></div>
 </div>
