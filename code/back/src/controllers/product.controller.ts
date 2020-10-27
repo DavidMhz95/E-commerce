@@ -24,10 +24,10 @@ function getProductByRef(req, res) {
     //Recoger los parámetros por post
     var productRef = req.params.ref;
     if (productRef) {
-        const requestBody = esb.requestBodySearch().query(
-            esb.boolQuery()
-                .must(esb.MatchPhraseQuery('ref', productRef))
-                .must(esb.MatchPhraseQuery('type', 1))
+        const requestBody = new esb.requestBodySearch().query(
+            new esb.boolQuery()
+                .must(new esb.MatchPhraseQuery('ref', productRef))
+                .must(new esb.MatchPhraseQuery('type', 1))
         );
         // Build the request body
         var query = requestBody.toJSON()
