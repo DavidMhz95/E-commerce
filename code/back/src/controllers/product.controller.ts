@@ -26,7 +26,7 @@ function getProductByRef(req, res) {
     if (productRef) {
         const requestBody = new esb.requestBodySearch().query(
             new esb.boolQuery()
-                .must(new esb.MatchPhraseQuery('ref', productRef))
+                .must(new esb.MatchPhraseQuery('reference', productRef))
                 .must(new esb.MatchPhraseQuery('type', 1))
         );
         // Build the request body
