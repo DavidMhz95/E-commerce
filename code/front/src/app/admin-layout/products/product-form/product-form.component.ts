@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/servicesForModels/product.service';
 import { Property } from 'src/app/models/property';
-import { globalUrl } from '../../../app.utils';
+import { cartesian, globalUrl } from '../../../app.utils';
 import { ImageService } from 'src/app/servicesForModels/image.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { forkJoin } from 'rxjs';
@@ -147,8 +147,18 @@ export class ProductFormComponent implements OnInit {
         }
       });
     }
-
   }
+
+  public crossStock
+  public getCrossStock(properties:Property[]){
+    var arrays:any = []
+    properties.forEach(element => {
+      arrays.push(element.values)
+    }); 
+    //console.log(arrays)
+    this.crossStock = cartesian.apply(this, arrays)
+  }
+
 
   public addPropertyValue(property, i, isEditionMode: boolean) {
     if (isEditionMode) {
@@ -164,6 +174,7 @@ export class ProductFormComponent implements OnInit {
       }
       this.newPropertyValues[i] = undefined
     }
+    this.getCrossStock(this.product.properties)
   }
 
   public remove(property, value) {
