@@ -89,16 +89,13 @@
 
     <!-- Stock cruzado -->
     <!-- Una sola propiedad -->
-    <div style="position: relative" *ngIf="(isEditionMode? product?.properties.length == 1 : properties.length == 1)">
-      <div *ngFor="let property of (isEditionMode? product?.properties : properties)">
-        <div *ngFor="let value of property.values">
-          <div class="preInput">Stock of {{value}} </div>
-          <input type="number" matInput placeholder="Ex. 1,3,28"
-          [(ngModel)]="product.stockNumber" name="stockNumber" #stockNumber="ngModel" style="padding-right: 30px;"
-          required>
-        </div>
-      </div>
+
+    <div *ngFor="let value of crossStock; let i = index">
+      <div class="preInput">Stock de {{value}} </div>
+      <input type="number" matInput placeholder="Ex. 1,3,28" [(ngModel)]="product.stockNumber[i]" name="stockNumber"
+        #stockNumber="ngModel" style="padding-right: 30px;" required>
     </div>
+
 
     <!-- Fin propiedades -->
   </mat-card>
