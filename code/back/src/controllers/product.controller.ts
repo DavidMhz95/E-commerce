@@ -100,14 +100,7 @@ function update(req, res) {
 function add(req, res) {
     //Recoger los parámetros por post
     let product: Product = req.body;
-    
-    if (product.reference &&
-        product.name &&
-        product.price &&
-        product.description &&
-        Number.isInteger(product.stockNumber) &&
-        product.section &&
-        product.subsection) {
+    if (product) {
         product.type = 1
         var boolQuery = new esb.boolQuery()
             .must(new esb.MatchPhraseQuery('reference', product.reference))

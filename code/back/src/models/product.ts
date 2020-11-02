@@ -1,5 +1,6 @@
 import { Property } from './property';
 import { ObjectType, IObjectyType } from './enum';
+import { CrossStock } from './crossStock';
 
 export class Product implements IObjectyType {
 
@@ -14,7 +15,7 @@ export class Product implements IObjectyType {
         public images: string[],
         public description: string,
         public details: string[],
-        public stockNumber: number,
+        public stockNumber: CrossStock,
         public section: string,
         public subsection: string,
     ) { }

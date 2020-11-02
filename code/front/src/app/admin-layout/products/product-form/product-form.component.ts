@@ -24,7 +24,9 @@ export class ProductFormComponent implements OnInit {
 
   public fakeProperty: Property
   public newPropertyName: string
+  public fakeStockNumber: number[] = []
   public newPropertyValues: string[] = []
+  public crossStockObject: CrossStock
   public detail: string
   public images: string[] = []
   //Product
@@ -46,10 +48,17 @@ export class ProductFormComponent implements OnInit {
   }
 
   addProduct(isEditionMode) {
-    console.log(this.fileSelected)
     if (!isEditionMode) {
       this.product.properties = this.properties
       this.product.details = this.details
+
+      //Stock Cruzado
+      console.log(this.fakeStockNumber)
+      for(let i = 0; i<this.crossStock.length; i++){
+        this.crossStockObject = new CrossStock(this.crossStock[i], this.fakeStockNumber[i]);
+        this.product.stockNumber.push(this.crossStockObject)
+      }
+      console.log(this.product.stockNumber)
       var promises: any[] = []
       if (this.files && this.files.length > 0) {
         this.files.forEach(file => {
@@ -58,6 +67,7 @@ export class ProductFormComponent implements OnInit {
         forkJoin(promises).subscribe(
           (response: string[]) => {
             this.product.images = response.map((image: any) => image.id)
+            console.log(this.product)
             this.add.emit(this.product)
             this.resetProduct();
           }, error => {
@@ -78,7 +88,7 @@ export class ProductFormComponent implements OnInit {
           }, error => {
             console.log(error)
           })
-      }else{
+      } else {
         this.editProduct.emit(this.product)
         this.resetProduct();
       }
@@ -96,16 +106,16 @@ export class ProductFormComponent implements OnInit {
     this.properties = []
     this.product = {
       reference: undefined,
-       properties: [],
-       name: undefined,
-       offerPrice:undefined,
-       price: undefined,
-       images: [],
-       description: undefined,
-       details: [],
-       stockNumber: undefined,
-       section: undefined,
-       subsection: undefined
+      properties: [],
+      name: undefined,
+      offerPrice: undefined,
+      price: undefined,
+      images: [],
+      description: undefined,
+      details: [],
+      stockNumber: undefined,
+      section: undefined,
+      subsection: undefined
     }
   }
 
@@ -153,13 +163,15 @@ export class ProductFormComponent implements OnInit {
   }
 
   public crossStock
-  public getCrossStock(properties:Property[]){
-    var arrays:any = []
+  public getCrossStock(properties: Property[]) {
+    var arrays: any = []
     properties.forEach(element => {
-      arrays.push(element.values)
-    }); 
+      if (element.values.length > 0) {
+        arrays.push(element.values)
+      }
+
+    });
     this.crossStock = cartesian.apply(this, arrays)
-    console.log(this.crossStock)
   }
 
 
@@ -167,7 +179,9 @@ export class ProductFormComponent implements OnInit {
     if (isEditionMode) {
       this.product.properties.forEach(element => {
         if (element == property && !element.values.includes(this.newPropertyValues[i])) {
-          element.values.push((this.newPropertyValues[i]))
+          if (this.newPropertyValues[i] && !property.values.includes(this.newPropertyValues[i])) {
+            element.values.push((this.newPropertyValues[i]))
+          }
         }
       });
       this.newPropertyValues[i] = undefined
