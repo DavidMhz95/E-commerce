@@ -53,12 +53,11 @@ export class ProductFormComponent implements OnInit {
       this.product.details = this.details
 
       //Stock Cruzado
-      console.log(this.fakeStockNumber)
       for(let i = 0; i<this.crossStock.length; i++){
         this.crossStockObject = new CrossStock(this.crossStock[i], this.fakeStockNumber[i]);
         this.product.stockNumber.push(this.crossStockObject)
       }
-      console.log(this.product.stockNumber)
+
       var promises: any[] = []
       if (this.files && this.files.length > 0) {
         this.files.forEach(file => {
@@ -100,6 +99,7 @@ export class ProductFormComponent implements OnInit {
     this.newPropertyName = undefined
     this.newPropertyValues = []
     this.detail = undefined
+    this.fakeStockNumber = []
 
     //Product
     this.details = []
