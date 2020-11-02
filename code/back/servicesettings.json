@@ -2,8 +2,8 @@
     "elasticsearch": {
         "dbServer": "http://2.153.90.86:9200/",
         "dbName": "black-market",
-        "dbUser": "",
-        "dbPassword": ""
+        "dbUser": "Seshat",
+        "dbPassword": "3l4st1ch4t-ñ"
     },
     "node": {
         "port": 88
