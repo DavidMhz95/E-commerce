@@ -54,6 +54,7 @@ export class ShoppingCartCheckoutComponent implements OnInit {
     }
     forkJoin(requests).subscribe((responses) => {
       alert("Pedido realizado")
+      this.cartService.products = []
       this.router.navigate(['/profile'])
     }, error => {
       console.error(error)

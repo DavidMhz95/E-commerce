@@ -12,24 +12,10 @@ import { Order } from '../models/order';
 })
 export class ProfileComponent implements OnInit {
 
-  lastOrder: Order
-  orders: Order[] = []
-
   constructor(public userService: UserService, private imageService: ImageService, public orderService: OrderService, public sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-    this.orderService.getOrderByUser(this.userService.loggedUser).subscribe((response: Order[]) => {
-      //Ordenamos por fecha descendente
-      response.sort((a, b) => b.id - a.id)
-      //Los encajamos en los dos subtitulos
-      response.forEach((order: Order, index) => {
-        if (index == 0) {
-          this.lastOrder = order
-        } else {
-          this.orders.push(order)
-        }
-      })
-    })
+    
   }
 
   public onFileChange(event) {

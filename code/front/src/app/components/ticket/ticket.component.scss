@@ -1,0 +1,24 @@
+.ticket::before {
+    content: ' ';
+    top: 0;
+    height: 20px;
+    background: linear-gradient(45deg, transparent 33.333%, #f2f2f2 0, #f2f2f2 66.667%, transparent 0), linear-gradient(-45deg, transparent 33.333%, #f2f2f2 0, #f2f2f2 66.667%, transparent 0);
+    background-size: 16px 40px;
+    background-position: 0 -20px;
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+  }
+  
+  .ticket::after {
+    content: ' ';
+    background: linear-gradient(-45deg, #f2f2f2 33.333%, transparent 0, transparent 66.667%, #f2f2f2 0), linear-gradient(45deg, #f2f2f2 33.333%, transparent 0, transparent 66.667%, #f2f2f2 0);
+    background-size: 17px 38px;
+    background-position: 0 0;
+    bottom: 0;
+    height: 20px;
+    transform: rotate(180deg);
+    position: absolute;
+    width: 100%;
+  }
+  

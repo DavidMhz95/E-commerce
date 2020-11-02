@@ -2,7 +2,7 @@
   <span *ngIf="cartService?.GetElements()>0">({{cartService?.GetElements()}})</span>
 </div>
 
-<div style="padding: 12px 15px">
+<div style="padding: 12px 15px" *ngIf="cartService?.products?.length>0; else noProducts">
   <div style="float: left;  max-height: 450px; overflow-y: auto;" class="col-xl-8 col-lg-8 col-md-8 col-sm-6 col-xs-12">
     <app-cart-products-table [editable]="'true'" [dataSource]="cartService?.products"></app-cart-products-table>
   </div>
@@ -18,4 +18,11 @@
   </div>
   <div style="clear:both"></div>
 </div>
+
+<ng-template #noProducts>
+  <div style="padding: 12px 30px; opacity:0.8">
+    Aun no ha añadido ningún producto al carrito.
+  </div>
+</ng-template>
+
 <router-outlet></router-outlet>

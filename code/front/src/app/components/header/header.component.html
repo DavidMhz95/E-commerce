@@ -8,7 +8,7 @@
   </div>
   <mat-icon *ngIf="!userService?.loggedUser" class="user-badge" matTooltip="Conectarse" routerLink="/registration">
     person</mat-icon>
-  <mat-icon *ngIf="cartService?.products?.length == 0" class="badge" routerLink="/landing/cart">shopping_cart</mat-icon>
+  <mat-icon *ngIf="cartService?.products?.length == 0" class="cart-badge" routerLink="/landing/cart">shopping_cart</mat-icon>
   <mat-icon *ngIf="cartService?.products?.length > 0" class="cart-badge" routerLink="/landing/cart"
     [matBadge]="cartService?.GetElements()" matBadgeColor="warn">shopping_cart</mat-icon>
 </div>

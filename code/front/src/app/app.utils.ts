@@ -15,7 +15,7 @@ export function RandomEnum<T>(anEnum: T): T[keyof T] {
     .filter(n => !Number.isNaN(n)) as unknown as T[keyof T][]
   const randomIndex = Math.floor(Math.random() * enumValues.length)
   const randomEnumValue = enumValues[randomIndex]
-  return randomEnumValue;
+  return randomEnumValue
 }
 
 export function PickTextColorBasedOnBgColorAdvanced(bgColor, lightColor, darkColor) {

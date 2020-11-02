@@ -1,0 +1,104 @@
+<!-- Información personal -->
+<div style="padding: 0 50px 50px 50px;">
+
+  <div style="margin-top: 20px; margin-bottom: 35px; font-size: 28px; text-transform: uppercase;">
+    Mi Información Personal
+    <div style="color: #989898; font-size: 10px; text-transform: none; margin-top: 10px;">
+      <mat-icon style="font-size: 14px; height: 14px; width: 14px; vertical-align: text-bottom;">
+        lock</mat-icon>
+      Guardado Seguro. En NotBlackMarket se garantiza la privacidad de tus datos personales de acuerdo al RGPD.
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading; else loading">
+    <!-- Datos de contacto -->
+    <div style="margin-bottom: 30px;">
+      <!-- Titulo de la sección -->
+      <div style="font-size: 18px; text-transform: uppercase; margin-bottom: 10px">
+        Datos de contacto
+      </div>
+
+      <div style="position: relative">
+        <span [class.hidden]="!address?.name" class="preInput">Nombre</span>
+        <input [class.completeInput]="address?.name" matInput placeholder="Nombre" [(ngModel)]="address.name">
+      </div>
+      <div style="position: relative">
+        <span [class.hidden]="!address?.surname" class="preInput">Apellido</span>
+        <input [class.completeInput]="address?.surname" matInput placeholder="Apellido" [(ngModel)]="address.surname">
+      </div>
+    </div>
+
+    <!-- Dirección de Envío -->
+    <div style="margin-bottom: 30px;">
+      <!-- Titulo de la sección -->
+      <div style="font-size: 18px; text-transform: uppercase; margin-bottom: 10px">
+        Dirección de Envío
+      </div>
+
+      <div style="position: relative">
+        <span [class.hidden]="!address?.street" class="preInput">Dirección 1</span>
+        <input [class.completeInput]="address?.street" matInput placeholder="Dirección 1" [(ngModel)]="address.street">
+      </div>
+
+      <div style="position: relative">
+        <span [class.hidden]="!address?.streetAlt" class="preInput">Dirección 2</span>
+        <input [class.completeInput]="address?.streetAlt" matInput placeholder="Dirección 2"
+          [(ngModel)]="address.streetAlt">
+      </div>
+
+      <div style="position: relative">
+        <span [class.hidden]="!address?.zip" class="preInput">Código Postal</span>
+        <input [class.completeInput]="address?.zip" matInput placeholder="Código Postal" [(ngModel)]="address.zip">
+      </div>
+
+      <div style="position: relative">
+        <span [class.hidden]="!address?.city" class="preInput">Ciudad</span>
+        <input [class.completeInput]="address?.city" matInput placeholder="Ciudad" [(ngModel)]="address.city">
+      </div>
+
+      <div style="position: relative">
+        <span [class.hidden]="!address?.telephone" class="preInput">Teléfono</span>
+        <input [class.completeInput]="address?.telephone" matInput placeholder="Teléfono"
+          [(ngModel)]="address.telephone">
+      </div>
+    </div>
+    <!-- Información de Facturación -->
+    <div style="margin-bottom: 30px;">
+      <!-- Titulo de la sección -->
+      <div style="font-size: 18px; text-transform: uppercase; margin-bottom: 10px">
+        Método de Pago
+      </div>
+      <div style="position: relative">
+        <span [class.hidden]="!paymentInfo?.owner" class="preInput">Titular</span>
+        <input [class.completeInput]="paymentInfo?.owner" matInput placeholder="Titular"
+          [(ngModel)]="paymentInfo.owner">
+      </div>
+      <div style="position: relative">
+        <span [class.hidden]="!paymentInfo?.number" class="preInput">Número</span>
+        <input [class.completeInput]="paymentInfo?.number" matInput placeholder="Número"
+          [(ngModel)]="paymentInfo.number">
+      </div>
+      <div style="position: relative">
+        <span [class.hidden]="!paymentInfo?.date" class="preInput">Vencimiento (mm/aa)</span>
+        <input [class.completeInput]="paymentInfo?.date" matInput placeholder="Vencimiento (mm/aa)"
+          [(ngModel)]="paymentInfo.date">
+      </div>
+      <div style="position: relative">
+        <span [class.hidden]="!paymentInfo?.csv" class="preInput">CSV</span>
+        <input [class.completeInput]="paymentInfo?.csv" matInput placeholder="CSV" [(ngModel)]="paymentInfo.csv">
+      </div>
+    </div>
+
+    <button type="submit" mat-flat-button class="btn" style="margin-top:20px" (click)="updateInfo()">
+      Guardar
+    </button>
+
+  </div>
+</div>
+
+<!-- Cargando -->
+<ng-template #loading>
+  <mat-progress-spinner style="float:left; margin-right: 10px;" diameter="20" mode="indeterminate">
+  </mat-progress-spinner>
+  <div style="float:left; font-size: 12px;"> Cargando Mi Información Personal... </div>
+</ng-template>

@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Sanitizer } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ShoppingCartService } from 'src/app/shared/shopping-cart.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProductService } from 'src/app/servicesForModels/product.service';
 import { CartProduct } from 'src/app/models/cart-product';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-cart-products-table',
@@ -18,7 +19,7 @@ export class CartProductsTableComponent implements OnInit, OnChanges {
   displayedColumns: string[] = ['image', 'name', 'prize', 'number'];
   public internalDataSource: MatTableDataSource<CartProduct>
 
-  constructor(public cartService: ShoppingCartService, public productService: ProductService) {
+  constructor(public sanitizer:DomSanitizer , public cartService: ShoppingCartService, public productService: ProductService) {
   }
 
   private _update() {

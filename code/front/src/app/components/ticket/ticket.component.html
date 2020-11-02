@@ -1,0 +1,45 @@
+<div class="ticket">
+    <mat-card style="border: solid 0px rgba(0,0,0,0.12); box-shadow: none; border-radius: 2px;">
+      <div style="padding: 40px 40px 30px; font-size: 17px; float: left;">
+        {{order?.id| date: 'dd/MM/yyyy'}} - Pedido Nº <strong>{{order?.id}}</strong>
+        <!-- {{order?.products?.length}} Producto/s -->
+      </div>
+      <div style="padding:38px 40px 30px; font-size: 20px; float: right;">
+        <strong>{{getTotalPrice(order)|number}}€</strong></div>
+      <div style="clear: both;"></div>
+      <mat-divider></mat-divider>
+      <div style="margin: 10px 30px;">
+        <app-cart-products-table [editable]="false" [dataSource]="order?.products"></app-cart-products-table>
+      </div>
+      <div style="padding: 20px 30px 20px; font-size: 14px;">
+        <div style="padding-left: 15px;">
+          Detalles del Pedido
+        </div>
+        <div>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12"
+            style="float: left; padding:15px; font-size: 12px;">
+            <strong>Dirección de Envío</strong>
+            <div>{{order?.user?.address?.street}}</div>
+            <div>{{order?.user?.address?.streetAlt}}</div>
+            <div>{{order?.user?.address?.zip}} {{order?.user?.address?.city}}</div>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12"
+            style="float: left; padding:15px; font-size: 12px;">
+            <strong>Datos de Facturación</strong>
+            <div>{{order?.user?.payment?.owner}}</div>
+            <div>{{order?.user?.payment?.number}}</div>
+            <div style="padding:0 0 10px 0px;">
+              <mastercard></mastercard>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12"
+            style="float: left; padding:15px; font-size: 12px;">
+            <strong>Tipo de envío</strong>
+            <div>{{order?.typeShipment?.type}}</div>
+            <div>{{order?.typeShipment?.details}}</div>
+          </div>
+          <div style="clear:both"></div>
+        </div>
+      </div>
+    </mat-card>
+  </div>

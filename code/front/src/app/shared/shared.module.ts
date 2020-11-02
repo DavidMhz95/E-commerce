@@ -19,6 +19,8 @@ import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { TicketComponent } from '../components/ticket/ticket.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -31,6 +33,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatTabsModule,
     MatDividerModule,
     MatTooltipModule,
+    MatCardModule,
     RouterModule,
     MatTableModule,
     PaymentTypesModule
@@ -39,6 +42,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     CarouselComponent,
     QuantitySelectorComponent,
     ProductComponent,
+    TicketComponent,
     OrderComponent,
     CartProductsTableComponent,
     NoCommaPipe,
@@ -51,6 +55,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     CarouselComponent,
     QuantitySelectorComponent,
     ProductComponent,
+    TicketComponent,
     OrderComponent,
     CartProductsTableComponent,
     NoCommaPipe,

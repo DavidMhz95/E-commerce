@@ -14,13 +14,19 @@ import { SharedModule } from '../shared/shared.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
+import { PaymentTypesModule } from '../components/payment-types/payments.module';
+import { ProfileOrdersComponent } from './profile-orders/profile-orders.component';
+import { ProfileInfoComponent } from './profile-info/profile-info.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ProfileAccountComponent } from './profile-account/profile-account.component';
 
 @NgModule({
-  declarations: [ProfileComponent],
+  declarations: [ProfileComponent, ProfileOrdersComponent, ProfileInfoComponent, ProfileAccountComponent],
   imports: [
     CommonModule,
     ProfileRoutingModule,
     FormsModule,
+    PaymentTypesModule,
     ReactiveFormsModule,
     HttpClientModule,
     MatCardModule,
@@ -31,7 +37,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatTooltipModule,
     MatListModule,
     MatDividerModule,
-    SharedModule,
+    MatProgressSpinnerModule,
+    SharedModule, 
   ]
 })
 export class ProfileModule { }

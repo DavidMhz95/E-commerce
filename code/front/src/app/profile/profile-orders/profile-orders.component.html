@@ -1,0 +1,48 @@
+<!-- Pedidos -->
+<div style="padding: 0 50px 50px 50px;">
+
+  <div style="margin-top: 20px; margin-bottom: 35px; font-size: 28px; text-transform: uppercase;">
+    Mis Pedidos
+    <div style="color: #989898; font-size: 10px; text-transform: none; margin-top: 10px;">
+      <mat-icon style="font-size: 14px; height: 14px; width: 14px; vertical-align: text-bottom;">
+        lock</mat-icon>
+      Pago Seguro. En NotBlackMarket se garantiza la seguridad de tus datos personales.
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading; else loading">
+    <!--Last order-->
+    <div>
+      <!-- Titulo de la sección -->
+      <div style="font-size: 18px; text-transform: uppercase; margin-bottom: 10px">
+        Último pedido
+      </div>
+      <!-- Ticket del last order -->
+      <div *ngIf="lastOrder; else defaultMessage" style="position: relative;">
+        <ticket [order]="lastOrder"></ticket>
+      </div>
+      <!-- Mensaje en caso de que no haya last order -->
+      <ng-template #defaultMessage>
+        Aun no ha realizado ningún pedido
+      </ng-template>
+    </div>
+
+    <!-- Otros pedidos -->
+    <div *ngIf="orders?.length>0">
+      <div style="margin-top: 30px; font-size: 18px; text-transform: uppercase; margin-bottom: 10px">
+        Otros Pedidos ({{orders?.length}})
+      </div>
+      <div style="position: relative;" *ngFor="let order of orders">
+        <ticket [order]="order"></ticket>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Cargando -->
+<ng-template #loading>
+  <mat-progress-spinner style="float:left; margin-right: 10px;" diameter="20" mode="indeterminate">
+  </mat-progress-spinner>
+  <div style="float:left; font-size: 12px;"> Cargando pedidos... </div>
+</ng-template>
