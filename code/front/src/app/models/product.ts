@@ -1,3 +1,4 @@
+import { CrossStock } from './crossStock';
 import { Property } from './property';
 
 export class Product {
@@ -11,7 +12,7 @@ export class Product {
         public images: string[],
         public description: string,
         public details: string[],
-        public stockNumber: number,
+        public stockNumber: CrossStock[],
         public section:string,
         public subsection:string
     ) {}

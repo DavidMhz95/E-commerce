@@ -8,8 +8,8 @@
       Referencia:
     </div>
     <div style="position: relative">
-      <input matInput placeholder="Ex. Niked20019N" #reference="ngModel" [(ngModel)]="product.reference" [disabled]="isEditionMode"
-        name="reference" style="padding-right: 30px;" required>
+      <input matInput placeholder="Ex. Niked20019N" #reference="ngModel" [(ngModel)]="product.reference"
+        [disabled]="isEditionMode" name="reference" style="padding-right: 30px;" required>
       <small style="color: red;" *ngIf="!reference.valid && reference.touched && !isEditionMode">
         La referencia no es válida
       </small>
@@ -54,10 +54,12 @@
               style="padding-right: 30px;">
           </div>
         </div>
-        <mat-icon style="cursor:pointer" matTooltip="Añade un valor" (click)="addPropertyValue(property, i, isEditionMode)">
+        <mat-icon style="cursor:pointer" matTooltip="Añade un valor"
+          (click)="addPropertyValue(property, i, isEditionMode)">
           add
         </mat-icon>
-        <mat-icon style="cursor:pointer" matTooltip="Elimina la propiedad" (click)="removeFromProperties(property, isEditionMode)">
+        <mat-icon style="cursor:pointer" matTooltip="Elimina la propiedad"
+          (click)="removeFromProperties(property, isEditionMode)">
           clear</mat-icon>
       </div>
       <div class="subInput">
@@ -84,6 +86,16 @@
         </mat-chip-list>
       </div>
     </div>
+
+    <!-- Stock cruzado -->
+    <!-- Una sola propiedad -->
+
+    <div *ngFor="let value of crossStock; let i = index">
+      <div class="preInput">Stock de {{value}} </div>
+      <input type="number" matInput placeholder="Ex. 1,3,28" [(ngModel)]="product.stockNumber[i]" name="stockNumber"
+        #stockNumber="ngModel" style="padding-right: 30px;" required>
+    </div>
+
 
     <!-- Fin propiedades -->
   </mat-card>
@@ -127,9 +139,9 @@
     </div>
 
     <div style="position: relative">
-      <input required type="file" (change)="onFileChange($event)" [(ngModel)]="images"  multiple required/>
+      <input required type="file" (change)="onFileChange($event)" [(ngModel)]="images" multiple required />
     </div>
-  
+
   </mat-card>
 
   <mat-card class="card" style="margin-top: 20px">
@@ -168,19 +180,8 @@
       <div style="clear:both"></div>
     </div>
   </mat-card>
-  
-  <mat-card class="card" style="margin-top: 20px">
-    <div class="preInput" style="margin-top: 10px">
-      Cantidad en Stock
-    </div>
-    <div style="position: relative">
-      <input type="number" matInput placeholder="Ex. 1,3,28" [(ngModel)]="product.stockNumber" name="stockNumber"
-        #stockNumber="ngModel" style="padding-right: 30px;" required>
-      <small style="color: red;" *ngIf="!stockNumber.valid && stockNumber.touched">
-        El Numero de stock no es válido
-      </small>
-    </div>
 
+  <mat-card class="card" style="margin-top: 20px">
     <div class="preInput" style="margin-top: 10px">
       Seccion
     </div>
@@ -204,7 +205,8 @@
   </mat-card>
 
   <div style="margin-top: 20px">
-    <button style="float:right" mat-flat-button class="btn" color="primary" [disabled]="productForm.invalid && !fileSelected  ? true : null" >
+    <button style="float:right" mat-flat-button class="btn" color="primary"
+      [disabled]="productForm.invalid && !fileSelected  ? true : null">
       {{isEditionMode?'Editar':'Añadir' }} Producto</button>
     <div style="clear:both"></div>
   </div>

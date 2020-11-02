@@ -2,10 +2,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/servicesForModels/product.service';
 import { Property } from 'src/app/models/property';
-import { globalUrl } from '../../../app.utils';
+import { cartesian, globalUrl } from '../../../app.utils';
 import { ImageService } from 'src/app/servicesForModels/image.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { forkJoin } from 'rxjs';
+import { CrossStock } from 'src/app/models/crossStock';
 
 @Component({
   selector: 'app-product-form',
@@ -35,7 +36,7 @@ export class ProductFormComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.product) {
-      this.product = new Product('', null, '', 0, 0, null, '', null, 0, '', '')
+      this.product = new Product('', null, '', 0, 0, null, '', null, [], '', '')
     }
   }
 
@@ -137,6 +138,7 @@ export class ProductFormComponent implements OnInit {
           }
         }
       });
+      this.getCrossStock(this.product.properties)
     } else {
       this.properties.forEach(element => {
         if (element.name == property.name) {
@@ -146,9 +148,20 @@ export class ProductFormComponent implements OnInit {
           }
         }
       });
+      this.getCrossStock(this.properties)
     }
-
   }
+
+  public crossStock
+  public getCrossStock(properties:Property[]){
+    var arrays:any = []
+    properties.forEach(element => {
+      arrays.push(element.values)
+    }); 
+    this.crossStock = cartesian.apply(this, arrays)
+    console.log(this.crossStock)
+  }
+
 
   public addPropertyValue(property, i, isEditionMode: boolean) {
     if (isEditionMode) {
@@ -158,11 +171,13 @@ export class ProductFormComponent implements OnInit {
         }
       });
       this.newPropertyValues[i] = undefined
+      this.getCrossStock(this.product.properties)
     } else {
       if (this.newPropertyValues[i] && !property.values.includes(this.newPropertyValues[i])) {
         property.values.push((this.newPropertyValues[i]))
       }
       this.newPropertyValues[i] = undefined
+      this.getCrossStock(this.properties)
     }
   }
 
@@ -176,7 +191,7 @@ export class ProductFormComponent implements OnInit {
       }
 
     });
-
+    this.getCrossStock(this.properties)
   }
 
   public removeEditing(property, value) {
@@ -192,6 +207,7 @@ export class ProductFormComponent implements OnInit {
         });
       }
     });
+    this.getCrossStock(this.product.properties)
   }
 
   public removeDetails(isEditionMode: boolean, detail: string) {
