@@ -54,7 +54,7 @@ export class ProductFormComponent implements OnInit {
 
       //Stock Cruzado
       for(let i = 0; i<this.crossStock.length; i++){
-        this.crossStockObject = new CrossStock(this.crossStock[i], this.fakeStockNumber[i]);
+        this.crossStockObject = new CrossStock(this.crossStock[i].join('-'), this.fakeStockNumber[i]);
         this.product.stockNumber.push(this.crossStockObject)
       }
 
