@@ -18,25 +18,25 @@
     </div>
     <br>
     <div>
-      <label *ngIf="product?.stockNumber==0" style="width: 100%; font-size: 12px; font-weight: bold; color: #be563f;">
+      <label *ngIf="product?.stock==0" style="width: 100%; font-size: 12px; font-weight: bold; color: #be563f;">
         AGOTADO
       </label>
     </div>
 
     <div class="selector-talla"  *ngFor="let property of product?.properties">
-      <label *ngIf="product?.stockNumber>0" style="width: 100%; font-size: 12px; font-weight: bold;">
+      <label *ngIf="product?.stock>0" style="width: 100%; font-size: 12px; font-weight: bold;">
         {{property.name}}
       </label>
-      <select *ngIf="product?.stockNumber>0" style="outline: none;" id="OptionSelection">
+      <select *ngIf="product?.stock>0" style="outline: none;" id="OptionSelection">
         <option value="" selected="selected" *ngFor="let propertyValues of property?.values">
           {{propertyValues}}
         </option>
       </select>
     </div>
-    <label *ngIf="product?.stockNumber>0" for="Quantity" class="quantity">Cantidad</label>
-    <app-quantity-selector *ngIf="product?.stockNumber>0" (valueChanged)="valueChanged($event)" maxValue=30 minValue=0>
+    <label *ngIf="product?.stock>0" for="Quantity" class="quantity">Cantidad</label>
+    <app-quantity-selector *ngIf="product?.stock>0" (valueChanged)="valueChanged($event)" maxValue=30 minValue=0>
     </app-quantity-selector>
-    <div class="buttons" *ngIf="product?.stockNumber>0">
+    <div class="buttons" *ngIf="product?.stock>0">
 
       <button mat-stroked-button class="btn" (click)="cartService?.AddProduct(product, value); emitAddedInCart()">
         AGREGAR AL CARRITO

@@ -2,7 +2,7 @@
 export class CrossStock {
 
     constructor(
-        public name: String,
+        public name: string,
         public value: number
     ) { }
 

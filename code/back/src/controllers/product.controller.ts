@@ -101,7 +101,7 @@ function add(req, res) {
     //Recoger los parámetros por post
     let product: Product = req.body;
     if (product) {
-        product.type = 1
+        
         var boolQuery = new esb.boolQuery()
             .must(new esb.MatchPhraseQuery('reference', product.reference))
             .must(new esb.MatchPhraseQuery('type', 1))

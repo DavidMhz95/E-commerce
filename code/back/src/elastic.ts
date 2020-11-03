@@ -79,7 +79,7 @@ export async function getIdByRef(query: any) {
 
 export async function saveProduct(product: Product) {
     if(!product.type){
-        product.type = ObjectType.Order
+        product.type = ObjectType.Product
     }
     return await client.index({
         index: serviceSettings.elasticsearch.dbName,
@@ -89,7 +89,7 @@ export async function saveProduct(product: Product) {
 
 export async function updateProduct(id:string, product: Product) {
     if(!product.type){
-        product.type = ObjectType.Order
+        product.type = ObjectType.Product
     }
     return await client.update({
         id: id,
