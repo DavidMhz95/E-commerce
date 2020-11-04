@@ -18,25 +18,26 @@
     </div>
     <br>
     <div>
-      <label *ngIf="product?.stock==0" style="width: 100%; font-size: 12px; font-weight: bold; color: #be563f;">
+      <label *ngIf="realStock==0" style="width: 100%; font-size: 12px; font-weight: bold; color: #be563f;">
         AGOTADO
       </label>
     </div>
 
-    <div class="selector-talla"  *ngFor="let property of product?.properties">
-      <label *ngIf="product?.stock>0" style="width: 100%; font-size: 12px; font-weight: bold;">
+    <div class="selector-talla"  *ngFor="let property of product?.properties; let i = index">
+      <label style="width: 100%; font-size: 12px; font-weight: bold;">
         {{property.name}}
       </label>
-      <select *ngIf="product?.stock>0" style="outline: none;" id="OptionSelection">
-        <option value="" selected="selected" *ngFor="let propertyValues of property?.values">
+      <mat-select style="outline: none;" id="OptionSelection" (selectionChange)="onChange($event,property, i)" style="margin-bottom: 10px;">
+        <mat-option [value]="propertyValues"  *ngFor="let propertyValues of property?.values">
           {{propertyValues}}
-        </option>
-      </select>
+        </mat-option>
+      </mat-select>
     </div>
-    <label *ngIf="product?.stock>0" for="Quantity" class="quantity">Cantidad</label>
-    <app-quantity-selector *ngIf="product?.stock>0" (valueChanged)="valueChanged($event)" maxValue=30 minValue=0>
+
+    <label *ngIf="realStock>0" for="Quantity" class="quantity">Cantidad</label>
+    <app-quantity-selector *ngIf="realStock>0" (valueChanged)="valueChanged($event)" [maxValue]=realStock [minValue]=1>
     </app-quantity-selector>
-    <div class="buttons" *ngIf="product?.stock>0">
+    <div class="buttons" *ngIf="realStock>0">
 
       <button mat-stroked-button class="btn" (click)="cartService?.AddProduct(product, value); emitAddedInCart()">
         AGREGAR AL CARRITO
@@ -52,7 +53,7 @@
       <p>{{product?.description}}</p>
       <p>&nbsp;</p>
     </div>
-    <div class="detalles" *ngIf="!isSimpleView">
+    <div class="detalles" *ngIf="product?.details.length > 0">
       <p><strong>DETALLES</strong></p>
       <ul>
         <li *ngFor="let detail of product?.details">{{detail}}</li>
@@ -67,12 +68,6 @@
       </mat-tab-group>
     </div>
     
-    <a style="margin-top: 35px;"(click)="editProduct(product?.reference)" mat-stroked-button class="btn">
-      EDITAR
-    </a>
-    <a style="margin-top: 35px;" (click)="deleteProduct(product?.reference)" mat-stroked-button class="btn">
-      BORRAR
-    </a>
 
   </div>
 </div>

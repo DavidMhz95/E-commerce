@@ -8,6 +8,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRippleModule } from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
     SharedModule,
     MatDialogModule,
     MatButtonModule,
+    MatSelectModule
   ],
   exports: [
     ProductDetailsComponent,
