@@ -88,13 +88,21 @@
     </div>
 
     <!-- Stock cruzado -->
-    <!-- Una sola propiedad -->
-
-    <div *ngFor="let value of crossStock; let i = index">
-      <div class="preInput">Stock de {{value}} </div>
-      <input type="number" matInput placeholder="Ex. 1,3,28" [(ngModel)]="fakeStockNumber[i]" name="fakeStockNumber"
-        #stockNumber="ngModel" style="padding-right: 30px;" required>
+    <div *ngIf="isEditionMode">
+      <div *ngFor="let stock of product?.stock; let i = index">
+        <div class="preInput">Stock de {{stock.name}} </div>
+        <input type="number" matInput placeholder="Ex. 1,3,28" [(ngModel)]="stock.value" name="fakeStockNumber" style="padding-right: 30px;" required>
+      </div>
     </div>
+
+    <div *ngIf="!isEditionMode">
+      <div *ngFor="let value of crossStock; let i = index">
+        <div class="preInput">Stock de {{value}} </div>
+        <input type="number" matInput placeholder="Ex. 1,3,28" [(ngModel)]="fakeStockNumber[i]" name="fakeStockNumber"
+          #stockNumber="ngModel" style="padding-right: 30px;" required>
+      </div>
+    </div>
+    
 
 
     <!-- Fin propiedades -->

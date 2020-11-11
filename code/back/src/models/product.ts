@@ -15,7 +15,7 @@ export class Product implements IObjectyType {
         public images: string[],
         public description: string,
         public details: string[],
-        public stockNumber: CrossStock,
+        public stock: CrossStock[],
         public section: string,
         public subsection: string,
     ) { }

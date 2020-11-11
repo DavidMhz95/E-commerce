@@ -1,9 +1,10 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DataService, Section } from 'src/app/shared/data.service';
+import { DataService } from 'src/app/shared/data.service';
 import { ShoppingCartService } from 'src/app/shared/shopping-cart.service';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ProductsPipe } from './products.pipe';
+import { Section } from 'src/app/models/section';
 
 @Component({
   selector: 'app-products-view',
@@ -46,7 +47,7 @@ export class ProductsViewComponent implements OnInit {
       this.actualSection = this.findActualSection(this.section)
       if (this.subsection) {
         this.title = this.subsection
-        this.actualSection = { title: this.subsection, sections: [] }
+        //this.actualSection = { name: this.subsection, sections: [] }
       } else if (this.section) {
         this.title = this.section
       }
@@ -58,7 +59,7 @@ export class ProductsViewComponent implements OnInit {
       this.isLoading = true
       setTimeout(() => {
         this.isLoading = false
-        this.add4Product()
+        //this.add4Product()
       }, 2000)
       this.actualPage++
 
@@ -67,13 +68,13 @@ export class ProductsViewComponent implements OnInit {
 
   onTabChanged(event: MatTabChangeEvent) {
     if (event.index == 0) {
-      if (this.section == this.actualSection.title) {
+      if (this.section == this.actualSection.name) {
         this.subsection = undefined
       }else{
         this.section = undefined
       }
     } else {
-      if (this.section == this.actualSection.title) {
+      if (this.section == this.actualSection.name) {
         this.subsection = event.tab.textLabel
       } else {
         this.section = event.tab.textLabel
@@ -91,14 +92,14 @@ export class ProductsViewComponent implements OnInit {
   public findActualSection(section: string): Section {
     var result: Section
     this.dataService.sections.forEach((s: Section) => {
-      if (s.title == section) {
+      if (s.name == section) {
         result = s
       }
     })
     if (!result) {
       result = {
-        title: "All",
-        sections: this.dataService.sections
+        name: "All",
+        subsection: []
       }
     }
     return result
