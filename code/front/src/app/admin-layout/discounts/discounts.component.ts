@@ -36,14 +36,17 @@ export class DiscountsComponent implements OnInit {
   }
 
   private UpdateDataSource() {
-    this.dataSource = new MatTableDataSource(this.dataService.discounts)
-    this.dataSource.paginator = this.paginator
-    this.dataSource.sort = this.sort
+    this.discountCodeService.getAll().subscribe((response: DiscountCode[]) => {
+      this.dataSource = new MatTableDataSource(response)
+      this.dataSource.paginator = this.paginator
+      this.dataSource.sort = this.sort
+    })
   }
 
   saveDiscount() {
     this.errorMessage = undefined
-
+    // Pasamos id de código descuento SIEMPRE a MAYUS
+    this.discount.code = this.discount.code.toUpperCase()
     this.discountCodeService.create(this.discount).subscribe((discount : any) => {
       if (discount){
         alert("Descuento creado correctamente.")
@@ -51,22 +54,23 @@ export class DiscountsComponent implements OnInit {
         this.errorMessage = "Descuento erróneo."
       }
     }, error => {
+      alert(error)
       console.log(error)
     })
   }
 
-  duplicateDiscount(discount: DiscountCode) {
-    this.dataService.discounts.push(CopyObject(discount))
-    this.UpdateDataSource()
-  }
+   duplicateDiscount(discount: DiscountCode) {
+  //   this.dataService.discounts.push(CopyObject(discount))
+  //   this.UpdateDataSource()
+   }
 
-  removeDiscount(discount: DiscountCode) {
-    const index = this.dataService.discounts.indexOf(discount)
-    if (index > -1) {
-      this.dataService.discounts.splice(index, 1)
-      this.UpdateDataSource()
-    }
-  }
+   removeDiscount(discount: DiscountCode) {
+  //   const index = this.dataService.discounts.indexOf(discount)
+  //   if (index > -1) {
+  //     this.dataService.discounts.splice(index, 1)
+  //     this.UpdateDataSource()
+  //   }
+   }
 
   setDiscount(discount) {
     this.discount = discount
@@ -74,7 +78,7 @@ export class DiscountsComponent implements OnInit {
 
   resetDiscount() {
     this.discount = {
-      discountApplication: undefined,
+      discountApplication: DiscountApplication.Envio,
       code: undefined,
       customers: undefined,
       repetitions: undefined,
