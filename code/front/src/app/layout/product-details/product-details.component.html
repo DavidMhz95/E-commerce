@@ -28,7 +28,7 @@
         {{property.name}}
       </label>
       <mat-select style="outline: none;" id="OptionSelection" (selectionChange)="onChange($event,property, i)" style="margin-bottom: 10px;">
-        <mat-option [value]="propertyValues"  *ngFor="let propertyValues of property?.values">
+        <mat-option [value]="propertyValues" *ngFor="let propertyValues of property?.values">
           {{propertyValues}}
         </mat-option>
       </mat-select>

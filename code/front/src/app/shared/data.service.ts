@@ -4,6 +4,7 @@ import { ProductModalComponent } from '../components/product-modal/product-modal
 import { RandomDate } from 'src/app/app.utils';
 import { Product } from '../models/product';
 import { DiscountApplication, DiscountCode, DiscountType } from '../models/discountCode';
+import { Section } from '../models/section';
 
 @Injectable({
   providedIn: 'root'
@@ -11,52 +12,11 @@ import { DiscountApplication, DiscountCode, DiscountType } from '../models/disco
 export class DataService {
 
   constructor() {
-    this.typeOfProduct[0].properties.set('Talla', ['S', 'M', 'L'])
-    this.typeOfProduct[0].properties.set('Color', ['Rojo', 'Azul'])
-    this.typeOfProduct[1].properties.set('Talla', ['S', 'XL'])
-    this.typeOfProduct[1].properties.set('Color', ['Rojo', 'Azul'])
   }
 
   products: Product[] = []
 
-  public sections: Section[] = [{
-    title: "rubia",
-    sections: [{
-      title: "tops",
-      sections: []
-    }, {
-      title: "leggings",
-      sections: []
-    }
-    ]
-  }, {
-    title: "morena",
-    sections: [{
-      title: "tops",
-      sections: []
-    }, {
-      title: "leggings",
-      sections: []
-    }, {
-      title: "crop hoodie",
-      sections: []
-    }],
-  }, {
-    title: "maromaso",
-    sections: [{
-      title: "tirantes",
-      sections: []
-    }, {
-      title: "pantalones",
-      sections: []
-    }, {
-      title: "sudaderas",
-      sections: []
-    }, {
-      title: "camisolas",
-      sections: []
-    }],
-  }]
+  public sections: Section[] = []
 
 
   info: marketInformation[] = [
@@ -132,45 +92,11 @@ export class DataService {
     }
   ]
 
-  public typeOfProduct: TypeOfProduct[] = [
-    {
-      name: 'Camisetas',
-      properties: new Dictionary(),
-    },
-    {
-      name: 'Pantalones',
-      properties: new Dictionary(),
-    }
-  ]
-
 }
 
 export interface marketInformation {
   nameInformation: string
   descriptionInformation: string
-}
-
-export interface Properties {
-  id: number,
-  name: string
-}
-
-export interface SubProperties {
-  id: number,
-  propertie: string,
-  name: string,
-  stock: number
-}
-
-
-export interface Section {
-  title: string
-  sections: Section[]
-}
-
-export interface TypeOfProduct {
-  name: string,
-  properties: Dictionary,
 }
 
 export interface Customer {
@@ -179,11 +105,6 @@ export interface Customer {
   email: string
   totalSpent: number
   isSubscribed: boolean
-}
-
-export interface TypeOfProduct {
-  name: string,
-  properties: Dictionary
 }
 
 export class Dictionary {

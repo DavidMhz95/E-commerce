@@ -1,10 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DataService, Dictionary, TypeOfProduct } from 'src/app/shared/data.service';
+import { DataService } from 'src/app/shared/data.service';
 import { Product } from 'src/app/models/product';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/servicesForModels/product.service';
 import { CdkCell } from '@angular/cdk/table';
 import { CopyObject } from 'src/app/app.utils';
+import { throwToolbarMixedModesError } from '@angular/material/toolbar';
+import { Section } from 'src/app/models/section';
 
 @Component({
   selector: 'app-products',
@@ -29,6 +31,7 @@ export class ProductsComponent implements OnInit {
       console.log(error)
     })
   }
+
 
   remove(reference: string) {
     if (reference && confirm("¿Seguro que quieres borrar el producto con referencia: " + reference + "? ")) {
@@ -74,6 +77,5 @@ export class ProductsComponent implements OnInit {
 
 
 }
-
 
 
