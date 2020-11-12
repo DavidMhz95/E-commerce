@@ -89,6 +89,7 @@ export class ProductsViewComponent implements OnInit {
     }
   }
 
+  //TODO Miguel y David
   public findActualSection(section: string): Section {
     var result: Section
     this.dataService.sections.forEach((s: Section) => {

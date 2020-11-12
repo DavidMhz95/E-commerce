@@ -17,11 +17,12 @@ export class ShoppingCartService {
     //this.AddProduct(this.dataService.products[0], 4)
   }
 
-  public AddProduct(product: Product, value: number) {
+   
+
+  public AddProduct(product: Product, userProduct: Product, value: number) {
     var found: boolean
-    console.log(product,value)
     this.products.forEach((p: CartProduct) => {
-      if (p.product.reference == product.reference) {
+      if (p.product.reference == product.reference && JSON.stringify(p.product.properties) === JSON.stringify(userProduct.properties)) {
         if (value) {
           p.number += value
         } else {
@@ -33,7 +34,7 @@ export class ShoppingCartService {
 
     if (!found) {
       this.products.push({
-        product,
+        product: userProduct,
         number: value
       })
     }

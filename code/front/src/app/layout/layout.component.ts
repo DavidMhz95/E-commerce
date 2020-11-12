@@ -61,6 +61,7 @@ export class LayoutComponent implements OnInit {
       this.dataService.sections.push(section)
     }
 
+    
     console.log(this.dataService.sections)
   }
 
