@@ -41,7 +41,7 @@ export async function getIdByEmail(query: any) {
 }
 
 export async function saveUser(user: User) {
-    if(!user.type){
+    if (!user.type) {
         user.type = ObjectType.User
     }
     return await client.index({
@@ -98,7 +98,7 @@ export async function updateProduct(id:string, product: Product) {
     })
 }
 
-export async function deleteProduct(id:string) {
+export async function deleteProduct(id: string) {
     return await client.delete({
         id: id,
         index: serviceSettings.elasticsearch.dbName
@@ -120,7 +120,7 @@ export async function saveOrder(order: Order) {
     if (!order.id) {
         order.id = new Date().getTime()
     }
-    if(!order.type){
+    if (!order.type) {
         order.type = ObjectType.Order
     }
     return await client.index({
@@ -130,7 +130,7 @@ export async function saveOrder(order: Order) {
 }
 
 export async function updateOrder(id: string, order: Order) {
-    if(!order.type){
+    if (!order.type) {
         order.type = ObjectType.Order
     }
     return await client.update({
@@ -140,7 +140,7 @@ export async function updateOrder(id: string, order: Order) {
     })
 }
 
-export async function deleteOrder(id:string) {
+export async function deleteOrder(id: string) {
     return await client.delete({
         id: id,
         index: serviceSettings.elasticsearch.dbName
@@ -150,8 +150,22 @@ export async function deleteOrder(id:string) {
 // DESCUENTOS
 export async function saveDiscountCode(discountCode: DiscountCode) {
     return await client.index({
-            index: serviceSettings.elasticsearch.dbName,
-            body: discountCode
-        }
-    )
+        index: serviceSettings.elasticsearch.dbName,
+        body: discountCode
+    })
+}
+
+export async function updateDiscountCode(id: string, discountCode: DiscountCode) {
+    return await client.update({
+        id: id,
+        index: serviceSettings.elasticsearch.dbName,
+        body: { doc: discountCode }
+    })
+}
+
+export async function deleteDiscountCode(id) {
+    return await client.delete({
+        id: id,
+        index: serviceSettings.elasticsearch.dbName
+    })
 }

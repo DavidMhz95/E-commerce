@@ -42,6 +42,7 @@ router.delete('/orders/:ref', OrderController.update)
 
 //Rutas para Descuentos
 router.post('/discountCode', DiscountCodeController.create)
+router.get('/discountCodes', DiscountCodeController.getAll)
 
 router.get('/', function (req, res, next) {
     res.sendFile('index.html', { root: __dirname })

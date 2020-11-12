@@ -58,42 +58,8 @@ export class DataService {
       isSubscribed: false
     }
   ]
-
-  public discounts: DiscountCode[] = [
-    {
-      discountApplication: DiscountApplication.Envio,
-      code: "FREEDELIVER",
-      customers: undefined,
-      repetitions: -1,
-      discountType: DiscountType.AbsoluteValue,
-      value: 3.45,
-      products: undefined,
-      section: undefined,
-      subsection: undefined,
-      minPurchase: 0,
-      color: undefined,
-      dateFrom: undefined,
-      dateTo: undefined
-    },
-    {
-      discountApplication: DiscountApplication.Envio,
-      code: "20OFFSALE",
-      customers: undefined,
-      repetitions: 1,
-      discountType: DiscountType.Percentage,
-      value: 20,
-      products: undefined,
-      section: "Rubia",
-      subsection: undefined,
-      minPurchase: 20,
-      color: '#d21a5e',
-      dateFrom: undefined,
-      dateTo: undefined
-    }
-  ]
-
 }
-
+  
 export interface marketInformation {
   nameInformation: string
   descriptionInformation: string

@@ -15,8 +15,10 @@ export class DiscountCodeService {
     }
     
     create(discountCode: DiscountCode): Observable<any> {
-        let headers = new HttpHeaders().set('Content-type', 'application/json')
-        return this._http.post(globalUrl + 'discountCode', discountCode, { headers })
+        return this._http.post(globalUrl + 'discountCode', discountCode)
     }
     
+    getAll(): Observable<any>{
+        return this._http.get(globalUrl + 'discountCodes')
+    }
 }
