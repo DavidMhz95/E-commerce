@@ -7,17 +7,16 @@ import { CartProduct } from '../models/cart-product';
   providedIn: 'root'
 })
 export class ShoppingCartService {
-
+  private BM_Cart: string = "BM_Cart"
   private totalPrice: number = 0
   private totalElements: number = 0
 
   public products: CartProduct[] = []
 
-  constructor(private dataService:DataService) {
-    //this.AddProduct(this.dataService.products[0], 4)
+  constructor() {
+    const serializedProducts = localStorage.getItem(this.BM_Cart)
+    this.products = serializedProducts ? JSON.parse(serializedProducts) : []
   }
-
-   
 
   public AddProduct(product: Product, userProduct: Product, value: number) {
     var found: boolean
@@ -38,6 +37,8 @@ export class ShoppingCartService {
         number: value
       })
     }
+
+    localStorage.setItem(this.BM_Cart, JSON.stringify(this.products))
   }
 
   public RemoveProduct(product: Product, removeAll: boolean) {
@@ -50,16 +51,18 @@ export class ShoppingCartService {
         }
       }
     })
-    this.products = this.products.filter((product: CartProduct) => product.number > 0)
+    this.products = this.products.filter((prod: CartProduct) => prod.number > 0)
+    localStorage.setItem(this.BM_Cart, JSON.stringify(this.products))
+
   }
 
   public GetPrize(): number {
     this.totalPrice = 0;
     this.products.forEach((element: CartProduct) => {
-      if(element.product.offerPrice){
-      this.totalPrice += element.product.offerPrice * element.number
-      }else{
-        this.totalPrice += element.product.price * element.number 
+      if (element.product.offerPrice) {
+        this.totalPrice += element.product.offerPrice * element.number
+      } else {
+        this.totalPrice += element.product.price * element.number
       }
     })
     return this.totalPrice

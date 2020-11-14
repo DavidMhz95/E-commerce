@@ -7,12 +7,14 @@ const esb = require('elastic-builder'); // the builder
 
 export interface DiscountCodeController {
     create: Function,
-    getAll: Function
+    getAll: Function,
+    check: Function
 }
 
 export var controller: DiscountCodeController = {
     create: (req: any, res: any) => create(req, res),
-    getAll: (req: any, res: any) => getAll(req, res)
+    getAll: (req: any, res: any) => getAll(req, res),
+    check: (req: any, res: any) => check(req, res),
 }
 
 function _getDiscountCodeByCode(code: string): Promise<any> {
@@ -27,14 +29,28 @@ function _getDiscountCodeByCode(code: string): Promise<any> {
     }
 }
 
+function check(req, res) {
+    var code = req.params.code
+    var boolQuery = new esb.boolQuery()
+        .must(new esb.MatchPhraseQuery('code', code))
+        .must(new esb.MatchPhraseQuery('type', ObjectType.DiscountCode))
+
+    const requestBody = new esb.requestBodySearch().query(boolQuery)
+    executeQuery(requestBody.toJSON()).then((response: any) => {
+        return res.status(200).send(response?.body?.hits?.hits.map((h: any) => h._source)[0])
+    }, (error: any) => {
+        return res.status(400).send(error);
+    })
+}
+
 function getAll(req, res) {
     var boolQuery = new esb.boolQuery()
         .must(new esb.MatchPhraseQuery('type', ObjectType.DiscountCode))
 
     const requestBody = new esb.requestBodySearch().query(boolQuery)
-    executeQuery(requestBody.toJSON()).then((response:any) => {
-        return res.status(200).send(response?.body?.hits?.hits.map((h:any) => h._source))
-    }, (error: any) => { 
+    executeQuery(requestBody.toJSON()).then((response: any) => {
+        return res.status(200).send(response?.body?.hits?.hits.map((h: any) => h._source))
+    }, (error: any) => {
         return res.status(400).send(error);
     })
 }

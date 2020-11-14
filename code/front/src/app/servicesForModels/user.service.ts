@@ -10,7 +10,7 @@ import { globalUrl } from '../app.utils';
 export class UserService {
 
     public loggedUser: User
- 
+
     constructor(public _http: HttpClient) {
 
     }
@@ -33,6 +33,7 @@ export class UserService {
     }
 
     logout() {
+        localStorage.removeItem('BM_User')
         this.loggedUser = undefined
     }
 

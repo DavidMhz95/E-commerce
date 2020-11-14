@@ -3,12 +3,13 @@ import { ProductController } from './controllers/product.controller'
 import { ImageController } from './controllers/image.controller'
 import { OrderController } from './controllers/order.controller'
 import { DiscountCodeController } from './controllers/discountCode.controller'
+import { DiscountCode } from './models/discountCode'
 
 var UserController: UserController = require('./controllers/user.controller')
 var ProductController: ProductController = require('./controllers/product.controller')
 var ImageController: ImageController = require('./controllers/image.controller')
 var OrderController: OrderController = require('./controllers/order.controller')
-var DiscountCodeController : DiscountCodeController = require('./controllers/discountCode.controller')
+var DiscountCodeController: DiscountCodeController = require('./controllers/discountCode.controller')
 
 var express = require('express');
 var router = express.Router();
@@ -43,6 +44,7 @@ router.delete('/orders/:ref', OrderController.update)
 //Rutas para Descuentos
 router.post('/discountCode', DiscountCodeController.create)
 router.get('/discountCodes', DiscountCodeController.getAll)
+router.get('/checkDiscountCode/:code', DiscountCodeController.check)
 
 router.get('/', function (req, res, next) {
     res.sendFile('index.html', { root: __dirname })

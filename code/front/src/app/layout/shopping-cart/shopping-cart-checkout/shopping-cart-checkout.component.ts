@@ -8,6 +8,8 @@ import { OrderService } from 'src/app/servicesForModels/order.service';
 import { CopyObject } from 'src/app/app.utils';
 import { forkJoin, Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { DiscountCodeService } from 'src/app/servicesForModels/discountCode.service';
+import { DiscountCode, DiscountType } from 'src/app/models/discountCode';
 
 @Component({
   selector: 'app-shopping-cart-checkout',
@@ -19,6 +21,9 @@ export class ShoppingCartCheckoutComponent implements OnInit {
   order: Order = new Order()
   address: Address = new Address()
   paymentInfo: PaymentInfo = new PaymentInfo()
+  discount: string
+  isDiscountValid: boolean
+  finalPrice: number
 
   saveShippingInformation: boolean = false
   savePaymenInformation: boolean = false
@@ -26,7 +31,8 @@ export class ShoppingCartCheckoutComponent implements OnInit {
   shipmentTypes: any[] = [{ type: 'Estándar', value: 0, price: 3.95, details: "2-3 Días laborables" },
   { type: 'Express', value: 1, price: 6.99, details: "24 Horas" }];
 
-  constructor(public cartService: ShoppingCartService, public userService: UserService, private orderService: OrderService, private router: Router) { }
+  constructor(public cartService: ShoppingCartService, public userService: UserService,
+    private orderService: OrderService, private discountServide: DiscountCodeService, private router: Router) { }
 
   ngOnInit(): void {
     this.order.user = this.userService.loggedUser
@@ -38,6 +44,7 @@ export class ShoppingCartCheckoutComponent implements OnInit {
     }
     this.order.products = this.cartService.products
     this.order.typeShipment = this.shipmentTypes[0]
+    this.finalPrice = this.cartService.GetPrize() + this.order.typeShipment.price
   }
 
   orderSubmit() {
@@ -59,7 +66,28 @@ export class ShoppingCartCheckoutComponent implements OnInit {
     }, error => {
       console.error(error)
     })
+  }
 
+  applyDiscountCode() {
+    this.isDiscountValid = undefined
+    this.discountServide.checkDiscountCode(this.discount).subscribe((result: DiscountCode) => {
+      this.isDiscountValid = result != undefined
+      if (this.isDiscountValid) {
+        //Válido hacemos el descuento (dependiendo del tipo, si es porcentaje o cantidad)
+        if (result.discountType = DiscountType.AbsoluteValue) {
+          this.finalPrice = this.cartService.GetPrize() + this.order.typeShipment.price - result.value
+        } else if (result.discountType = DiscountType.Percentage) {
+          var subtotal = this.cartService.GetPrize() + this.order.typeShipment.price
+          this.finalPrice = subtotal - (subtotal * result.value / 100)
+        }
+      } else {
+        //No es valido, lo ponemos por pantalla y no hacemos el descuento
+        this.finalPrice = this.cartService.GetPrize() + this.order.typeShipment.price
+      }
+    }, err => {
+      this.isDiscountValid = false
+      this.finalPrice = this.cartService.GetPrize() + this.order.typeShipment.price
+    })
   }
 }
 

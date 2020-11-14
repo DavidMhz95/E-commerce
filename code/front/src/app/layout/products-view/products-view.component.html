@@ -1,36 +1,37 @@
 <div>
-    <h1 style="cursor: default; ">
-        {{title}}
-    </h1>
+  <h1 style="cursor: default; ">
+    {{title}}
+  </h1>
 </div>
 
 <div style="background: #f7f7f7; height: 48px;">
-    <mat-tab-group (selectedTabChange)="onTabChanged($event);">
-        <mat-tab label="Todo"></mat-tab>
-        <mat-tab *ngFor="let s of actualSection?.sections"  [label]="s?.name"> </mat-tab>
-    </mat-tab-group>
+  <mat-tab-group (selectedTabChange)="onTabChanged($event);">
+    <mat-tab label="Todo"></mat-tab>
+    <!-- <mat-tab *ngFor="let s of actualSection?.sections"  [label]="s?.name"> </mat-tab> -->
+  </mat-tab-group>
 </div>
 
 <div infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll(false)">
-    <div style="float: left; padding: 0;" class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let product of dataService?.products | products:section:subsection">
-        <app-product [product]="product"></app-product>
-    </div>
+  <div style="float: left; padding: 0;" class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12"
+    *ngFor="let product of dataService?.products | products:section:subsection">
+    <app-product [product]="product"></app-product>
+  </div>
 </div>
 
 <div style="clear: both;"></div>
 
 <div *ngIf="isLoading" style="margin:40px 40%">
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </div>
 
 <div *ngIf="actualPage>=finishPage && !isLoading" style="margin:40px 40%" (click)="onScroll(true)">
-    <div class="send">
-        <div>
-            Cargar Más
-        </div>
+  <div class="send">
+    <div>
+      Cargar Más
     </div>
+  </div>
 </div>
 
 <button [ngClass]="{'hidden': !showGoUpButton}" mat-mini-fab class="mini-fab" (click)="scrollTop()">
-    <mat-icon>keyboard_arrow_up</mat-icon>
+  <mat-icon>keyboard_arrow_up</mat-icon>
 </button>

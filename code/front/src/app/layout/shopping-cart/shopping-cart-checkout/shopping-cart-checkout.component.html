@@ -1,19 +1,17 @@
-<div style="margin-bottom: 30px;">
+<div style="margin-bottom: 30px;" *ngIf="userService?.loggedUser">
 
-  <div style="padding:0 14px 0px 14px;" *ngIf="userService?.loggedUser">
+  <div style="padding:0 14px 0px 14px;">
     <div style="margin-top:30px;  float: left;" class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
       <div style="padding-left: 0" class="title">
         Datos de Contacto
       </div>
       <div style="position: relative">
         <span [class.hidden]="!address?.name" class="preInput">Nombre</span>
-        <input [class.completeInput]="address?.name" matInput placeholder="Nombre"
-          [(ngModel)]="address.name">
+        <input [class.completeInput]="address?.name" matInput placeholder="Nombre" [(ngModel)]="address.name">
       </div>
       <div style="position: relative">
         <span [class.hidden]="!address?.surname" class="preInput">Apellido</span>
-        <input [class.completeInput]="address?.surname" matInput placeholder="Apellido"
-          [(ngModel)]="address.surname">
+        <input [class.completeInput]="address?.surname" matInput placeholder="Apellido" [(ngModel)]="address.surname">
       </div>
 
       <div style="padding-left: 0; margin-top: 15px" class="title">
@@ -21,8 +19,7 @@
       </div>
       <div style="position: relative">
         <span [class.hidden]="!address?.street" class="preInput">Dirección 1</span>
-        <input [class.completeInput]="address?.street" matInput placeholder="Dirección 1"
-          [(ngModel)]="address.street">
+        <input [class.completeInput]="address?.street" matInput placeholder="Dirección 1" [(ngModel)]="address.street">
       </div>
 
       <div style="position: relative">
@@ -33,14 +30,12 @@
 
       <div style="position: relative">
         <span [class.hidden]="!address?.zip" class="preInput">Código Postal</span>
-        <input [class.completeInput]="address?.zip" matInput placeholder="Código Postal"
-          [(ngModel)]="address.zip">
+        <input [class.completeInput]="address?.zip" matInput placeholder="Código Postal" [(ngModel)]="address.zip">
       </div>
 
       <div style="position: relative">
         <span [class.hidden]="!address?.city" class="preInput">Ciudad</span>
-        <input [class.completeInput]="address?.city" matInput placeholder="Ciudad"
-          [(ngModel)]="address.city">
+        <input [class.completeInput]="address?.city" matInput placeholder="Ciudad" [(ngModel)]="address.city">
       </div>
 
       <div style="position: relative">
@@ -66,13 +61,28 @@
             ({{shipmentType?.details}}).</span>
         </mat-radio-button>
       </mat-radio-group>
-      <div style="padding-left: 0" class="title">
+
+      <div style="padding-left: 0;" class="title">
+        Código de Descuento
+      </div>
+      <div style="position: relative">
+        <span [class.hidden]="!discount" class="preInput">Descuento</span>
+        <input [class.completeInput]="discount" matInput placeholder="Descuento" [(ngModel)]="discount">
+        <div class="not-valid" *ngIf="isDiscountValid==false">*El codigo de descuento introducido no es válido.</div>
+        <button mat-stroked-button class="btn"
+          style="color:white; background-color: #545454; width: 100%; max-width: unset;" (click)="applyDiscountCode()">
+          APLICAR
+        </button>
+      </div>
+
+      <div style="padding-left: 0; margin-top: 15px" class="title">
         Método de Pago
       </div>
       <div style="position: relative">
         <span [class.hidden]="!paymentInfo?.owner" class="preInput">Titular</span>
         <input [class.completeInput]="paymentInfo?.owner" matInput placeholder="Titular"
           [(ngModel)]="paymentInfo.owner">
+
       </div>
       <div style="position: relative">
         <span [class.hidden]="!paymentInfo?.number" class="preInput">Número</span>
@@ -86,8 +96,7 @@
       </div>
       <div style="position: relative">
         <span [class.hidden]="!paymentInfo?.csv" class="preInput">CSV</span>
-        <input [class.completeInput]="paymentInfo?.csv" matInput placeholder="CSV"
-          [(ngModel)]="paymentInfo.csv">
+        <input [class.completeInput]="paymentInfo?.csv" matInput placeholder="CSV" [(ngModel)]="paymentInfo.csv">
       </div>
       <div style="margin-top: 10px; font-size: 12px;">
         <mat-checkbox [(ngModel)]="savePaymenInformation">Guardar información de cobro
@@ -97,20 +106,30 @@
   </div>
 
   <div style="margin-top:30px; float: left;" class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+    <div *ngIf="isDiscountValid==true" style="padding: 10px 30px 0 30px; text-decoration: line-through; opacity: 0.5;">
+      Total sin Descuento: <span>€{{(finalPrice).toFixed(2)}}</span>
+    </div>
     <div style="padding: 10px 30px; font-size: 22px; line-height: 1.5;">
-      Total Final: €{{(cartService?.GetPrize()+order?.typeShipment?.price).toFixed(2)}}
+      Total Final: €{{(finalPrice).toFixed(2)}}
       <button mat-stroked-button class="btn" style="color:white; background-color: #545454" (click)="orderSubmit()">
         COMPRAR
       </button>
     </div>
   </div>
 </div>
-<div style="padding:0 14px 0px 14px" *ngIf="userService?.loggedUser==undefined">
-  Debes estar registrado para realizar el pedido
-  <button mat-stroked-button class="btn" routerLink="/registration" style="color:white; background-color: #545454">
-    Registrarme
-  </button>
+
+<div style="padding:10px 30px" *ngIf="userService?.loggedUser==undefined">
+  <div style="font-style: italic; opacity: 0.8;">
+    *NOTA: Debes estar registrado para realizar el pedido
+  </div>
+  <div>
+    <button mat-stroked-button class="btn" routerLink="/registration" style="color:white; background-color: #545454">
+      Registrarme
+    </button>
+  </div>
+
 </div>
+
 
 <div style="clear: both;">
 </div>

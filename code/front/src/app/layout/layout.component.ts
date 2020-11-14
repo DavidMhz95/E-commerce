@@ -55,13 +55,14 @@ export class LayoutComponent implements OnInit {
       }
     });
 
+    this.dataService.sections = []
     for (let key in dict) {
       let array = dict[key];
       var section: Section = new Section(key, array)
       this.dataService.sections.push(section)
     }
 
-    
+
     console.log(this.dataService.sections)
   }
 

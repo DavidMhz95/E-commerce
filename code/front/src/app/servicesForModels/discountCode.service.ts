@@ -21,4 +21,8 @@ export class DiscountCodeService {
     getAll(): Observable<any>{
         return this._http.get(globalUrl + 'discountCodes')
     }
+
+    checkDiscountCode(code:string):Observable<any>{
+        return this._http.get(globalUrl + 'checkDiscountCode/'+code )
+    }
 }
