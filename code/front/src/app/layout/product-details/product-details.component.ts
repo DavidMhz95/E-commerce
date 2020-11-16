@@ -5,6 +5,8 @@ import { ShoppingCartService } from 'src/app/shared/shopping-cart.service';
 import { Product } from 'src/app/models/product';
 import { Route } from '@angular/compiler/src/core';
 import { ProductService } from 'src/app/servicesForModels/product.service';
+import { CopyObject } from 'src/app/app.utils';
+import { Property } from 'src/app/models/property';
 
 
 
@@ -34,7 +36,6 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.product) {
-
       this.product = this.dataService.products.filter((p: Product) => { return this.activatedRoute.snapshot.params.id == p.reference })[0]
       if (!this.product) {
         this.productService.getProduct(this.activatedRoute.snapshot.params.id).subscribe((product: Product[]) => {
@@ -48,24 +49,41 @@ export class ProductDetailsComponent implements OnInit {
     this.value = event
   }
 
-  public emitAddedInCart() {
-    this.addedInCart.emit("Product added")
+  public addProductToCart(product: Product, value: number) {
+    let userProduct: Product = CopyObject(product)
+
+    // Limpiar propertyValues de properties 
+
+    userProduct.properties.forEach((property: any , index : number) => {
+      property.values=this.selectedOptions[index]
+    });
+    
+    // Limpiamos el stock 
+    let localname = this.selectedOptions.join('-')
+    userProduct.stock.filter(stock=> stock.name == localname)[0].value-=value
+    
+    console.log(userProduct)
+
+    this.cartService.AddProduct(product, userProduct, value);
+    this.getCrossStock(this.selectedOptions)
   }
 
-  public selectedOptions : string[] = []
-  public realStock : number
 
-  onChange(event,p, index) {
+  public selectedOptions: string[] = []
+  public realStock: number
+
+  onChange(event, index) {
     console.log(event)
     this.selectedOptions[index] = event.value
     this.getCrossStock(this.selectedOptions)
   }
 
-  getCrossStock( array ){
+
+  getCrossStock(array) {
     var name = array.join('-')
     console.log(name)
     this.product.stock.forEach(s => {
-      if(name== s.name){
+      if (name == s.name) {
         this.realStock = s.value
       }
     });

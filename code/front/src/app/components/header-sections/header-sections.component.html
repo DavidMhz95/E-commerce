@@ -1,6 +1,6 @@
 <div class="parent">
     <div class="section dropdown" *ngFor="let section of dataService?.sections">
-        <a [routerLink]="'collections/'+section?.title" class="sectionTitle">{{section?.title}}</a>
+        <a [routerLink]="'collections/'+section?.name" class="sectionTitle">{{section?.name}}</a>
         <span class="nav-carat-small">
             <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow-right"
                 viewBox="0 0 20 38">
@@ -10,7 +10,7 @@
             </svg>
         </span>
         <div class="dropdown-content">
-            <a *ngFor="let subsection of section?.sections" [routerLink]="'collections/'+section?.title+'/'+subsection?.title">{{subsection?.title}}</a>
+            <a *ngFor="let subsection of section?.subsection" [routerLink]="'collections/'+section?.name+'/'+subsection">{{subsection}}</a>
         </div>
     </div>
 </div>

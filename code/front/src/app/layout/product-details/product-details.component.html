@@ -27,7 +27,7 @@
       <label style="width: 100%; font-size: 12px; font-weight: bold;">
         {{property.name}}
       </label>
-      <mat-select style="outline: none;" id="OptionSelection" (selectionChange)="onChange($event,property, i)" style="margin-bottom: 10px;">
+      <mat-select style="outline: none;" id="OptionSelection" (selectionChange)="onChange($event, i)" placeholder="Selecciona tu opcion" style="margin-bottom: 10px;">
         <mat-option [value]="propertyValues" *ngFor="let propertyValues of property?.values">
           {{propertyValues}}
         </mat-option>
@@ -39,12 +39,11 @@
     </app-quantity-selector>
     <div class="buttons" *ngIf="realStock>0">
 
-      <button mat-stroked-button class="btn" (click)="cartService?.AddProduct(product, value); emitAddedInCart()">
+      <button mat-stroked-button class="btn" (click)=" addProductToCart(product, value)">
         AGREGAR AL CARRITO
       </button>
 
-      <button mat-stroked-button class="btn" style="color:white; background-color: #545454"
-        (click)="emitAddedInCart()">
+      <button mat-stroked-button class="btn" style="color:white; background-color: #545454">
         COMPRAR
       </button>
     </div>

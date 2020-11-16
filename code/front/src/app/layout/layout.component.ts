@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { DataService } from '../shared/data.service';
 import { ShoppingCartService } from '../shared/shopping-cart.service';
 import { Router, NavigationStart } from '@angular/router';
@@ -50,18 +50,18 @@ export class LayoutComponent implements OnInit {
         dict[p.section] = stringArray;
       }
       else if (p.section in dict && !dict[p.section].includes(p.subsection)) {
+        stringArray = dict[p.section]
         stringArray.push(p.subsection)
         dict[p.section] = stringArray;
       }
     });
 
+    this.dataService.sections = []
     for (let key in dict) {
       let array = dict[key];
       var section: Section = new Section(key, array)
       this.dataService.sections.push(section)
     }
-
-    console.log(this.dataService.sections)
   }
 
 }

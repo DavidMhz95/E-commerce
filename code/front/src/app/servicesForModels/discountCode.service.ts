@@ -25,4 +25,7 @@ export class DiscountCodeService {
     delete(discountCode: DiscountCode): Observable<any> {
         return this._http.delete(globalUrl + 'discountCode/' + discountCode.code)
       }
+    checkDiscountCode(code:string):Observable<any>{
+        return this._http.get(globalUrl + 'checkDiscountCode/'+code )
+    }
 }

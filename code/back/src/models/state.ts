@@ -1,8 +1,1 @@
-export class State {
-
-    constructor(
-        public id: number,
-        public name: string,
-    ) {}
-
-  }
+export enum State { PROCESSING, SHIPPED, INTRANSIT, DELIVERED }
