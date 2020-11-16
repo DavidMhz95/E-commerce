@@ -149,6 +149,7 @@ export async function deleteOrder(id: string) {
 
 // DESCUENTOS
 export async function saveDiscountCode(discountCode: DiscountCode) {
+    discountCode.type = ObjectType.DiscountCode
     return await client.index({
         index: serviceSettings.elasticsearch.dbName,
         body: discountCode

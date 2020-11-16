@@ -14,11 +14,15 @@ export class DiscountCodeService {
 
     }
     
-    create(discountCode: DiscountCode): Observable<any> {
+    upsert(discountCode: DiscountCode): Observable<any> {
         return this._http.post(globalUrl + 'discountCode', discountCode)
     }
     
     getAll(): Observable<any>{
         return this._http.get(globalUrl + 'discountCodes')
     }
+
+    delete(discountCode: DiscountCode): Observable<any> {
+        return this._http.delete(globalUrl + 'discountCode/' + discountCode.code)
+      }
 }

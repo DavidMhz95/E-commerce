@@ -15,11 +15,11 @@ import { DiscountApplication, DiscountCode, DiscountType } from 'src/app/models/
   styleUrls: ['./discounts.component.scss'],
 })
 export class DiscountsComponent implements OnInit {
-  
+
   public displayedColumns: string[] = ['type', 'code', 'color', 'from', 'to', 'value', 'options']
   public dataSource: MatTableDataSource<DiscountCode>
-  public discountType = DiscountType
-  public discountApplication = DiscountApplication
+  public discountType: typeof DiscountType = DiscountType
+  public discountApplication: typeof DiscountApplication = DiscountApplication
   public errorMessage: string
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator
@@ -37,6 +37,9 @@ export class DiscountsComponent implements OnInit {
 
   private UpdateDataSource() {
     this.discountCodeService.getAll().subscribe((response: DiscountCode[]) => {
+      console.log(response)
+      console.log(DiscountType.Percentage)
+      console.log(this.discountType['Percentage'])
       this.dataSource = new MatTableDataSource(response)
       this.dataSource.paginator = this.paginator
       this.dataSource.sort = this.sort
@@ -47,10 +50,11 @@ export class DiscountsComponent implements OnInit {
     this.errorMessage = undefined
     // Pasamos id de código descuento SIEMPRE a MAYUS
     this.discount.code = this.discount.code.toUpperCase()
-    this.discountCodeService.create(this.discount).subscribe((discount : any) => {
-      if (discount){
+    this.discountCodeService.upsert(this.discount).subscribe((discount: any) => {
+      if (discount) {
         alert("Descuento creado correctamente.")
-      }else{
+        this.UpdateDataSource()
+      } else {
         this.errorMessage = "Descuento erróneo."
       }
     }, error => {
@@ -59,21 +63,28 @@ export class DiscountsComponent implements OnInit {
     })
   }
 
-   duplicateDiscount(discount: DiscountCode) {
-  //   this.dataService.discounts.push(CopyObject(discount))
-  //   this.UpdateDataSource()
-   }
+  duplicateDiscount(discount: DiscountCode) {
+    //   this.dataService.discounts.push(CopyObject(discount))
+    //   this.UpdateDataSource()
+  }
 
-   removeDiscount(discount: DiscountCode) {
-  //   const index = this.dataService.discounts.indexOf(discount)
-  //   if (index > -1) {
-  //     this.dataService.discounts.splice(index, 1)
-  //     this.UpdateDataSource()
-  //   }
-   }
+  removeDiscount(discount: DiscountCode) {
+    if (discount && confirm("¿Seguro que quieres el descuento con código: " + discount.code + "? ")) {
+      this.discountCodeService.delete(discount).subscribe(response => {
+        if (response) {
+          //this.dataService.products = this.dataService.products.filter((p: Product) => p.reference != discount)
+          alert("Descuento borrado correctamente")
+          this.UpdateDataSource()
+        }
+      }, error => {
+        console.log(error)
+      })
+    }
+  }
 
   setDiscount(discount) {
     this.discount = discount
+    this.UpdateDataSource()
   }
 
   resetDiscount() {
