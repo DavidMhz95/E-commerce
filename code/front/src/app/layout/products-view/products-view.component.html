@@ -7,7 +7,8 @@
 <div style="background: #f7f7f7; height: 48px;">
   <mat-tab-group (selectedTabChange)="onTabChanged($event);">
     <mat-tab label="Todo"></mat-tab>
-    <!-- <mat-tab *ngFor="let s of actualSection?.sections"  [label]="s?.name"> </mat-tab> -->
+    <mat-tab *ngFor="let s of actualSection?.subsection"  [label]="s"> </mat-tab>
+    <!-- <mat-tab *ngFor="let s of dataService?.sections"  [label]="s?.name"> </mat-tab> -->
   </mat-tab-group>
 </div>
 

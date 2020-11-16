@@ -74,6 +74,7 @@ export class ProductsViewComponent implements OnInit {
         this.section = undefined
       }
     } else {
+      console.log(this.section, this.actualSection)
       if (this.section == this.actualSection.name) {
         this.subsection = event.tab.textLabel
       } else {
@@ -89,7 +90,6 @@ export class ProductsViewComponent implements OnInit {
     }
   }
 
-  //TODO Miguel y David
   public findActualSection(section: string): Section {
     var result: Section
     this.dataService.sections.forEach((s: Section) => {
@@ -103,6 +103,7 @@ export class ProductsViewComponent implements OnInit {
         subsection: []
       }
     }
+    console.log(result)
     return result
   }
 
