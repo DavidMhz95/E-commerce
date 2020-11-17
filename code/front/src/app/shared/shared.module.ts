@@ -21,6 +21,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TicketComponent } from '../components/ticket/ticket.component';
 import { MatCardModule } from '@angular/material/card';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 
@@ -36,7 +37,8 @@ import { MatCardModule } from '@angular/material/card';
     MatCardModule,
     RouterModule,
     MatTableModule,
-    PaymentTypesModule
+    PaymentTypesModule,
+    MatMenuModule
   ],
   declarations: [
     CarouselComponent,

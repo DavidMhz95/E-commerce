@@ -1,25 +1,35 @@
 <a [routerLink]="'/landing/products/'+product?.reference">
-    <div #imageDiv class="imageDiv">
-        <div *ngIf="product?.offerPrice" class="sale">
-            Oferta
-        </div>
-        <div class="slideup" (click)="$event.preventDefault(); $event?.stopPropagation(); productService?.openDialog(product)">
-            Vista rápida
-        </div>
+  <div #imageDiv class="imageDiv">
+    <button *ngIf="isAdmin" mat-icon-button (click)="$event.preventDefault(); $event?.stopPropagation();" style="position: absolute; right: 10px; top: 10px;border-radius: 50%; border: 0px solid white; background-color: rgba(0, 0, 0, 0.5); color: #ffffff; min-width: 10px; min-height: 25px; width: 25px; height: 10px; padding: 0px;"
+      mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="edit.emit(product)">Editar Producto</button>
+      <button mat-menu-item (click)="remove.emit(product)">Eliminar Producto</button>
+    </mat-menu>
+    <div *ngIf="product?.offerPrice" class="sale">
+      Oferta
     </div>
+    <div class="slideup"
+      (click)="$event.preventDefault(); $event?.stopPropagation(); productService?.openDialog(product)">
+        Vista rápida
+    </div>
+  </div>
 </a>
 
 
 <div class="details">
-    <div class="title">{{product?.name}}</div>
+  <div class="title">{{product?.name}}</div>
 
-    <div *ngIf="product?.offerPrice">
-        <span
-            style="padding-right: 10px; text-decoration: line-through; color: #030303; opacity: .5;">€{{product?.offerPrice}}</span>
-        <span style="color:#be563f">€{{product?.price}}</span>
-    </div>
+  <div *ngIf="product?.offerPrice">
+    <span
+      style="padding-right: 10px; text-decoration: line-through; color: #030303; opacity: .5;">€{{product?.offerPrice}}</span>
+    <span style="color:#be563f">€{{product?.price}}</span>
+  </div>
 
-    <div *ngIf="!product?.offerPrice">
-        <span>€{{product?.price}}</span>
-    </div>
+  <div *ngIf="!product?.offerPrice">
+    <span>€{{product?.price}}</span>
+  </div>
 </div>

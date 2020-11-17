@@ -71,6 +71,7 @@ export class ProductsComponent implements OnInit {
   }
 
   edit(product: Product) {
+    console.log(product)
     this.isEditionMode = true
     this.product = product
   }

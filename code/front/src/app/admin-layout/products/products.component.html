@@ -10,7 +10,7 @@
         </svg>
       </a>
     </div>
-    <app-product-form (add)="add($event)"  (editProduct)="editProduct($event)" [isEditionMode]="isEditionMode" [product]="product"></app-product-form>
+    <app-product-form (add)="add($event)"  (editProduct)="editProduct($event)" [isEditionMode]="isEditionMode" [product]="product" ></app-product-form>
   </mat-drawer>
 
   <div class="sidenav-content">
@@ -31,7 +31,7 @@
 
   <div style="float: left; padding: 0;" class="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-xs-12"
     *ngFor="let product of dataService?.products">
-    <app-product [product]="product"></app-product>
+    <app-product [product]="product" [isAdmin]="true" (edit)="edit($event); drawer.open()" (remove)="remove($event.reference)" ></app-product>
   </div>
 
   <div style="clear: both;">

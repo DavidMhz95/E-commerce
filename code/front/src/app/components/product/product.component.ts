@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, HostListener, EventEmitter, Output } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -20,6 +20,9 @@ export class ProductComponent implements OnInit {
 
   @ViewChild('imageDiv', { static: true }) imageDiv: ElementRef
   @Input('product') product: Product
+  @Input('isAdmin') isAdmin: Boolean = false
+  @Output() edit: EventEmitter<Product> = new EventEmitter()
+  @Output() remove: EventEmitter<Product> = new EventEmitter()
 
   constructor(public sanitizer: DomSanitizer, public productService: ProductService, public productDialog: MatDialog) { }
 

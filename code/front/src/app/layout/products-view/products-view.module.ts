@@ -13,6 +13,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ProductsPipe } from './products.pipe';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ProductsPipe } from './products.pipe';
     MatTabsModule,
     MatButtonModule,
     MatIconModule,
-    SharedModule
+    SharedModule,
+    MatMenuModule
   ],
   declarations: [
     ProductsViewComponent,

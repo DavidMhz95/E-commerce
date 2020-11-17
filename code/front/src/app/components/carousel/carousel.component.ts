@@ -25,7 +25,6 @@ export class CarouselComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.product)
     this.imageDiv.nativeElement.style.height = this.imageDiv.nativeElement.offsetWidth+'px'
   }
 

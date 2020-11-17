@@ -66,7 +66,6 @@ export class ProductFormComponent implements OnInit {
         forkJoin(promises).subscribe(
           (response: string[]) => {
             this.product.images = response.map((image: any) => image.id)
-            console.log(this.product)
             this.add.emit(this.product)
             this.resetProduct();
           }, error => {
