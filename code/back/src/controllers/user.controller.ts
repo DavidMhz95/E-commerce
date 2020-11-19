@@ -81,7 +81,7 @@ function create(req, res) {
 
 function getAll(req, res) {
     const requestBody = new esb.RequestBodySearch()
-        .query(new esb.MatchPhraseQuery('type', "0"));
+        .query(new esb.MatchPhraseQuery('type', "0")).from(0).size(1000)
     // Build the request body
     var query = requestBody.toJSON()
     executeQuery(query).then(result => {

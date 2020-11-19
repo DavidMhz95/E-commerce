@@ -50,7 +50,7 @@ function getAll(req, res) {
     var boolQuery = new esb.boolQuery()
         .must(new esb.MatchPhraseQuery('type', ObjectType.DiscountCode))
 
-    const requestBody = new esb.requestBodySearch().query(boolQuery)
+    const requestBody = new esb.requestBodySearch().query(boolQuery).from(0).size(1000)
     executeQuery(requestBody.toJSON()).then((response: any) => {
         return res.status(200).send(response?.body?.hits?.hits.map((h: any) => h._source))
     }, (error: any) => {

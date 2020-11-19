@@ -24,7 +24,7 @@ export var controller: OrderController = {
 
 function getAll(req, res) {
     const requestBody = new esb.RequestBodySearch()
-        .query(new esb.MatchPhraseQuery('type', ObjectType.Order))
+        .query(new esb.MatchPhraseQuery('type', ObjectType.Order)).from(0).size(1000)
     // Build the request body
     var query = requestBody.toJSON()
     executeQuery(query).then(result => {

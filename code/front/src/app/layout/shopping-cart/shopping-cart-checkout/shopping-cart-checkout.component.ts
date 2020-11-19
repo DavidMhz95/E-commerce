@@ -24,6 +24,7 @@ export class ShoppingCartCheckoutComponent implements OnInit {
   discount: string
   isDiscountValid: boolean
   finalPrice: number
+  finalPriceDiscount: number
 
   saveShippingInformation: boolean = false
   savePaymenInformation: boolean = false
@@ -74,11 +75,11 @@ export class ShoppingCartCheckoutComponent implements OnInit {
       this.isDiscountValid = result != undefined
       if (this.isDiscountValid) {
         //Válido hacemos el descuento (dependiendo del tipo, si es porcentaje o cantidad)
-        if (result.discountType = DiscountType.AbsoluteValue) {
-          this.finalPrice = this.cartService.GetPrize() + this.order.typeShipment.price - result.value
-        } else if (result.discountType = DiscountType.Percentage) {
+        if (result.discountType == DiscountType.AbsoluteValue) {
+          this.finalPriceDiscount = this.cartService.GetPrize() + this.order.typeShipment.price - result.value
+        } else if (result.discountType == DiscountType.Percentage) {
           var subtotal = this.cartService.GetPrize() + this.order.typeShipment.price
-          this.finalPrice = subtotal - (subtotal * result.value / 100)
+          this.finalPriceDiscount = subtotal - (subtotal * result.value / 100)
         }
       } else {
         //No es valido, lo ponemos por pantalla y no hacemos el descuento
