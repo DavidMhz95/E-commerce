@@ -81,6 +81,9 @@ export class ShoppingCartCheckoutComponent implements OnInit {
           var subtotal = this.cartService.GetPrize() + this.order.typeShipment.price
           this.finalPriceDiscount = subtotal - (subtotal * result.value / 100)
         }
+        if (this.finalPriceDiscount < 0){
+          this.finalPriceDiscount = 0
+        }
       } else {
         //No es valido, lo ponemos por pantalla y no hacemos el descuento
         this.finalPrice = this.cartService.GetPrize() + this.order.typeShipment.price
