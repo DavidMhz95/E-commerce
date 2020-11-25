@@ -3,6 +3,7 @@ import { UserService } from 'src/app/servicesForModels/user.service';
 import { Address } from 'src/app/models/address';
 import { PaymentInfo } from 'src/app/models/payment-info';
 import { CopyObject } from 'src/app/app.utils';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'profile-info',
@@ -15,7 +16,7 @@ export class ProfileInfoComponent implements OnInit {
   address: Address = new Address()
   paymentInfo: PaymentInfo = new PaymentInfo()
 
-  constructor(public userService: UserService) {
+  constructor(public userService: UserService, private _snackBar: MatSnackBar) {
     this.address = CopyObject(this.userService.loggedUser.address)
     this.paymentInfo = CopyObject(this.userService.loggedUser.payment)
   }
@@ -32,13 +33,19 @@ export class ProfileInfoComponent implements OnInit {
     this.userService.loggedUser.address = this.address
     this.userService.loggedUser.payment = this.paymentInfo
     this.userService.updateUser(this.userService.loggedUser).subscribe(() => {
-      alert('Información actualizada')
+      this.openSnackBar('Información actualizada', 'Aceptar')
     }, err => {
-      alert('error')
       console.log('error')
     })
 
 
+  }
+
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 

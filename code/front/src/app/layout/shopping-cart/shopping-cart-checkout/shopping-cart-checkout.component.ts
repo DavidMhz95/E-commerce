@@ -10,6 +10,7 @@ import { forkJoin, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { DiscountCodeService } from 'src/app/servicesForModels/discountCode.service';
 import { DiscountCode, DiscountType } from 'src/app/models/discountCode';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-shopping-cart-checkout',
@@ -33,7 +34,7 @@ export class ShoppingCartCheckoutComponent implements OnInit {
   { type: 'Express', value: 1, price: 6.99, details: "24 Horas" }];
 
   constructor(public cartService: ShoppingCartService, public userService: UserService,
-    private orderService: OrderService, private discountServide: DiscountCodeService, private router: Router) { }
+    private orderService: OrderService, private discountServide: DiscountCodeService, private router: Router,  private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.order.user = this.userService.loggedUser
@@ -61,7 +62,7 @@ export class ShoppingCartCheckoutComponent implements OnInit {
       requests.push(this.userService.updateUser(this.order.user))
     }
     forkJoin(requests).subscribe((responses) => {
-      alert("Pedido realizado")
+      this.openSnackBar("Pedido realizado","Aceptar")
       this.cartService.products = []
       this.router.navigate(['/profile'])
     }, error => {
@@ -89,6 +90,13 @@ export class ShoppingCartCheckoutComponent implements OnInit {
       this.isDiscountValid = false
       this.finalPrice = this.cartService.GetPrize() + this.order.typeShipment.price
     })
+  }
+
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }
 

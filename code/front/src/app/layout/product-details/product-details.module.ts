@@ -11,6 +11,7 @@ import { MatRippleModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [ProductDetailsComponent],
@@ -24,7 +25,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatDialogModule,
     MatButtonModule,
     MatSelectModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSnackBarModule
   ],
   exports: [
     ProductDetailsComponent,

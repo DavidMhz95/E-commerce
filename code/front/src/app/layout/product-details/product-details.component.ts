@@ -7,6 +7,7 @@ import { Route } from '@angular/compiler/src/core';
 import { ProductService } from 'src/app/servicesForModels/product.service';
 import { CopyObject } from 'src/app/app.utils';
 import { Property } from 'src/app/models/property';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -25,7 +26,7 @@ export class ProductDetailsComponent implements OnInit {
 
   public value: number = 1
 
-  constructor(public dataService: DataService, public activatedRoute: ActivatedRoute, public cartService: ShoppingCartService, public router: Router, public productService: ProductService) {
+  constructor(public dataService: DataService, public activatedRoute: ActivatedRoute, public cartService: ShoppingCartService, public router: Router, public productService: ProductService, private _snackBar: MatSnackBar) {
     router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.product = undefined
@@ -106,7 +107,7 @@ export class ProductDetailsComponent implements OnInit {
                 console.log(error)
               }
             )
-            alert("Producto borrado correctamente")
+            this.openSnackBar("Producto borrado correctamente","Aceptar")
 
           }
         },
@@ -115,14 +116,16 @@ export class ProductDetailsComponent implements OnInit {
         }
       )
     }
-
-
-
-
   }
 
   public editProduct(ref) {
     this.router.navigate(['/admin/products'])
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }

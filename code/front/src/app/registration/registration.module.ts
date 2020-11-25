@@ -12,6 +12,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [RegistrationComponent],
@@ -26,6 +27,7 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
     MatCheckboxModule,
     MatIconModule,
     SharedModule,
+    MatSnackBarModule
   ],
 })
 export class RegistrationModule { }

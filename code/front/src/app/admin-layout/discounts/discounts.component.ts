@@ -8,6 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { CopyObject } from 'src/app/app.utils';
 import { Router } from '@angular/router';
 import { DiscountApplication, DiscountCode, DiscountType } from 'src/app/models/discountCode';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-discounts',
@@ -26,7 +27,7 @@ export class DiscountsComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort
   public discount: DiscountCode
 
-  constructor(public dataService: DataService, public discountCodeService: DiscountCodeService, public colorService: ColorService, private router: Router) {
+  constructor(public dataService: DataService, public discountCodeService: DiscountCodeService, public colorService: ColorService, private router: Router, private _snackBar: MatSnackBar) {
     this.resetDiscount()
   }
 
@@ -52,13 +53,13 @@ export class DiscountsComponent implements OnInit {
     this.discount.code = this.discount.code.toUpperCase()
     this.discountCodeService.upsert(this.discount).subscribe((discount: any) => {
       if (discount) {
-        alert("Descuento creado correctamente.")
+        this.openSnackBar("Descuento creado correctamente.","Aceptar")
         this.UpdateDataSource()
       } else {
         this.errorMessage = "Descuento erróneo."
       }
     }, error => {
-      alert(error)
+      this.openSnackBar(error,"Aceptar")
       console.log(error)
     })
   }
@@ -73,7 +74,7 @@ export class DiscountsComponent implements OnInit {
       this.discountCodeService.delete(discount).subscribe(response => {
         if (response) {
           //this.dataService.products = this.dataService.products.filter((p: Product) => p.reference != discount)
-          alert("Descuento borrado correctamente")
+          this.openSnackBar("Descuento borrado correctamente.","Aceptar")
           this.UpdateDataSource()
         }
       }, error => {
@@ -112,6 +113,12 @@ export class DiscountsComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage()
     }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }
 

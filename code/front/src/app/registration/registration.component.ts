@@ -3,6 +3,7 @@ import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/servicesForModels/user.service';
 import { Md5 } from 'ts-md5/dist/md5';
 import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import { globalUrl } from '../app.utils';
 
 @Component({
@@ -26,7 +27,7 @@ export class RegistrationComponent {
   public isSubscribed: boolean
   public isAccept: boolean
 
-  constructor(public userService: UserService, private router: Router) {
+  constructor(public userService: UserService, private router: Router, private _snackBar: MatSnackBar) {
     this.user = new User()
   }
 
@@ -66,10 +67,19 @@ export class RegistrationComponent {
         }
       }, error => {
         console.log(error)
+        if(error.error == "Ya existe un usuario registrado con este email."){
+          this.openSnackBar('El email introducido ya está en la BBDD','Aceptar')
+        }
       })
     } else {
       this.errorMessage = "Las contraseñas no coinciden"
     }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 

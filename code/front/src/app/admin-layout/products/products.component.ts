@@ -7,6 +7,7 @@ import { CdkCell } from '@angular/cdk/table';
 import { CopyObject } from 'src/app/app.utils';
 import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 import { Section } from 'src/app/models/section';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-products',
@@ -18,7 +19,7 @@ export class ProductsComponent implements OnInit {
   public product: Product
   public isEditionMode: boolean
 
-  constructor(public dataService: DataService, public activatedRoute: ActivatedRoute, public productService: ProductService) { }
+  constructor(public dataService: DataService, public activatedRoute: ActivatedRoute, public productService: ProductService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe(response => {
@@ -38,7 +39,7 @@ export class ProductsComponent implements OnInit {
       this.productService.delete(reference).subscribe(response => {
         if (response) {
           this.dataService.products = this.dataService.products.filter((p: Product) => p.reference != reference)
-          alert("Producto borrado correctamente")
+          this.openSnackBar("Producto borrado correctamente", "Aceptar")
         }
       }, error => {
         console.log(error)
@@ -53,7 +54,7 @@ export class ProductsComponent implements OnInit {
         let listOfProducts = CopyObject(this.dataService.products)
         listOfProducts.push(product)
         this.dataService.products = listOfProducts
-        alert("Producto Creado correctamente")
+        this.openSnackBar("Producto Creado correctamente", "Aceptar")
       }
     }, error => {
       console.log(error)
@@ -63,7 +64,7 @@ export class ProductsComponent implements OnInit {
   editProduct(product: Product) {
     this.productService.update(product).subscribe(response => {
       if (response) {
-        alert("Producto editado correctamente")
+        this.openSnackBar("Producto editado correctamente", "Aceptar")
       }
     }, error => {
       console.log(error)
@@ -76,6 +77,12 @@ export class ProductsComponent implements OnInit {
     this.product = product
   }
 
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 
 }
 
