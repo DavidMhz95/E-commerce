@@ -1,8 +1,9 @@
 {
   "name": "black.market.model",
   "version": "1.0.0",
-  "description": "Modelo de datos para la aplicación Black Market",
-  "main": "index.js",
+  "description": "A nice greeter",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "files": ["lib/**/*"],
   "scripts": {
     "test": "jest --config jestconfig.json",
