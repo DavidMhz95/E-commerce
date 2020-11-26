@@ -13,7 +13,7 @@ export class DataService {
 
   constructor() {
   }
-
+  public nombreTienda: string = "NOT BLACK MARKET"
   products: Product[] = []
 
   public sections: Section[] = []
@@ -60,7 +60,7 @@ export class DataService {
   ]
 }
   
-export interface marketInformation {
+export class marketInformation {
   nameInformation: string
   descriptionInformation: string
 }

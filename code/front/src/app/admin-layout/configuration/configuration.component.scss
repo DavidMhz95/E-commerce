@@ -1,0 +1,212 @@
+::ng-deep mat-accordion .material-icons {
+    height: 20px !important;
+    width: 20px !important;
+    font-size: 20px !important;
+  }
+  
+  .card {
+    width: 40%;
+    margin: 20px;
+    border-radius: 3px;
+    padding: 10px 15px;
+    border-radius: 2px;
+    box-shadow: none;
+    min-height: 140px;
+  }
+  
+  .card-title {
+    font-size: 11px;
+    opacity: 0.5;
+    font-weight: 600;
+    width: max-content;
+  }
+  
+  .card-sb {
+    font-size: 12px;
+    opacity: 0.6;
+    font-weight: 500;
+    text-align: left !important;
+  }
+  
+  .ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .uppercase {
+    text-transform: uppercase;
+  }
+  
+  .card-number {
+    width: max-content;
+    font-size: 24px;
+    font-weight: 500;
+  }
+  
+  .flex-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .flex-container > div {
+    text-align: right;
+    flex-grow: 1;
+  }
+  
+  .live {
+    background-color: #333333;
+    color: white;
+    border-radius: 3px;
+    font-size: 10px;
+    padding: 0px 7px;
+    cursor: default;
+    width: max-content;
+  }
+  
+  .material-icons {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+  }
+  
+  .width12{
+    max-width: 12px;
+  }
+  
+  .padding7{
+    padding: 0 7px !important;
+  }
+  
+  .title {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 11px;
+  }
+
+  .container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: unset;
+  }
+  
+  .padding7 {
+    padding: 0 7px !important;
+  }
+  
+  .card {
+    padding: 15px 24px;
+    border-radius: 2px;
+    box-shadow: none;
+    min-height: 48px;
+    margin-bottom: 14px;
+  }
+  
+  .dashed:hover {
+    background: rgba(0, 0, 0, 0.04);
+    cursor: pointer;
+  }
+  
+  .dashed {
+    border: 1px dashed rgba(0, 0, 0, 0.2);
+  }
+  
+  .flex-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .title {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 11px;
+  }
+  
+  mat-select,
+  input {
+    width: 100%;
+    margin-top: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 3px;
+    padding: 6px 10px;
+  }
+  
+  .subInput {
+    margin-top: 5px;
+    font-size: 10px;
+    opacity: 0.8;
+    line-height: 1.6;
+  }
+  
+  .preInput {
+    font-size: 12px;
+    opacity: 0.8;
+    line-height: 1.6;
+  }
+  
+  .hidden {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+  }
+  
+  .visible {
+    max-height: 500px;
+    opacity: 1;
+  }
+  
+  .animated {
+    transition: all 0.5s ease-in-out;
+  }
+  
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0 0 0;
+  }
+  
+  .radio-button {
+    margin: 5px;
+    font-size: 13px;
+  }
+  
+  .profile-img {
+    height: 32px;
+    width: 32px;
+    margin-right: 10px;
+    border-radius: 50%;
+    margin-top: 0;
+    vertical-align: bottom;
+  }
+  
+  .outlineNone:focus {
+    outline: none;
+  }
+  
+  mat-datepicker-toggle:focus,
+  ::ng-deep mat-datepicker-toggle button:focus {
+    outline: none;
+  }
+  
+  ::ng-deep .color-picker {
+    border: 1px solid #f2f2f2 !important;
+    border-radius: 3px !important;
+  }
+  
+  ::ng-deep .color-picker .arrow.arrow-bottom {
+    visibility: hidden !important;
+  }
+  
+  .pointer {
+    cursor: pointer;
+  }
+  
+  
+  

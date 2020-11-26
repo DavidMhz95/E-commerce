@@ -1,6 +1,6 @@
 <div>
   <a routerLink="/landing">
-    NOT BLACK MARKET
+    {{dataService?.nombreTienda}}
   </a>
   <div *ngIf="userService?.loggedUser" class="profile-img user-badge" routerLink="/profile"
     [matTooltip]="userService?.loggedUser?.name"

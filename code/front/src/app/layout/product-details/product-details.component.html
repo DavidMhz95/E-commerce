@@ -60,10 +60,14 @@
       </ul>
     </div>
 
-    <div class="marketInformation" *ngIf="!isSimpleView">
-      <mat-tab-group>
-        <mat-tab *ngFor="let item of dataService?.info" label={{item?.nameInformation}} style="margin-bottom: 20px;">
-          {{item?.descriptionInformation}}</mat-tab>
+    <div *ngIf="!isSimpleView">
+      <mat-tab-group class="fontTab">
+        <mat-tab *ngFor="let item of dataService?.info" label={{item?.nameInformation}}>
+        <div style="padding: 30px;" class="fontTab" >
+          {{item?.descriptionInformation}}
+        </div>
+          
+        </mat-tab>
       </mat-tab-group>
     </div>
     
