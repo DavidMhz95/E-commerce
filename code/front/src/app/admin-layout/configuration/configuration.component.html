@@ -12,7 +12,7 @@
       Este es el nombre que aparecerá en la parte superior de la tienda
     </div>
 
-    <div  style="margin-top: 20px;">Parte izquierda titulo</div>
+    <div style="margin-top: 20px;">Parte izquierda titulo</div>
     <div style="margin-top: 10px">
       <input matInput placeholder="ENVIO GRATIS" [(ngModel)]="nombreTienda">
     </div>
@@ -20,7 +20,7 @@
       Este es el texto que aparecerá en la parte superior izquierda del header
     </div>
 
-    <div  style="margin-top: 20px;">Parte derecha titulo</div>
+    <div style="margin-top: 20px;">Parte derecha titulo</div>
     <div style="margin-top: 10px">
       <input matInput placeholder="A PARTIR DE 80€ A TODA LA PENÍNSULA" [(ngModel)]="nombreTienda">
     </div>
@@ -28,12 +28,16 @@
       Este es el texto que aparecerá en la parte superior izquierda del header
     </div>
     <div style="margin-top: 20px">
-      <button style="float:right" mat-flat-button class="btn" color="primary" (click)="onSubmitNombreTienda()"> Editar
+      <button style="float:right" mat-flat-button class="btn btnSave" color="primary" (click)="onSubmitNombreTienda()"> Guardar
       </button>
       <div style="clear:both"></div>
     </div>
 
   </mat-card>
+
+  <div style="opacity:0.8; margin-left: 8px;" class="title">
+    Configuración de las pestañas de producto (max 3)
+  </div>
 
   <mat-card class="card">
     <div>Titulo</div>
@@ -53,9 +57,26 @@
     <div class="subInput">
       Esta es el descripción que aparecerá en la parte inferior de la tab
     </div>
-    <div style="margin-top: 20px">
+    <div style="margin-top: 20px" *ngIf="marketInfo.length <= 2">
       <button style="float:right" mat-flat-button class="btn" color="primary" (click)="onSubmitMarketInfo()">
-        Editar</button>
+        Añadir</button>
+      <div style="clear:both"></div>
+    </div>
+
+    <div style="font-size: 13px; margin-bottom: 0px; margin-top: 20px; width: 100%; " class="tabs" >
+      <ul>
+        <li *ngFor="let tab of marketInfo" style="display: flex;">
+          <div style="min-width: 350px; margin-top: 20px;">
+            {{tab.nameInformation}}
+          </div>
+          <mat-icon style="cursor:pointer; font-size: 22px; margin-top: 20px;" (click)="removeTab(tab)">clear</mat-icon>
+        </li>
+      </ul>
+    </div>
+
+    <div style="margin-top: 20px" *ngIf="marketInfo.length > 0">
+      <button style="float:right" mat-flat-button class="btn btnSave" color="primary" (click)="saveTabs()"> Guardar Pestañas
+      </button>
       <div style="clear:both"></div>
     </div>
 

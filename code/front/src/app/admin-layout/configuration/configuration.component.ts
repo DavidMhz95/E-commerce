@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MarketTabsInformation } from 'src/app/models/marketInformation';
+import { MarketTabsInformation } from 'src/app/models/marketTabsInformation';
 import { DataService } from 'src/app/shared/data.service';
 
 @Component({
@@ -29,13 +29,27 @@ export class ConfigurationComponent implements OnInit {
   }
 
   onSubmitMarketInfo() {
-    let m : MarketTabsInformation = new MarketTabsInformation(this.marketInfoObject.nameInformation,this.marketInfoObject.descriptionInformation)
-    if (this.marketInfoObject) {
-      this.marketInfo.push(m)
+    // Permitimos máximo 3 tabs 
+    let mi : MarketTabsInformation = new MarketTabsInformation(this.marketInfoObject.nameInformation, this.marketInfoObject.descriptionInformation)
+    if (this.marketInfoObject && this.marketInfo.length <= 2) {
+      this.marketInfo.push(mi)
     }
-
+    this.marketInfoObject.nameInformation = undefined
+    this.marketInfoObject.descriptionInformation = undefined
     console.log(this.marketInfo)
   }
+
+  removeTab(tab) {
+    let index = this.marketInfo.indexOf(tab)
+    if (index >= 0) {
+      this.marketInfo.splice(index, 1);
+    }
+
+  }
+
+    saveTabs(){
+      
+    }
 
 
 
