@@ -11,28 +11,6 @@
     <div class="subInput">
       Este es el nombre que aparecerá en la parte superior de la tienda
     </div>
-
-    <div style="margin-top: 20px;">Parte izquierda titulo</div>
-    <div style="margin-top: 10px">
-      <input matInput placeholder="ENVIO GRATIS" [(ngModel)]="nombreTienda">
-    </div>
-    <div class="subInput">
-      Este es el texto que aparecerá en la parte superior izquierda del header
-    </div>
-
-    <div style="margin-top: 20px;">Parte derecha titulo</div>
-    <div style="margin-top: 10px">
-      <input matInput placeholder="A PARTIR DE 80€ A TODA LA PENÍNSULA" [(ngModel)]="nombreTienda">
-    </div>
-    <div class="subInput">
-      Este es el texto que aparecerá en la parte superior izquierda del header
-    </div>
-    <div style="margin-top: 20px">
-      <button style="float:right" mat-flat-button class="btn btnSave" color="primary" (click)="onSubmitNombreTienda()"> Guardar
-      </button>
-      <div style="clear:both"></div>
-    </div>
-
   </mat-card>
 
   <div style="opacity:0.8; margin-left: 8px;" class="title">
@@ -74,8 +52,8 @@
       </ul>
     </div>
 
-    <div style="margin-top: 20px" *ngIf="marketInfo.length > 0">
-      <button style="float:right" mat-flat-button class="btn btnSave" color="primary" (click)="saveTabs()"> Guardar Pestañas
+    <div style="margin-top: 20px" *ngIf="marketInfo.length > 0 && nombreTienda">
+      <button style="float:right" mat-flat-button class="btn btnSave" color="primary" (click)="saveConfig()"> Guardar Configuracion
       </button>
       <div style="clear:both"></div>
     </div>

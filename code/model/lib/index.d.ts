@@ -11,3 +11,5 @@ export * from './model/shipment-type';
 export * from './model/state';
 export * from './model/user';
 export * from './model/enum';
+export * from './model/store-config';
+export * from './model/market-tabs-information';

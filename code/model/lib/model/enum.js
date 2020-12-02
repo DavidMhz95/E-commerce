@@ -7,6 +7,7 @@ var ObjectType;
     ObjectType[ObjectType["Product"] = 1] = "Product";
     ObjectType[ObjectType["Order"] = 2] = "Order";
     ObjectType[ObjectType["DiscountCode"] = 3] = "DiscountCode";
+    ObjectType[ObjectType["Configuration"] = 4] = "Configuration";
 })(ObjectType = exports.ObjectType || (exports.ObjectType = {}));
 var orderState;
 (function (orderState) {

@@ -6,7 +6,8 @@ export enum ObjectType {
     User = 0,
     Product = 1,
     Order = 2,
-    DiscountCode = 3
+    DiscountCode = 3,
+    Configuration = 4
 }
 
 export enum orderState {

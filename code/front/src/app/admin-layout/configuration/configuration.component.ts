@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MarketTabsInformation } from 'src/app/models/marketTabsInformation';
+import { MarketTabsInformation, StoreConfiguration } from 'black-market-model';
 import { DataService } from 'src/app/shared/data.service';
 
 @Component({
@@ -24,10 +24,6 @@ export class ConfigurationComponent implements OnInit {
     }
   }
 
-  onSubmitNombreTienda() {
-    console.log(this.nombreTienda)
-  }
-
   onSubmitMarketInfo() {
     // Permitimos máximo 3 tabs 
     let mi : MarketTabsInformation = new MarketTabsInformation(this.marketInfoObject.nameInformation, this.marketInfoObject.descriptionInformation)
@@ -47,7 +43,7 @@ export class ConfigurationComponent implements OnInit {
 
   }
 
-    saveTabs(){
+    saveConfig(){
       
     }
 

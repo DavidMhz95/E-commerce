@@ -23,3 +23,5 @@ __exportStar(require("./model/shipment-type"), exports);
 __exportStar(require("./model/state"), exports);
 __exportStar(require("./model/user"), exports);
 __exportStar(require("./model/enum"), exports);
+__exportStar(require("./model/store-config"), exports);
+__exportStar(require("./model/market-tabs-information"), exports);
