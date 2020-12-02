@@ -11,6 +11,7 @@ import { ShoppingCartCheckoutComponent } from './shopping-cart-checkout/shopping
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { MatRadioModule } from '@angular/material/radio';
     MatRadioModule,
     FormsModule,
     MatCheckboxModule,
+    MatSnackBarModule
   ]
 })
 export class ShoppingCartModule { }

@@ -18,7 +18,7 @@ import { TicketComponent } from './components/ticket/ticket.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   bootstrap: [AppComponent]
 })

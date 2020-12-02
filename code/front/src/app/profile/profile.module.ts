@@ -19,6 +19,7 @@ import { ProfileOrdersComponent } from './profile-orders/profile-orders.componen
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ProfileAccountComponent } from './profile-account/profile-account.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [ProfileComponent, ProfileOrdersComponent, ProfileInfoComponent, ProfileAccountComponent],
@@ -39,6 +40,7 @@ import { ProfileAccountComponent } from './profile-account/profile-account.compo
     MatDividerModule,
     MatProgressSpinnerModule,
     SharedModule, 
+    MatSnackBarModule
   ]
 })
 export class ProfileModule { }

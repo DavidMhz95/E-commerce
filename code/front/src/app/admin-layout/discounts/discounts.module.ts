@@ -24,6 +24,7 @@ import { MatSortModule} from '@angular/material/sort';
 import { MatTableModule} from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [DiscountsComponent, DiscountEditorComponent],
@@ -49,7 +50,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSortModule,
     MatTableModule,
     MatInputModule, 
-    MatTooltipModule
+    MatTooltipModule,
+    MatSnackBarModule
   ],
   providers:[
     { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }

@@ -25,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
 import { ProductFormComponent } from './product-form/product-form.component';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatCardModule,
     FormsModule,
     MatChipsModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSnackBarModule
     
   ],
 })
