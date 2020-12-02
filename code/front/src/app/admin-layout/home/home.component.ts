@@ -9,7 +9,7 @@ import {
 
 import { ChartEvent, ChartType } from 'ng-chartist';
 import { DataService } from 'src/app/shared/data.service';
-import { Order } from 'src/app/models/order';
+import { Order } from 'black-market-model';
 
 @Component({
   selector: 'app-home',

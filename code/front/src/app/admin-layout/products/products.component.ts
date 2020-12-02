@@ -1,12 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from 'src/app/shared/data.service';
-import { Product } from 'src/app/models/product';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/servicesForModels/product.service';
-import { CdkCell } from '@angular/cdk/table';
 import { CopyObject } from 'src/app/app.utils';
-import { throwToolbarMixedModesError } from '@angular/material/toolbar';
-import { Section } from 'src/app/models/section';
+import { Product } from 'black-market-model';
 
 @Component({
   selector: 'app-products',

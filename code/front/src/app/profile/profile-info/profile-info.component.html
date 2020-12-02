@@ -74,9 +74,9 @@
           [(ngModel)]="paymentInfo.owner">
       </div>
       <div style="position: relative">
-        <span [class.hidden]="!paymentInfo?.number" class="preInput">Número</span>
-        <input [class.completeInput]="paymentInfo?.number" matInput placeholder="Número"
-          [(ngModel)]="paymentInfo.number">
+        <span [class.hidden]="!paymentInfo?.cardNumber" class="preInput">Número</span>
+        <input [class.completeInput]="paymentInfo?.cardNumber" matInput placeholder="Número"
+          [(ngModel)]="paymentInfo.cardNumber">
       </div>
       <div style="position: relative">
         <span [class.hidden]="!paymentInfo?.date" class="preInput">Vencimiento (mm/aa)</span>

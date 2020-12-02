@@ -2,15 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DiscountApplication = exports.DiscountType = exports.DiscountCode = void 0;
 var DiscountCode = /** @class */ (function () {
-    function DiscountCode(code, discountType, //Porcentaje, valor absoluto,
-    value, discountApplication, //Envío, Productos, Categoria, Subcategoria, Todo
-    repetitions, user, products, section, subsection, minPurchase, color, dateFrom, dateTo) {
+    function DiscountCode(code, discountType, // Porcentaje, valor absoluto,
+    value, discountApplication, // Envío, Productos, Categoria, Subcategoria, Todo
+    repetitions, users, products, section, subsection, minPurchase, color, dateFrom, dateTo, type) {
         this.code = code;
         this.discountType = discountType;
         this.value = value;
         this.discountApplication = discountApplication;
         this.repetitions = repetitions;
-        this.user = user;
+        this.users = users;
         this.products = products;
         this.section = section;
         this.subsection = subsection;
@@ -18,6 +18,7 @@ var DiscountCode = /** @class */ (function () {
         this.color = color;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
+        this.type = type;
     }
     return DiscountCode;
 }());
@@ -30,8 +31,8 @@ var DiscountType;
 var DiscountApplication;
 (function (DiscountApplication) {
     DiscountApplication["Todo"] = "Todo";
-    //Product = "Producto",
-    //Section  = "Sección",
-    //Subsection = "Subsección", 
+    // Product = "Producto",
+    // Section  = "Sección",
+    // Subsection = "Subsección", 
     DiscountApplication["Envio"] = "Envio";
 })(DiscountApplication = exports.DiscountApplication || (exports.DiscountApplication = {}));

@@ -3,7 +3,6 @@ import { ProductController } from './controllers/product.controller'
 import { ImageController } from './controllers/image.controller'
 import { OrderController } from './controllers/order.controller'
 import { DiscountCodeController } from './controllers/discountCode.controller'
-import { DiscountCode } from './models/discountCode'
 
 var UserController: UserController = require('./controllers/user.controller')
 var ProductController: ProductController = require('./controllers/product.controller')

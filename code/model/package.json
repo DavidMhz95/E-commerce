@@ -1,5 +1,5 @@
 {
-  "name": "black.market.model",
+  "name": "black-market-model",
   "version": "1.0.0",
   "description": "A nice greeter",
   "main": "lib/index.js",

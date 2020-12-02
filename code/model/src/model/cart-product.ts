@@ -4,7 +4,7 @@ export class CartProduct {
 
     constructor(
         public product: Product,
-        public number: number
+        public quantity: number
     ) { }
 
 }

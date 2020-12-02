@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/user';
+import { Component } from '@angular/core';
 import { UserService } from 'src/app/servicesForModels/user.service';
 import { Md5 } from 'ts-md5/dist/md5';
 import { Router } from '@angular/router';
-import { globalUrl } from '../app.utils';
+import { User, ObjectType } from 'black-market-model';
 
 @Component({
   selector: 'app-registration',
@@ -27,7 +26,7 @@ export class RegistrationComponent {
   public isAccept: boolean
 
   constructor(public userService: UserService, private router: Router) {
-    this.user = new User()
+    this.user = new User(ObjectType.User)
   }
 
   onLoginSubmit() {
@@ -54,7 +53,7 @@ export class RegistrationComponent {
   onRegisterSubmit() {
     this.errorMessage = undefined
     if (this.registrationPass && this.registrationPass2 && this.registrationPass == this.registrationPass2) {
-      this.user.hash_password = Md5.hashStr(this.registrationPass).toString()
+      this.user.hashPassword = Md5.hashStr(this.registrationPass).toString()
 
       this.userService.create(this.user).subscribe((user: any) => {
         if (user) {

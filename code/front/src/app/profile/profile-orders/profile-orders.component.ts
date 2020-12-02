@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/servicesForModels/user.service';
 import { OrderService } from 'src/app/servicesForModels/order.service';
-import { Order } from 'src/app/models/order';
 import { DomSanitizer } from '@angular/platform-browser';
-import { CartProduct } from 'src/app/models/cart-product';
+import { Order } from 'black-market-model';
 
 @Component({
   selector: 'profile-orders',

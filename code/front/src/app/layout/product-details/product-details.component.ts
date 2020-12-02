@@ -1,14 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute, Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { DataService } from 'src/app/shared/data.service';
 import { ShoppingCartService } from 'src/app/shared/shopping-cart.service';
-import { Product } from 'src/app/models/product';
-import { Route } from '@angular/compiler/src/core';
 import { ProductService } from 'src/app/servicesForModels/product.service';
 import { CopyObject } from 'src/app/app.utils';
-import { Property } from 'src/app/models/property';
-
-
+import { Product } from 'black-market-model';
 
 @Component({
   selector: 'app-product-details',

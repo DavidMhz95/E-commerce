@@ -1,7 +1,5 @@
-import { response } from 'express';
 import { deleteDiscountCode, executeQuery, saveDiscountCode, updateDiscountCode } from '../elastic';
-import { DiscountCode } from '../models/discountCode';
-import { ObjectType } from '../models/enum';
+import { DiscountCode, ObjectType } from 'black-market-model';
 
 const esb = require('elastic-builder'); // the builder
 

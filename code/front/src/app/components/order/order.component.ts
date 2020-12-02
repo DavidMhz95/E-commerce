@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core'
 import { DataService, Customer } from 'src/app/shared/data.service'
 import { PaymentType, PaymentTypeEnum } from '../payment-types/payments.component';
 import { RandomEnum } from 'src/app/app.utils';
-import { CartProduct } from 'src/app/models/cart-product';
+import { CartProduct } from 'black-market-model';
 
 @Component({
   selector: 'app-order',
@@ -22,7 +22,7 @@ export class OrderComponent implements OnInit {
   constructor() { }
   ngOnInit(): void {
     this.products.forEach((p) => {
-      this.price += p.product?.offerPrice * p.number
+      this.price += p.product?.offerPrice * p.quantity
     })
 
     this.location = "Calle Falsa 123, Madrid 28045 Madrid (Spain)"

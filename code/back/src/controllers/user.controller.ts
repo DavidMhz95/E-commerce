@@ -1,5 +1,5 @@
 import { executeQuery, saveUser, deleteUser, updateUser } from '../elastic';
-import { User } from '../models/user'
+import { User } from 'black-market-model';
 
 const esb = require('elastic-builder'); // the builder
 

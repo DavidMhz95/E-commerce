@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ProductModalComponent } from '../components/product-modal/product-modal.component';
 import { RandomDate } from 'src/app/app.utils';
-import { Product } from '../models/product';
-import { DiscountApplication, DiscountCode, DiscountType } from '../models/discountCode';
-import { Section } from '../models/section';
+import { Product, Section } from 'black-market-model';
 
 @Injectable({
   providedIn: 'root'

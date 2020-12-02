@@ -3,8 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/shared/data.service';
 import { ShoppingCartService } from 'src/app/shared/shopping-cart.service';
 import { MatTabChangeEvent } from '@angular/material/tabs';
-import { ProductsPipe } from './products.pipe';
-import { Section } from 'src/app/models/section';
+import { Section } from 'black-market-model';
 
 @Component({
   selector: 'app-products-view',
@@ -18,12 +17,12 @@ export class ProductsViewComponent implements OnInit {
   subsection: string
 
   //Infinite scroll options
-  public finishPage = 5;
-  public actualPage: number = 0;
-  public isLoading = false;
-  showScrollHeight = 300;
-  hideScrollHeight = 200;
-  showGoUpButton: boolean;
+  public finishPage = 5
+  public actualPage: number = 0
+  public isLoading = false
+  showScrollHeight = 300
+  hideScrollHeight = 200
+  showGoUpButton: boolean
   actualSection: Section
 
   @HostListener('window:scroll', []) onWindowScroll() {

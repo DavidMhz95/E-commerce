@@ -1,4 +1,5 @@
 import { CrossStock } from './cross-stock';
+import { ObjectType } from './enum';
 import { Property } from './property';
 
 export class Product {
@@ -14,7 +15,8 @@ export class Product {
         public details: string[],
         public stock: CrossStock[],
         public section:string,
-        public subsection:string
+        public subsection:string,
+        public type: ObjectType
     ) {}
 
   }

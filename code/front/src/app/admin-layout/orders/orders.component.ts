@@ -8,7 +8,7 @@ import {
   IChartistData
 } from 'chartist';
 import { ChartType, ChartEvent } from 'ng-chartist';
-import { Order } from 'src/app/models/order';
+import { Order } from 'black-market-model';
 
 @Component({
   selector: 'app-orders',

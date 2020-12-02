@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Order } from '../models/order';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { globalUrl } from '../app.utils';
-import { User } from '../models/user';
+import { Order, User } from 'black-market-model';
 
 @Injectable({
     providedIn: 'root'

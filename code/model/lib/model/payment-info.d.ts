@@ -6,8 +6,8 @@ export declare enum PymetnTypes {
 export declare class PaymentInfo {
     type?: PymetnTypes | undefined;
     owner?: string | undefined;
-    number?: string | undefined;
+    cardNumber?: string | undefined;
     date?: string | undefined;
     csv?: number | undefined;
-    constructor(type?: PymetnTypes | undefined, owner?: string | undefined, number?: string | undefined, date?: string | undefined, csv?: number | undefined);
+    constructor(type?: PymetnTypes | undefined, owner?: string | undefined, cardNumber?: string | undefined, date?: string | undefined, csv?: number | undefined);
 }

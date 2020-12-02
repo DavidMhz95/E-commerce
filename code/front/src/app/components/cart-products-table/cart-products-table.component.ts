@@ -1,10 +1,9 @@
 import { Component, OnInit, Input, OnChanges, Sanitizer } from '@angular/core';
-import { Product } from 'src/app/models/product';
 import { ShoppingCartService } from 'src/app/shared/shopping-cart.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProductService } from 'src/app/servicesForModels/product.service';
-import { CartProduct } from 'src/app/models/cart-product';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Product, CartProduct } from 'black-market-model';
 
 @Component({
   selector: 'app-cart-products-table',
@@ -19,12 +18,12 @@ export class CartProductsTableComponent implements OnInit, OnChanges {
   displayedColumns: string[] = ['image', 'name', 'properties', 'prize', 'number'];
   public internalDataSource: MatTableDataSource<CartProduct>
 
-  constructor(public sanitizer:DomSanitizer , public cartService: ShoppingCartService, public productService: ProductService) {
+  constructor(public sanitizer: DomSanitizer, public cartService: ShoppingCartService, public productService: ProductService) {
   }
 
   private _update() {
     if (this.dataSource && this.dataSource.length > 0) {
-      this.internalDataSource = new MatTableDataSource(this.dataSource.filter((product: CartProduct) => product.number > 0))
+      this.internalDataSource = new MatTableDataSource(this.dataSource.filter((product: CartProduct) => product.quantity > 0))
     }
   }
 
@@ -36,8 +35,8 @@ export class CartProductsTableComponent implements OnInit, OnChanges {
     this._update()
   }
 
-  getPropertyNames(product: Product){
-    return product.properties.map((p: any)=> p.values).join(' ')
+  getPropertyNames(product: Product) {
+    return product.properties.map((p: any) => p.values).join(' ')
   }
 
   deleteProduct(product: Product, removeAll: boolean) {
@@ -46,9 +45,9 @@ export class CartProductsTableComponent implements OnInit, OnChanges {
   }
 
   public valueChanged(event: number, product: CartProduct) {
-    product.number = event
+    product.quantity = event
 
-    if (product.number <= 0) {
+    if (product.quantity <= 0) {
       this.deleteProduct(product.product, true)
     }
   }

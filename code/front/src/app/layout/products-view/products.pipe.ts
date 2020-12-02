@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Product } from 'src/app/models/product';
+import { Product } from 'black-market-model';
 
 @Pipe({
   name: 'products'

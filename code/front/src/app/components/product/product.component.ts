@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ProductModalComponent } from '../product-modal/product-modal.component';
 import { ProductService } from 'src/app/servicesForModels/product.service';
-import { Product } from 'src/app/models/product';
+import { Product } from 'black-market-model';
 
 @Component({
   selector: 'app-product',

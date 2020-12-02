@@ -4,7 +4,7 @@ import { IChartistAnimationOptions, IChartistData } from 'chartist';
 import { Customer, DataService } from 'src/app/shared/data.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserService } from 'src/app/servicesForModels/user.service';
-import { User } from 'src/app/models/user';
+import { User } from 'black-market-model';
 
 @Component({
   selector: 'app-customers',

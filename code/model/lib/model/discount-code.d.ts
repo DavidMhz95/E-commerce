@@ -1,3 +1,4 @@
+import { ObjectType } from './enum';
 import { Product } from './product';
 import { User } from './user';
 export declare class DiscountCode {
@@ -6,7 +7,7 @@ export declare class DiscountCode {
     value: number;
     discountApplication: DiscountApplication;
     repetitions: number;
-    user: User[];
+    users: User[];
     products: Product[];
     section: string;
     subsection: string;
@@ -14,9 +15,10 @@ export declare class DiscountCode {
     color: string;
     dateFrom: Date;
     dateTo: Date;
-    constructor(code: string, discountType: DiscountType, //Porcentaje, valor absoluto,
-    value: number, discountApplication: DiscountApplication, //Envío, Productos, Categoria, Subcategoria, Todo
-    repetitions: number, user: User[], products: Product[], section: string, subsection: string, minPurchase: number, color: string, dateFrom: Date, dateTo: Date);
+    type: ObjectType;
+    constructor(code: string, discountType: DiscountType, // Porcentaje, valor absoluto,
+    value: number, discountApplication: DiscountApplication, // Envío, Productos, Categoria, Subcategoria, Todo
+    repetitions: number, users: User[], products: Product[], section: string, subsection: string, minPurchase: number, color: string, dateFrom: Date, dateTo: Date, type: ObjectType);
 }
 export declare enum DiscountType {
     Percentage = "Porcentaje",

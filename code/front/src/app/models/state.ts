@@ -1,1 +1,0 @@
-export enum State { PROCESSING, SHIPPED, INTRANSIT, DELIVERED }

@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Order } from 'src/app/models/order';
-import { CartProduct } from 'src/app/models/cart-product';
+import { Order, CartProduct } from 'black-market-model';
 
 @Component({
   selector: 'ticket',
@@ -19,7 +18,7 @@ export class TicketComponent implements OnInit {
   getTotalPrice(order: Order) {
     let value: number = 0
     order.products.forEach((cartProduct: CartProduct) => {
-      value += cartProduct.number * (cartProduct.product.offerPrice > 0 ? cartProduct.product.offerPrice : cartProduct.product.price)
+      value += cartProduct.quantity * (cartProduct.product.offerPrice > 0 ? cartProduct.product.offerPrice : cartProduct.product.price)
     })
     value += order.typeShipment.price
     return value

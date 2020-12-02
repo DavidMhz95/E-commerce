@@ -3,7 +3,6 @@ import { UserService } from '../servicesForModels/user.service';
 import { ImageService } from '../servicesForModels/image.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { OrderService } from '../servicesForModels/order.service';
-import { Order } from '../models/order';
 
 @Component({
   selector: 'app-profile',

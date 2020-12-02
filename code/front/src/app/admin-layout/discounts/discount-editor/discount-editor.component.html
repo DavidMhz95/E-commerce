@@ -76,7 +76,7 @@
         <mat-select placeholder="Seleccione un cliente" (selectionChange)="selectedCustomer($event)"
             style="margin-bottom: 15px;">
             <mat-option style="height: 50px;"
-                *ngFor="let customer of dataService?.customers | filterDuplicates:discount?.customers"
+                *ngFor="let customer of dataService?.customers | filterDuplicates:discount?.users"
                 [value]="customer">
                 <div class="flex-container">
                     <img class="profile-img" [src]="customer?.image">
@@ -91,7 +91,7 @@
             </mat-option>
         </mat-select>
 
-        <div *ngFor="let customer of discount?.customers" style="padding: 10px 5px;">
+        <div *ngFor="let customer of discount?.users" style="padding: 10px 5px;">
             <div class="flex-container">
                 <img class="profile-img" [src]="customer?.image">
                 <div class="flex-container" style="line-height: 1.3; margin-right: 10px; flex-grow: 1;">

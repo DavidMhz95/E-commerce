@@ -3,7 +3,7 @@ import { DataService } from '../shared/data.service';
 import { ShoppingCartService } from '../shared/shopping-cart.service';
 import { Router, NavigationStart } from '@angular/router';
 import { ProductService } from 'src/app/servicesForModels/product.service';
-import { Section } from '../models/section';
+import { Section } from 'black-market-model';
 
 @Component({
   selector: 'app-layout',

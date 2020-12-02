@@ -2,7 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Order = void 0;
 var Order = /** @class */ (function () {
-    function Order(id, user, products, dateOrder, dateShipment, information, state, paymentInfo, typeShipment) {
+    function Order(type, id, user, products, dateOrder, dateShipment, information, state, paymentInfo, typeShipment) {
+        this.type = type;
         this.id = id;
         this.user = user;
         this.products = products;

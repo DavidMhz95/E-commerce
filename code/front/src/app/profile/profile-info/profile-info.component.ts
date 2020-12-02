@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/servicesForModels/user.service';
-import { Address } from 'src/app/models/address';
-import { PaymentInfo } from 'src/app/models/payment-info';
 import { CopyObject } from 'src/app/app.utils';
+import { Address, PaymentInfo } from 'black-market-model';
 
 @Component({
   selector: 'profile-info',

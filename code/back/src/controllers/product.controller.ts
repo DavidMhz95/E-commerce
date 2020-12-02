@@ -1,6 +1,5 @@
 import { executeQuery, saveProduct, deleteProduct, updateProduct } from '../elastic';
-import { Product } from '../models/product'
-import { Dictionary, TypeOfProduct } from '../models/typeOfProduct';
+import { Product } from 'black-market-model';
 
 const esb = require('elastic-builder'); // the builder
 
@@ -70,7 +69,7 @@ function update(req, res) {
     //Recoger los parámetros por post
     let product: Product = req.body
 
-    if (product){
+    if (product) {
         const requestBody = new esb.RequestBodySearch().query(new esb.MatchPhraseQuery('reference', product.reference))
         executeQuery(requestBody.toJSON()).then(result => {
             var actualProduct = result.body.hits.hits[0];
@@ -101,7 +100,7 @@ function add(req, res) {
     //Recoger los parámetros por post
     let product: Product = req.body;
     if (product) {
-        
+
         var boolQuery = new esb.boolQuery()
             .must(new esb.MatchPhraseQuery('reference', product.reference))
             .must(new esb.MatchPhraseQuery('type', 1))
@@ -143,9 +142,9 @@ function deleteByRef(req, res) {
         const requestBody = new esb.RequestBodySearch().query(new esb.MatchPhraseQuery('reference', productRef))
         executeQuery(requestBody.toJSON()).then(result => {
 
-            var Product = result.body.hits.hits[0];
-            if (Product) {
-                deleteProduct(Product._id).then(() => {
+            var p: any = result.body.hits.hits[0];
+            if (p) {
+                deleteProduct(p._id).then(() => {
                     return res.status(200).send(
                         true
                     );

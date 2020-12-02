@@ -2,10 +2,8 @@ import { Component, OnInit, Input, ViewChild, Inject, Output, EventEmitter, OnCh
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { CopyObject } from 'src/app/app.utils';
-import { Product } from 'src/app/models/product';
-import { DataService } from 'src/app/shared/data.service';
 import { ProductService } from 'src/app/servicesForModels/product.service';
+import { Product } from 'black-market-model';
 
 @Component({
   selector: 'app-table-products',

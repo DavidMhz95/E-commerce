@@ -22,3 +22,4 @@ __exportStar(require("./model/section"), exports);
 __exportStar(require("./model/shipment-type"), exports);
 __exportStar(require("./model/state"), exports);
 __exportStar(require("./model/user"), exports);
+__exportStar(require("./model/enum"), exports);

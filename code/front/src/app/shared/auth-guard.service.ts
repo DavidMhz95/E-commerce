@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { UserService } from '../servicesForModels/user.service';
-import { User } from '../models/user';
 import { Subject, Observable, of } from 'rxjs';
+import { User } from 'black-market-model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class AuthGuardService implements CanActivate {
       var subject = new Subject<boolean>();
       var user: User = JSON.parse(localStorage.getItem('BM_User'))
       if (user) {
-        this.userService.login(user.email, user.hash_password).subscribe((user: any) => {
+        this.userService.login(user.email, user.hashPassword).subscribe((user: any) => {
           if (user) {
             this.userService.loggedUser = user
             subject.next(true)

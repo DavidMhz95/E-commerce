@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from 'src/app/shared/shopping-cart.service';
-import { Order } from 'src/app/models/order';
 import { UserService } from 'src/app/servicesForModels/user.service';
-import { Address } from '../../../models/address';
-import { PaymentInfo } from 'src/app/models/payment-info';
 import { OrderService } from 'src/app/servicesForModels/order.service';
 import { CopyObject } from 'src/app/app.utils';
 import { forkJoin, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { DiscountCodeService } from 'src/app/servicesForModels/discountCode.service';
-import { DiscountCode, DiscountType } from 'src/app/models/discountCode';
+import { Order, Address, PaymentInfo, DiscountType, DiscountCode, ObjectType } from 'black-market-model'
 
 @Component({
   selector: 'app-shopping-cart-checkout',
@@ -18,7 +15,7 @@ import { DiscountCode, DiscountType } from 'src/app/models/discountCode';
 })
 export class ShoppingCartCheckoutComponent implements OnInit {
 
-  order: Order = new Order()
+  order: Order = new Order(ObjectType.Order)
   address: Address = new Address()
   paymentInfo: PaymentInfo = new PaymentInfo()
   discount: string
@@ -81,7 +78,7 @@ export class ShoppingCartCheckoutComponent implements OnInit {
           var subtotal = this.cartService.GetPrize() + this.order.typeShipment.price
           this.finalPriceDiscount = subtotal - (subtotal * result.value / 100)
         }
-        if (this.finalPriceDiscount < 0){
+        if (this.finalPriceDiscount < 0) {
           this.finalPriceDiscount = 0
         }
       } else {

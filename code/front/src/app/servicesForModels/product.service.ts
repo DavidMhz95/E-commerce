@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../models/product';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { globalUrl } from '../app.utils';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ProductModalComponent } from '../components/product-modal/product-modal.component';
+import { Product } from 'black-market-model';
 
 @Injectable({
   providedIn: 'root'

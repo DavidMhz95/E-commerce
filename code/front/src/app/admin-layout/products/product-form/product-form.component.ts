@@ -1,12 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/servicesForModels/product.service';
-import { Property } from 'src/app/models/property';
-import { cartesian, globalUrl } from '../../../app.utils';
+import { cartesian } from '../../../app.utils';
 import { ImageService } from 'src/app/servicesForModels/image.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { forkJoin } from 'rxjs';
-import { CrossStock } from 'src/app/models/crossStock';
+import { Product, Property, CrossStock, ObjectType } from 'black-market-model';
 
 @Component({
   selector: 'app-product-form',
@@ -38,7 +36,7 @@ export class ProductFormComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.product) {
-      this.product = new Product('', null, '', 0, 0, null, '', null, [], '', '')
+      this.product = new Product('', null, '', 0, 0, null, '', null, [], '', '', ObjectType.Product)
     }
   }
 
@@ -114,7 +112,8 @@ export class ProductFormComponent implements OnInit {
       details: [],
       stock: undefined,
       section: undefined,
-      subsection: undefined
+      subsection: undefined,
+      type: ObjectType.Product,
     }
   }
 

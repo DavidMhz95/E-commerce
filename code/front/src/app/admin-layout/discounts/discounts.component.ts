@@ -5,9 +5,8 @@ import { DiscountCodeService } from 'src/app/servicesForModels/discountCode.serv
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { CopyObject } from 'src/app/app.utils';
 import { Router } from '@angular/router';
-import { DiscountApplication, DiscountCode, DiscountType } from 'src/app/models/discountCode';
+import { DiscountCode, DiscountType, DiscountApplication, ObjectType } from 'black-market-model';
 
 @Component({
   selector: 'app-discounts',
@@ -91,7 +90,7 @@ export class DiscountsComponent implements OnInit {
     this.discount = {
       discountApplication: DiscountApplication.Envio,
       code: undefined,
-      customers: undefined,
+      users: undefined,
       repetitions: undefined,
       discountType: undefined,
       value: undefined,
@@ -102,6 +101,7 @@ export class DiscountsComponent implements OnInit {
       color: '#333333',
       dateFrom: new Date(),
       dateTo: new Date(),
+      type:ObjectType.DiscountCode
     }
   }
 

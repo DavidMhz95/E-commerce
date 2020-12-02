@@ -1,11 +1,6 @@
 import fs from 'fs';
 import { Client } from '@elastic/elasticsearch'
-import { User } from './models/user';
-import { Product } from './models/product';
-import { Order } from './models/Order';
-import { ObjectType } from './models/enum';
-import { DiscountCode } from './models/discountCode';
-
+import { User, ObjectType, Product, Order, DiscountCode } from 'black-market-model';
 
 let rawdata = fs.readFileSync('servicesettings.json')
 let serviceSettings = JSON.parse(rawdata.toString())

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from './models/user';
 import { UserService } from './servicesForModels/user.service';
+import { User } from 'black-market-model';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     var user: User = JSON.parse(localStorage.getItem('BM_User'))
     if (user) {
-      this.userService.login(user.email, user.hash_password).subscribe((user: any) => {
+      this.userService.login(user.email, user.hashPassword).subscribe((user: any) => {
         this.userService.loggedUser = user
       })
     }

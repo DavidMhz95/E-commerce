@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, HostListener, ChangeDetectorRef } from '@angular/core';
-import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/servicesForModels/product.service';
+import { Product } from 'black-market-model';
 
 @Component({
   selector: 'app-carousel',

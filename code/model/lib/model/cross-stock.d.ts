@@ -1,5 +1,5 @@
 export declare class CrossStock {
-    name: String;
+    name: string;
     value: number;
-    constructor(name: String, value: number);
+    constructor(name: string, value: number);
 }

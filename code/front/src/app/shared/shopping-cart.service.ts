@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Product } from 'src/app/models/product';
-import { DataService } from './data.service';
-import { CartProduct } from '../models/cart-product';
+import { CartProduct, Product } from 'black-market-model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,9 +21,9 @@ export class ShoppingCartService {
     this.products.forEach((p: CartProduct) => {
       if (p.product.reference == product.reference && JSON.stringify(p.product.properties) === JSON.stringify(userProduct.properties)) {
         if (value) {
-          p.number += value
+          p.quantity += value
         } else {
-          p.number++
+          p.quantity++
         }
         found = true
       }
@@ -34,7 +32,7 @@ export class ShoppingCartService {
     if (!found) {
       this.products.push({
         product: userProduct,
-        number: value
+        quantity: value
       })
     }
 
@@ -45,13 +43,13 @@ export class ShoppingCartService {
     this.products.forEach((p: CartProduct) => {
       if (p.product.reference == product.reference) {
         if (removeAll) {
-          p.number = 0
+          p.quantity = 0
         } else {
-          p.number--
+          p.quantity--
         }
       }
     })
-    this.products = this.products.filter((prod: CartProduct) => prod.number > 0)
+    this.products = this.products.filter((prod: CartProduct) => prod.quantity > 0)
     localStorage.setItem(this.BM_Cart, JSON.stringify(this.products))
 
   }
@@ -60,9 +58,9 @@ export class ShoppingCartService {
     this.totalPrice = 0;
     this.products.forEach((element: CartProduct) => {
       if (element.product.offerPrice) {
-        this.totalPrice += element.product.offerPrice * element.number
+        this.totalPrice += element.product.offerPrice * element.quantity
       } else {
-        this.totalPrice += element.product.price * element.number
+        this.totalPrice += element.product.price * element.quantity
       }
     })
     return this.totalPrice
@@ -71,7 +69,7 @@ export class ShoppingCartService {
   public GetElements(): string {
     this.totalElements = 0;
     this.products.forEach((element: CartProduct) => {
-      this.totalElements += element.number
+      this.totalElements += element.quantity
     })
     return this.totalElements.toFixed(0)
   }

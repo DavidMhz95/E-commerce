@@ -1,6 +1,6 @@
 import { executeQuery, saveOrder, deleteOrder, updateOrder } from '../elastic'
-import { Order } from '../models/Order'
-import { ObjectType } from '../models/enum'
+import { ObjectType, Order } from 'black-market-model'
+
 
 const esb = require('elastic-builder') // the builder
 

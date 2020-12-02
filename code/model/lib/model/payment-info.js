@@ -8,10 +8,10 @@ var PymetnTypes;
     PymetnTypes[PymetnTypes["PAYPAL"] = 2] = "PAYPAL";
 })(PymetnTypes = exports.PymetnTypes || (exports.PymetnTypes = {}));
 var PaymentInfo = /** @class */ (function () {
-    function PaymentInfo(type, owner, number, date, csv) {
+    function PaymentInfo(type, owner, cardNumber, date, csv) {
         this.type = type;
         this.owner = owner;
-        this.number = number;
+        this.cardNumber = cardNumber;
         this.date = date;
         this.csv = csv;
     }

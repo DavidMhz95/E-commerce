@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from 'src/app/shared/data.service';
 import { ColorService } from 'src/app/shared/color.service';
-import { MatDrawer } from '@angular/material/sidenav';
-import { DiscountApplication, DiscountCode, DiscountType } from 'src/app/models/discountCode';
+import { DiscountCode, DiscountType, DiscountApplication, ObjectType } from 'black-market-model';
 
 @Component({
   selector: 'app-discount-editor',
@@ -13,25 +12,25 @@ export class DiscountEditorComponent implements OnInit {
 
   @Input('discount') discount: DiscountCode
 
-  constructor(public dataService: DataService, public colorService:ColorService) { }
+  constructor(public dataService: DataService, public colorService: ColorService) { }
 
   ngOnInit(): void {
   }
- 
-  selectedCustomer($event) {
+
+  selectedCustomer($event: any) {
     if ($event.value) {
-      if (!this.discount.customers) {
-        this.discount.customers = []
+      if (!this.discount.users) {
+        this.discount.users = []
       }
-      this.discount.customers.push($event.value)
+      this.discount.users.push($event.value)
       $event.source.value = undefined
     }
   }
 
   removeFromCustomers(customer) {
-    const index: number = this.discount.customers.indexOf(customer);
+    const index: number = this.discount.users.indexOf(customer);
     if (index !== -1) {
-      this.discount.customers.splice(index, 1);
+      this.discount.users.splice(index, 1);
     }
   }
 
@@ -39,7 +38,7 @@ export class DiscountEditorComponent implements OnInit {
     this.discount = {
       discountApplication: undefined,
       code: undefined,
-      customers: undefined,
+      users: undefined,
       repetitions: undefined,
       discountType: undefined,
       value: undefined,
@@ -49,7 +48,8 @@ export class DiscountEditorComponent implements OnInit {
       minPurchase: 0,
       color: '#333333',
       dateFrom: new Date(),
-      dateTo: new Date()
+      dateTo: new Date(),
+      type: ObjectType.DiscountCode
     }
   }
   isMinPurchaseEnabled: boolean = false

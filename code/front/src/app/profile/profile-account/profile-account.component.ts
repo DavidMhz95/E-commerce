@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/servicesForModels/order.service';
 import { UserService } from 'src/app/servicesForModels/user.service';
-import { Order } from 'src/app/models/order';
+import { Order } from 'black-market-model';
 
 @Component({
   selector: 'app-profile-account',
@@ -19,10 +19,10 @@ export class ProfileAccountComponent implements OnInit {
       if (response && response.length > 0) {
         //Ordenamos por fecha descendente
         response.sort((a, b) => b.id - a.id)
-        this.lastOrder=response[0]
+        this.lastOrder = response[0]
       }
       this.isLoading = false
-    }, err=>{
+    }, err => {
       this.isLoading = false
     })
   }

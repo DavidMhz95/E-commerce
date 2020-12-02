@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DiscountCode } from '../models/discountCode';
 import { globalUrl } from '../app.utils';
+import { DiscountCode } from 'black-market-model';
 
 @Injectable({
     providedIn: 'root'
