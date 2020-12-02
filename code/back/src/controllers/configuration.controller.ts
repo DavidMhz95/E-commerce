@@ -16,24 +16,29 @@ function updateConfiguration(req, res) {
     //Recoger los parámetros por post
     var config: StoreConfiguration = req.body
     if (config) {
-        const requestBody = new esb.RequestBodySearch().query(new esb.MatchPhraseQuery('email', user.email))
-        executeQuery(requestBody.toJSON()).then(result => {
-            var actualUser = result.body.hits.hits[0];
-            if (actualUser) {
-                updateUser(actualUser._id, user).then(() => {
-                    return res.status(200).send({
-                        response: true
-                    });
-                }, error => {
-                    console.log(error)
-                })
-            } else {
-                return res.status(200).send({
-                    status: 'error',
-                    message: 'No existe el id'
-                });
-            }
-        })
+
+        var boolQuery = new esb.boolQuery()
+            .must(new esb.MatchPhraseQuery('type', 4))
+
+       const requestBody = new esb.requestBodySearch().query(boolQuery);
+        
+        // executeQuery(requestBody.toJSON()).then(result => {
+        //     var actualUser = result.body.hits.hits[0];
+        //     if (actualUser) {
+        //         updateUser(actualUser._id, user).then(() => {
+        //             return res.status(200).send({
+        //                 response: true
+        //             });
+        //         }, error => {
+        //             console.log(error)
+        //         })
+        //     } else {
+        //         return res.status(200).send({
+        //             status: 'error',
+        //             message: 'No existe el id'
+        //         });
+        //     }
+        // })
     } else {
         return res.status(400).send({
             status: 'error',
