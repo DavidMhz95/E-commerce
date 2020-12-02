@@ -3,12 +3,14 @@ import { ProductController } from './controllers/product.controller'
 import { ImageController } from './controllers/image.controller'
 import { OrderController } from './controllers/order.controller'
 import { DiscountCodeController } from './controllers/discountCode.controller'
+import { ConfigurationController } from './controllers/configuration.controller'
 
 var UserController: UserController = require('./controllers/user.controller')
 var ProductController: ProductController = require('./controllers/product.controller')
 var ImageController: ImageController = require('./controllers/image.controller')
 var OrderController: OrderController = require('./controllers/order.controller')
 var DiscountCodeController: DiscountCodeController = require('./controllers/discountCode.controller')
+var ConfigurationController: ConfigurationController = require('./controllers/configuration.controller')
 
 var express = require('express');
 var router = express.Router();
@@ -45,6 +47,9 @@ router.post('/discountCode', DiscountCodeController.upsert)
 router.get('/discountCodes', DiscountCodeController.getAll)
 router.delete('/discountCode/:code', DiscountCodeController.deleteByCode)
 router.get('/checkDiscountCode/:code', DiscountCodeController.check)
+
+//Ruta para configuracion
+router.post('/updateConfig', ConfigurationController.updateConfiguration)
 
 router.get('/', function (req, res, next) {
     res.sendFile('index.html', { root: __dirname })

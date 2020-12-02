@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { Client } from '@elastic/elasticsearch'
-import { User, ObjectType, Product, Order, DiscountCode } from 'black-market-model';
+import { User, ObjectType, Product, Order, DiscountCode, StoreConfiguration } from 'black-market-model';
 
 let rawdata = fs.readFileSync('servicesettings.json')
 let serviceSettings = JSON.parse(rawdata.toString())
@@ -50,6 +50,14 @@ export async function updateUser(id, user: User) {
         id: id,
         index: serviceSettings.elasticsearch.dbName,
         body: { doc: user }
+    })
+}
+
+export async function updateConfig(id, config: StoreConfiguration) {
+    return await client.update({
+        id: id,
+        index: serviceSettings.elasticsearch.dbName,
+        body: { doc: config }
     })
 }
 

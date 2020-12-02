@@ -1,5 +1,5 @@
 import { response } from 'express';
-import { deleteDiscountCode, executeQuery, saveDiscountCode, updateDiscountCode } from '../elastic';
+import { executeQuery, updateConfig } from '../elastic';
 import { StoreConfiguration } from 'black-market-model';
 
 const esb = require('elastic-builder'); // the builder
@@ -22,23 +22,23 @@ function updateConfiguration(req, res) {
 
        const requestBody = new esb.requestBodySearch().query(boolQuery);
         
-        // executeQuery(requestBody.toJSON()).then(result => {
-        //     var actualUser = result.body.hits.hits[0];
-        //     if (actualUser) {
-        //         updateUser(actualUser._id, user).then(() => {
-        //             return res.status(200).send({
-        //                 response: true
-        //             });
-        //         }, error => {
-        //             console.log(error)
-        //         })
-        //     } else {
-        //         return res.status(200).send({
-        //             status: 'error',
-        //             message: 'No existe el id'
-        //         });
-        //     }
-        // })
+        executeQuery(requestBody.toJSON()).then(result => {
+            var actualConfig = result.body.hits.hits[0];
+            if (actualConfig) {
+                updateConfig(actualConfig._id, config).then(() => {
+                    return res.status(200).send({
+                        response: true
+                    });
+                }, error => {
+                    console.log(error)
+                })
+            } else {
+                return res.status(200).send({
+                    status: 'error',
+                    message: 'No existe el id'
+                });
+            }
+        })
     } else {
         return res.status(400).send({
             status: 'error',
