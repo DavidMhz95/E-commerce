@@ -28,7 +28,7 @@ function upsert(req, res) {
                 updateConfig(actualConfig._id, config).then(() => {
                     return res.status(200).send({
                         response: actualConfig
-                    });
+                    })
                 }, error => {
                     console.log(error)
                 })
@@ -36,8 +36,8 @@ function upsert(req, res) {
                 //Guardar
                 saveConfig(config).then(() => {
                     return res.status(200).send({
-                        response: actualConfig
-                    });
+                        response: config
+                    })
                 }, error => {
                     console.log(error)
                 })
@@ -46,7 +46,7 @@ function upsert(req, res) {
             return res.status(400).send(error);
         })
     } else {
-        return res.status(400).send('Código de descuento no introducido.');
+        return res.status(400).send('Configuración no introducida.')
     }
 
 }
