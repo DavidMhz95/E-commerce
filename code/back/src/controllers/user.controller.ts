@@ -142,8 +142,3 @@ function deleteByEmail(req, res) {
 }
 
 module.exports = controller;
-
-
-
-
-
