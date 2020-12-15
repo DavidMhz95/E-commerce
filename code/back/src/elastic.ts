@@ -61,6 +61,16 @@ export async function updateConfig(id, config: StoreConfiguration) {
     })
 }
 
+export async function saveConfig(config: StoreConfiguration) {
+    if (!config.type) {
+        config.type = ObjectType.Configuration
+    }
+    return await client.index({
+        index: serviceSettings.elasticsearch.dbName,
+        body: config
+    })
+}
+
 export async function deleteUser(id) {
     return await client.delete({
         id: id,

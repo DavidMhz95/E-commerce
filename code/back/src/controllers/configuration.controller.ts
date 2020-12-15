@@ -1,5 +1,5 @@
 import { response } from 'express';
-import { executeQuery, updateConfig } from '../elastic';
+import { executeQuery, updateConfig, saveConfig } from '../elastic';
 import { StoreConfiguration } from 'black-market-model';
 
 const esb = require('elastic-builder'); // the builder
@@ -27,16 +27,19 @@ function updateConfiguration(req, res) {
             if (actualConfig) {
                 updateConfig(actualConfig._id, config).then(() => {
                     return res.status(200).send({
-                        response: true
+                        response: actualConfig
                     });
                 }, error => {
                     console.log(error)
                 })
             } else {
-                return res.status(200).send({
-                    status: 'error',
-                    message: 'No existe el id'
-                });
+                saveConfig(config).then(() => {
+                    return res.status(200).send({
+                        response: config
+                    });
+                }, error => {
+                    console.log(error)
+                })
             }
         })
     } else {

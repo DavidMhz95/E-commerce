@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MarketTabsInformation, StoreConfiguration } from 'black-market-model';
+import { ConfigurationService } from 'src/app/servicesForModels/configuration.service';
 import { DataService } from 'src/app/shared/data.service';
 
 @Component({
@@ -14,9 +15,10 @@ export class ConfigurationComponent implements OnInit {
   public descriptionInformation: string
   public marketInfoObject: MarketTabsInformation
   public marketInfo: MarketTabsInformation[] = []
+  public storeConfiguration : StoreConfiguration 
 
 
-  constructor(public dataService: DataService) { }
+  constructor(public dataService: DataService, public configurationService: ConfigurationService) { }
 
   ngOnInit(): void {
     if (!this.marketInfoObject) {
@@ -26,7 +28,7 @@ export class ConfigurationComponent implements OnInit {
 
   onSubmitMarketInfo() {
     // Permitimos máximo 3 tabs 
-    let mi : MarketTabsInformation = new MarketTabsInformation(this.marketInfoObject.nameInformation, this.marketInfoObject.descriptionInformation)
+    let mi: MarketTabsInformation = new MarketTabsInformation(this.marketInfoObject.nameInformation, this.marketInfoObject.descriptionInformation)
     if (this.marketInfoObject && this.marketInfo.length <= 2) {
       this.marketInfo.push(mi)
     }
@@ -40,12 +42,22 @@ export class ConfigurationComponent implements OnInit {
     if (index >= 0) {
       this.marketInfo.splice(index, 1);
     }
-
   }
 
-    saveConfig(){
-      
-    }
+  saveConfig() {
+    this.storeConfiguration = new StoreConfiguration(4,this.nombreTienda,this.marketInfo,null)
+    console.log(this.storeConfiguration)
+    this.configurationService.update(this.storeConfiguration).subscribe(response => {
+      if (response) {
+        this.dataService.configuration = response
+      } else {
+        this.dataService.configuration = undefined
+      }
+    }, error => {
+      console.log(error)
+    })
+
+  }
 
 
 

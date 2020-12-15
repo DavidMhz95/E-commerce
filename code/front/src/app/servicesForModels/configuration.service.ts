@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DiscountCode } from '../models/discountCode';
 import { globalUrl } from '../app.utils';
+import { StoreConfiguration } from 'black-market-model';
 
 @Injectable({
     providedIn: 'root'
@@ -11,11 +11,13 @@ import { globalUrl } from '../app.utils';
 export class ConfigurationService {
 
     constructor(public _http: HttpClient) {
-
     }
     
-    test(discountCode: DiscountCode): Observable<any> {
-        return this._http.post(globalUrl + 'discountCode', discountCode)
+
+    update(configuration: StoreConfiguration): Observable<any> {
+        return this._http.post(globalUrl + 'updateConfig/', configuration)
     }
+
+ 
     
 }

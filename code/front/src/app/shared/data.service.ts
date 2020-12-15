@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ProductModalComponent } from '../components/product-modal/product-modal.component';
 import { RandomDate } from 'src/app/app.utils';
-import { Product, Section } from 'black-market-model';
+import { MarketTabsInformation, Product, Section, StoreConfiguration } from 'black-market-model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +11,15 @@ export class DataService {
 
   constructor() {
   }
+  public configuration : StoreConfiguration
+
   public nombreTienda: string = "NOT BLACK MARKET"
   products: Product[] = []
 
   public sections: Section[] = []
 
 
-  info: marketInformation[] = [
+  info: MarketTabsInformation[] = [
     {
       nameInformation: "Envio",
       descriptionInformation: "Todos nuestras colecciones y lanzamientos son especiales, limitando el numero de unidades para tratar de dar a todos nuestros clientes la mayor exclusividad. No te quedes sin tus productos favoritos y entérate de todos nuestros nuevos lanzamientos en nuestra newsletter y nuestras rrss."
@@ -58,10 +60,6 @@ export class DataService {
   ]
 }
   
-export class marketInformation {
-  nameInformation: string
-  descriptionInformation: string
-}
 
 export interface Customer {
   name: string
