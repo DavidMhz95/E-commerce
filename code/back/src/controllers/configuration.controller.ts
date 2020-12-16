@@ -1,5 +1,5 @@
 import { response } from 'express';
-import { executeQuery, updateConfig, saveConfig, getConfig } from '../elastic';
+import { executeQuery, updateConfig, saveConfig } from '../elastic';
 import { StoreConfiguration } from 'black-market-model';
 
 const esb = require('elastic-builder'); // the builder
@@ -16,18 +16,20 @@ export var controller: ConfigurationController = {
 
 
 function getConfiguration(req, res) {
-
     const requestBody = new esb.RequestBodySearch()
-    .query(new esb.MatchPhraseQuery('type', "4"))
-
-    getConfig(requestBody).then(((response: any) => {
-        var config: StoreConfiguration
-        if (response?.body?.hits?.hits?.length > 0) {
-            config = response.body.hits.hits[0]._source
-        }
-        return res.status(200).send(config);
-    }), (error: any) => {
-        return res.status(400).send(error);
+        .query(new esb.MatchPhraseQuery('type', "4")).from(0).size(1000)
+        
+    // Build the request body
+    var query = requestBody.toJSON()
+    executeQuery(query).then(result => {
+        return res.status(200).send(
+            result.body.hits.hits.map(h => h._source)
+        );
+    }, error => {
+        return res.status(400).send({
+            status: 'error',
+            message: error.message
+        });
     })
 }
 
@@ -40,7 +42,7 @@ function upsert(req, res) {
             .must(new esb.MatchPhraseQuery('type', 4))
 
         const requestBody = new esb.requestBodySearch().query(boolQuery);
-         executeQuery(requestBody.toJSON()).then(result => { 
+        executeQuery(requestBody.toJSON()).then(result => {
             var actualConfig = result.body.hits.hits[0];
             if (actualConfig) {
                 updateConfig(actualConfig._id, config).then(() => {

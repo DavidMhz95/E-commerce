@@ -14,7 +14,7 @@ export class ConfigurationService {
     }
     
     getConfiguration(): Observable<any> {
-        return this._http.get(globalUrl + 'getConfig/')
+        return this._http.get(globalUrl + 'getConfig')
     }
 
 

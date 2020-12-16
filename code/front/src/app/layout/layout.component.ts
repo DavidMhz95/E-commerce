@@ -34,6 +34,7 @@ export class LayoutComponent implements OnInit {
         if (response) {
           console.log(response)
           this.dataService.configuration = response
+          console.log(this.dataService.configuration)
         }
       },
       error => {
