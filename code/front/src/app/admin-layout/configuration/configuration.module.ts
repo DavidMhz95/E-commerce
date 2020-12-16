@@ -6,6 +6,7 @@ import { ConfigurationComponent } from './configuration.component';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
     ConfigurationRoutingModule,
     MatCardModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
   ]
 })
 export class ConfigurationModule { }

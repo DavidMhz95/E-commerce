@@ -28,7 +28,6 @@ export class DataService {
       }
     ],
     null)
-   
   }
  
   products: Product[] = []

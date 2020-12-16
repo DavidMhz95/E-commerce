@@ -33,7 +33,7 @@ export class LayoutComponent implements OnInit {
       response => {
         if (response) {
           console.log(response)
-          this.dataService.configuration = response
+          this.dataService.configuration = response[0]
           console.log(this.dataService.configuration)
         }
       },

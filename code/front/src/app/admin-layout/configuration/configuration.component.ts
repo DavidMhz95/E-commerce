@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MarketTabsInformation, StoreConfiguration } from 'black-market-model';
 import { ConfigurationService } from 'src/app/servicesForModels/configuration.service';
 import { DataService } from 'src/app/shared/data.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-configuration',
@@ -18,7 +19,7 @@ export class ConfigurationComponent implements OnInit {
   public storeConfiguration : StoreConfiguration 
 
 
-  constructor(public dataService: DataService, public configurationService: ConfigurationService) { }
+  constructor(public dataService: DataService, public configurationService: ConfigurationService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     if (!this.marketInfoObject) {
@@ -50,6 +51,9 @@ export class ConfigurationComponent implements OnInit {
     this.configurationService.update(this.storeConfiguration).subscribe(response => {
       if (response) {
         this.dataService.configuration = response
+        this.openSnackBar("Configuración cambiada correctamente.","Aceptar")
+        this.nombreTienda = undefined
+        this.marketInfo = []
       } else {
         this.dataService.configuration = undefined
       }
@@ -60,5 +64,10 @@ export class ConfigurationComponent implements OnInit {
   }
 
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 
 }
