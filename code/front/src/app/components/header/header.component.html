@@ -1,6 +1,6 @@
 <div>
   <a routerLink="/landing">
-    {{dataService?.nombreTienda}}
+    {{dataService?.configuration.storeName}}
   </a>
   <div *ngIf="userService?.loggedUser" class="profile-img user-badge" routerLink="/profile"
     [matTooltip]="userService?.loggedUser?.name"

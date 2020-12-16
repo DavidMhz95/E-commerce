@@ -8,31 +8,31 @@ import { MarketTabsInformation, Product, Section, StoreConfiguration } from 'bla
   providedIn: 'root'
 })
 export class DataService {
+  public configuration : StoreConfiguration 
 
   constructor() {
+    //Seteamos por defecto la configuracion
+    this.configuration = new StoreConfiguration(null,"NOT BLACK MARKET",
+    [
+      {
+        nameInformation: "Envio",
+        descriptionInformation: "Todos nuestras colecciones y lanzamientos son especiales, limitando el numero de unidades para tratar de dar a todos nuestros clientes la mayor exclusividad. No te quedes sin tus productos favoritos y entérate de todos nuestros nuevos lanzamientos en nuestra newsletter y nuestras rrss."
+      },
+      {
+        nameInformation: "Informacion",
+        descriptionInformation: "La seguridad y el bienestar de nuestro personal y clientes es primordial, y por ello hemos tomado todas las medidas que esta situación excepcional requiere, siempre bajo las indicaciones de las autoridades, para poder seguir ofreciendo nuestros servicios con la mayor seguridad. De igual forma, la compañía de transporte con la que trabajamos ha reforzado sus procedimientos de entrega para garantizar la seguridad de sus empleados y nuestros clientes."
+      },
+      {
+        nameInformation: "Envio Premium",
+        descriptionInformation: "Todos nuestras colecciones y lanzamientos son especiales, limitando el numero de unidades para tratar de dar a todos nuestros clientes la mayor exclusividad. No te quedes sin tus productos favoritos y entérate de todos nuestros nuevos lanzamientos en nuestra newsletter y nuestras rrss."
+      }
+    ],
+    null)
+   
   }
-  public configuration : StoreConfiguration
-
-  public nombreTienda: string = "NOT BLACK MARKET"
+ 
   products: Product[] = []
-
   public sections: Section[] = []
-
-
-  info: MarketTabsInformation[] = [
-    {
-      nameInformation: "Envio",
-      descriptionInformation: "Todos nuestras colecciones y lanzamientos son especiales, limitando el numero de unidades para tratar de dar a todos nuestros clientes la mayor exclusividad. No te quedes sin tus productos favoritos y entérate de todos nuestros nuevos lanzamientos en nuestra newsletter y nuestras rrss."
-    },
-    {
-      nameInformation: "Informacion",
-      descriptionInformation: "La seguridad y el bienestar de nuestro personal y clientes es primordial, y por ello hemos tomado todas las medidas que esta situación excepcional requiere, siempre bajo las indicaciones de las autoridades, para poder seguir ofreciendo nuestros servicios con la mayor seguridad. De igual forma, la compañía de transporte con la que trabajamos ha reforzado sus procedimientos de entrega para garantizar la seguridad de sus empleados y nuestros clientes."
-    },
-    {
-      nameInformation: "Envio Premium",
-      descriptionInformation: "Todos nuestras colecciones y lanzamientos son especiales, limitando el numero de unidades para tratar de dar a todos nuestros clientes la mayor exclusividad. No te quedes sin tus productos favoritos y entérate de todos nuestros nuevos lanzamientos en nuestra newsletter y nuestras rrss."
-    }
-  ]
 
 
   public customers: Customer[] = [

@@ -62,7 +62,7 @@
 
     <div *ngIf="!isSimpleView">
       <mat-tab-group class="fontTab">
-        <mat-tab *ngFor="let item of dataService?.info" label={{item?.nameInformation}}>
+        <mat-tab *ngFor="let item of dataService?.configuration?.tabs" label={{item?.nameInformation}}>
         <div style="padding: 30px;" class="fontTab" >
           {{item?.descriptionInformation}}
         </div>

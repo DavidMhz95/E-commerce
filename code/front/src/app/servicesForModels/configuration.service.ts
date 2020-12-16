@@ -13,6 +13,10 @@ export class ConfigurationService {
     constructor(public _http: HttpClient) {
     }
     
+    getConfiguration(): Observable<any> {
+        return this._http.get(globalUrl + 'getConfig/')
+    }
+
 
     update(configuration: StoreConfiguration): Observable<any> {
         return this._http.post(globalUrl + 'updateConfig/', configuration)

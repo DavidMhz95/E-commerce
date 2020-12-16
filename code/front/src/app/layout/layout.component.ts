@@ -4,6 +4,7 @@ import { ShoppingCartService } from '../shared/shopping-cart.service';
 import { Router, NavigationStart } from '@angular/router';
 import { ProductService } from 'src/app/servicesForModels/product.service';
 import { Section } from 'black-market-model';
+import { ConfigurationService } from '../servicesForModels/configuration.service';
 
 @Component({
   selector: 'app-layout',
@@ -12,7 +13,7 @@ import { Section } from 'black-market-model';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor(private router: Router, private dataService: DataService, private cartService: ShoppingCartService, public productService: ProductService) { }
+  constructor(private router: Router, private dataService: DataService, private cartService: ShoppingCartService, public productService: ProductService, public configurationService: ConfigurationService) { }
 
   ngOnInit(): void {
 
@@ -21,6 +22,18 @@ export class LayoutComponent implements OnInit {
         if (response) {
           this.dataService.products = response
           this.getSections()
+        }
+      },
+      error => {
+        console.log(error)
+      }
+    )
+
+    this.configurationService.getConfiguration().subscribe(
+      response => {
+        if (response) {
+          console.log(response)
+          this.dataService.configuration = response
         }
       },
       error => {

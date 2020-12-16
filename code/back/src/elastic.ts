@@ -61,6 +61,16 @@ export async function updateConfig(id, config: StoreConfiguration) {
     })
 }
 
+export async function getConfig(query: any) {
+    return await client.search({
+        index: serviceSettings.elasticsearch.dbName,
+        body: query
+    }, {
+        ignore: [404],
+        maxRetries: 3
+    })
+}
+
 export async function saveConfig(config: StoreConfiguration) {
     if (!config.type) {
         config.type = ObjectType.Configuration

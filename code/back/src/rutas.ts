@@ -50,6 +50,7 @@ router.get('/checkDiscountCode/:code', DiscountCodeController.check)
 
 //Ruta para configuracion
 router.post('/updateConfig', ConfigurationController.upsert)
+router.get('/getConfig', ConfigurationController.getConfiguration)
 
 router.get('/', function (req, res, next) {
     res.sendFile('index.html', { root: __dirname })
