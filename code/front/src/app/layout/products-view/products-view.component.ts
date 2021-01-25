@@ -69,6 +69,7 @@ export class ProductsViewComponent implements OnInit {
     if (event.index == 0) {
       if (this.section == this.actualSection.name) {
         this.subsection = undefined
+        this.title = this.section
       }else{
         this.section = undefined
       }
@@ -76,6 +77,7 @@ export class ProductsViewComponent implements OnInit {
       console.log(this.section, this.actualSection)
       if (this.section == this.actualSection.name) {
         this.subsection = event.tab.textLabel
+        this.title = this.subsection
       } else {
         this.section = event.tab.textLabel
       }
