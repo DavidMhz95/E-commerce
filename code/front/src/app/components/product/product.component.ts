@@ -20,7 +20,7 @@ export class ProductComponent implements OnInit {
 
   @ViewChild('imageDiv', { static: true }) imageDiv: ElementRef
   @Input('product') product: Product
-  @Input('isAdmin') isAdmin: Boolean = false
+  @Input('isAdmin') isAdmin: boolean = false
   @Output() edit: EventEmitter<Product> = new EventEmitter()
   @Output() remove: EventEmitter<Product> = new EventEmitter()
 

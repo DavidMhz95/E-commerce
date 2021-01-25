@@ -17,11 +17,11 @@ export class ProfileComponent implements OnInit {
     
   }
 
-  public onFileChange(event) {
-    const reader = new FileReader();
+  public onFileChange(event:any) {
+    const reader = new FileReader()
     if (event.target.files && event.target.files.length) {
-      const [file] = event.target.files;
-      reader.readAsDataURL(file);
+      const [file] = event.target.files
+      reader.readAsDataURL(file)
       reader.onload = () => {
         this.imageService.upload(reader.result.toString()).subscribe((result: any) => {
           this.userService.loggedUser.image = result.id

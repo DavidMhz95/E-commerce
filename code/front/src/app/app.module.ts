@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
-import { TicketComponent } from './components/ticket/ticket.component';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -18,6 +18,8 @@ import { TicketComponent } from './components/ticket/ticket.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    MatSnackBarModule,
+    MatSelectModule,
     HttpClientModule
   ],
   bootstrap: [AppComponent]

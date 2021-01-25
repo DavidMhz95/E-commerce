@@ -51,20 +51,23 @@ export class ProductDetailsComponent implements OnInit {
 
     // Limpiar propertyValues de properties 
 
-    userProduct.properties.forEach((property: any , index : number) => {
-      property.values=this.selectedOptions[index]
+    userProduct.properties.forEach((property: any, index: number) => {
+      property.values = this.selectedOptions[index]
     });
-    
+
     // Limpiamos el stock 
     let localname = this.selectedOptions.join('-')
-    userProduct.stock.filter(stock=> stock.name == localname)[0].value-=value
-    
-    console.log(userProduct)
+    userProduct.stock.filter(stock => stock.name == localname)[0].value -= value
 
     this.cartService.AddProduct(product, userProduct, value);
     this.getCrossStock(this.selectedOptions)
+    this.addedInCart.emit()
   }
 
+  public productClicked(){
+    window.scroll(0, 0)
+    this.addedInCart.emit()
+  }
 
   public selectedOptions: string[] = []
   public realStock: number
@@ -103,7 +106,7 @@ export class ProductDetailsComponent implements OnInit {
                 console.log(error)
               }
             )
-            this.openSnackBar("Producto borrado correctamente","Aceptar")
+            this.openSnackBar("Producto borrado correctamente", "Aceptar")
 
           }
         },

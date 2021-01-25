@@ -188,3 +188,7 @@ button:focus {
 .mat-spinner circle {
   stroke: #323232;
 }
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: #323232;
+}
