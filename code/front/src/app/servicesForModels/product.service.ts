@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { globalUrl } from '../app.utils';
@@ -37,7 +37,7 @@ export class ProductService {
   }
 
   update(product): Observable<any> {
-    return this._http.post(globalUrl + 'updateProduct' , product)
+    return this._http.post(globalUrl + 'updateProduct', product)
   }
 
   getProductImages(image): string {
@@ -58,6 +58,13 @@ export class ProductService {
       //Open dialog
       this.dialogRef = this.productDialog.open(ProductModalComponent, {
         data: product,
+        autoFocus: true,
+        restoreFocus: false
+      })
+      this.dialogRef.afterClosed().subscribe(() => {
+        setTimeout(() => {
+          window.scrollTo(0, 0)
+        }, 100)
       })
     }
     document.getElementById("dialog").scrollTop = 0

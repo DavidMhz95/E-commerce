@@ -1,146 +1,152 @@
 products-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
 }
 
 .products-full-width {
-    width: 100%;
+  width: 100%;
 }
 
 .products-90-width {
-    width: 90%;
+  width: 90%;
 }
 
 .mat-radio-button~.mat-radio-button {
-    margin-left: 16px;
+  margin-left: 16px;
 }
 
 .sidenav-content {
-    display: flex;
+  display: flex;
 }
 
 .rightPanel {
-    padding: 20px;
-    min-width: 40%;
+  padding: 20px;
+  min-width: 40%;
 }
 
 .container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    max-width: unset;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: unset;
 }
 
 .details {
-    cursor: pointer;
-    font-family: "Century Gothic", sans-serif;
-    color: #545454;
-    padding: 20px;
-    margin: 10px;
-    text-align: center;
-    border: 1px solid #f0f0f0;
-    border-left: 0;
-    z-index: 10;
-    background-color: white;
+  cursor: pointer;
+  font-family: "Century Gothic", sans-serif;
+  color: #545454;
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  border: 1px solid #f0f0f0;
+  border-left: 0;
+  z-index: 10;
+  background-color: white;
 }
 
 .details:hover {
-    background-color: rgb(223, 221, 221);
+  background-color: rgb(223, 221, 221);
 }
 
 .title {
-    font-weight: normal;
-    font-size: 16.2px;
-    line-height: 1.4;
-    margin: 7px 0;
+  font-weight: normal;
+  font-size: 16.2px;
+  line-height: 1.4;
+  margin: 7px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  /* number of lines to show */
+  -webkit-box-orient: vertical;
 }
 
 mat-select,
 input {
-    width: 100%;
-    margin-top: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 3px;
-    padding: 6px 10px;
-    margin-bottom: 5px;
+  width: 100%;
+  margin-top: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 3px;
+  padding: 6px 10px;
+  margin-bottom: 5px;
 }
 
 .subInput {
-    margin-top: 5px;
-    font-size: 10px;
-    opacity: 0.8;
-    line-height: 1.6;
+  margin-top: 5px;
+  font-size: 10px;
+  opacity: 0.8;
+  line-height: 1.6;
 }
 
 .preInput {
-    font-size: 12px;
-    opacity: 0.8;
-    line-height: 1.6;
+  font-size: 12px;
+  opacity: 0.8;
+  line-height: 1.6;
 }
 
 .hidden {
-    max-height: 0;
-    overflow: hidden;
-    transition: all 0.5s ease-in-out;
-    opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
 }
 
 .visible {
-    max-height: 500px;
-    opacity: 1;
-    transition: all 0.7s ease-in-out;
+  max-height: 500px;
+  opacity: 1;
+  transition: all 0.7s ease-in-out;
 }
 
 .flex-container {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .subInput {
-    margin-top: 5px;
-    font-size: 10px;
-    opacity: 0.8;
-    line-height: 1.6;
+  margin-top: 5px;
+  font-size: 10px;
+  opacity: 0.8;
+  line-height: 1.6;
 }
 
 mat-chip {
-    max-width: 200px;
+  max-width: 200px;
 }
 
 .title {
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 11px;
-  }
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 11px;
+}
 
 
 .dashed:hover {
-    background: rgba(0, 0, 0, 0.04);
-    cursor: pointer;
-  }
-  
-  .dashed {
-    border: 1px dashed rgba(0, 0, 0, 0.2);
-  }
+  background: rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+}
+
+.dashed {
+  border: 1px dashed rgba(0, 0, 0, 0.2);
+}
 
 
-  
+
 .detalles.p {
-    text-transform: uppercase;
-    font-size: 26px;
-  }
+  text-transform: uppercase;
+  font-size: 26px;
+}
 
-  .btn {
-    text-transform: uppercase;
-    padding: 4px 12px;
-    color: white;
-    background-color: #323232;
-    font-size: 12px;
-    font-weight: 600;
-    width: 100%;
-    border-radius: 3px;
-  }
+.btn {
+  text-transform: uppercase;
+  padding: 4px 12px;
+  color: white;
+  background-color: #323232;
+  font-size: 12px;
+  font-weight: 600;
+  width: 100%;
+  border-radius: 3px;
+}

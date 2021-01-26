@@ -1,78 +1,84 @@
 :host {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .imageDiv {
-    background-size: cover;
-    background-position: center center;
-    transition: all 0.5s;
-    position: relative;
-    overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+  transition: all 0.5s;
+  position: relative;
+  overflow: hidden;
 }
 
 .details {
-    font-family: "Century Gothic", sans-serif;
-    color: #545454;
-    padding: 20px;
-    text-align: center;
-    border: 1px solid #f0f0f0;
-    border-left: 0;
-    z-index: 10;
-    background-color: white;
+  font-family: "Century Gothic", sans-serif;
+  color: #545454;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #f0f0f0;
+  border-left: 0;
+  z-index: 10;
+  background-color: white;
 }
 
 .title {
-    font-weight: normal;
-    font-size: 16.2px;
-    line-height: 1.4;
-    margin: 7px 0;
+  font-weight: normal;
+  font-size: 16.2px;
+  line-height: 1.4;
+  margin: 7px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  /* number of lines to show */
+  -webkit-box-orient: vertical;
 }
 
 .sale {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 3;
-    height: 35px;
-    width: 80px;
-    overflow: hidden;
-    line-height: 35px;
-    text-align: center;
-    color: #fff;
-    background: #be563f;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.86em;
-    font-family: "Century Gothic", sans-serif;
-    font-weight: 400 !important;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  height: 35px;
+  width: 80px;
+  overflow: hidden;
+  line-height: 35px;
+  text-align: center;
+  color: #fff;
+  background: #be563f;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.86em;
+  font-family: "Century Gothic", sans-serif;
+  font-weight: 400 !important;
 }
 
 .slideup {
-    position: absolute;
-    bottom: -16px;
-    -webkit-transition: all 0.25s ease-in;
-    -moz-transition: all 0.25s ease-in;
-    -ms-transition: all 0.25s ease-in;
-    -o-transition: all 0.25s ease-in;
-    transition: all 0.25s ease-in;
-    width: 100%;
-    background: #f7f7f7;
-    opacity: 0;
-    border-top: 1px solid #f0f0f0;
-    visibility: hidden;
-    display: block;
-    color: #030303;
-    padding: 20px;
-    text-align: center;
+  position: absolute;
+  bottom: -16px;
+  -webkit-transition: all 0.25s ease-in;
+  -moz-transition: all 0.25s ease-in;
+  -ms-transition: all 0.25s ease-in;
+  -o-transition: all 0.25s ease-in;
+  transition: all 0.25s ease-in;
+  width: 100%;
+  background: #f7f7f7;
+  opacity: 0;
+  border-top: 1px solid #f0f0f0;
+  visibility: hidden;
+  display: block;
+  color: #030303;
+  padding: 20px;
+  text-align: center;
 }
 
 .imageDiv:hover {
-    .slideup {
-        bottom: 0px;
-        visibility: visible;
-        opacity: 0.9;
-        position: absolute;
-        text-align: center;
-        transition: all 0.25s ease-in-out;
-    }
+  .slideup {
+    bottom: 0px;
+    visibility: visible;
+    opacity: 0.9;
+    position: absolute;
+    text-align: center;
+    transition: all 0.25s ease-in-out;
+  }
 }

@@ -104,7 +104,6 @@ export class ProductsViewComponent implements OnInit {
         subsection: []
       }
     }
-    console.log(result)
     return result
   }
 

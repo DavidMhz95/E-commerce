@@ -8,7 +8,7 @@ import { Product } from 'black-market-model'
   styleUrls: ['./product-modal.component.scss']
 })
 export class ProductModalComponent implements OnInit {
-   
+
   constructor(public dialogRef: MatDialogRef<ProductModalComponent>, @Inject(MAT_DIALOG_DATA) public product: Product) { }
 
   ngOnInit(): void {
