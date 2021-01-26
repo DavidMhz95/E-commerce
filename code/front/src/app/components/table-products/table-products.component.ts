@@ -39,7 +39,9 @@ export class TableProductsComponent implements OnInit, OnChanges {
   openModal(images) {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '300px',
-      data: { images }
+      data: { images },
+      autoFocus: true,
+      restoreFocus: false
     });
 
   }

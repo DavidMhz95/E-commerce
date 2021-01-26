@@ -32,9 +32,7 @@ export class LayoutComponent implements OnInit {
     this.configurationService.getConfiguration().subscribe(
       response => {
         if (response) {
-          console.log(response)
           this.dataService.configuration = response[0]
-          console.log(this.dataService.configuration)
         }
       },
       error => {
