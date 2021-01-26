@@ -2,10 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DiscountApplication = exports.DiscountType = exports.DiscountCode = void 0;
 var DiscountCode = /** @class */ (function () {
-    function DiscountCode(code, discountType, // Porcentaje, valor absoluto,
+    function DiscountCode(code, description, discountType, // Porcentaje, valor absoluto,
     value, discountApplication, // Envío, Productos, Categoria, Subcategoria, Todo
     repetitions, users, products, section, subsection, minPurchase, color, dateFrom, dateTo, type) {
         this.code = code;
+        this.description = description;
         this.discountType = discountType;
         this.value = value;
         this.discountApplication = discountApplication;

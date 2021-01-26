@@ -82,6 +82,14 @@ export class DiscountsComponent implements OnInit {
     }
   }
 
+  //Marcar como activo para ponerlo en la pagina frontal
+  selectActiveDiscount(discount: DiscountCode){
+    console.log(discount)
+    this.dataService.headerCode = discount.code
+    this.dataService.headerDescription = discount.description
+
+  }
+
   setDiscount(discount) {
     this.discount = discount
     this.UpdateDataSource()
@@ -91,6 +99,7 @@ export class DiscountsComponent implements OnInit {
     this.discount = {
       discountApplication: DiscountApplication.Envio,
       code: undefined,
+      description: undefined,
       users: undefined,
       repetitions: undefined,
       discountType: undefined,

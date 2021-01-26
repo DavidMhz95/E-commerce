@@ -64,6 +64,8 @@ export class ProductDetailsComponent implements OnInit {
     this.addedInCart.emit()
   }
 
+  
+
   public productClicked(){
     window.scroll(0, 0)
     this.addedInCart.emit()

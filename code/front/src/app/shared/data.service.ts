@@ -33,6 +33,9 @@ export class DataService {
   products: Product[] = []
   public sections: Section[] = []
 
+  public headerCode: string 
+  public headerDescription: string 
+
 
   public customers: Customer[] = [
     {
