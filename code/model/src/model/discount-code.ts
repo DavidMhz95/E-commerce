@@ -7,6 +7,7 @@ export class DiscountCode {
     constructor(
         public code: string,
         public description: string,
+        public isInMainPage: boolean,
         public discountType: DiscountType, // Porcentaje, valor absoluto,
         public value: number,
         public discountApplication: DiscountApplication, // Envío, Productos, Categoria, Subcategoria, Todo

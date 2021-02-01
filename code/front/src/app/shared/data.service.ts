@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ProductModalComponent } from '../components/product-modal/product-modal.component';
 import { RandomDate } from 'src/app/app.utils';
-import { MarketTabsInformation, Product, Section, StoreConfiguration } from 'black-market-model';
+import { DiscountCode, MarketTabsInformation, Product, Section, StoreConfiguration } from 'black-market-model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,9 +32,10 @@ export class DataService {
  
   products: Product[] = []
   public sections: Section[] = []
+  public mainPageDiscount: DiscountCode 
+  
 
-  public headerCode: string 
-  public headerDescription: string 
+  public discountCodes: DiscountCode[] = []
 
 
   public customers: Customer[] = [

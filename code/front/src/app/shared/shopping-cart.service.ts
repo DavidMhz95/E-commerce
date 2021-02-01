@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CartProduct, Product } from 'black-market-model';
+import { CartProduct, DiscountCode, Product, User } from 'black-market-model';
+import { UserService } from '../servicesForModels/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ShoppingCartService {
 
   public products: CartProduct[] = []
 
-  constructor() {
+  constructor( public userService: UserService) {
     const serializedProducts = localStorage.getItem(this.BM_Cart)
     this.products = serializedProducts ? JSON.parse(serializedProducts) : []
   }
@@ -72,6 +73,50 @@ export class ShoppingCartService {
       this.totalElements += element.quantity
     })
     return this.totalElements.toFixed(0)
+  }
+
+  public useDiscount(discount: DiscountCode){
+    var currentTime = new Date()
+    //Comprobamos si tiene compra mínima 
+    if(discount.minPurchase ){
+      //  El periodo de validez es correcto y el valor minimo tambien
+      if(this.totalPrice>=discount.minPurchase && discount.dateFrom<=currentTime && discount.dateTo>=currentTime){
+        this.checkUsersDiscount(discount)
+      }else{
+        alert("Las condiciones del descuento no se cumplen")
+      }
+    }else{
+        //  El periodo de validez es correcto
+      if(discount.dateFrom<=currentTime && discount.dateTo>=currentTime){
+        this.checkUsersDiscount(discount)
+      }else{
+        alert("Las condiciones del descuento no se cumplen")
+      }
+    }
+  }
+
+  public checkUsersDiscount(discount){
+    var sessionUser: User = this.userService.loggedUser
+    //Comprobamos permisos del descuento sobre usuarios
+    if(discount.users){
+      discount.users.forEach(user => {
+        if(user.email == sessionUser.email){
+          this.applyDiscount(discount);
+        }
+      });
+    }else{
+      this.applyDiscount(discount);
+    }
+  }
+
+
+  private applyDiscount(discount: any) {
+    //Comprobamos el tipo de descuento
+    if (discount.discountType == "Porcentaje") {
+      this.totalPrice = (this.totalPrice * discount.value / 100) - this.totalPrice;
+    } else if (discount.discountType == "Valor") {
+      this.totalPrice = this.totalPrice - discount.value;
+    }
   }
 }
 

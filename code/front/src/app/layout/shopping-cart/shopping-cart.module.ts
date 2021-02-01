@@ -29,4 +29,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSnackBarModule
   ]
 })
-export class ShoppingCartModule { }
+
+export class ShoppingCartModule {
+ 
+}
+

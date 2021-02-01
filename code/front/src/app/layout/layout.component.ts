@@ -5,6 +5,7 @@ import { Router, NavigationStart } from '@angular/router';
 import { ProductService } from 'src/app/servicesForModels/product.service';
 import { Section } from 'black-market-model';
 import { ConfigurationService } from '../servicesForModels/configuration.service';
+import { DiscountCodeService } from '../servicesForModels/discountCode.service';
 
 @Component({
   selector: 'app-layout',
@@ -13,7 +14,7 @@ import { ConfigurationService } from '../servicesForModels/configuration.service
 })
 export class LayoutComponent implements OnInit {
 
-  constructor(private router: Router, private dataService: DataService, private cartService: ShoppingCartService, public productService: ProductService, public configurationService: ConfigurationService) { }
+  constructor(private router: Router, private dataService: DataService, private cartService: ShoppingCartService, public productService: ProductService, public discountCodeService: DiscountCodeService ,  public configurationService: ConfigurationService) { }
 
   ngOnInit(): void {
 
@@ -22,6 +23,19 @@ export class LayoutComponent implements OnInit {
         if (response) {
           this.dataService.products = response
           this.getSections()
+        }
+      },
+      error => {
+        console.log(error)
+      }
+    )
+
+    this.discountCodeService.getAll().subscribe(
+      response => {
+        if (response) {
+          this.dataService.discountCodes = response
+          this.dataService.mainPageDiscount = this.dataService.discountCodes.filter(e => e.isInMainPage==true)[0]
+          console.log(this.dataService.mainPageDiscount)
         }
       },
       error => {
