@@ -14,6 +14,16 @@
           COMPRAR
         </button>
       </a>
+      <div>
+        <br>
+        <span style="font-size: 20px;">Código de descuento</span>
+        <div style="display: flex;">
+          <input placeholder="DISCOUNT20" [(ngModel)]="discountName">
+          <button mat-stroked-button class="btn" style="color:white; background-color: #545454; margin-left: 10px;" (click)="lookForDiscount(discountName)">
+            APLICAR
+          </button>
+        </div>
+      </div>
     </div>
   </div>
   <div style="clear:both"></div>

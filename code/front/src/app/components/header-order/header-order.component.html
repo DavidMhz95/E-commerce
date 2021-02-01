@@ -1,5 +1,5 @@
-<div>
-    <strong>{{dataService?.headerCode}}</strong>     
+<div *ngIf="dataService?.mainPageDiscount">
+    <strong>{{dataService?.mainPageDiscount?.code}}</strong>     
     <span class="promo">|</span> 
-    <span>{{dataService?.headerDescription}}</span>
+    <span>{{dataService?.mainPageDiscount?.description}}</span>
 </div>
