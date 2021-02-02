@@ -28,7 +28,7 @@ function _getUserByEmail(email: string, pass: string = undefined): Promise<any> 
             .must(new esb.MatchPhraseQuery('email', email))
             .must(new esb.MatchPhraseQuery('type', 0))
         if (pass) {
-            boolQuery = boolQuery.must(new esb.MatchPhraseQuery('hash_password', pass))
+            boolQuery = boolQuery.must(new esb.MatchPhraseQuery('hashPassword', pass))
         }
         const requestBody = new esb.requestBodySearch().query(boolQuery);
         // Build the request body      
