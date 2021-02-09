@@ -52,7 +52,16 @@
       </ul>
     </div>
 
-    <div style="margin-top: 20px" *ngIf="marketInfo.length > 0 && nombreTienda">
+    <div style="margin-top: 20px;">Gastos de envio</div>
+    <div style="margin-top: 10px">
+      <input matInput placeholder="9,99€" [(ngModel)]="shippmentPrice"
+        name="precio" style="padding-right: 30px;" required>
+    </div>
+    <div class="subInput">
+      Este es el precio de los gastos de envio
+    </div>
+
+    <div style="margin-top: 20px" *ngIf="marketInfo.length > 0 && nombreTienda && shippmentPrice">
       <button style="float:right" mat-flat-button class="btn btnSave" color="primary" (click)="saveConfig()"> Guardar Configuracion
       </button>
       <div style="clear:both"></div>
