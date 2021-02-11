@@ -78,11 +78,16 @@ export class ShoppingCartService {
     return this.totalElements.toFixed(0)
   }
 
-  public useDiscount(discount: DiscountCode) {
+  public isEnvio:boolean = false
+  public useDiscount(discount: DiscountCode, shippingCost? : number) {
     var currentTime = this.getToday()
     var dateFrom = discount.dateFrom.toString().split("T")[0]
     var dateTo = discount.dateTo.toString().split("T")[0]
 
+    if(shippingCost){
+      this.totalPrice = shippingCost
+      this.isEnvio = true
+    }
     //Comprobamos si tiene compra mínima 
     if (discount.minPurchase) {
       //  El periodo de validez es correcto y el valor minimo tambien
@@ -132,16 +137,32 @@ export class ShoppingCartService {
     }
   }
 
-  public prize: number = 0
+  public price: number 
+  public discountPrice: number 
 
   private applyDiscount(discount: DiscountCode) {
     this.isDiscount = true
-    //Comprobamos el tipo de descuento
-    if (discount.discountType == "Porcentaje") {
-      this.prize = this.totalPrice - (this.totalPrice * discount.value / 100) 
-    } else if (discount.discountType == "Valor") {
-      this.prize = this.totalPrice - discount.value
+
+    if(this.isEnvio){
+      this.discountPrice = this.getDiscountPrice(discount);
+    }else{
+      this.price = this.getDiscountPrice(discount);
     }
+    
+
+
+    
+  }
+
+  private getDiscountPrice(discount: DiscountCode) {
+    var auxiliarPrice: number
+    if (discount.discountType == "Porcentaje") {
+      auxiliarPrice = this.totalPrice - (this.totalPrice * discount.value / 100);
+    } else if (discount.discountType == "Valor") {
+      auxiliarPrice = this.totalPrice - discount.value;
+    }
+
+    return auxiliarPrice
   }
 }
 

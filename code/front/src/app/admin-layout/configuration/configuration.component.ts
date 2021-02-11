@@ -47,6 +47,10 @@ export class ConfigurationComponent implements OnInit {
   }
 
   saveConfig() {
+    if(this.shippmentPrice.toString().includes(",")){
+      this.shippmentPrice = Number(this.shippmentPrice.toString().replace(",","."))
+    }
+    console.log(this.shippmentPrice)
     this.storeConfiguration = new StoreConfiguration(4,this.nombreTienda,this.marketInfo,null, this.shippmentPrice)
     console.log(this.storeConfiguration)
     this.configurationService.update(this.storeConfiguration).subscribe(response => {
