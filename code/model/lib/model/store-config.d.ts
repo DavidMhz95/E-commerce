@@ -6,5 +6,6 @@ export declare class StoreConfiguration {
     storeName: string;
     tabs: MarketTabsInformation[];
     globalDiscount: DiscountCode;
-    constructor(type: ObjectType, storeName: string, tabs: MarketTabsInformation[], globalDiscount: DiscountCode);
+    shippingCosts: number;
+    constructor(type: ObjectType, storeName: string, tabs: MarketTabsInformation[], globalDiscount: DiscountCode, shippingCosts: number);
 }

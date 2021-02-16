@@ -1,5 +1,5 @@
-<div>
-    <strong>ENVÍO GRATIS</strong>     
+<div *ngIf="dataService?.mainPageDiscount">
+    <strong>{{dataService?.mainPageDiscount?.code}}</strong>     
     <span class="promo">|</span> 
-    <span>A PARTIR DE 80€ A TODA LA PENÍNSULA</span>
+    <span>{{dataService?.mainPageDiscount?.description}}</span>
 </div>

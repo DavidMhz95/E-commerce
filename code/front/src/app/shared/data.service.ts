@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ProductModalComponent } from '../components/product-modal/product-modal.component';
 import { RandomDate } from 'src/app/app.utils';
-import { MarketTabsInformation, Product, Section, StoreConfiguration } from 'black-market-model';
+import { DiscountCode, MarketTabsInformation, Product, Section, StoreConfiguration } from 'black-market-model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class DataService {
     [
       {
         nameInformation: "Envio",
-        descriptionInformation: "Todos nuestras colecciones y lanzamientos son especiales, limitando el numero de unidades para tratar de dar a todos nuestros clientes la mayor exclusividad. No te quedes sin tus productos favoritos y entérate de todos nuestros nuevos lanzamientos en nuestra newsletter y nuestras rrss."
+        descriptionInformation: "Todos nuestras colecciones y lanzamientos son especiales, limitando el numero de unidades para tratar de dar a todos nuestros clientes la mayor exclusividad. No te quedes sin tus productos favoritos y entérate de todos nuestros nuevos lanzamientos en nuestra newsletter y nuestras rrss.",
       },
       {
         nameInformation: "Informacion",
@@ -27,11 +27,15 @@ export class DataService {
         descriptionInformation: "Todos nuestras colecciones y lanzamientos son especiales, limitando el numero de unidades para tratar de dar a todos nuestros clientes la mayor exclusividad. No te quedes sin tus productos favoritos y entérate de todos nuestros nuevos lanzamientos en nuestra newsletter y nuestras rrss."
       }
     ],
-    null)
+    null, 9.99)
   }
  
   products: Product[] = []
   public sections: Section[] = []
+  public mainPageDiscount: DiscountCode 
+  
+
+  public discountCodes: DiscountCode[] = []
 
 
   public customers: Customer[] = [

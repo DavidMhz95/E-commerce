@@ -38,6 +38,8 @@ export class DiscountEditorComponent implements OnInit {
     this.discount = {
       discountApplication: undefined,
       code: undefined,
+      description: undefined,
+      isInMainPage: undefined,
       users: undefined,
       repetitions: undefined,
       discountType: undefined,

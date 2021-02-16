@@ -16,6 +16,7 @@ export class ConfigurationComponent implements OnInit {
   public descriptionInformation: string
   public marketInfoObject: MarketTabsInformation
   public marketInfo: MarketTabsInformation[] = []
+  public shippmentPrice: number
   public storeConfiguration : StoreConfiguration 
 
 
@@ -46,7 +47,7 @@ export class ConfigurationComponent implements OnInit {
   }
 
   saveConfig() {
-    this.storeConfiguration = new StoreConfiguration(4,this.nombreTienda,this.marketInfo,null)
+    this.storeConfiguration = new StoreConfiguration(4,this.nombreTienda,this.marketInfo,null, this.shippmentPrice)
     console.log(this.storeConfiguration)
     this.configurationService.update(this.storeConfiguration).subscribe(response => {
       if (response) {

@@ -21,7 +21,7 @@ export class DiscountsComponent implements OnInit {
   public discountType: typeof DiscountType = DiscountType
   public discountApplication: typeof DiscountApplication = DiscountApplication
   public errorMessage: string
-
+  
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator
   @ViewChild(MatSort, { static: true }) sort: MatSort
   public discount: DiscountCode
@@ -43,9 +43,12 @@ export class DiscountsComponent implements OnInit {
     })
   }
 
-  saveDiscount() {
+  saveDiscount(activateDiscount?: any ) {
     this.errorMessage = undefined
     // Pasamos id de código descuento SIEMPRE a MAYUS
+    if(activateDiscount){
+      this.discount = activateDiscount
+    }
     this.discount.code = this.discount.code.toUpperCase()
     this.discountCodeService.upsert(this.discount).subscribe((discount: any) => {
       if (discount) {
@@ -79,6 +82,22 @@ export class DiscountsComponent implements OnInit {
     }
   }
 
+  //Marcar como activo para ponerlo en la pagina frontal
+  selectActiveDiscount(discount: DiscountCode){
+    if (confirm("¿Estás seguro de poner este descuento en la página principal? ")) {
+      this.dataSource.data.forEach(element => {
+        element.isInMainPage = false
+        if(element.code == discount.code){
+          element.isInMainPage = true
+        }
+        console.log(this.dataSource.data)
+        this.saveDiscount(element)
+      });
+      
+    }
+    
+  }
+
   setDiscount(discount) {
     this.discount = discount
     this.updateDataSource()
@@ -88,6 +107,8 @@ export class DiscountsComponent implements OnInit {
     this.discount = {
       discountApplication: DiscountApplication.Envio,
       code: undefined,
+      description: undefined,
+      isInMainPage: undefined,
       users: undefined,
       repetitions: undefined,
       discountType: undefined,

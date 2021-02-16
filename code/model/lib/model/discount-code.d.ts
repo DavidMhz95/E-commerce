@@ -3,6 +3,8 @@ import { Product } from './product';
 import { User } from './user';
 export declare class DiscountCode {
     code: string;
+    description: string;
+    isInMainPage: boolean;
     discountType: DiscountType;
     value: number;
     discountApplication: DiscountApplication;
@@ -16,7 +18,7 @@ export declare class DiscountCode {
     dateFrom: Date;
     dateTo: Date;
     type: ObjectType;
-    constructor(code: string, discountType: DiscountType, // Porcentaje, valor absoluto,
+    constructor(code: string, description: string, isInMainPage: boolean, discountType: DiscountType, // Porcentaje, valor absoluto,
     value: number, discountApplication: DiscountApplication, // Envío, Productos, Categoria, Subcategoria, Todo
     repetitions: number, users: User[], products: Product[], section: string, subsection: string, minPurchase: number, color: string, dateFrom: Date, dateTo: Date, type: ObjectType);
 }

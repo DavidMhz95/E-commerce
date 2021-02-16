@@ -8,7 +8,8 @@ export class StoreConfiguration {
         public type: ObjectType,
         public storeName: string,
         public tabs: MarketTabsInformation[],
-        public globalDiscount: DiscountCode
+        public globalDiscount: DiscountCode,
+        public shippingCosts: number
     ) { }
 
 }
