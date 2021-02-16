@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { DataService } from './../../shared/data.service';
 import { ColorService } from 'src/app/shared/color.service';
 import { DiscountCodeService } from 'src/app/servicesForModels/discountCode.service';
@@ -26,20 +26,17 @@ export class DiscountsComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort
   public discount: DiscountCode
 
-  constructor(public dataService: DataService, public discountCodeService: DiscountCodeService, public colorService: ColorService, private router: Router, private _snackBar: MatSnackBar) {
+  constructor(public dataService: DataService, public discountCodeService: DiscountCodeService, public colorService: ColorService, private router: Router, private _snackBar: MatSnackBar, private changeDetectorRefs: ChangeDetectorRef) {
     this.resetDiscount()
   }
 
   ngOnInit(): void {
     // Assign the data to the data source for the table to render
-    this.UpdateDataSource()
+    this.updateDataSource()
   }
 
-  private UpdateDataSource() {
+  private updateDataSource() {
     this.discountCodeService.getAll().subscribe((response: DiscountCode[]) => {
-      console.log(response)
-      console.log(DiscountType.Percentage)
-      console.log(this.discountType['Percentage'])
       this.dataSource = new MatTableDataSource(response)
       this.dataSource.paginator = this.paginator
       this.dataSource.sort = this.sort
@@ -52,13 +49,13 @@ export class DiscountsComponent implements OnInit {
     this.discount.code = this.discount.code.toUpperCase()
     this.discountCodeService.upsert(this.discount).subscribe((discount: any) => {
       if (discount) {
-        this.openSnackBar("Descuento creado correctamente.","Aceptar")
-        this.UpdateDataSource()
+        this.openSnackBar("Descuento creado correctamente.", "Aceptar")
+        this.updateDataSource()
       } else {
         this.errorMessage = "Descuento erróneo."
       }
     }, error => {
-      this.openSnackBar(error,"Aceptar")
+      this.openSnackBar(error, "Aceptar")
       console.log(error)
     })
   }
@@ -73,8 +70,8 @@ export class DiscountsComponent implements OnInit {
       this.discountCodeService.delete(discount).subscribe(response => {
         if (response) {
           //this.dataService.products = this.dataService.products.filter((p: Product) => p.reference != discount)
-          this.openSnackBar("Descuento borrado correctamente.","Aceptar")
-          this.UpdateDataSource()
+          this.openSnackBar("Descuento borrado correctamente.", "Aceptar")
+          this.updateDataSource()
         }
       }, error => {
         console.log(error)
@@ -84,7 +81,7 @@ export class DiscountsComponent implements OnInit {
 
   setDiscount(discount) {
     this.discount = discount
-    this.UpdateDataSource()
+    this.updateDataSource()
   }
 
   resetDiscount() {
@@ -102,7 +99,7 @@ export class DiscountsComponent implements OnInit {
       color: '#333333',
       dateFrom: new Date(),
       dateTo: new Date(),
-      type:ObjectType.DiscountCode
+      type: ObjectType.DiscountCode
     }
   }
 

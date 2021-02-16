@@ -35,6 +35,7 @@ export class RegistrationComponent {
     if (this.email && this.pass) {
       var hash_pass = Md5.hashStr(this.pass).toString()
       this.userService.login(this.email, hash_pass).subscribe((user: User) => {
+        console.log(user)
         if (user) {
           //Guardar en localstorage el user
           this.userService.loggedUser = user
