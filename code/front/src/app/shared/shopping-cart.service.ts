@@ -9,11 +9,11 @@ export class ShoppingCartService {
   private BM_Cart: string = "BM_Cart"
   private totalPrice: number = 0
   private totalElements: number = 0
-  public isDiscount: boolean = false
 
   public products: CartProduct[] = []
 
   constructor(public userService: UserService) {
+    this.isDiscountApplied = false
     const serializedProducts = localStorage.getItem(this.BM_Cart)
     this.products = serializedProducts ? JSON.parse(serializedProducts) : []
   }
@@ -66,9 +66,10 @@ export class ShoppingCartService {
         this.totalPrice += element.product.price * element.quantity
       }
     })
-    
     return this.totalPrice
   }
+
+  
 
   public GetElements(): string {
     this.totalElements = 0;
@@ -78,32 +79,40 @@ export class ShoppingCartService {
     return this.totalElements.toFixed(0)
   }
 
-  public isEnvio:boolean = false
-  public useDiscount(discount: DiscountCode, shippingCost? : number) {
+  public isEnvio: boolean = false
+
+  public useDiscount(discount: DiscountCode, shippingCost?: number) {
     var currentTime = this.getToday()
     var dateFrom = discount.dateFrom.toString().split("T")[0]
     var dateTo = discount.dateTo.toString().split("T")[0]
 
-    if(shippingCost){
+    if (shippingCost) {
       this.totalPrice = shippingCost
       this.isEnvio = true
     }
-    //Comprobamos si tiene compra mínima 
-    if (discount.minPurchase) {
-      //  El periodo de validez es correcto y el valor minimo tambien
-      if (this.totalPrice >= discount.minPurchase && Date.parse(dateFrom) <= Date.parse(currentTime) && Date.parse(dateTo) >= Date.parse(currentTime)) {
-        this.checkUsersDiscount(discount)
-      } else {
-        alert("Las condiciones del descuento no se cumplen")
-      }
+
+    //Comprobamos que no haya un descuento ya aplicado
+    if (this.isDiscountApplied) {
+      alert("Ya existe un descuento aplicado")
     } else {
-      //  El periodo de validez es correcto
-      if (Date.parse(dateFrom) <= Date.parse(currentTime) && Date.parse(dateTo) >= Date.parse(currentTime)) {
-        this.checkUsersDiscount(discount)
+      //Comprobamos si tiene compra mínima 
+      if (discount.minPurchase) {
+        //  El periodo de validez es correcto y el valor minimo tambien
+        if (this.totalPrice >= discount.minPurchase && Date.parse(dateFrom) <= Date.parse(currentTime) && Date.parse(dateTo) >= Date.parse(currentTime)) {
+          this.checkUsersDiscount(discount)
+        } else {
+          alert("Las condiciones del descuento no se cumplen")
+        }
       } else {
-        alert("Las condiciones del descuento no se cumplen")
+        //  El periodo de validez es correcto
+        if (Date.parse(dateFrom) <= Date.parse(currentTime) && Date.parse(dateTo) >= Date.parse(currentTime)) {
+          this.checkUsersDiscount(discount)
+        } else {
+          alert("Las condiciones del descuento no se cumplen")
+        }
       }
     }
+
   }
 
   public getToday() {
@@ -123,7 +132,7 @@ export class ShoppingCartService {
     return today
   }
 
-  public checkUsersDiscount(discount:DiscountCode) {
+  public checkUsersDiscount(discount: DiscountCode) {
     var sessionUser: User = this.userService.loggedUser
     //Comprobamos permisos del descuento sobre usuarios
     if (discount.users) {
@@ -137,21 +146,17 @@ export class ShoppingCartService {
     }
   }
 
-  public price: number 
-  public discountPrice: number 
+  public price: number
+  public discountPrice: number
+  public isDiscountApplied: boolean = false
 
   private applyDiscount(discount: DiscountCode) {
-    this.isDiscount = true
-
-    if(this.isEnvio){
+    if (this.isEnvio) {
       this.discountPrice = this.getDiscountPrice(discount);
-    }else{
+    } else {
       this.price = this.getDiscountPrice(discount);
     }
-    
 
-
-    
   }
 
   private getDiscountPrice(discount: DiscountCode) {
@@ -161,9 +166,23 @@ export class ShoppingCartService {
     } else if (discount.discountType == "Valor") {
       auxiliarPrice = this.totalPrice - discount.value;
     }
-
+    this.isDiscountApplied = true
     return auxiliarPrice
   }
+
+
+  public calculateTotal(shippingCost: number){
+    
+    var partialPrize: any = this.price ? this.price : this.GetPrize().toFixed(2)
+    var shippingPrize: any = this.discountPrice ? this.discountPrice : shippingCost 
+    return Number(shippingPrize) + Number(partialPrize)
+  }
+
+  public getDiscountPriceUpdated (shippingCost: number){
+    var shippingPrize: any = this.discountPrice ? this.discountPrice : shippingCost 
+    return shippingPrize
+  }
+
 }
 
 

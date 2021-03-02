@@ -18,6 +18,7 @@ export class ShoppingCartComponent implements OnInit {
   private isUserLog: boolean = false
   public discountName : string 
   public shippingCost: number
+  public totalPrize: number
 
 
 
@@ -42,9 +43,8 @@ export class ShoppingCartComponent implements OnInit {
    this.configurationService.getConfiguration().subscribe(
     response => {
       if (response) {
-        console.log(response)
         this.shippingCost = response[0].shippingCosts
-        this.calculateTotal()
+        this.totalPrize = this.cartService.calculateTotal(this.shippingCost)
       }
     },
     error => {
@@ -55,15 +55,8 @@ export class ShoppingCartComponent implements OnInit {
 
   }
 
-  public totalPrize: number
-
-  public calculateTotal(){
-
-    var partialPrize: any = !this.cartService?.price ? this.cartService?.GetPrize().toFixed(2) : this.cartService?.price
-    var shippingPrize: any = this.cartService?.discountPrice ? this.cartService?.discountPrice : this.shippingCost 
-    console.log(partialPrize,shippingPrize)
-    this.totalPrize = Number(shippingPrize) + Number(partialPrize)
-
+  public recalculateTotal(event){
+    this.totalPrize = this.cartService.calculateTotal(event)
   }
 
   public lookForDiscount(discountName){
@@ -79,7 +72,7 @@ export class ShoppingCartComponent implements OnInit {
         
       }
 
-      this.calculateTotal()
+      this.totalPrize = this.cartService.calculateTotal(this.shippingCost)
       
     }
   }

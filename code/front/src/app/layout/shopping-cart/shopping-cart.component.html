@@ -4,30 +4,14 @@
 
 <div style="padding: 12px 15px" *ngIf="cartService?.products?.length>0; else noProducts">
   <div style="float: left;  max-height: 450px; overflow-y: auto;" class="col-xl-8 col-lg-8 col-md-8 col-sm-6 col-xs-12">
-    <app-cart-products-table [editable]="'true'" [dataSource]="cartService?.products"></app-cart-products-table>
+    <app-cart-products-table [editable]="'true'" [dataSource]="cartService?.products" (recalculateTotal)="recalculateTotal($event)"></app-cart-products-table>
   </div>
   <div style="float: left;" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12">
     <div style="padding: 10px 30px; font-size: 22px; line-height: 1.5;">
-      Total Parcial: €{{!cartService?.price? cartService?.GetPrize().toFixed(2) : cartService?.price}}
+      Total Parcial: €{{(!cartService?.price? cartService?.GetPrize().toFixed(2) : cartService?.price) | number : '1.2-2'}}
       <div>
-        <br>
-        <div *ngIf="shippingCost">
-          Envio: €{{ !cartService?.discountPrice? shippingCost : cartService?.discountPrice }}
-        </div>
-        <br>
-        <span style="font-size: 20px;">Código de descuento</span>
-        <div style="display: flex;">
-          <input placeholder="DISCOUNT20" [(ngModel)]="discountName">
-          <button mat-stroked-button class="btn" style="color:white; background-color: #545454; margin-left: 10px;" (click)="lookForDiscount(discountName)">
-            APLICAR
-          </button>
-        </div>
-        <br>
-        <div *ngIf="shippingCost">
-          Total: €{{totalPrize}}  
-        </div>
         <a routerLink="./checkout">
-          <button mat-stroked-button class="btn" style="color:white; background-color: #545454">
+          <button mat-stroked-button class="btn"  style="color:white; background-color: #545454">
             COMPRAR
           </button>
         </a>

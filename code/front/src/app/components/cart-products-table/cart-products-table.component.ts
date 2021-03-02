@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, OnChanges, Sanitizer } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Sanitizer, Output, EventEmitter } from '@angular/core';
 import { ShoppingCartService } from 'src/app/shared/shopping-cart.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProductService } from 'src/app/servicesForModels/product.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Product, CartProduct } from 'black-market-model';
+import { ConfigurationService } from 'src/app/servicesForModels/configuration.service';
 
 @Component({
   selector: 'app-cart-products-table',
@@ -14,11 +15,12 @@ export class CartProductsTableComponent implements OnInit, OnChanges {
 
   @Input('editable') editable: boolean
   @Input('dataSource') dataSource: CartProduct[]
+  @Output() recalculateTotal: EventEmitter<number> = new EventEmitter()
 
   displayedColumns: string[] = ['image', 'name', 'properties', 'prize', 'number'];
   public internalDataSource: MatTableDataSource<CartProduct>
 
-  constructor(public sanitizer: DomSanitizer, public cartService: ShoppingCartService, public productService: ProductService) {
+  constructor(public sanitizer: DomSanitizer, public cartService: ShoppingCartService, public productService: ProductService, public configurationService: ConfigurationService) {
   }
 
   private _update() {
@@ -44,11 +46,25 @@ export class CartProductsTableComponent implements OnInit, OnChanges {
     this._update()
   }
 
-  public valueChanged(event: number, product: CartProduct) {
-    product.quantity = event
+  public shippingCost: number
 
-    if (product.quantity <= 0) {
-      this.deleteProduct(product.product, true)
-    }
+  public valueChanged(event: number, product: CartProduct) {
+
+    product.quantity = event
+    this.configurationService.getConfiguration().subscribe(
+      response => {
+        if (response) {
+          this.shippingCost = response[0].shippingCosts
+          if (product.quantity <= 0) {
+            this.deleteProduct(product.product, true)
+          }
+          this.recalculateTotal.emit(this.shippingCost)
+        }
+      },
+      error => {
+        console.log(error)
+      }
+    )
   }
+
 }

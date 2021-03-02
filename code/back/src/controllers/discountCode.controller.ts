@@ -32,13 +32,31 @@ function _getDiscountCodeByCode(code: string): Promise<any> {
 
 function check(req, res) {
     var code = req.params.code
+    var price = req.params.price
+    var user = req.params.user
+
+    var boolSubQuery = new esb.boolQuery()
+        .should([
+            new esb.existsQuery('users').must(new esb.MatchPhraseQuery('users', user)),
+            new esb.mustNot(new esb.existsQuery('users'))
+        ]).minimumShouldMatch(1)
+
     var boolQuery = new esb.boolQuery()
         .must(new esb.MatchPhraseQuery('code', code))
         .must(new esb.MatchPhraseQuery('type', ObjectType.DiscountCode))
+        .must(new esb.RangeQuery('minPurchase', price).gte())
+        .must(boolSubQuery)
 
     const requestBody = new esb.requestBodySearch().query(boolQuery)
     executeQuery(requestBody.toJSON()).then((response: any) => {
-        return res.status(200).send(response?.body?.hits?.hits.map((h: any) => h._source)[0])
+        var discount : DiscountCode = response?.body?.hits?.hits.map((h: any) => h._source)[0]
+        return res.status(200).send({
+            discountType : discount.discountType,
+            value: discount.value,
+            discountApplication: discount.discountApplication,
+            dateFrom: discount.dateFrom,
+            dateTo: discount.dateTo
+        })
     }, (error: any) => {
         return res.status(400).send(error);
     })

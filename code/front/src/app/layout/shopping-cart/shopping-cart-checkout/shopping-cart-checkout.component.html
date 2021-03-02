@@ -55,12 +55,9 @@
       <div style="padding-left: 0" class="title">
         Tipo de Envío
       </div>
-      <mat-radio-group class="radio-group" [(ngModel)]="order.typeShipment" (change)="finalPrice = cartService?.GetPrize() + order?.typeShipment?.price">
-        <mat-radio-button class="radio-button" *ngFor="let shipmentType of shipmentTypes" [value]="shipmentType">
-          {{shipmentType?.type}} <span class="shipment-type-price">Gastos de envío {{shipmentType?.price}}€
-            ({{shipmentType?.details}}).</span>
-        </mat-radio-button>
-      </mat-radio-group>
+     
+       Estándar -  <span class="shipment-type-price">Gastos de envío {{shipmentDiscount? shipmentDiscount.toFixed(2) : shippingCost}}€</span>
+      
 
       <div style="padding-left: 0;" class="title">
         Código de Descuento
@@ -68,9 +65,8 @@
       <div style="position: relative">
         <span [class.hidden]="!discount" class="preInput">Descuento</span>
         <input [class.completeInput]="discount" matInput placeholder="Descuento" [(ngModel)]="discount">
-        <div class="not-valid" *ngIf="isDiscountValid==false">*El codigo de descuento introducido no es válido.</div>
         <button mat-stroked-button class="btn"
-          style="color:white; background-color: #545454; width: 100%; max-width: unset;" (click)="applyDiscountCode()">
+          style="color:white; background-color: #545454; width: 100%; max-width: unset;" (click)="lookForDiscount(discount)">
           APLICAR
         </button>
       </div>
