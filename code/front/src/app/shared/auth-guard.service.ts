@@ -20,6 +20,7 @@ export class AuthGuardService implements CanActivate {
       var user: User = JSON.parse(localStorage.getItem('BM_User'))
       if (user) {
         this.userService.login(user.email, user.hashPassword).subscribe((user: any) => {
+          console.log(user)
           if (user) {
             this.userService.loggedUser = user
             subject.next(true)
