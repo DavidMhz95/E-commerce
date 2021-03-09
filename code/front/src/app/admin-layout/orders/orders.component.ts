@@ -9,6 +9,8 @@ import {
 } from 'chartist';
 import { ChartType, ChartEvent } from 'ng-chartist';
 import { Order } from 'black-market-model';
+import { OrderService } from 'src/app/servicesForModels/order.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-orders',
@@ -17,19 +19,35 @@ import { Order } from 'black-market-model';
 })
 export class OrdersComponent implements OnInit {
 
-  public toProcessOrders:Order[] =[]
-  public sentOrders:Order[] =[]
-  public deliveredOrders:Order[] =[]
+  public toProcessOrders: Order[] = []
+  public sentOrders: Order[] = []
+  public inTransitOrders: Order[] = []
+  public deliveredOrders: Order[] = []
 
-  constructor(private dataService:DataService) { }
+  constructor(private dataService: DataService, public orderService: OrderService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     // this.toProcessOrders = this.dataService.generateRandomOrders(4)
     // this.sentOrders = this.dataService.generateRandomOrders(6)
     // this.deliveredOrders = this.dataService.generateRandomOrders(20)
+
+    this.orderService.getOrders().subscribe((response: Order[]) => {
+      if (response) {
+        this.toProcessOrders = response.filter((o: Order) => o.state == 0)
+        this.sentOrders = response.filter((o: Order) => o.state == 1)
+        this.inTransitOrders = response.filter((o: Order) => o.state == 2)
+        this.deliveredOrders = response.filter((o: Order) => o.state == 3)
+
+      } else {
+        console.log("No hay pedidos")
+      }
+    }, error => {
+      this.openSnackBar(error, "Aceptar")
+      console.log(error)
+    })
   }
 
- 
+
 
   type: ChartType = 'Line';
   data: IChartistData = {
@@ -81,4 +99,51 @@ export class OrdersComponent implements OnInit {
     }
   };
 
+
+  public orderChangeToNextState(order: Order) {
+    if (order) {
+      if (order.state != 3) {
+        order.state = order.state + 1
+
+        this.orderService.update(order).subscribe((response: Order[]) => {
+          if (response) {
+
+          }
+        }, error => {
+          this.openSnackBar(error, "Aceptar")
+          console.log(error)
+        })
+      }
+    }
+
+  }
+
+
+  public orderChangeToPreviousState(order: Order) {
+    if (order) {
+      if (order.state != 0) {
+        order.state = order.state - 1
+
+        this.orderService.update(order).subscribe((response: Order[]) => {
+          if (response) {
+
+          }
+        }, error => {
+          this.openSnackBar(error, "Aceptar")
+          console.log(error)
+        })
+      }
+
+
+    }
+
+  }
+
+
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 }

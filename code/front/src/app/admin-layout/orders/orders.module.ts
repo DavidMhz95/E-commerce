@@ -10,7 +10,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MatDividerModule } from '@angular/material/divider';
 import { ChartistModule } from 'ng-chartist';
 
-
 @NgModule({
   declarations: [OrdersComponent],
   imports: [
@@ -21,7 +20,8 @@ import { ChartistModule } from 'ng-chartist';
     MatIconModule,
     MatDividerModule,
     ChartistModule,
-    SharedModule
+    SharedModule,
+    
   ]
 })
 export class OrdersModule { }

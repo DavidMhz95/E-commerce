@@ -129,6 +129,29 @@
     </div>
 
     <div style="opacity:0.8; margin-left: 8px; clear: both;" class="title">
+        Pedidos en transito ({{inTransitOrders?.length}})
+    </div>
+
+    <div style="margin-top:10px; margin-bottom: 20px" class="padding7 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let order of inTransitOrders; let index=index" [expanded]="index==0"
+                class="mat-elevation-z">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon style="margin-right: 10px;">local_shipping</mat-icon>
+                        <span style="margin-right: 5px;">Pedido #{{order?.id|number:'6.0-0'|noComma}}</span>
+                        <span style="opacity: 0.7;">enviado</span>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{order?.date}}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <app-order [products]="order?.products" [customer]="order?.customer"></app-order>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
+    <div style="opacity:0.8; margin-left: 8px; clear: both;" class="title">
         Pedidos entregados ({{deliveredOrders?.length}})
     </div>
 
